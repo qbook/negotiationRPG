@@ -1,0 +1,838 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Bootstrap -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+        @keyframes pulse {
+            0% {
+            opacity: 1;
+            }
+            50% {
+            opacity: 0.5;
+            }
+            100% {
+            opacity: 1;
+            }
+        }
+        .pulse-effect {
+            animation: pulse 1s infinite;
+        }
+    </style>      
+   <title>Dice Roll</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
+
+            <div class="card text-dark bg-light mb-1">
+                <div class="mb-3">
+                    <h1>DICE Page</h1><h2>Group: {{ groupDigit }}</h2><h4>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
+                </div>
+            </div>
+            <div class="card text-light mb-1 text-center" 
+                style="background-image: url({% static 'images/logoClass01_blur.png' %}); 
+                    background-size: cover; 
+                    background-position: center; 
+                    backdrop-filter: blur(100px);">
+                <div class="mb-3">
+                    <img id="imgRandomImage" alt="A random anime image" style="width: 200px; height: 200px; object-fit: cover;">
+                </div>
+            </div>
+            <div class="card text-dark bg-light mb-1">
+                <h4 class="card-header">Role Status</h4>
+                <div class="card-body">
+                    <h4>RPG Round: {{ rpg_closest_round }}</h4>
+                    <p id="timeNow">Time Now: </p>
+                    <p>Dice Roll Starts: {{ rpg_closest_start_date }}<br>
+                        Dice Roll Ends: {{ rpg_closest_end_date }}<br>
+                    </p>
+                    <p>
+                        <div id="countDownStart">Time Left To START Roll: </div>
+                        <div id="countDownEnd">Time Left To END Roll: </div>
+                    </p>
+                    <p>
+                        RPG {{ rpg_closest_round }} Deals End: {{ rpg_play_days_left }}
+                    </p>
+                    <h4 class="card-header">Product</h4>                    
+                    <p>Product: {{ rpg_current_product_name }}<br>
+                        Base Price: {{ rpg_current_product_price }}<br>
+                        Base Units: {{ rpg_current_product_units }}<br>
+                        Currency: {{ rpg_current_product_currency }}<br>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card text-dark bg-light mb-1">
+                <h4 class="card-header">Negotiation Position</h4>
+                <div class="card-body">
+                    <div id="txtPosition"><p>
+                        RESISTANCE: {{ groupResistancePrice }}<br>
+                        FLEX: {{ groupFlex }}<br>
+                        MAX Purchase: {{ groupMaxPurchase }}<br>
+                        DELIVERY: {{ groupDelivery }}<br>
+                        UNITS: {{ groupUnits }}<br>
+                        IMPORTANCE: {{ groupImportance }}<br>
+                        QUALITY: {{ groupQuality }}<br>
+                    </p></div> 
+                    <p>BUYER/SELLER: <span class="txtRole" id="txtRole0">{{ groupRole }}</span></p>
+                    <a class="btn btn-primary" id="btnGoToDashboard" href="{% url 'position_buyer_seller' %}">Go To RPG Dashboard</a>
+
+                    <p>Notes:<br>
+                        <div id="txtGroupNote" onclick="editNote()"></div>
+                    </p><div class="text-info" onclick="editNote()">(Click to edit note)</div>
+                    <!-- Hidden input field for editing -->
+                    <textarea id="txtTeacherNoteEdit" style="display: none;"></textarea>
+                    <button id="btnSaveNote" style="display: none;" onclick="saveNote()">Save</button>
+                </div>
+            </div>
+            <div class="card text-dark bg-light mb-1" id="bsRoleDice">
+                <h4 class="card-header">Role Dice</h4>
+                <div class="card-body">
+                    <h4>RPG Round: {{ rpg_closest_round }}</h4>
+                    <p>Dice Roll Start: {{ rpg_closest_start_date }}<br>
+                        Dice Roll End: {{ rpg_closest_end_date }}
+                    </p>
+                    <div class="container mt-1">
+                        <!-- Button to roll dice -->
+                        <button class="btn btn-primary col-sm-5 text-center" id="btnRollDice">Roll Dice</button>
+                        <div id="icoSpinner" class="spinner-border text-secondary" role="status" style="display:none;">
+                            <span class="visually-hidden">ROLLING</span>
+                        </div>
+                        <!-- Display remaining rolls and latest roll -->
+                        <br>Rolls Left: <span class="bg-warning" id="txtRollsLeft">{{ groupDiceLeft }}</span><br>
+                        Spend These Points: <span class="bg-warning" id="txtRollScore">{{ groupDiceLastRoll }}</span><br>
+                        Negotiation Role: <span class="txtRole bg-warning" id="txtRole1">{{ groupRole }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card text-dark bg-light mb-1" id="bsDistributePoints">
+                <h4 id="txtDistributeNow" class="card-header">Distribute Points <div style="display: inline-block;" id="txtPointsLeft"></div></h4>
+                <div class="card-body">
+                    <p class="small text-muted">Spend your points here. Click Play Now when ready.<br>(Once you click Play Now, your position is locked and cannot be changed for this RPG round.).</p>
+                    <form id="attributeForm" class="form-horizontal">
+                        <label for="drpResistance" class="col-sm-3 col-form-label">RESISTANCE:</label>
+                        <select class="point-dropdown" name="drpResistance" id="drpResistance">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select><div id="txtResistance" class="d-inline-block align-middle small text-muted"></div><br>
+                        <label for="drpFlex" class="col-sm-3 col-form-label">FLEX:</label>
+                        <select class="point-dropdown" name="drpFlex" id="drpFlex">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select><div id="txtFlex" class="d-inline-block align-middle small text-muted"></div><br>
+                        <label for="dropMaxPurchase" class="col-sm-3 col-form-label">MAX Purchase:</label>
+                        <select class="point-dropdown" name="drpMaxPurchase" id="drpMaxPurchase">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select><div id="txtMaxPurchase" class="d-inline-block align-middle small text-muted"></div><br>
+                        <label for="drpDelivery" class="col-sm-3 col-form-label">DELIVERY:</label>
+                        <select class="point-dropdown" name="drpDelivery" id="drpDelivery">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select><div id="txtDelivery" class="d-inline-block align-middle small text-muted"></div><br>
+                        <label for="drpUnits" class="col-sm-3 col-form-label">UNITS:</label>
+                        <select class="point-dropdown" name="drpUnits" id="drpUnits">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select><div id="txtUnits" class="d-inline-block align-middle small text-muted"></div><br>
+                        <label for="drpImportance" class="col-sm-3 col-form-label">IMPORTANCE:</label>
+                        <select class="point-dropdown" name="drpImportance" id="drpImportance">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select><div id="txtImportance" class="d-inline-block align-middle small text-muted"></div><br>
+                        <label for="drpQuality" class="col-sm-3 col-form-label">QUALITY:</label>
+                        <select class="point-dropdown" name="drpQuality" id="drpQuality">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select><div id="txtQuality" class="d-inline-block align-middle small text-muted"></div><br>
+                        <button class="btn btn-primary col-sm-5 text-center" id="btnPlayNow">Play NOW</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+<script>
+// Make sure the page is fully loaded before we attach our event handlers
+//This is only for the initial page refresh to fix buyer/seller to now show integer
+$(document).ready(function() {
+    //fix the Buyer/Seller to text not integer on page when first loading page
+    if ({{ groupRole }} == -1){
+        $(".txtRole").text("SELLER");
+    }else if({{ groupRole }} == 1){
+        $(".txtRole").text("BUYER");                        
+    }else{
+        $(".txtRole").text("NONE");
+    }//end elseIf
+    
+    // Declare variables that need wide scope here
+    var groupRole = {{ groupRole }} //use this variable across functions; Load on page load but remember to change as needed
+    var groupDiceLastRoll = {{ groupDiceLastRoll }} //use this variable across functions;
+    var pointsLeft = 0;
+
+
+    function turnOnOffDiceRoll(state){
+        if (state == -1){ //turn off the rolldice and distribute card areas
+            document.getElementById("bsRoleDice").classList.add("text-muted", "bg-secondary");
+            document.getElementById("bsRoleDice").style.cursor = "not-allowed";
+            document.getElementById("bsDistributePoints").classList.add("text-muted", "bg-secondary");
+            document.getElementById("bsDistributePoints").style.cursor = "not-allowed";
+            //disable all buttons on the page
+            $("[id^='btn']").prop("disabled", true);
+            $("[id^='drp']").prop("disabled", true);
+            document.getElementById("countDownStart").innerHTML = "Time Over!";
+        }else if (state==1){ //turn everything on for rolling dice
+            document.getElementById("bsRoleDice").classList.remove("text-muted", "bg-secondary");
+            document.getElementById("bsRoleDice").style.cursor = "allowed";
+            document.getElementById("bsDistributePoints").classList.remove("text-muted", "bg-secondary");
+            document.getElementById("bsDistributePoints").style.cursor = "allowed";
+            //disable all buttons on the page
+            $("[id^='btn']").prop("disabled", false);
+            $("[id^='drp']").prop("disabled", false);
+            document.getElementById("countDownStart").innerHTML = "Time To Roll Dice!";
+        }//end if state
+        return;
+    }//end function turnOnOffDiceRoll
+
+    //setting up for showing the coutdown
+    var startTime = new Date({{ rpg_closest_start_date|date:"U" }} * 1000); // Convert to milliseconds
+    var endTime = new Date({{ rpg_closest_end_date|date:"U" }} * 1000); // Convert to milliseconds
+    function updateCountdown() {
+        //setup time
+        var now = new Date();
+        //show the time now on page
+        document.getElementById("timeNow").innerHTML = "Time Now: " + now;
+
+        //FIRST for the END time (check end first then check start)
+        var timeDifferenceEnd = endTime - now;
+        // Exit if the time has ended or PlayNow clicked previously
+        intPlayNowCheck = ({{ groupResistancePrice }}+{{ groupFlex }}+{{ groupDelivery }}+{{ groupUnits }}+{{ groupImportance }}+{{ groupQuality }});
+        if(timeDifferenceEnd < 0 || intPlayNowCheck > 7) { //time for roll is OVER OR PlayNow has already been used
+            turnOnOffDiceRoll(-1);
+            return;
+        }else{
+            turnOnOffDiceRoll(1);
+        }
+
+        //NEXT for the START time
+        var timeDifferenceStart = startTime - now;
+        if(timeDifferenceStart > 0) { //time for roll has NOT arrived
+            turnOnOffDiceRoll(-1);
+        }else{
+            turnOnOffDiceRoll(1);
+        }//end if else
+
+        //Parse the times for display and show on page (CLYDE make this into a function)
+        var hours = Math.floor(timeDifferenceStart / 3600000); // Convert to hours
+        var minutes = Math.floor((timeDifferenceStart % 3600000) / 60000); // Convert to minutes
+        var seconds = Math.floor((timeDifferenceStart % 60000) / 1000); // Convert to seconds
+        document.getElementById("countDownStart").innerHTML = "Time Left To START Roll: " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+
+        var hours = Math.floor(timeDifferenceEnd / 3600000); // Convert to hours
+        var minutes = Math.floor((timeDifferenceEnd % 3600000) / 60000); // Convert to minutes
+        var seconds = Math.floor((timeDifferenceEnd % 60000) / 1000); // Convert to seconds
+        document.getElementById("countDownEnd").innerHTML = "Time Left To END Roll: " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+    }
+
+    // Update every second
+    setInterval(updateCountdown, 1000);
+
+    
+    //Button ROLL DICE clicked
+    $("#btnRollDice").click(function(e) {
+        e.preventDefault();  // Prevent the form from submitting which resets all the dropdowns and refreshes page
+        // Show the spinner
+        $("#icoSpinner").show();
+        //Reset the dropdowns to one
+        $(".point-dropdown").val('1');
+        //Exception is the MaxPurchase
+        $(".point-dropdown").val('0');        
+        //Remove any text added from distributing points
+        $("#txtResistance").text('');
+        $("#txtFlex").text('');
+        $("#txtMaxPurchase").text('');
+        $("#txtDelivery").text('');
+        $("#txtUnits").text('');
+        $("#txtImportance").text('');
+        $("#txtQuality").text('');
+        
+        $.ajax({
+            type: "POST",
+            url: "{% url 'roll_dice' %}",
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            success: function(response) {
+                // Hide the spinner
+                $("#icoSpinner").hide();
+                if (response.status == "success") {
+                    // Highlight with pulsing the chnages
+                    $("#txtRollsLeft").text(response.rolls_left).removeClass("bg-warning pulse-effect").addClass("bg-danger pulse-effect").text(response.rolls_left);
+                    $("#txtRollScore").text(response.latest_roll).removeClass("bg-warning pulse-effect").addClass("bg-danger pulse-effect").text(response.latest_roll);
+                    $("#txtPointsLeft").text(response.latest_roll).removeClass("bg-warning pulse-effect").addClass("bg-danger pulse-effect").text(response.latest_roll);
+     
+                    //Update the wide-scope variable on ROLE to match last dice role (this does not come from DB as the page refresh is blocked)
+                    groupRole = response.latest_role; //update wide-scope variable on the group ROLE
+                    groupDiceLastRoll = response.latest_roll; //update wide-scope variable on points Left
+
+                    //for page display, variable to hold the English for the ROLE integer value
+                    if (response.latest_role == -1){
+                        $(".txtRole").text("SELLER");
+                    }else if(response.latest_role == 1){
+                        $(".txtRole").text("BUYER");                        
+                    }else{
+                        $(".txtRole").text("NONE");
+                    }//end elseIf
+
+                    // Reset back to original class after some seconds
+                    setTimeout(function() {
+                        $("#txtRollsLeft").removeClass("bg-danger pulse-effect").addClass("bg-warning");                        
+                        $("#txtRollScore").removeClass("bg-danger pulse-effect").addClass("bg-warning");
+                        $("#txtPointsLeft").removeClass("bg-danger pulse-effect");
+                        $("#txtRole1").removeClass("bg-danger pulse-effect").addClass("bg-warning");
+                    }, 6000);
+                    alert(response.message);
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                // Hide the spinner if there's an error
+                $("#icoSpinner").hide();
+                alert('An error occurred.');
+            }
+        });
+    });
+
+
+    //Button Play NOW clicked
+    $("#btnPlayNow").click(function(e) {
+        //Give user chance to escape as this is final
+        var response = confirm("Are you sure you want to lock in your numbers for this RPG?\nThis cannot be undone.");
+
+        if (response == true) {// User clicked OK, continue with the function
+            //Sum the points used so far to get the remaining points to distribute
+            let totalPointsUsed = 0;
+            $(".point-dropdown").each(function() {
+                totalPointsUsed += parseInt($(this).val(), 10);
+            });
+            //check the last dice role using the wide-scope var (to really stop cheating, check on the view action using actual DB data)
+            pointsLeft = groupDiceLastRoll - totalPointsUsed;
+        
+            if (pointsLeft > -1 && groupRole != 0){ //only continue if points used are not more than rolled AND dice has been rolled
+                // Read values from dropdowns
+                const resistance = $("#drpResistance").val();
+                const flex = $("#drpFlex").val();
+                const purchase = $("#drpMaxPurchase").val();
+                const delivery = $("#drpDelivery").val();
+                const units = $("#drpUnits").val();        
+                const importance = $("#drpImportance").val();        
+                const quality = $("#drpQuality").val();
+
+                // Send data to the server via AJAX
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'update_attributes' %}",
+                    data: {
+                        resistance: resistance,
+                        flex: flex,
+                        purchase: purchase,
+                        delivery: delivery,
+                        units: units,
+                        importance: importance,
+                        quality: quality,
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                    },
+                    success: function(response) {
+                        if (response.status == "success") {
+                            alert("Attributes updated successfully");
+                            // Disable the form to prevent further changes
+                            $("#attributeForm :input").prop("disabled", true);
+                        } else {
+                            alert("Failed to update attributes");
+                        }
+                    }
+                }); //end ajax
+
+            }else{
+                if (pointsLeft < -0){
+                    alert("You cannot spend more than your total points. \n Remove " + pointsLeft + " and try again.");
+                    e.preventDefault();  // Prevent the form from submitting which resets all the dropdowns and refreshes page
+                    return
+                }else if (pointsLeft > -1 || groupRole == 0){
+                    alert("You have not ROLLED the DICE yet!\nRoll dice before distributing points!");
+                    return;
+                } //end if else
+            } //end if not over points from DB
+        } else {
+            e.preventDefault();  // Prevent the form from submitting which resets all the dropdowns and refreshes page
+            return; //skip send to DB action
+        }
+    });//end click PlayNow
+
+
+
+
+/*
+    //Show meaning of changes to dropdowns when distributing dice points
+    $(".point-dropdown").change(function() {
+        if (groupRole == 0){
+            alert("Roll dice before distributing points!")
+            //CLYDE run a function to clear all text here and drop down scores
+        }
+        const selectedValue = $(this).val();
+        const attributeName = $(this).attr('id').substring(3);  // Removing 'drp' prefix to get the attribute name
+        const correspondingTextDiv = $("#txt" + attributeName);  // Getting the ID of the text div
+        let meaning = ""; //setup variable to hold meaning string
+        switch (attributeName){
+            case "Resistance":
+                switch (groupRole){
+                    case -1: //SELLER case
+                        switch (selectedValue) {
+                            case "0":
+                                meaning = " Distribute Points Here";
+                                break;
+                            case "1":
+                                meaning = "= Base Price X 0.98";
+                                break;
+                            case "2":
+                                meaning = "= Base Price X 0.96";
+                                break;
+                            case "3":
+                                meaning = "= Base Price X 0.94";
+                                break;
+                            case "4":
+                                meaning = "= Base Price X 0.93";
+                                break;
+                            case "5":
+                                meaning = "= Base Price X 0.92";
+                                break;
+                            case "6":
+                                meaning = "= Base Price X 0.91";
+                                break;
+                        } //end switch selectedValue
+                        break;
+                    case 1: //BUYER case
+                        switch (selectedValue) {
+                            case "0":
+                                meaning = " Distribute Points Here";
+                                break;
+                            case "1":
+                                meaning = "= Base Price";
+                                break;
+                            case "2":
+                                meaning = "= Base Price X 1.02";
+                                break;
+                            case "3":
+                                meaning = "= Base Price X 1.03";
+                                break;
+                            case "4":
+                                meaning = "= Base Price X 1.04";
+                                break;
+                            case "5":
+                                meaning = "= Base Price X 1.05";
+                                break;
+                            case "6":
+                                meaning = "= Base Price X 1.06";
+                                break;
+                        } //end switch selectedValue
+                        break;
+                } //end switch seller/buyer
+                correspondingTextDiv.text(meaning);
+                break; //end the case for Resistance
+
+            case "Flex":
+                switch (selectedValue) {
+                    case "0":
+                        meaning = " Distribute Points Here";
+                        break;
+                    case "1":
+                        meaning = "= 1 Flex Point";
+                        break;
+                    case "2":
+                        meaning = "= 2 Flex Points";
+                        break;
+                    case "3":
+                        meaning = "= 3 Flex Points";
+                        break;
+                    case "4":
+                        meaning = "= 4 Flex Points";
+                        break;
+                    case "5":
+                        meaning = "= 5 Flex Points";
+                        break;
+                    case "6":
+                        meaning = "= 6 Flex Points";
+                        break;
+                } //end switch selectedValue
+                correspondingTextDiv.text(meaning);
+                break; //end the case for Flex
+
+                case "MaxPurchase":
+                switch (groupRole){
+                    case -1: //SELLER case
+                        $("#drpMaxPurchase").val("0"); //reset the dropdown to zero
+                        //add points BACK into the txtPointsLeft
+                        meaning = "= Only For Buyer"; //warn user
+                        break;
+                    case 1: //BUYER case
+                        switch (selectedValue) {
+                            case "0":
+                                meaning = " Distribute Points Here";
+                                break;
+                            case "1":
+                                meaning = "= Mod. Units X 1.1";
+                                break;
+                            case "2":
+                                meaning = "= Mod. Units X 1.1";
+                                break;
+                            case "3":
+                                meaning = "= Mod. Units X 1.2";
+                                break;
+                            case "4":
+                                meaning = "= Mod. Units X 1.2";
+                                break;
+                            case "5":
+                                meaning = "= Mod. Units X 1.3";
+                                break;
+                            case "6":
+                                meaning = "= Mod. Units X 1.3";
+                                break;
+                        } //end switch selectedValue
+                        break;
+                } //end switch seller/buyer
+                correspondingTextDiv.text(meaning);
+                break; //end the case for MaxPurchase
+
+                case "Delivery":
+                switch (groupRole){
+                    case -1: //SELLER case
+                        switch (selectedValue) {
+                            case "0":
+                                meaning = " Distribute Points Here";
+                                break;
+                            case "1":
+                                meaning = "= Only Capable of Slow Delivery";
+                                break;
+                            case "2":
+                                meaning = "= Only Capable of Slow Delivery";
+                                break;
+                            case "3":
+                                meaning = "= Capable of Average Delivery";
+                                break;
+                            case "4":
+                                meaning = "= Capable of Average Delivery";
+                                break;
+                            case "5":
+                                meaning = "= Capable of Fast Delivery";
+                                break;
+                            case "6":
+                                meaning = "= Capable of Fast Delivery";
+                                break;
+                        } //end switch selectedValue
+                        break;
+                    case 1: //BUYER case
+                        switch (selectedValue) {
+                            case "0":
+                                meaning = " Distribute Points Here";
+                                break;
+                            case "1":
+                                meaning = "= Fast Delivery Required";
+                                break;
+                            case "2":
+                                meaning = "= Fast Delivery Required";
+                                break;
+                            case "3":
+                                meaning = "= Average Delivery Acceptable";
+                                break;
+                            case "4":
+                                meaning = "= Average Delivery Acceptable";
+                                break;
+                            case "5":
+                                meaning = "= Slow Delivery Acceptable";
+                                break;
+                            case "6":
+                                meaning = "= Slow Delivery Acceptable";
+                                break;
+                        } //end switch selectedValue
+                        break;
+                } //end switch seller/buyer
+                correspondingTextDiv.text(meaning);
+                break; //end the case for Delivery
+
+                case "Units":
+                switch (groupRole){
+                    case -1: //SELLER case
+                        switch (selectedValue) {
+                            case "0":
+                                meaning = " Distribute Points Here";
+                                break;
+                            case "1":
+                                meaning = "= Base Units X 1";
+                                break;
+                            case "2":
+                                meaning = "= Base Units X 1.02";
+                                break;
+                            case "3":
+                                meaning = "= Base Units X 1.03";
+                                break;
+                            case "4":
+                                meaning = "= Base Units X 1.04";
+                                break;
+                            case "5":
+                                meaning = "= Base Units X 1.05";
+                                break;
+                            case "6":
+                                meaning = "= Base Units X 1.06";
+                                break;
+                        } //end switch selectedValue
+                        break;
+                    case 1: //BUYER case
+                        switch (selectedValue) {
+                            case "0":
+                                meaning = " Distribute Points Here";
+                                break;
+                            case "1":
+                                meaning = "= Base Units";
+                                break;
+                            case "2":
+                                meaning = "= Base Units X 1.02";
+                                break;
+                            case "3":
+                                meaning = "= Base Units X 1.03";
+                                break;
+                            case "4":
+                                meaning = "= Base Units X 1.04";
+                                break;
+                            case "5":
+                                meaning = "= Base Units X 1.05";
+                                break;
+                            case "6":
+                                meaning = "= Base Units X 1.06";
+                                break;
+                        } //end switch selectedValue
+                        break;
+                } //end switch seller/buyer
+                correspondingTextDiv.text(meaning);
+                break; //end the case for Units
+
+                case "Importance":
+                switch (selectedValue) {
+                    case "0":
+                        meaning = " Distribute Points Here";
+                        break;
+                    case "1":
+                        meaning = "= Small Patatoes";
+                        break;
+                    case "2":
+                        meaning = "= Kind Of Important";
+                        break;
+                    case "3":
+                        meaning = "= Somewhat Important";
+                        break;
+                    case "4":
+                        meaning = "= Important";
+                        break;
+                    case "5":
+                        meaning = "= Very Important";
+                        break;
+                    case "6":
+                        meaning = "= Vital Importance";
+                        break;
+                } //end switch selectedValue
+                correspondingTextDiv.text(meaning);
+                break; //end the case for Importance
+
+                case "Quality":
+                switch (groupRole){
+                    case -1: //SELLER case
+                        switch (selectedValue) {
+                            case "0":
+                                meaning = " Distribute Points Here";
+                                break;
+                            case "1":
+                                meaning = "= Only Capable of Low Quality";
+                                break;
+                            case "2":
+                                meaning = "= Only Capable of Low Quality";
+                                break;
+                            case "3":
+                                meaning = "= Capable of Average Quality";
+                                break;
+                            case "4":
+                                meaning = "= Capable of Average Quality";
+                                break;
+                            case "5":
+                                meaning = "= Capable of High Quality";
+                                break;
+                            case "6":
+                                meaning = "= Capable of High Quality";
+                                break;
+                        } //end switch selectedValue
+                        break;
+                    case 1: //BUYER case
+                        switch (selectedValue) {
+                            case "0":
+                                meaning = " Distribute Points Here";
+                                break;
+                            case "1":
+                                meaning = "= High Quality Required";
+                                break;
+                            case "2":
+                                meaning = "= Hight Quality Required";
+                                break;
+                            case "3":
+                                meaning = "= Average Quality Acceptable";
+                                break;
+                            case "4":
+                                meaning = "= Average Quality Acceptable";
+                                break;
+                            case "5":
+                                meaning = "= Low Quality Acceptable";
+                                break;
+                            case "6":
+                                meaning = "= Low Quality Acceptable";
+                                break;
+                        } //end switch selectedValue
+                        break;
+                } //end switch seller/buyer
+                correspondingTextDiv.text(meaning);
+                break; //end the case for Quality
+
+        } //end case for  attribute
+
+        //Sum the points used so far to get the remaining points to distribute
+        let totalPointsUsed = 0;
+        $(".point-dropdown").each(function() {
+            totalPointsUsed += parseInt($(this).val(), 10) || 0;
+        });
+        pointsLeft = groupDiceLastRoll - totalPointsUsed;
+        $("#txtPointsLeft").text(pointsLeft);
+
+    });//end dropdown changed listener
+*/
+
+
+    //Show meaning of changes to dropdowns when distributing dice points
+    const meaningMap = {
+        Resistance: {
+            '-1': ["= Base Price X 0.98", "= Base Price X 0.96", "= Base Price X 0.94", "= Base Price X 0.93", "= Base Price X 0.92", "= Base Price X 0.91"],
+            '1': ["= Base Price", "= Base Price X 1.02", "= Base Price X 1.03", "= Base Price X 1.04", "= Base Price X 1.05", "= Base Price X 1.06"]
+        },
+        Flex: ["= 1 Flex Point", "= 2 Flex Points", "= 3 Flex Points", "= 4 Flex Points", "= 5 Flex Points", "= 6 Flex Points"],
+        MaxPurchase: {
+            '-1': ["= Only For Buyer"],
+            '1': ["= Mod. Units X 1.1", "= Mod. Units X 1.1", "= Mod. Units X 1.2", "= Mod. Units X 1.2", "= Mod. Units X 1.3", "= Mod. Units X 1.3"]
+        },
+        Delivery: {
+            '-1': ["= Only Capable of Slow Delivery", "= Only Capable of Slow Delivery", "= Capable of Average Delivery", "= Capable of Average Delivery", "= Capable of Fast Delivery", "= Capable of Fast Delivery"],
+            '1': ["= Fast Delivery Required", "= Fast Delivery Required", "= Average Delivery Acceptable", "= Average Delivery Acceptable", "= Slow Delivery Acceptable", "= Slow Delivery Acceptable"]
+        },
+        Units: {
+            '-1': ["= Base Units X 1", "= Base Units X 1.02", "= Base Units X 1.03", "= Base Units X 1.04", "= Base Units X 1.05", "= Base Units X 1.06"],
+            '1': ["= Base Units", "= Base Units X 1.02", "= Base Units X 1.03", "= Base Units X 1.04", "= Base Units X 1.05", "= Base Units X 1.06"]
+        },
+        Importance: ["= Small Potatoes", "= Kind Of Important", "= Somewhat Important", "= Important", "= Very Important", "= Vital Importance"],
+        Quality: {
+            '-1': ["= Only Capable of Low Quality", "= Only Capable of Low Quality", "= Capable of Average Quality", "= Capable of Average Quality", "= Capable of High Quality", "= Capable of High Quality"],
+            '1': ["= High Quality Required", "= High Quality Required", "= Average Quality Acceptable", "= Average Quality Acceptable", "= Low Quality Acceptable", "= Low Quality Acceptable"]
+        }
+    };
+
+
+    $(".point-dropdown").change(function () {   //end dropdown changed listener
+        if (groupRole === 0) {
+            alert("Roll dice before distributing points!");
+            return;
+        }
+        
+        const selectedValue = parseInt($(this).val(), 10);
+        const attributeName = $(this).attr('id').substring(3); // Removing 'drp' prefix to get the attribute name
+        const correspondingTextDiv = $("#txt" + attributeName); // Getting the ID of the text div
+
+        let meaning = "Distribute Points Here";  // Initialize meaning to the default message
+        
+        if (attributeName === "MaxPurchase" && groupRole === -1) {
+            // Special handling for MaxPurchase when the user is a SELLER
+            $("#drpMaxPurchase").val("0"); // Reset the dropdown to zero
+            meaning = "= Only For Buyer";  // Warn user
+        } else if (meaningMap[attributeName]) {
+            const attributeMeanings = meaningMap[attributeName];
+            if (Array.isArray(attributeMeanings)) {
+                meaning = attributeMeanings[selectedValue - 1] || meaning;
+            } else if (typeof attributeMeanings === "object") {
+                meaning = attributeMeanings[groupRole][selectedValue - 1] || meaning;
+            }
+        }
+
+        correspondingTextDiv.text(meaning);
+
+        // Update the points used and left
+        let totalPointsUsed = 0;
+        $(".point-dropdown").each(function () {
+            totalPointsUsed += parseInt($(this).val(), 10) || 0;
+        });
+        const pointsLeft = groupDiceLastRoll - totalPointsUsed;
+        $("#txtPointsLeft").text(pointsLeft);
+    }); //end dropdown changed listener
+
+
+    // Programmatically trigger change event for dropdowns otherwise the first change does NOT trigger display of help and remaining points
+    $(".point-dropdown").first().trigger("change");
+
+
+    //Rotate anime graphics once on page load
+    let randomIndex = Math.floor(Math.random() * 20); // Random number between 0 and 19
+    let filename = "dice_animeStyle_" + String(randomIndex).padStart(2, '0') + ".jpg";
+    document.getElementById("imgRandomImage").src = "{% static 'images/' %}" + filename;
+
+
+
+
+});//document ready
+</script>
+
+</html>
