@@ -131,7 +131,7 @@
                         <!-- Adding form for sending DEAL -->
                         <div id="btnOpenDealForm" class="hidden-form mt-3 row align-items-center">
                             <div class="col-12 text-center mb-4">
-                                <h1 class="display-7">PURCHASE ORDER</h1>
+                                <h1 class="display-7" id="txtOrderTitle">PURCHASE/SALE ORDER</h1>
                             </div>
                             <form id="frmDealForm" method="post" action="{% url 'save_deal' %}">
                                 {% csrf_token %}
@@ -756,8 +756,10 @@ $(document).ready(function() {
     //fix the Buyer/Seller to text not integer on page when first loading page
     if ({{ groupRole }} == -1){
         $(".txtRole").text("SELLER");
+        $("#txtOrderTitle").text("SALE INVOICE");
     }else if({{ groupRole }} == 1){
-        $(".txtRole").text("BUYER");                        
+        $(".txtRole").text("BUYER");   
+        $("#txtOrderTitle").text("PURCHASE ORDER");
     }else{
         $(".txtRole").text("NONE");
     }//end elseIf
