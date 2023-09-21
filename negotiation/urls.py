@@ -20,11 +20,15 @@ from GameSetup import views as gameSetupViews
 from diceroll import views as diceRollViews
 from position import views as positionViews
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', gameSetupViews.home, name='home'),
     path('setup/', gameSetupViews.setup, name='setup'),
     path('save_note/', gameSetupViews.save_note, name='save_note'),
+
+    path('choose_group/', gameSetupViews.choose_group, name='choose_group'),
+
     path('login/', gameSetupViews.login, name='login'),
     path('about/', gameSetupViews.about, name='about'),
     path('dice_roll/', diceRollViews.group_character, name='dice_roll'),

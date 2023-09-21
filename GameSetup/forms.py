@@ -10,4 +10,12 @@ class GroupDigitForm(forms.Form):
         self.fields['group_digit'].choices = [(digit, digit) for digit in unique_group_digits]
 
 
+class GroupLoginForm(forms.Form):
+    groupPassword = forms.CharField(max_length=20, widget=forms.PasswordInput)
+    groupDigit = forms.ChoiceField(choices=[])
+
+    def __init__(self, *args, **kwargs):
+        super(GroupLoginForm, self).__init__(*args, **kwargs)
+        self.fields['groupDigit'].choices = [(group.groupDigit, group.groupDigit) for group in GroupLogin.objects.all()]
+
 

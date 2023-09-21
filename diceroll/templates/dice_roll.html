@@ -40,7 +40,7 @@
                     <h1>DICE Page</h1><h2>Group: {{ groupDigit }}</h2><h4>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
                 </div>
             </div>
-            <div class="card text-light mb-1 text-center" 
+            <a href="{% url 'home' %}"><div class="card text-light mb-1 text-center" 
                 style="background-image: url({% static 'images/logoClass01_blur.png' %}); 
                     background-size: cover; 
                     background-position: center; 
@@ -48,7 +48,7 @@
                 <div class="mb-3">
                     <img id="imgRandomImage" alt="A random anime image" style="width: 200px; height: 200px; object-fit: cover;">
                 </div>
-            </div>
+            </div></a>
             <div class="card text-dark bg-light mb-1">
                 <h4 class="card-header">Role Status</h4>
                 <div class="card-body">

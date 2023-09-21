@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from datetime import datetime
 from django.utils import timezone
 from datetime import timedelta
@@ -10,6 +11,11 @@ from django.http import JsonResponse
 from .models import GroupLogin
 from .models import GameSettings
 from .forms import GroupDigitForm
+from .forms import GroupLoginForm
+
+
+
+
 
 def home(request):
     teachers = GameSettings.objects.all()
@@ -23,7 +29,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 def login(request):
-    #get the login teacher and className
+    #get the login teacher and className from URL
     currentTeacherURL = request.GET.get('teacher')
     currentClassNameURL = request.GET.get('className')
     currentGroupURL = request.GET.get('group')
@@ -200,6 +206,52 @@ def check_start_time(currentTeacher, currentClassName):
         'rpg_current_dice_high': rpg_current_dice_high,
     }
     return result
+
+
+
+def choose_group(request):
+    # Try to get the className from POST data, else fall back to GET data
+    currentClassNameURL = request.POST.get('className', request.GET.get('className'))
+    
+    # Query the DB for list of groups in this class
+    this_class_groups = GroupLogin.objects.filter(groupClass=currentClassNameURL)
+
+    # Create a new form instance
+    form = GroupLoginForm()
+    
+    # Create context
+    context = {
+        'this_class_groups': this_class_groups,
+        'currentClassName': currentClassNameURL,
+        'form': form,
+    }
+
+    # Place group and class name into session
+    #request.session['currentClassName'] = currentClassNameURL
+
+    # Check for POST request (form submission)
+    if request.method == 'POST':
+        form = GroupLoginForm(request.POST)
+        if form.is_valid():
+            # Do your password checking and redirecting here
+            groupDigit = form.cleaned_data['groupDigit']
+            groupPassword = form.cleaned_data['groupPassword']
+            try:
+                group = GroupLogin.objects.get(groupDigit=groupDigit)
+                if group.groupPassword == groupPassword:
+                    #Place group and class name into session
+                    request.session['currentClassName'] = currentClassNameURL
+                    request.session['currentGroup'] = groupDigit
+                    return redirect('dice_roll')
+                else:
+                    context['error_message'] = "Wrong password."
+            except GroupLogin.DoesNotExist:
+                context['error_message'] = "Group does not exist."
+
+    return render(request, 'choose_group.html', context)
+
+
+
 
 def save_note(request):
     if request.method == 'POST':

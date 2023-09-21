@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Bootstrap -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+   <title>Choose Group</title>
+</head>
+<body>
+    <a href="{% url 'home' %}"><div class="text-center">
+        <img src="{% static 'images/' %}logoClass01_blur.png" class="img-fluid w-50" alt="Responsive logo">
+    </div></a>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">  <!-- 'col-md-6' will make card take half of the width for medium screens and up, you can adjust as per your requirement -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">GROUP LOG IN:</h5> 
+                        <h4>
+                            <!-- Dropdown for choose_group view -->
+                        <form action="{% url 'choose_group' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="groupDigit">Choose a group:</label>
+                                <select class="form-control" id="groupDigit" name="groupDigit">
+                                    {% for group in this_class_groups %}
+                                        <option value="{{ group.groupDigit }}">Group {{ group.groupDigit }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div><br>
+
+                            <!-- Form for check_group view -->
+                            <div class="form-group">
+                                Password:<br> {{ form.groupPassword }}
+                            </div><br>
+
+                            <button type="submit" class="btn btn-primary">Log In</button>
+
+                                <!-- store the class name here in case PW fails and URL is lost -->
+                                <input type="hidden" name="className" value="{{ currentClassName }}">
+                        </form>
+
+                        {% if error_message %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error_message }}
+                            </div>
+                        {% endif %}
+                    </h4>
+                    <p class="card-text">Class: {{ currentClassName }}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    // Make sure the page is fully loaded before we attach our event handlers
+    $(document).ready(function(){
+        // This code will be executed after the entire page has loaded
+
+    });
+</script>
+
+</html>
