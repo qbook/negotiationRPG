@@ -35,7 +35,10 @@ urlpatterns = [
     path('generate_random_number/', diceRollViews.generate_random_number, name='generate_random_number'),
     path('roll_dice/', diceRollViews.roll_dice, name='roll_dice'),
     path('update_attributes/', diceRollViews.update_attributes, name='update_attributes'),
+
     path('position_buyer_seller/', positionViews.position_buyer_seller, name='position_buyer_seller'),
+
+    path('position_marketplace/', positionViews.position_marketplace, name='position_marketplace'),
 
     path('save_deal/', positionViews.save_deal, name='save_deal'),
     path('cancel_deal/', positionViews.cancel_deal, name='cancel_deal'),

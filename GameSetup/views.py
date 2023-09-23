@@ -28,6 +28,10 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+
+
+
+#-------CLYDE THIS FUNCTION MAY NOT BE IN USE ANY LONGER----------------------
 def login(request):
     #get the login teacher and className from URL
     currentTeacherURL = request.GET.get('teacher')
@@ -72,7 +76,8 @@ def setup(request):
 
 def check_start_time(currentTeacher, currentClassName):
     #query for this teacher/class data
-    currentTeacherClass = GameSettings.objects.filter(teacher=currentTeacher).filter(className=currentClassName).first()
+#    currentTeacherClass = GameSettings.objects.filter(teacher=currentTeacher).filter(className=currentClassName).first()
+    currentTeacherClass = GameSettings.objects.filter(className=currentClassName).first()
     playDays = currentTeacherClass.playDays
     #get the closest ending date that has NOT passed yet
     #create a list of start dates
@@ -210,9 +215,13 @@ def check_start_time(currentTeacher, currentClassName):
 
 
 def choose_group(request):
+
     # Try to get the className from POST data, else fall back to GET data
     currentClassNameURL = request.POST.get('className', request.GET.get('className'))
     
+    # Get teacher name form the URL
+    currentTeacherURL = request.POST.get('teacher', request.GET.get('teacher'))
+
     # Query the DB for list of groups in this class
     this_class_groups = GroupLogin.objects.filter(groupClass=currentClassNameURL)
 
@@ -223,11 +232,14 @@ def choose_group(request):
     context = {
         'this_class_groups': this_class_groups,
         'currentClassName': currentClassNameURL,
+        'currentTeacher': currentTeacherURL,
         'form': form,
     }
 
-    # Place group and class name into session
-    #request.session['currentClassName'] = currentClassNameURL
+    # Place class name into session
+    request.session['currentClassName'] = currentClassNameURL
+    # Place teacher name in session
+    request.session['currentTeacher'] = currentTeacherURL
 
     # Check for POST request (form submission)
     if request.method == 'POST':

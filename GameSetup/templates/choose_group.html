@@ -49,6 +49,8 @@
 
                                 <!-- store the class name here in case PW fails and URL is lost -->
                                 <input type="hidden" name="className" value="{{ currentClassName }}">
+                                <!-- store the teacher name here in case PW fails and URL is lost -->
+                                <input type="hidden" name="teacher" value="{{ currentTeacher }}">
                         </form>
 
                         {% if error_message %}
@@ -57,7 +59,7 @@
                             </div>
                         {% endif %}
                     </h4>
-                    <p class="card-text">Class: {{ currentClassName }}</p>
+                    <p class="card-text">Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</p>                    
                 </div>
             </div>
         </div>

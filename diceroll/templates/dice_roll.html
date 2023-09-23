@@ -199,6 +199,7 @@
 // Make sure the page is fully loaded before we attach our event handlers
 //This is only for the initial page refresh to fix buyer/seller to now show integer
 $(document).ready(function() {
+
     //fix the Buyer/Seller to text not integer on page when first loading page
     if ({{ groupRole }} == -1){
         $(".txtRole").text("SELLER");

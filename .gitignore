@@ -1,3 +1,6 @@
 __pycache__/
 
 # db.sqlite3
+diceroll/__pycache__/models.cpython-310.pyc
+diceroll/__pycache__/views.cpython-310.pyc
+db.sqlite3

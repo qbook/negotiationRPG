@@ -708,6 +708,34 @@
             </div>
 
 
+            <div class="card text-dark bg-light mb-1">
+                <h4 class="card-header custom-card-header">Marketplace<sup></sup></h4>
+                <div class="card-body">
+                    <div class="container">
+                        <table class="table table-hover table-striped table-responsive">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" title="Group">Group</th>
+                                    <th scope="col" title="Role">RPG Role</th>
+                                    <th scope="col" title="Score">Current Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for group in all_groups_results %}
+                                <tr>
+                                    <td>{{ group.group_digit }}</td>
+                                    <td>{{ group.group_role_name }}</td>
+                                    <td>{{ group.scoreFinal }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div> <!-- End card body-->
+                </div> <!-- End card -->
+                <div class="small text-muted"><sup></sup></div>                    
+            </div>
+
+
         </div> <!-- End of row with prefer two columns -->
     </div> <!-- End of container -->
 </body>
