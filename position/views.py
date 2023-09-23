@@ -88,7 +88,7 @@ def position_marketplace_calculations(request, buyer_seller): # 1 for buyer/sell
 
         #-------------------CALCULATING INVENTORY NUMBERS----------------
         #if final_deals:
-        total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max = calculate_inventory_numbers(final_deals, group, result_from_check_start_time)
+        total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max = calculate_inventory_numbers(final_deals, group, group.groupRole, result_from_check_start_time)
         # Fix value formats to decimal
         rpg_fraction_close_to_max = Decimal(rpg_fraction_close_to_max)
         resistance = round(Decimal(resistance), 2)
@@ -209,10 +209,9 @@ def position_buyer_seller(request):
 
 #-------------------CALCULATING INVENTORY NUMBERS----------------
     #if final_deals:
-    total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max = calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, result_from_check_start_time)
+    total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max = calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, currentGroupCharacterSheet.groupRole, result_from_check_start_time)
     # Fix value formats to decimal
     rpg_fraction_close_to_max = round(Decimal(rpg_fraction_close_to_max), 2)
-    resistance = round(Decimal(resistance), 2)
     average_weighted = round(Decimal(average_weighted), 2)
 
 #-------------------QUERY MESSAGES----------------
@@ -430,7 +429,7 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
 
 
 #-------------------CALCULATING INVENTORY NUMBERS----------------
-def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, result_from_check_start_time):
+def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, groupRole, result_from_check_start_time):
     # Initialize variables for total units and total weighted, etc. These are needed to be returned.
     total_units = 0
     total_weighted = 0
@@ -440,18 +439,18 @@ def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, result_
     resistance = 0
     rpg_fraction_close_to_max = 0
 
-    if final_deals:
-        # Calculate total units and total weighted
-        for deal in final_deals:
-            deal['weighted_price'] = deal['dealPrice'] * deal['dealUnits']
-            total_units += deal['dealUnits']
-            total_weighted += deal['weighted_price']
+    # Calculate total units and total weighted
+    for deal in final_deals:
+        deal['weighted_price'] = deal['dealPrice'] * deal['dealUnits']
+        total_units += deal['dealUnits']
+        total_weighted += deal['weighted_price']
 
-        # Calculate average of the weighted if total_units is not zero
-        average_weighted = round((total_weighted / total_units) if total_units else 0, 2)
+    # Calculate average of the weighted if total_units is not zero
+    average_weighted = round((total_weighted / total_units) if total_units else 0, 2)
 
-        # Calculate the resistance price
-        attribute_value = 1
+    # Calculate the resistance price
+    attribute_value = 1
+    if int(groupRole) == 1: # case of buyer
         resistance_levels = {
             2: 1.02,
             3: 1.03,
@@ -459,29 +458,37 @@ def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, result_
             5: 1.05,
             6: 1.06
         }
-        attribute_value = resistance_levels.get(currentGroupCharacterSheet.groupResistancePrice, 1)
-
-        resistance = round(attribute_value * float(result_from_check_start_time['rpg_current_product_price']), 2)
-        resistance = f"{resistance:.2f}"
-
-        # Calculate modUnits based on attribute values
-        attribute_value_units = resistance_levels.get(currentGroupCharacterSheet.groupUnits, 1)
-        rpg_mod_units = int(round(attribute_value_units * float(result_from_check_start_time['rpg_current_product_units'])))
-
-        # Calculate maximum that can be purchased
-        max_purchase_levels = {
-            (1, 2): 1.1,
-            (3, 4): 1.2,
-            (5, 6): 1.3
+    else: # case of seller
+        resistance_levels = {
+            2: .98,
+            3: .96,
+            4: .94,
+            5: .92,
+            6: .91
         }
-        attribute_value_max_purchase = 1
-        for k, v in max_purchase_levels.items():
-            if currentGroupCharacterSheet.groupMaxPurchase in range(k[0], k[1]+1):
-                attribute_value_max_purchase = v
-                break
 
-        rpg_max_purchase = int(attribute_value_max_purchase * rpg_mod_units)
-        rpg_fraction_close_to_max = min(round(total_units / rpg_mod_units, 2), 1)
+    attribute_value = resistance_levels.get(currentGroupCharacterSheet.groupResistancePrice, 1)
+
+    resistance = round(attribute_value * float(result_from_check_start_time['rpg_current_product_price']), 2)
+
+    # Calculate modUnits based on attribute values
+    attribute_value_units = resistance_levels.get(currentGroupCharacterSheet.groupUnits, 1)
+    rpg_mod_units = int(round(attribute_value_units * float(result_from_check_start_time['rpg_current_product_units'])))
+
+    # Calculate maximum that can be purchased
+    max_purchase_levels = {
+        (1, 2): 1.1,
+        (3, 4): 1.2,
+        (5, 6): 1.3
+    }
+    attribute_value_max_purchase = 1
+    for k, v in max_purchase_levels.items():
+        if currentGroupCharacterSheet.groupMaxPurchase in range(k[0], k[1]+1):
+            attribute_value_max_purchase = v
+            break
+
+    rpg_max_purchase = int(attribute_value_max_purchase * rpg_mod_units)
+    rpg_fraction_close_to_max = min(round(total_units / rpg_mod_units, 2), 1)
 
     return total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max
 
