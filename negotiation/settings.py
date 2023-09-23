@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-xc15^elv!t)uk26+@f75yz$4^uo^llnb8v)4txwr00p5@&#ybz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rpg.cwarden.org', '127.0.0.1']
 
 
 # Application definition

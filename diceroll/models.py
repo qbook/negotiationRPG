@@ -32,3 +32,4 @@ class GroupCharacterSheet(models.Model):
         verbose_name = 'Group Character Sheet'
         verbose_name_plural = 'Group Character Sheet'
 
+
