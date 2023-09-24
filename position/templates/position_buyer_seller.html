@@ -72,7 +72,7 @@
 
 
     </style>      
-    <title>Buyer Dashboard</title>
+    <title>Dashboard</title>
 </head>
 
 <body>    
@@ -381,7 +381,11 @@
                         <tfoot>
                             <tr>
                             <th colspan="1"><sup>b</sup>Bonus:</th>
-                            <td colspan="1">{{ bonus_flex_points }}</td>
+                            <td colspan="1"><i class="fas fa-plus"></i>{{ bonus_flex_points }}</td>
+                            </tr>
+                            <tr id="txtOverProduction">
+                                <th colspan="1"><sup>c</sup>Over Production:</th>
+                                <td colspan="1"><i class="fas fa-minus"></i>{{ overproduction_flex_fee }}</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -390,6 +394,7 @@
                 <div id="txtFlexMsg1" class="small text-muted">Going lower spends Flex Points (1 point per 100 units--round up).</div>
                 <div  id="txtFlexMsg2" class="small text-muted">Canceling a deal will have a cost if both sides do NOT agree (see Canceled Deals area).</div>
                 <br><div id="txtFlexMsg3" class="small text-muted"><sup>b</sup>Earn extra Flex Points by making more deals with different groups (at least 10% of target units with different groups).</div>
+                <br><div id="txtFlexMsg4" class="small text-muted"><sup>c</sup>Production over MAX costs 1 Flex Point for every 10% increase over UNITS.</div>
             </div> <!-- End card -->
 
             <div class="card text-dark bg-light mb-1">
@@ -789,6 +794,8 @@ $(document).ready(function() {
         $("#txtOrderTitle").text("PURCHASE ORDER");
         $("#txtFlexMsg0").html("<sup>a</sup>Going higher gains Flex Points (1 point per 100 units--round up).");
         $("#txtFlexMsg1").html("Going lower spends Flex Points (1 point per 100 units--round up).");
+        $("#txtFlexMsg4").hide();
+        $("#txtOverProduction").hide();
     }else{
         $(".txtRole").text("NONE");
     }//end elseIf
@@ -915,6 +922,17 @@ $(document).ready(function() {
         if(price === "" || price <= 0) {
             isValid = false;
             errorMessage += "Price must be a positive number.\n";
+        }
+        if ({{ groupRole }} == -1){ // Seller case
+            if(price < {{ rpg_resistance }}) {
+                isValid = false;
+                errorMessage += "You cannot sell below your resistance price.\n";
+            }
+        }else{
+            if(price > {{ rpg_resistance }}) {
+                isValid = false;
+                errorMessage += "You cannot buy over your resistance price.\n";
+            }
         }
         // Validate quality
         var quality = $("select[name='quality']").val();
