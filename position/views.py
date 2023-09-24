@@ -60,15 +60,14 @@ def position_marketplace_calculations(request, buyer_seller): # 1 for buyer/sell
     for group in allGroupCharacterSheet:
 
         # Transform the values of quality & delivery to match THREE levels and not dice values
-        #@@@ Buyer vs Seller are inverted CLYDE watch out on this
         group_role_name = 'none'
         if int(group.groupRole) == 1:
-            transformed_quality = 4 - (group.groupQuality // 2)
-            transformed_delivery = 4 - (group.groupDelivery // 2)
+            transformed_quality = int(4 - ((group.groupQuality + 1) // 2))
+            transformed_delivery = int(4 - ((group.groupDelivery + 1) // 2))
             group_role_name = 'Buyer'
         else:
-            transformed_quality = (group.groupQuality // 2)
-            transformed_delivery = (group.groupDelivery // 2)
+            transformed_quality = int(((group.groupQuality + 1) / 2))
+            transformed_delivery = int(((group.groupDelivery + 1) / 2))
             group_role_name = 'Seller'
 
         # Use the Flex Points from the dice results (not modification needed)
@@ -84,7 +83,7 @@ def position_marketplace_calculations(request, buyer_seller): # 1 for buyer/sell
         
         #-------------------QUERY ALL DEALS LESS CANCELS----------------
         #if filtered_deals:
-        final_deals, error_deals, waiting_for_counterpart, waiting_for_you, deal_quality_gap, deal_delivery_gap, deal_flex_points = categorize_deals(filtered_deals, group.groupDigit, transformed_quality, transformed_delivery, flex_points)
+        final_deals, error_deals, waiting_for_counterpart, waiting_for_you, deal_quality_gap, deal_delivery_gap, deal_flex_points = categorize_deals(filtered_deals, group.groupDigit, transformed_quality, transformed_delivery, flex_points, group.groupRole)
 
         #-------------------CALCULATING INVENTORY NUMBERS----------------
         #if final_deals:
@@ -170,17 +169,19 @@ def position_buyer_seller(request):
     # Extracting a value from the dictionary of results from function check_start_time
     rpg_closest_round = int(result_from_check_start_time['rpg_closest_round'])
     
+    # Add RPG Round to session
+    request.session['rpg_closest_round'] = rpg_closest_round
+
     #Use extracted value to query for this class this GROUP's data for this RPG round
     currentGroupCharacterSheet = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupDigit=currentGroupNumber).filter(groupRPG=rpg_closest_round).first()
 
     # Transform the values of quality & delivery to match THREE levels and not dice values
-    #@@@ Buyer vs Seller are inverted CLYDE watch out on this
     if int(currentGroupCharacterSheet.groupRole) == 1:
-        transformed_quality = 4 - (currentGroupCharacterSheet.groupQuality // 2)
-        transformed_delivery = 4 - (currentGroupCharacterSheet.groupDelivery // 2)
+        transformed_quality = 4 - ((currentGroupCharacterSheet.groupQuality + 1) // 2)
+        transformed_delivery = 4 - ((currentGroupCharacterSheet.groupDelivery + 1) // 2)
     else:
-        transformed_quality = (currentGroupCharacterSheet.groupQuality // 2)
-        transformed_delivery = (currentGroupCharacterSheet.groupDelivery // 2)
+        transformed_quality = ((currentGroupCharacterSheet.groupQuality + 1) / 2)
+        transformed_delivery = ((currentGroupCharacterSheet.groupDelivery + 1) / 2)
 
     # Use the Flex Points from the dice results (not modification needed)
     flex_points = int(currentGroupCharacterSheet.groupFlex)
@@ -205,7 +206,9 @@ def position_buyer_seller(request):
 
 #-------------------QUERY ALL DEALS LESS CANCELS----------------
     #if filtered_deals:
-    final_deals, error_deals, waiting_for_counterpart, waiting_for_you, deal_quality_gap, deal_delivery_gap, deal_flex_points = categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, transformed_delivery, flex_points)
+    # Buyer/Seller have inverse relationship with the calculation done in this funciton, so for SELLER make a flag to signal inverse gap calculation in the function
+    # Pass currentGroupCharacterSheet.groupRole to function
+    final_deals, error_deals, waiting_for_counterpart, waiting_for_you, deal_quality_gap, deal_delivery_gap, deal_flex_points = categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, transformed_delivery, flex_points, currentGroupCharacterSheet.groupRole)
 
 #-------------------CALCULATING INVENTORY NUMBERS----------------
     #if final_deals:
@@ -260,7 +263,7 @@ def position_buyer_seller(request):
         'groupFlex': currentGroupCharacterSheet.groupFlex,
         'rpgFlexPoints': flex_points,
         'groupMaxPurchase': currentGroupCharacterSheet.groupMaxPurchase,
-        'groupDelivery': transformed_delivery,
+        'groupDelivery': int(transformed_delivery),
         'groupUnits': currentGroupCharacterSheet.groupUnits,
         'groupImportance': currentGroupCharacterSheet.groupImportance,
         'groupQuality': transformed_quality,
@@ -367,7 +370,7 @@ def fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumb
 
 
 #-------------------QUERY ALL DEALS LESS CANCELS----------------
-def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, transformed_delivery, flex_points):
+def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, transformed_delivery, flex_points, groupRole):
     # Initialize some variables
     final_deals = []
     error_deals = []
@@ -410,13 +413,24 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
         # Create place in dictionary and context and add up flex point changes from gaps in quality and delivery
         # Loop through each final deal to calculate the quality and delivery gaps
         for deal in final_deals:
-            deal_quality_gap = deal['dealQuality'] - transformed_quality
-            deal_delivery_gap = deal['dealDelivery'] - transformed_delivery
+            # Buyer/Seller are in oposite directions for flex gain/loss
+            if groupRole == 1: # The case of BUYER
+                deal_quality_gap = int(deal['dealQuality'] - transformed_quality)
+                deal_delivery_gap = int(deal['dealDelivery'] - transformed_delivery)
+            else: # The case of SELLER
+                deal_quality_gap = int(transformed_quality - deal['dealQuality'])
+                deal_delivery_gap = int(transformed_delivery - deal['dealDelivery'])
+
+
+
+
+
+
             # Add the gaps to the total flex points per 100 rounding up
             deal_flex_units = math.ceil(deal['dealUnits'] / 100)
             deal_flex_points = (deal_quality_gap + deal_delivery_gap) * deal_flex_units
 
-            # Add the gain/loss of Flex to a session variable
+            # Add the gain/loss of Flex to a session variable -----CLYDE I THINK THIS MAY NOT BE NEEDED ANY LONGER----------------
             flex_points += (deal_quality_gap + deal_delivery_gap) * deal_flex_units
 
             # Add the gaps to the deal dictionary so you can use them in your template if needed

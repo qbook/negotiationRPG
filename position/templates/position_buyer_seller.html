@@ -59,6 +59,18 @@
             background-color: #1c77ac;  /* Even darker blue-gray for the table header */
             color: #ffffff;  /* White text */
         }
+
+        .deal-row:hover {
+            cursor: pointer;
+        }
+
+        .deal-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+
     </style>      
     <title>Buyer Dashboard</title>
 </head>
@@ -90,7 +102,7 @@
                         <div class="col-8"><span id="txtPositionResistance">{{ rpg_resistance }}</span><span id="txtPositionResistanceHelp" class="small text-muted"></span></div>
                         <div class="col-4">FLEX:</div>
                         <div class="col-8"><span id="txtPositionFlex">{{ groupFlex }}</span><span id="txtPositionFlexHelp" class="small text-muted"></span></div>
-                        <div class="col-4">MAX Purchase:</div>
+                        <div class="col-4"><span id="txtMaxPurchase">MAX Purchase:</span></div>
                         <div class="col-8"><span id="txtPositionMaxPurchase">{{ rpg_max_purchase }}</span><span id="txtPositionMaxPurchaseHelp" class="small text-muted"></span></div>
                         <div class="col-4">DELIVERY:</div>
                         <div class="col-8"><span id="txtPositionDelivery">{{ groupDelivery }}</span><span id="txtPositionDeliveryHelp" class="small text-muted"></span></div>
@@ -137,17 +149,17 @@
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-4">Counterpart:</div>
-                                    <div class="col-8"><input type="number" name="counterparty" class="form-control" style="width: 150px;"></div>
+                                    <div class="col-8"><input id="inputCounterparty" type="number" name="counterparty" class="form-control" style="width: 150px;"></div>
 
                                     <div class="col-4 mt-2">Units:</div>
-                                    <div class="col-8 mt-2"><input type="number" name="units" class="form-control" style="width: 150px;"></div>
+                                    <div class="col-8 mt-2"><input id="inputUnits" type="number" name="units" class="form-control" style="width: 150px;"></div>
 
                                     <div class="col-4 mt-2">Price:</div>
-                                    <div class="col-8 mt-2"><input type="number" name="price" step="0.01" class="form-control" style="width: 150px;"></div>
+                                    <div class="col-8 mt-2"><input id="inputPrice" type="number" name="price" step="0.01" class="form-control" style="width: 150px;"></div>
 
                                     <div class="col-4 mt-2">Quality:</div>
                                     <div class="col-8 mt-2">
-                                        <select name="quality" class="form-select"  style="width: 150px;>
+                                        <select id="sltQuality" name="quality" class="form-select"  style="width: 150px;>
                                             {% for value, display_name in formDeal.fields.quality.choices %}
                                                 <option value="{{ value }}">{{ display_name }}</option>
                                             {% endfor %}
@@ -155,7 +167,7 @@
                                     </div>
                                     <div class="col-4 mt-2">Delivery:</div>
                                     <div class="col-8 mt-2">
-                                        <select name="delivery" class="form-select"  style="width: 150px;>
+                                        <select id="sltDelivery" name="delivery" class="form-select"  style="width: 150px;>
                                             {% for value, display_name in formDeal.fields.delivery.choices %}
                                                 <option value="{{ value }}">{{ display_name }}</option>
                                             {% endfor %}
@@ -167,7 +179,7 @@
                                         <button id="btnSubmitDeal" type="submit" class="btn btn-success mt-3">Send Deal</button>
                                     </div>
                                     <div class="col-8 mt-3">
-                                        Deal ID:<input type="number" id="dealID" name="dealID" class="form-control" style="width: 175px;"><span id="txtDealID" class="small text-muted">Buyer and seller must use SAME Deal ID.</span>
+                                        Deal ID:<input type="number" id="inputDealID" name="dealID" class="form-control" style="width: 175px;"><span id="txtDealID" class="small text-muted">Buyer and seller must use SAME Deal ID.</span>
                                         <br><span id="newDealID"></span><a href="#" id="txtUseThisID" class="small text-muted"><=Use this NEW Deal ID.</a>
                                     </div>
                                 </div>
@@ -259,33 +271,31 @@
             <div class="card custom-card mb-1">
                 <h4 class="card-header custom-card-header">Deals Completed<sup>a</sup></h4>
                 <div class="card-body">
-                    <div class="container">
-                        <table class="table table-hover table-striped table-responsive">
-                            <thead class="custom-thead">
-                                <tr>
-                                    <th scope="col" title="Deal Identifier">Deal ID</th>
-                                    <th scope="col" title="Counterpart Group">With</th>
-                                    <th scope="col" title="Number of Units">Units</th>
-                                    <th scope="col" title="Deal Price">Price</th>
-                                    <th scope="col" title="Quality Level">Qual.</th>
-                                    <th scope="col" title="Delivery Speed">Deliv.</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for deal in final_deals %}
-                                <tr>
-                                    <td>{{ deal.dealDealID }}</td>
-                                    <td>{{ deal.dealCounterpart }}</td>
-                                    <td>{{ deal.dealUnits }}</td>
-                                    <td>{{ deal.dealPrice }}</td>
-                                    <td>{{ deal.dealQuality }}</td>
-                                    <td>{{ deal.dealDelivery }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead class="custom-thead">
+                            <tr>
+                                <th scope="col" title="Deal Identifier">Deal ID</th>
+                                <th scope="col" title="Counterpart Group">With</th>
+                                <th scope="col" title="Number of Units">Units</th>
+                                <th scope="col" title="Deal Price">Price</th>
+                                <th scope="col" title="Quality Level">Qual.</th>
+                                <th scope="col" title="Delivery Speed">Deliv.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for deal in final_deals %}
+                            <tr>
+                                <td>{{ deal.dealDealID }}</td>
+                                <td>Group {{ deal.dealCounterpart }}</td>
+                                <td>{{ deal.dealUnits }}</td>
+                                <td>{{ deal.dealPrice }}</td>
+                                <td>{{ deal.dealQuality }}</td>
+                                <td>{{ deal.dealDelivery }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- End card body-->
                 <div class="small text-muted"><sup>a</sup>Deals waiting for counterparties are not shown here.</div>
             </div> <!-- End card -->
 
@@ -293,52 +303,50 @@
                 <h4 class="card-header custom-card-header">Canceled Deals</h4>
                 <div class="card-body">
                     <h4 class="card-header">Deals Canceled With Penalty</h4>
-                    <div class="container">
-                        <table class="table table-hover table-striped table-responsive">
-                            <thead class="custom-thead">
-                                <tr>
-                                    <th scope="col" title="Deal Identifier">Deal ID</th>
-                                    <th scope="col" title="Canceling Group">Canceled By</th>
-                                    <th scope="col" title="Canceler's Role">Role</th>
-                                    <th scope="col" title="Units">Units</th>
-                                    <th scope="col" title="Penalty"><sup>a</sup>Pentalty</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for deal in penalized_deals %}
-                                <tr>
-                                    <td>{{ deal.dealDealID }}</td>
-                                    <td>{{ deal.groupDigit }}</td>
-                                    <td>{{ deal.dealBuySell }}</td>
-                                    <td>{{ deal.dealUnits }}</td>
-                                    <td><i class="fas fa-minus"></i> {{ deal.penalty_amount }} Flex Points</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <h4 class="card-header">Deals Canceled By Both</h4>
-                    <div class="container">
-                        <table class="table table-hover table-striped table-responsive">
-                            <thead class="custom-thead">
-                                <tr>
-                                    <th scope="col" title="Deal Identifier">Deal ID</th>
-                                    <th scope="col" title="Canceling Group">Canceled By</th>
-                                    <th scope="col" title="Cancelers Role"><sup>a</sup>Role</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for deal in mutually_canceled_deals %}
-                                <tr>
-                                    <td>{{ deal.dealDealID }}</td>
-                                    <td>{{ deal.groupDigit }}</td>
-                                    <td>{{ deal.dealBuySell }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead class="custom-thead">
+                            <tr>
+                                <th scope="col" title="Deal Identifier">Deal ID</th>
+                                <th scope="col" title="Canceling Group">Canceled By</th>
+                                <th scope="col" title="Canceler's Role">Role</th>
+                                <th scope="col" title="Units">Units</th>
+                                <th scope="col" title="Penalty"><sup>a</sup>Pentalty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for deal in penalized_deals %}
+                            <tr>
+                                <td>{{ deal.dealDealID }}</td>
+                                <td>Group {{ deal.groupDigit }}</td>
+                                <td>{{ deal.dealBuySell }}</td>
+                                <td>{{ deal.dealUnits }}</td>
+                                <td><i class="fas fa-minus"></i> {{ deal.penalty_amount }} Flex Points</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
+                <h4 class="card-header">Deals Canceled By Both</h4>
+                <div class="container">
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead class="custom-thead">
+                            <tr>
+                                <th scope="col" title="Deal Identifier">Deal ID</th>
+                                <th scope="col" title="Canceling Group">Canceled By</th>
+                                <th scope="col" title="Cancelers Role"><sup>a</sup>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for deal in mutually_canceled_deals %}
+                            <tr>
+                                <td>{{ deal.dealDealID }}</td>
+                                <td>Group {{ deal.groupDigit }}</td>
+                                <td>{{ deal.dealBuySell }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- End card body-->
                 <div class="small text-muted"><sup>a</sup>Canceling deals costs:</div>
                 <div class="small text-muted">A) Both parties cancel = NO cost to you & NO cost to counterparty.</div>
                 <div class="small text-muted">B) You cancel but counterparty does NOT cancel = 0.5 Flex Points per 100 units of the deal.</div>
@@ -347,43 +355,41 @@
             </div> <!-- End card -->
             
             <div class="card custom mb-1">
-                <h4 class="card-header custom-card-header">Flex Points {{ rpgFlexPoints }}</h4>
+                <h4 class="card-header custom-card-header">Flex Points: {{ rpgFlexPoints }}</h4>
                 <div class="card-body">
-                    <div class="container">
-                        <table class="table table-hover table-striped table-responsive">
-                            <thead class="custom-thead">
-                                <tr>
-                                    <th scope="col" title="Deal Identifier">Deal ID</th>
-                                    <th scope="col" title="Number of Units">Units</th>
-                                    <th scope="col" title="Quality Level"><sup>a</sup>Qual. Gap</th>
-                                    <th scope="col" title="Delivery Gap"><sup>a</sup>Deliv. Gap</th>
-                                    <th scope="col" title="Loss/Gain">Loss/Gain</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for deal in final_deals %}
-                                <tr>
-                                    <td>{{ deal.dealDealID }}</td>
-                                    <td>{{ deal.dealUnits }}</td>
-                                    <td>{{ deal.deal_quality_gap }}</td>
-                                    <td>{{ deal.deal_delivery_gap }}</td>
-                                    <td>{{ deal.deal_flex_points }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                <th colspan="1"><sup>b</sup>Bonus:</th>
-                                <td colspan="1">{{ bonus_flex_points }}</td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-                <div class="small text-muted"><sup>a</sup>Going higher gains Flex Points (1 point per 100 units--round up).</div>
-                <div class="small text-muted">Going lower spends Flex Points (1 point per 100 units--round up).</div>
-                <div class="small text-muted">Canceling a deal will have a cost if both sides do NOT agree (see Canceled Deals area).</div>
-                <br><div class="small text-muted"><sup>b</sup>Earn extra Flex Points by making more deals with different groups (at least 10% of target units with different groups).</div>
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead class="custom-thead">
+                            <tr>
+                                <th scope="col" title="Deal Identifier">Deal ID</th>
+                                <th scope="col" title="Number of Units">Units</th>
+                                <th scope="col" title="Quality Level"><sup>a</sup>Qual. Gap</th>
+                                <th scope="col" title="Delivery Gap"><sup>a</sup>Deliv. Gap</th>
+                                <th scope="col" title="Loss/Gain">Loss/Gain</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for deal in final_deals %}
+                            <tr>
+                                <td>{{ deal.dealDealID }}</td>
+                                <td>{{ deal.dealUnits }}</td>
+                                <td>{{ deal.deal_quality_gap }}</td>
+                                <td>{{ deal.deal_delivery_gap }}</td>
+                                <td>{{ deal.deal_flex_points }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                            <th colspan="1"><sup>b</sup>Bonus:</th>
+                            <td colspan="1">{{ bonus_flex_points }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div> <!-- End card body-->
+                <div id="txtFlexMsg0" class="small text-muted"><sup>a</sup>Going higher gains Flex Points (1 point per 100 units--round up).</div>
+                <div id="txtFlexMsg1" class="small text-muted">Going lower spends Flex Points (1 point per 100 units--round up).</div>
+                <div  id="txtFlexMsg2" class="small text-muted">Canceling a deal will have a cost if both sides do NOT agree (see Canceled Deals area).</div>
+                <br><div id="txtFlexMsg3" class="small text-muted"><sup>b</sup>Earn extra Flex Points by making more deals with different groups (at least 10% of target units with different groups).</div>
             </div> <!-- End card -->
 
             <div class="card text-dark bg-light mb-1">
@@ -403,7 +409,7 @@
                             {% for deal in final_deals %}
                             <tr>
                             <td>{{ deal.dealDealID }}</td>
-                            <td>{{ deal.dealCounterpart }}</td>
+                            <td>Group {{ deal.dealCounterpart }}</td>
                             <td>{{ deal.dealPrice }}</td>
                             <td>{{ deal.dealUnits }}</td>
                             <td>{{ deal.weighted_price }}</td>
@@ -422,8 +428,8 @@
                             </tr>
                         </tfoot>
                     </table>
-                </div>
-            </div>
+                </div> <!-- End card body-->
+            </div> <!-- End card -->
 
             <div class="card text-dark bg-light mb-1" id="crdInventory">
                 <h4 class="card-header custom-card-header">Inventory Bought</h4>
@@ -450,141 +456,133 @@
                             </tr>
                         </tfoot>
                     </table>
-                </div>
+                </div> <!-- End card body-->
                 <div class="small text-muted">Inventory bought over your MAX Purchase ({{ rpg_max_purchase }}) will cause bankruptcy.</div>
-            </div>
+            </div> <!-- End card -->
 
             <div class="card text-dark bg-light mb-1">
                 <h4 class="card-header custom-card-header">Flex Point Send/Receive</h4>
                 <div class="card-body">
-                    <div class="container">
-                        <table class="table table-hover table-striped table-responsive">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" title="From">From</th>
-                                    <th scope="col" title="To">To</th>
-                                    <th scope="col" title="Flex Points">Flex Points</th>
-                                    <th scope="col" title="Message">Message</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for deal in all_gifts %}
-                                <tr>
-                                    <td>{{ deal.groupDigit }}</td>
-                                    <td>{{ deal.giftReceiver }}</td>
-                                    <td>{{ deal.giftAmount }}</td>
-                                    <td>{{ deal.giftMessage }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div> <!-- End card body-->
-                </div> <!-- End card -->
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" title="From">From Group</th>
+                                <th scope="col" title="To">To Group</th>
+                                <th scope="col" title="Flex Points">Flex Points</th>
+                                <th scope="col" title="Message">Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for deal in all_gifts %}
+                            <tr>
+                                <td>{{ deal.groupDigit }}</td>
+                                <td>{{ deal.giftReceiver }}</td>
+                                <td>{{ deal.giftAmount }}</td>
+                                <td>{{ deal.giftMessage }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- End card body-->
                 <div class="small text-muted">Note: Only messages for the current RPG round are shown.</div>                    
-            </div>
+            </div> <!-- End card -->
 
             <div class="card text-dark bg-light mb-1">
                 <h4 class="card-header">Deals Waiting For Counterpart</h4>
                 <div class="card-body">
-                    <div class="container">
-                        <table class="table table-hover table-striped table-responsive">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" title="Deal Identifier">Deal ID</th>
-                                    <th scope="col" title="Counterpart Group">To</th>
-                                    <th scope="col" title="Number of Units">Units</th>
-                                    <th scope="col" title="Deal Price">Price</th>
-                                    <th scope="col" title="Quality Level">Qual.</th>
-                                    <th scope="col" title="Delivery Speed">Deliv.</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for deal in waiting_for_counterpart %}
-                                <tr>
-                                    <td>{{ deal.dealDealID }}</td>
-                                    <td>{{ deal.dealCounterpart }}</td>
-                                    <td>{{ deal.dealUnits }}</td>
-                                    <td>{{ deal.dealPrice }}</td>
-                                    <td>{{ deal.dealQuality }}</td>
-                                    <td>{{ deal.dealDelivery }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>                    
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" title="Deal Identifier">Deal ID</th>
+                                <th scope="col" title="Counterpart Group">To<br>Group</th>
+                                <th scope="col" title="Number of Units">Units</th>
+                                <th scope="col" title="Deal Price">Price</th>
+                                <th scope="col" title="Quality Level">Qual.</th>
+                                <th scope="col" title="Delivery Speed">Deliv.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for deal in waiting_for_counterpart %}
+                            <tr>
+                                <td>{{ deal.dealDealID }}</td>
+                                <td>{{ deal.dealCounterpart }}</td>
+                                <td>{{ deal.dealUnits }}</td>
+                                <td>{{ deal.dealPrice }}</td>
+                                <td>{{ deal.dealQuality }}</td>
+                                <td>{{ deal.dealDelivery }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- End card body-->
+            </div> <!-- End card -->
 
             <div class="card text-dark bg-light mb-1">
                 <h4 class="card-header">Deals Waiting For You</h4>
                 <div class="card-body">
-                    <div class="container">
-                        <table class="table table-hover table-striped table-responsive">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" title="Deal Identifier">Deal ID</th>
-                                    <th scope="col" title="Counterpart Group">From</th>
-                                    <th scope="col" title="Number of Units">Units</th>
-                                    <th scope="col" title="Deal Price">Price</th>
-                                    <th scope="col" title="Quality Level">Qual.</th>
-                                    <th scope="col" title="Delivery Speed">Deliv.</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for deal in waiting_for_you %}
-                                <tr>
-                                    <td>{{ deal.dealDealID }}</td>
-                                    <td>{{ deal.groupDigit }}</td>
-                                    <td>{{ deal.dealUnits }}</td>
-                                    <td>{{ deal.dealPrice }}</td>
-                                    <td>{{ deal.dealQuality }}</td>
-                                    <td>{{ deal.dealDelivery }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                    <table class="table table-hover table-striped table-responsive deal-row:hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" title="Deal Identifier">Deal ID</th>
+                                <th scope="col" title="Counterpart Group">From<br>Group</th>
+                                <th scope="col" title="Number of Units">Units</th>
+                                <th scope="col" title="Deal Price">Price</th>
+                                <th scope="col" title="Quality Level">Qual.</th>
+                                <th scope="col" title="Delivery Speed">Deliv.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for deal in waiting_for_you %}
+                            <tr class="deal-row" data-dealid="{{ deal.dealDealID }}" data-counterparty="{{ deal.groupDigit }}" data-units="{{ deal.dealUnits }}" data-price="{{ deal.dealPrice }}" data-quality="{{ deal.dealQuality }}" data-delivery="{{ deal.dealDelivery }}">
+                                <td><a href="#" class="deal-link" data-dealid="{{ deal.dealDealID }}" data-counterparty="{{ deal.groupDigit }}" data-units="{{ deal.dealUnits }}" data-price="{{ deal.dealPrice }}" data-quality="{{ deal.dealQuality }}" data-delivery="{{ deal.dealDelivery }}">{{ deal.dealDealID }}</a></td>
+                                <td>{{ deal.groupDigit }}</td>
+                                <td>{{ deal.dealUnits }}</td>
+                                <td>{{ deal.dealPrice }}</td>
+                                <td>{{ deal.dealQuality }}</td>
+                                <td>{{ deal.dealDelivery }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div><!-- End card body-->
+            </div> <!-- End card -->
 
             <div class="card text-dark bg-light mb-1">
                 <h4 class="custom-card-warn-header">Deals Mismatched<sup>a</sup></h4>
                 <div class="card-body">
-                    <div class="container">
-                        <table class="table table-hover table-striped table-responsive">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" title="Deal Identifier">Deal ID</th>
-                                    <th scope="col" title="From">To</th>
-                                    <th scope="col" title="To">From</th>
-                                    <th scope="col" title="Role">Role</th>
-                                    <th scope="col" title="Number of Units">Units</th>
-                                    <th scope="col" title="Deal Price">Price</th>
-                                    <th scope="col" title="Quality Level">Qual.</th>
-                                    <th scope="col" title="Delivery Speed">Deliv.</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for deal in error_deals %}
-                                <tr>
-                                    <td>{{ deal.dealDealID }}</td>
-                                    <td>{{ deal.dealCounterpart }}</td>
-                                    <td>{{ deal.groupDigit }}</td>
-                                    <td>{{ deal.dealBuySell }}</td>
-                                    <td>{{ deal.dealUnits }}</td>
-                                    <td>{{ deal.dealPrice }}</td>
-                                    <td>{{ deal.dealQuality }}</td>
-                                    <td>{{ deal.dealDelivery }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div> <!-- End card body-->
-                </div> <!-- End card -->
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" title="Deal Identifier">Deal ID</th>
+                                <th scope="col" title="From">To<br>Group</th>
+                                <th scope="col" title="To">From<br>Group</th>
+                                <th scope="col" title="Role">Role</th>
+                                <th scope="col" title="Number of Units">Units</th>
+                                <th scope="col" title="Deal Price">Price</th>
+                                <th scope="col" title="Quality Level">Qual.</th>
+                                <th scope="col" title="Delivery Speed">Deliv.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for deal in error_deals %}
+                            <tr>
+                                <td>{{ deal.dealDealID }}</td>
+                                <td>{{ deal.dealCounterpart }}</td>
+                                <td>{{ deal.groupDigit }}</td>
+                                <td>{{ deal.dealBuySell }}</td>
+                                <td>{{ deal.dealUnits }}</td>
+                                <td>{{ deal.dealPrice }}</td>
+                                <td>{{ deal.dealQuality }}</td>
+                                <td>{{ deal.dealDelivery }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- End card body-->
                 <div class="small text-muted"><sup>a</sup>These deals use the same Deal ID but do not match.</div>
                 <div class="small text-muted">Senders need to cancel these.</div>
                 <div class="small text-muted">Note: Role 1 = Buyer; -1 = Seller.</div>
-            </div>
+            </div> <!-- End card -->
 
             <div class="card text-dark bg-light mb-1">
                 <h4 class="card-header custom-card-header">RPG Score: {{ rpg_scoreFinal }}</h4>
@@ -681,59 +679,55 @@
             <div class="card text-dark bg-light mb-1">
                 <h4 class="card-header custom-card-header">Messages Received<sup>a</sup></h4>
                 <div class="card-body">
-                    <div class="container">
-                        <table class="table table-hover table-striped table-responsive">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" title="From">From</th>
-                                    <th scope="col" title="To">To</th>
-                                    <th scope="col" title="Subject">Subject</th>
-                                    <th scope="col" title="Message">Message</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for deal in all_messages %}
-                                <tr>
-                                    <td>{{ deal.groupDigit }}</td>
-                                    <td>{{ deal.messageReceiver }}</td>
-                                    <td>{{ deal.messageSubject }}</td>
-                                    <td>{{ deal.messageContent }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div> <!-- End card body-->
-                </div> <!-- End card -->
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" title="From">From<br>Group</th>
+                                <th scope="col" title="To">To<br>Group</th>
+                                <th scope="col" title="Subject">Subject</th>
+                                <th scope="col" title="Message">Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for deal in all_messages %}
+                            <tr>
+                                <td>{{ deal.groupDigit }}</td>
+                                <td>{{ deal.messageReceiver }}</td>
+                                <td>{{ deal.messageSubject }}</td>
+                                <td>{{ deal.messageContent }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- End card body-->
                 <div class="small text-muted"><sup>a</sup>Note: Only messages for the current RPG round are shown.</div>                    
-            </div>
+            </div><!-- End card -->
 
 
             <div class="card text-dark bg-light mb-1">
                 <h4 class="card-header custom-card-header">Marketplace<sup></sup></h4>
                 <div class="card-body">
-                    <div class="container">
-                        <table class="table table-hover table-striped table-responsive">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" title="Group">Group</th>
-                                    <th scope="col" title="Role">RPG Role</th>
-                                    <th scope="col" title="Score">Current Score</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for group in all_groups_results %}
-                                <tr>
-                                    <td>{{ group.group_digit }}</td>
-                                    <td>{{ group.group_role_name }}</td>
-                                    <td>{{ group.scoreFinal }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div> <!-- End card body-->
-                </div> <!-- End card -->
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" title="Group">Group</th>
+                                <th scope="col" title="Role">RPG Role</th>
+                                <th scope="col" title="Score">Current Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for group in all_groups_results %}
+                            <tr>
+                                <td>{{ group.group_digit }}</td>
+                                <td>{{ group.group_role_name }}</td>
+                                <td>{{ group.scoreFinal }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> <!-- End card body-->
                 <div class="small text-muted"><sup></sup></div>                    
-            </div>
+            </div> <!-- End card -->
 
 
         </div> <!-- End of row with prefer two columns -->
@@ -762,9 +756,16 @@ $(document).ready(function() {
     $('#btnSendMessage').click(function() {
         toggleDiv('btnOpenSendMessageForm');
     });
+
     function toggleDiv(divId) {
-        // Close all divs first
+    // Close all divs first
         for (let id of divsToToggle) {
+            if($('#' + id).is(':visible')) {
+                // Reset the form inside this div if it has one
+                $('#' + id + ' form').each(function(){
+                    this.reset();
+                });
+            }
             $('#' + id).slideUp('slow');
         }
 
@@ -776,14 +777,18 @@ $(document).ready(function() {
             currentOpenDiv = null; // reset the currently open div since we're closing it
         }
     }
-
+    
     //fix the Buyer/Seller to text not integer on page when first loading page
     if ({{ groupRole }} == -1){
         $(".txtRole").text("SELLER");
         $("#txtOrderTitle").text("SALE INVOICE");
+        $("#txtFlexMsg0").html("<sup>a</sup>Going LOWER gains Flex Points (1 point per 100 units--round up).");
+        $("#txtFlexMsg1").html("Going HIGHER spends Flex Points (1 point per 100 units--round up).");
     }else if({{ groupRole }} == 1){
         $(".txtRole").text("BUYER");   
         $("#txtOrderTitle").text("PURCHASE ORDER");
+        $("#txtFlexMsg0").html("<sup>a</sup>Going higher gains Flex Points (1 point per 100 units--round up).");
+        $("#txtFlexMsg1").html("Going lower spends Flex Points (1 point per 100 units--round up).");
     }else{
         $(".txtRole").text("NONE");
     }//end elseIf
@@ -815,18 +820,25 @@ $(document).ready(function() {
     // Different text for buyer/seller
     if ({{ groupRole }} == -1){
         $("#txtPositionDeliveryHelp").text(" Try to make a deal for slower.");
+        //Resistance
+        $("#txtPositionResistanceHelp").text(" Do not sell for less than this.");
+        //Mod Units
+        $("#txtPositionUnitsHelp").text(" Target selling at least this many.");
+        //MAX Purchase
+        $("#txtPositionMaxPurchaseHelp").text(" Selling over this will cost Flex Points.");
+        $("#txtMaxPurchase").text("MAX Sales:")
     }else{
         $("#txtPositionDeliveryHelp").text(" Try to make a deal for faster.");
+        //Resistance
+        $("#txtPositionResistanceHelp").text(" Do not pay more than this.");
+        //Mod Units
+        $("#txtPositionUnitsHelp").text(" Target buying at least this many.");
+        //MAX Purchase
+        $("#txtPositionMaxPurchaseHelp").text(" Do not buy more than this.");
     }//end elseIf
 
-    //Resistance
-    $("#txtPositionResistanceHelp").text(" Do not pay more than this.");
     //Flex
     $("#txtPositionFlexHelp").text(" Spend, collect, or gift these.");
-    //Mod Units
-    $("#txtPositionUnitsHelp").text(" Target buying at least this many.");
-    //MAX Purchase
-    $("#txtPositionMaxPurchaseHelp").text(" Do not buy more than this.");
 
     //Importance
     var attributeValueText = "";
@@ -952,14 +964,62 @@ $(document).ready(function() {
     
 
 
-
+    // User chooses to input the NEW Deal ID with a single click
     $("#txtUseThisID").click(function(e) {
         e.preventDefault();  // Prevent the default link behavior
         var dealID = $("#newDealID").text();  // Get the Deal ID
-        $("#dealID").val(timeStampInMilliseconds);
+        $("#inputDealID").val(timeStampInMilliseconds);
     });
 
 
+
+    $('.deal-link').on('click', function(e) {
+    e.preventDefault();  // To prevent the default behavior of the hyperlink
+
+    let dealID = $(this).data('dealid');
+    let counterparty = $(this).data('counterparty');
+    let units = $(this).data('units');
+    let price = $(this).data('price');
+    let quality = $(this).data('quality');
+    let delivery = $(this).data('delivery');
+
+    // Populate the form fields
+    $('input[name="dealID"]').val(dealID);
+    $('input[name="counterparty"]').val(counterparty);
+    $('input[name="units"]').val(units);
+    $('input[name="price"]').val(price);
+    $('select[name="quality"]').val(quality);
+    $('select[name="delivery"]').val(delivery);
+
+    // Show the form if it's hidden
+    $('#btnOpenDealForm').show();
+});
+
+
+    // User clicks on Deals Waiting For You to prepopulate the Send A Deal form (saves copying and making errors)
+    $('.deal-link').on('click', function(e) {
+    e.preventDefault();  // To prevent the default behavior of the hyperlink
+        // Fetch data attributes from the clicked row
+        let dealID = $(this).data('dealid');
+        let counterparty = $(this).data('counterparty');
+        let units = $(this).data('units');
+        let price = $(this).data('price');
+        let quality = $(this).data('quality');
+        let delivery = $(this).data('delivery');
+
+        // Populate form fields with these values
+        $("#inputCounterparty").val(counterparty);
+        $("#inputUnits").val(units);
+        $("#inputPrice").val(price);
+        $("select[name='quality']").val(quality);
+        $("select[name='delivery']").val(delivery);
+        $("#inputDealID").val(dealID);
+        
+        // Optionally, show the form if it's hidden
+        $('#btnOpenDealForm').show();
+        // Smoothly scroll to the top
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
+    });
 
     //Rotate anime graphics once on page load
     let randomIndex = Math.floor(Math.random() * 11); // Random number between 0 and 19
