@@ -380,6 +380,8 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
     deal_delivery_gap = 0
     deal_flex_points = 0
 
+
+
     # Check that the query returned some deals
     if filtered_deals:
         deals_by_id = defaultdict(list)
@@ -389,8 +391,11 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
             deals_by_id[deal_id].append(deal)
 
         for deal_id, deals in deals_by_id.items():
-            if len(deals) > 1:
-                deal1, deal2 = deals
+            # Grab the first two deals regardless of how many there are
+            deal1 = deals[0]
+            deal2 = deals[1] if len(deals) > 1 else None
+
+            if deal2:  # means there are at least two deals
                 if ((deal1['dealBuySell'] == 1 and deal2['dealBuySell'] == -1) or
                         (deal1['dealBuySell'] == -1 and deal2['dealBuySell'] == 1)) and \
                         (deal1['dealUnits'] == deal2['dealUnits']) and (deal1['dealPrice'] == deal2['dealPrice']) and \
@@ -403,12 +408,20 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
                     error_deals.append(deal2)
             else:
                 # Waiting for counterpart or you
-                if len(deals) == 1:
-                    deal = deals[0]
-                    if int(deal['dealCounterpart']) == int(currentGroupNumber):
-                        waiting_for_you.append(deal)
-                    else:
-                        waiting_for_counterpart.append(deal)
+                if int(deal1['dealCounterpart']) == int(currentGroupNumber):
+                    waiting_for_you.append(deal1)
+                else:
+                    waiting_for_counterpart.append(deal1)
+
+ 
+
+
+
+
+
+
+
+
 
         # Create place in dictionary and context and add up flex point changes from gaps in quality and delivery
         # Loop through each final deal to calculate the quality and delivery gaps
