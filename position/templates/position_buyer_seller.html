@@ -1041,24 +1041,6 @@ $(document).ready(function() {
         $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
 
-    //RPG Product PDF link
-    product_link = "";
-    var rpg_current_product_name = {{ rpg_current_product_name }};
-        switch (rpg_current_product_name) {
-            case "":
-            case 1:
-                attributeValueText = "[1] Low";
-                break;
-            case 2:
-                attributeValueText = "[2] Average";
-                break;
-            case 3:
-                attributeValueText = "[3] High";
-                break;
-        } //end switch selectedValue
-    //add text to attribute
-    $("#txtPositionQuality").text(attributeValueText);
-
 
     //Rotate anime graphics once on page load
     let randomIndex = Math.floor(Math.random() * 11); // Random number between 0 and 19
