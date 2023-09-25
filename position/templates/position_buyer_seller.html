@@ -848,7 +848,7 @@ $(document).ready(function() {
     $("#txtPositionFlexHelp").text(" Spend, collect, or gift these.");
 
     //Importance
-    var attributeValueText = "";
+    attributeValueText = "";
     var attributeValue = {{ groupImportance }};
         switch (attributeValue) {
             case 0:
@@ -878,6 +878,7 @@ $(document).ready(function() {
     $("#txtPositionImportanceHelp").text(" How important is this deal.");
 
     //Quality
+    attributeValueText = "";
     var attributeValue = {{ groupQuality }};
         switch (attributeValue) {
             case 0:
