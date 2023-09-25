@@ -87,10 +87,10 @@
                     </p></div> 
                     <p>BUYER/SELLER: <span class="txtRole" id="txtRole0">{{ groupRole }}</span></p>
                     <a class="btn btn-primary" id="btnGoToDashboard" href="{% url 'position_buyer_seller' %}">Go To RPG Dashboard</a>
-
-                    <p>Notes:<br>
+                    <!--note not implemented here at this time-->
+                    <p style="display: none;">Notes:<br>
                         <div id="txtGroupNote" onclick="editNote()"></div>
-                    </p><div class="text-info" onclick="editNote()">(Click to edit note)</div>
+                    </p><div style="display: none;" class="text-info" onclick="editNote()">(Click to edit note)</div>
                     <!-- Hidden input field for editing -->
                     <textarea id="txtTeacherNoteEdit" style="display: none;"></textarea>
                     <button id="btnSaveNote" style="display: none;" onclick="saveNote()">Save</button>

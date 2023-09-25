@@ -116,10 +116,11 @@
                         <div class="col-8">[{{ groupRole }}] <span class="txtRole" id="txtRole1">{{ groupRole }}</span></div>
                     </div>
 
-                    <p>Notes:<br>
-                        <div id="txtGroupNote" onclick="editNote()"></div>
+                    <p style="display: none;">Notes:<br>
+                        <div id="txtGroupNote" onclick="editNote()" style="display: none;"></div>
                     </p>
-                    <div class="text-info" onclick="editNote()">(Click to edit note)</div>
+                    <!-- Not in use at this time -->
+                    <div style="display: none" class="text-info" onclick="editNote()">(Click to edit note)</div>
                     <!-- Hidden input field for editing -->
                     <textarea id="txtTeacherNoteEdit" style="display: none;"></textarea>
                     <button id="btnSaveNote" style="display: none;" onclick="saveNote()">Save</button>
