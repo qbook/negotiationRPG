@@ -65,7 +65,7 @@
                         RPG {{ rpg_closest_round }} Deals End: {{ rpg_play_days_left }}
                     </p>
                     <h4 class="card-header">Product</h4>                    
-                    <p>Product: {{ rpg_current_product_name }}<br>
+                    <p>Product: {{ rpg_current_product_name|safe}}<br>
                         Base Price: {{ rpg_current_product_price }}<br>
                         Base Units: {{ rpg_current_product_units }}<br>
                         Currency: {{ rpg_current_product_currency }}<br>

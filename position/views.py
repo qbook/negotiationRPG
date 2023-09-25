@@ -380,8 +380,6 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
     deal_delivery_gap = 0
     deal_flex_points = 0
 
-
-
     # Check that the query returned some deals
     if filtered_deals:
         deals_by_id = defaultdict(list)
@@ -413,17 +411,7 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
                 else:
                     waiting_for_counterpart.append(deal1)
 
- 
-
-
-
-
-
-
-
-
-
-        # Create place in dictionary and context and add up flex point changes from gaps in quality and delivery
+         # Create place in dictionary and context and add up flex point changes from gaps in quality and delivery
         # Loop through each final deal to calculate the quality and delivery gaps
         for deal in final_deals:
             # Buyer/Seller are in oposite directions for flex gain/loss
