@@ -80,7 +80,7 @@
         <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
             <div class="card text-dark bg-light mb-1">
                 <div class="mb-3">
-                    <h1><i>RPG DASHBOARD</i></h1><h2><span class="txtRole" id="txtRole0"></span><br>RPG Round: {{ rpg_closest_round }}<br>Product: {{ rpg_current_product_name }}</h2><h4>Group: {{ groupDigit }}<br>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
+                    <h1><i>RPG DASHBOARD</i></h1><h2><span class="txtRole" id="txtRole0"></span><br>RPG Round: {{ rpg_closest_round }}<br>Product: {{ rpg_current_product_name|safe }}</h2><h4>Group: {{ groupDigit }}<br>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
                     <p>RPG {{ rpg_closest_round }} Deals End: {{ rpg_play_days_left }}</p>
                 </div>
             </div> <!-- End Card -->
@@ -1040,6 +1040,25 @@ $(document).ready(function() {
         // Smoothly scroll to the top
         $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
+
+    //RPG Product PDF link
+    product_link = "";
+    var rpg_current_product_name = {{ rpg_current_product_name }};
+        switch (rpg_current_product_name) {
+            case "":
+            case 1:
+                attributeValueText = "[1] Low";
+                break;
+            case 2:
+                attributeValueText = "[2] Average";
+                break;
+            case 3:
+                attributeValueText = "[3] High";
+                break;
+        } //end switch selectedValue
+    //add text to attribute
+    $("#txtPositionQuality").text(attributeValueText);
+
 
     //Rotate anime graphics once on page load
     let randomIndex = Math.floor(Math.random() * 11); // Random number between 0 and 19
