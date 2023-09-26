@@ -129,9 +129,10 @@ def position_marketplace_calculations(request, buyer_seller): # 1 for buyer/sell
             'bonous_flex_points': bonus_flex_points,
             'scoreFinal': scoreFinal,
         }
-        #all_groups_results.append(group_data)
         all_groups_results.append(group_data)
-    
+        # Order the list by group number
+        all_groups_results = sorted(all_groups_results, key=lambda x: x['group_digit'])
+
         context = {
             'rpg_closest_round': rpg_closest_round,
             'currentTeacher': currentTeacher,
@@ -295,7 +296,6 @@ def position_buyer_seller(request):
         'rpg_scoreFinal': round(scoreFinal, 2),
         'all_gifts': all_gifts,
         'all_messages': all_messages,
-        #'all_groups_results': all_groups_results,
         'all_groups_results': all_groups_results,
     }
 
