@@ -18,6 +18,9 @@ from .forms import GroupLoginForm
 
 
 def home(request):
+    # Clear all session variables to stop back arrow movement
+    request.session.clear()
+
     teachers = GameSettings.objects.all()
     groups = GroupLogin.objects.all()
     form = GroupDigitForm()
@@ -33,10 +36,6 @@ def home(request):
 
 #-------CLYDE THIS FUNCTION MAY NOT BE IN USE ANY LONGER----------------------
 def login(request):
-
-    # Clear all session variables
-    request.session.clear()
-
     #get the login teacher and className from URL
     currentTeacherURL = request.GET.get('teacher')
     currentClassNameURL = request.GET.get('className')
