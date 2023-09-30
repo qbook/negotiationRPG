@@ -85,23 +85,30 @@
                     <p>RPG {{ rpg_closest_round }} Deals End: {{ rpg_play_days_left }}</p>
                 </div>
             </div> <!-- End Card -->
-            <a href="{% url 'home' %}">
-                <div class="card text-light mb-3 shadow text-center position-relative"
-                    style="background-image: url({% static 'images/logoClass01_blur.png' %}); 
-                           background-size: cover; 
-                           background-position: center; 
-                           backdrop-filter: blur(100px);">
-            
-                    <div class="mb-3">
-                        <img id="imgRandomImage" alt="A random anime image" style="width: 200px; height: 200px; object-fit: cover;">
+
+            <div class="card text-dark bg-light mb-3 shadow">
+                <a href="{% url 'home' %}">
+                    <div class="card text-light mb-3 shadow text-center position-relative"
+                        style="background-image: url({% static 'images/logoClass01_blur.png' %}); 
+                            background-size: cover; 
+                            background-position: center; 
+                            backdrop-filter: blur(100px);">
+                
+                        <div class="mb-3">
+                            <img id="imgRandomImage" alt="A random anime image" style="width: 200px; height: 200px; object-fit: cover;">
+                        </div>
+                
+                        <!-- Overlay text -->
+                        <div class="position-absolute bottom-0 start-0 mb-2 ms-2">
+                            <span class="bg-dark text-light py-1 px-3" style="border-radius: 5px;">GO TO LOGIN PAGE</span>
+                        </div>
                     </div>
-            
-                    <!-- Overlay text -->
-                    <div class="position-absolute bottom-0 start-0 mb-2 ms-2">
-                        <span class="bg-dark text-light py-1 px-3" style="border-radius: 5px;">GO TO LOGIN PAGE</span>
-                    </div>
+                </a>
+                <div class="alert alert-warning text-end" role="alert">
+                    <h1><i>REFRESH TO UPDATE</i></h1>
                 </div>
-            </a>
+            </div>
+
             <div class="card custom-card mb-3 shadow">
                 <h4 class="card-header custom-card-header">Negotiation Position <i>Quick View</i></h4>
                 <div class="card-body">
