@@ -403,6 +403,11 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
             deal2 = deals[1] if len(deals) > 1 else None
 
             if deal2:  # means there are at least two deals
+
+                # Ensure deal1 is always for the current group
+                if deal1['groupDigit'] != currentGroupNumber:
+                    deal1, deal2 = deal2, deal1  # Swap the deals
+            
                 if ((deal1['dealBuySell'] == 1 and deal2['dealBuySell'] == -1) or
                         (deal1['dealBuySell'] == -1 and deal2['dealBuySell'] == 1)) and \
                         (deal1['dealUnits'] == deal2['dealUnits']) and (deal1['dealPrice'] == deal2['dealPrice']) and \
