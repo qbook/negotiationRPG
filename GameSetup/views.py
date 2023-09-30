@@ -19,7 +19,7 @@ from .forms import GroupLoginForm
 
 def home(request):
     # Clear all session variables to stop back arrow movement
-    request.session.clear()
+#    request.session.clear()
 
     teachers = GameSettings.objects.all()
     groups = GroupLogin.objects.all()
