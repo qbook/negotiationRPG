@@ -101,10 +101,10 @@
                         <hr class="my-1 bg-primary"> 
                         <p class="mb-2">IMPORTANCE: <strong>{{ groupImportance }}</strong></p>
                         <hr class="my-1 bg-primary"> 
-                        <p class="mb-3">QUALITY: <strong>{{ groupQuality }}</strong></p>
+                        <p class="mb-2">QUALITY: <strong>{{ groupQuality }}</strong></p>
                         <hr class="my-1 bg-primary"> 
                     </div>
-                    <p class="mb-3">ROLE: <span class="txtRole" id="txtRole0">{{ groupRole }}</span></p>
+                    <p class="mb-3">ROLE: <span class="txtRole" id="txtRole0"><strong>{{ groupRole }}</strong></span></p>
                     <hr class="my-1 bg-primary"> 
                     <a class="btn btn-primary mb-3" id="btnGoToDashboard" href="{% url 'position_buyer_seller' %}">Go To RPG Dashboard</a>
                     <!--note not implemented here at this time-->
@@ -143,7 +143,7 @@
             <div class="card text-dark bg-light mb-3 shadow" id="bsDistributePoints">
                 <h4 id="txtDistributeNow" class="card-header">Distribute Points <div style="display: inline-block;" id="txtPointsLeft"></div></h4>
                 <div class="card-body">
-                    <p class="small text-muted">Spend your points here. Click Play Now when ready.<br>(Once you click Play Now, your position is locked and cannot be changed for this RPG round.).</p>
+                    <p class="small text-muted">Spend your points here. Click <strong>Play Now</strong> when ready.<br>(Once you click Play Now, your position is locked and cannot be changed for this RPG round.).</p>
                     <form id="attributeForm" class="form-horizontal">
                         <!-- RESISTANCE: -->
                         <label for="drpResistance" class="col-sm-3 col-form-label">RESISTANCE:</label>
