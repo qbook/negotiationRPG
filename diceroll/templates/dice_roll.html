@@ -73,29 +73,39 @@
                 </div>
             </div>
 
-            <div class="card text-dark bg-light mb-1">
+            <div class="card text-dark bg-light mb-3 shadow"> <!-- Added shadow for elevated effect -->
                 <h4 class="card-header">Negotiation Position</h4>
                 <div class="card-body">
-                    <div id="txtPosition"><p>
-                        RESISTANCE: {{ groupResistancePrice }}<br>
-                        FLEX: {{ groupFlex }}<br>
-                        MAX Purchase: {{ groupMaxPurchase }}<br>
-                        DELIVERY: {{ groupDelivery }}<br>
-                        UNITS: {{ groupUnits }}<br>
-                        IMPORTANCE: {{ groupImportance }}<br>
-                        QUALITY: {{ groupQuality }}<br>
-                    </p></div> 
-                    <p>BUYER/SELLER: <span class="txtRole" id="txtRole0">{{ groupRole }}</span></p>
-                    <a class="btn btn-primary" id="btnGoToDashboard" href="{% url 'position_buyer_seller' %}">Go To RPG Dashboard</a>
+                    <div id="txtPosition">
+                        <p class="mb-2">RESISTANCE: <strong>{{ groupResistancePrice }}</strong></p>
+                        <hr class="my-1 bg-primary"> <!-- Colored horizontal line -->
+                        <p class="mb-2">FLEX: <strong>{{ groupFlex }}</strong></p>
+                        <hr class="my-1 bg-primary"> 
+                        <p class="mb-2">MAX Purchase: <strong>{{ groupMaxPurchase }}</strong></p>
+                        <hr class="my-1 bg-primary"> 
+                        <p class="mb-2">DELIVERY: <strong>{{ groupDelivery }}</strong></p>
+                        <hr class="my-1 bg-primary"> 
+                        <p class="mb-2">UNITS: <strong>{{ groupUnits }}</strong></p>
+                        <hr class="my-1 bg-primary"> 
+                        <p class="mb-2">IMPORTANCE: <strong>{{ groupImportance }}</strong></p>
+                        <hr class="my-1 bg-primary"> 
+                        <p class="mb-3">QUALITY: <strong>{{ groupQuality }}</strong></p>
+                        <hr class="my-1 bg-primary"> 
+                    </div>
+                    <p class="mb-3">ROLE: <span class="txtRole" id="txtRole0">{{ groupRole }}</span></p>
+                    <hr class="my-1 bg-primary"> 
+                    <a class="btn btn-primary mb-3" id="btnGoToDashboard" href="{% url 'position_buyer_seller' %}">Go To RPG Dashboard</a>
                     <!--note not implemented here at this time-->
                     <p style="display: none;">Notes:<br>
                         <div id="txtGroupNote" onclick="editNote()"></div>
-                    </p><div style="display: none;" class="text-info" onclick="editNote()">(Click to edit note)</div>
+                    </p>
+                    <div style="display: none;" class="text-info mb-2" onclick="editNote()">(Click to edit note)</div>
                     <!-- Hidden input field for editing -->
-                    <textarea id="txtTeacherNoteEdit" style="display: none;"></textarea>
-                    <button id="btnSaveNote" style="display: none;" onclick="saveNote()">Save</button>
+                    <textarea id="txtTeacherNoteEdit" style="display: none;" class="form-control mb-2"></textarea>
+                    <button id="btnSaveNote" style="display: none;" onclick="saveNote()" class="btn btn-secondary">Save</button>
                 </div>
             </div>
+            
             <div class="card text-dark bg-light mb-1" id="bsRoleDice">
                 <h4 class="card-header">Role Dice</h4>
                 <div class="card-body">
@@ -116,83 +126,104 @@
                     </div>
                 </div>
             </div>
+
             <div class="card text-dark bg-light mb-1" id="bsDistributePoints">
                 <h4 id="txtDistributeNow" class="card-header">Distribute Points <div style="display: inline-block;" id="txtPointsLeft"></div></h4>
                 <div class="card-body">
                     <p class="small text-muted">Spend your points here. Click Play Now when ready.<br>(Once you click Play Now, your position is locked and cannot be changed for this RPG round.).</p>
                     <form id="attributeForm" class="form-horizontal">
+                        <!-- RESISTANCE: -->
                         <label for="drpResistance" class="col-sm-3 col-form-label">RESISTANCE:</label>
-                        <select class="point-dropdown" name="drpResistance" id="drpResistance">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select><div id="txtResistance" class="d-inline-block align-middle small text-muted"></div><br>
+                        <select class="point-dropdown mb-2" name="drpResistance" id="drpResistance">
+                            <option value="1" {% if groupResistancePrice == 1 %}selected{% endif %}>1</option>
+                            <option value="2" {% if groupResistancePrice == 2 %}selected{% endif %}>2</option>
+                            <option value="3" {% if groupResistancePrice == 3 %}selected{% endif %}>3</option>
+                            <option value="4" {% if groupResistancePrice == 4 %}selected{% endif %}>4</option>
+                            <option value="5" {% if groupResistancePrice == 5 %}selected{% endif %}>5</option>
+                            <option value="6" {% if groupResistancePrice == 6 %}selected{% endif %}>6</option>
+                        </select>
+                        <div id="txtResistance" class="d-inline-block align-middle small text-muted"></div><br>
+                        
+                        <!-- FLEX: -->
                         <label for="drpFlex" class="col-sm-3 col-form-label">FLEX:</label>
-                        <select class="point-dropdown" name="drpFlex" id="drpFlex">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select><div id="txtFlex" class="d-inline-block align-middle small text-muted"></div><br>
-                        <label for="dropMaxPurchase" class="col-sm-3 col-form-label">MAX Purchase:</label>
-                        <select class="point-dropdown" name="drpMaxPurchase" id="drpMaxPurchase">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select><div id="txtMaxPurchase" class="d-inline-block align-middle small text-muted"></div><br>
+                        <select class="point-dropdown mb-2" name="drpFlex" id="drpFlex">
+                            <option value="1" {% if groupFlex == 1 %}selected{% endif %}>1</option>
+                            <option value="2" {% if groupFlex == 2 %}selected{% endif %}>2</option>
+                            <option value="3" {% if groupFlex == 3 %}selected{% endif %}>3</option>
+                            <option value="4" {% if groupFlex == 4 %}selected{% endif %}>4</option>
+                            <option value="5" {% if groupFlex == 5 %}selected{% endif %}>5</option>
+                            <option value="6" {% if groupFlex == 6 %}selected{% endif %}>6</option>
+                        </select>
+                        <div id="txtFlex" class="d-inline-block align-middle small text-muted"></div><br>
+            
+                        <!-- MAX Purchase: -->
+                        <label for="drpMaxPurchase" class="col-sm-3 col-form-label">MAX Purchase:</label>
+                        <select class="point-dropdown mb-2" name="drpMaxPurchase" id="drpMaxPurchase">
+                            <option value="0" {% if groupMaxPurchase == 1 %}selected{% endif %}>0</option>
+                            <option value="1" {% if groupMaxPurchase == 1 %}selected{% endif %}>1</option>                            
+                            <option value="2" {% if groupMaxPurchase == 2 %}selected{% endif %}>2</option>
+                            <option value="3" {% if groupMaxPurchase == 3 %}selected{% endif %}>3</option>
+                            <option value="4" {% if groupMaxPurchase == 4 %}selected{% endif %}>4</option>
+                            <option value="5" {% if groupMaxPurchase == 5 %}selected{% endif %}>5</option>
+                            <option value="6" {% if groupMaxPurchase == 6 %}selected{% endif %}>6</option>
+                        </select>
+                        <div id="txtMaxPurchase" class="d-inline-block align-middle small text-muted"></div><br>
+            
+                        <!-- DELIVERY: -->
                         <label for="drpDelivery" class="col-sm-3 col-form-label">DELIVERY:</label>
-                        <select class="point-dropdown" name="drpDelivery" id="drpDelivery">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select><div id="txtDelivery" class="d-inline-block align-middle small text-muted"></div><br>
+                        <select class="point-dropdown mb-2" name="drpDelivery" id="drpDelivery">
+                            <option value="1" {% if groupDelivery == 1 %}selected{% endif %}>1</option>
+                            <option value="2" {% if groupDelivery == 2 %}selected{% endif %}>2</option>
+                            <option value="3" {% if groupDelivery == 3 %}selected{% endif %}>3</option>
+                            <option value="4" {% if groupDelivery == 4 %}selected{% endif %}>4</option>
+                            <option value="5" {% if groupDelivery == 5 %}selected{% endif %}>5</option>
+                            <option value="6" {% if groupDelivery == 6 %}selected{% endif %}>6</option>
+                        </select>
+                        <div id="txtDelivery" class="d-inline-block align-middle small text-muted"></div><br>
+            
+                        <!-- UNITS: -->
                         <label for="drpUnits" class="col-sm-3 col-form-label">UNITS:</label>
-                        <select class="point-dropdown" name="drpUnits" id="drpUnits">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select><div id="txtUnits" class="d-inline-block align-middle small text-muted"></div><br>
+                        <select class="point-dropdown mb-2" name="drpUnits" id="drpUnits">
+                            <option value="1" {% if groupUnits == 1 %}selected{% endif %}>1</option>
+                            <option value="2" {% if groupUnits == 2 %}selected{% endif %}>2</option>
+                            <option value="3" {% if groupUnits == 3 %}selected{% endif %}>3</option>
+                            <option value="4" {% if groupUnits == 4 %}selected{% endif %}>4</option>
+                            <option value="5" {% if groupUnits == 5 %}selected{% endif %}>5</option>
+                            <option value="6" {% if groupUnits == 6 %}selected{% endif %}>6</option>
+                        </select>
+                        <div id="txtUnits" class="d-inline-block align-middle small text-muted"></div><br>
+            
+                        <!-- IMPORTANCE: -->
                         <label for="drpImportance" class="col-sm-3 col-form-label">IMPORTANCE:</label>
-                        <select class="point-dropdown" name="drpImportance" id="drpImportance">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select><div id="txtImportance" class="d-inline-block align-middle small text-muted"></div><br>
+                        <select class="point-dropdown mb-2" name="drpImportance" id="drpImportance">
+                            <option value="1" {% if groupImportance == 1 %}selected{% endif %}>1</option>
+                            <option value="2" {% if groupImportance == 2 %}selected{% endif %}>2</option>
+                            <option value="3" {% if groupImportance == 3 %}selected{% endif %}>3</option>
+                            <option value="4" {% if groupImportance == 4 %}selected{% endif %}>4</option>
+                            <option value="5" {% if groupImportance == 5 %}selected{% endif %}>5</option>
+                            <option value="6" {% if groupImportance == 6 %}selected{% endif %}>6</option>
+                        </select>
+                        <div id="txtImportance" class="d-inline-block align-middle small text-muted"></div><br>
+            
+                        <!-- QUALITY: -->
                         <label for="drpQuality" class="col-sm-3 col-form-label">QUALITY:</label>
-                        <select class="point-dropdown" name="drpQuality" id="drpQuality">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select><div id="txtQuality" class="d-inline-block align-middle small text-muted"></div><br>
+                        <select class="point-dropdown mb-2" name="drpQuality" id="drpQuality">
+                            <option value="1" {% if groupQuality == 1 %}selected{% endif %}>1</option>
+                            <option value="2" {% if groupQuality == 2 %}selected{% endif %}>2</option>
+                            <option value="3" {% if groupQuality == 3 %}selected{% endif %}>3</option>
+                            <option value="4" {% if groupQuality == 4 %}selected{% endif %}>4</option>
+                            <option value="5" {% if groupQuality == 5 %}selected{% endif %}>5</option>
+                            <option value="6" {% if groupQuality == 6 %}selected{% endif %}>6</option>
+                        </select>
+                        <div id="txtQuality" class="d-inline-block align-middle small text-muted"></div><br>
+            
                         <button class="btn btn-primary col-sm-5 text-center" id="btnPlayNow">Play NOW</button>
                     </form>
                 </div>
             </div>
-
+                        
         </div>
-    </div>
-
+    </div><!--End container-->
 </body>
 
 <script>
@@ -215,8 +246,9 @@ $(document).ready(function() {
     var pointsLeft = 0;
 
 
-    function turnOnOffDiceRoll(state){
-        if (state == -1){ //turn off the rolldice and distribute card areas
+    function turnOnOffDiceRoll(state){        
+        //if (state == -1){ //turn off the rolldice and distribute card areas
+        if (state == 1){ //turn off the rolldice and distribute card areas
             document.getElementById("bsRoleDice").classList.add("text-muted", "bg-secondary");
             document.getElementById("bsRoleDice").style.cursor = "not-allowed";
             document.getElementById("bsDistributePoints").classList.add("text-muted", "bg-secondary");
@@ -415,348 +447,6 @@ $(document).ready(function() {
     });//end click PlayNow
 
 
-
-
-/*
-    //Show meaning of changes to dropdowns when distributing dice points
-    $(".point-dropdown").change(function() {
-        if (groupRole == 0){
-            alert("Roll dice before distributing points!")
-            //CLYDE run a function to clear all text here and drop down scores
-        }
-        const selectedValue = $(this).val();
-        const attributeName = $(this).attr('id').substring(3);  // Removing 'drp' prefix to get the attribute name
-        const correspondingTextDiv = $("#txt" + attributeName);  // Getting the ID of the text div
-        let meaning = ""; //setup variable to hold meaning string
-        switch (attributeName){
-            case "Resistance":
-                switch (groupRole){
-                    case -1: //SELLER case
-                        switch (selectedValue) {
-                            case "0":
-                                meaning = " Distribute Points Here";
-                                break;
-                            case "1":
-                                meaning = "= Base Price X 0.98";
-                                break;
-                            case "2":
-                                meaning = "= Base Price X 0.96";
-                                break;
-                            case "3":
-                                meaning = "= Base Price X 0.94";
-                                break;
-                            case "4":
-                                meaning = "= Base Price X 0.93";
-                                break;
-                            case "5":
-                                meaning = "= Base Price X 0.92";
-                                break;
-                            case "6":
-                                meaning = "= Base Price X 0.91";
-                                break;
-                        } //end switch selectedValue
-                        break;
-                    case 1: //BUYER case
-                        switch (selectedValue) {
-                            case "0":
-                                meaning = " Distribute Points Here";
-                                break;
-                            case "1":
-                                meaning = "= Base Price";
-                                break;
-                            case "2":
-                                meaning = "= Base Price X 1.02";
-                                break;
-                            case "3":
-                                meaning = "= Base Price X 1.03";
-                                break;
-                            case "4":
-                                meaning = "= Base Price X 1.04";
-                                break;
-                            case "5":
-                                meaning = "= Base Price X 1.05";
-                                break;
-                            case "6":
-                                meaning = "= Base Price X 1.06";
-                                break;
-                        } //end switch selectedValue
-                        break;
-                } //end switch seller/buyer
-                correspondingTextDiv.text(meaning);
-                break; //end the case for Resistance
-
-            case "Flex":
-                switch (selectedValue) {
-                    case "0":
-                        meaning = " Distribute Points Here";
-                        break;
-                    case "1":
-                        meaning = "= 1 Flex Point";
-                        break;
-                    case "2":
-                        meaning = "= 2 Flex Points";
-                        break;
-                    case "3":
-                        meaning = "= 3 Flex Points";
-                        break;
-                    case "4":
-                        meaning = "= 4 Flex Points";
-                        break;
-                    case "5":
-                        meaning = "= 5 Flex Points";
-                        break;
-                    case "6":
-                        meaning = "= 6 Flex Points";
-                        break;
-                } //end switch selectedValue
-                correspondingTextDiv.text(meaning);
-                break; //end the case for Flex
-
-                case "MaxPurchase":
-                switch (groupRole){
-                    case -1: //SELLER case
-                        $("#drpMaxPurchase").val("0"); //reset the dropdown to zero
-                        //add points BACK into the txtPointsLeft
-                        meaning = "= Only For Buyer"; //warn user
-                        break;
-                    case 1: //BUYER case
-                        switch (selectedValue) {
-                            case "0":
-                                meaning = " Distribute Points Here";
-                                break;
-                            case "1":
-                                meaning = "= Mod. Units X 1.1";
-                                break;
-                            case "2":
-                                meaning = "= Mod. Units X 1.1";
-                                break;
-                            case "3":
-                                meaning = "= Mod. Units X 1.2";
-                                break;
-                            case "4":
-                                meaning = "= Mod. Units X 1.2";
-                                break;
-                            case "5":
-                                meaning = "= Mod. Units X 1.3";
-                                break;
-                            case "6":
-                                meaning = "= Mod. Units X 1.3";
-                                break;
-                        } //end switch selectedValue
-                        break;
-                } //end switch seller/buyer
-                correspondingTextDiv.text(meaning);
-                break; //end the case for MaxPurchase
-
-                case "Delivery":
-                switch (groupRole){
-                    case -1: //SELLER case
-                        switch (selectedValue) {
-                            case "0":
-                                meaning = " Distribute Points Here";
-                                break;
-                            case "1":
-                                meaning = "= Only Capable of Slow Delivery";
-                                break;
-                            case "2":
-                                meaning = "= Only Capable of Slow Delivery";
-                                break;
-                            case "3":
-                                meaning = "= Capable of Average Delivery";
-                                break;
-                            case "4":
-                                meaning = "= Capable of Average Delivery";
-                                break;
-                            case "5":
-                                meaning = "= Capable of Fast Delivery";
-                                break;
-                            case "6":
-                                meaning = "= Capable of Fast Delivery";
-                                break;
-                        } //end switch selectedValue
-                        break;
-                    case 1: //BUYER case
-                        switch (selectedValue) {
-                            case "0":
-                                meaning = " Distribute Points Here";
-                                break;
-                            case "1":
-                                meaning = "= Fast Delivery Required";
-                                break;
-                            case "2":
-                                meaning = "= Fast Delivery Required";
-                                break;
-                            case "3":
-                                meaning = "= Average Delivery Acceptable";
-                                break;
-                            case "4":
-                                meaning = "= Average Delivery Acceptable";
-                                break;
-                            case "5":
-                                meaning = "= Slow Delivery Acceptable";
-                                break;
-                            case "6":
-                                meaning = "= Slow Delivery Acceptable";
-                                break;
-                        } //end switch selectedValue
-                        break;
-                } //end switch seller/buyer
-                correspondingTextDiv.text(meaning);
-                break; //end the case for Delivery
-
-                case "Units":
-                switch (groupRole){
-                    case -1: //SELLER case
-                        switch (selectedValue) {
-                            case "0":
-                                meaning = " Distribute Points Here";
-                                break;
-                            case "1":
-                                meaning = "= Base Units X 1";
-                                break;
-                            case "2":
-                                meaning = "= Base Units X 1.02";
-                                break;
-                            case "3":
-                                meaning = "= Base Units X 1.03";
-                                break;
-                            case "4":
-                                meaning = "= Base Units X 1.04";
-                                break;
-                            case "5":
-                                meaning = "= Base Units X 1.05";
-                                break;
-                            case "6":
-                                meaning = "= Base Units X 1.06";
-                                break;
-                        } //end switch selectedValue
-                        break;
-                    case 1: //BUYER case
-                        switch (selectedValue) {
-                            case "0":
-                                meaning = " Distribute Points Here";
-                                break;
-                            case "1":
-                                meaning = "= Base Units";
-                                break;
-                            case "2":
-                                meaning = "= Base Units X 1.02";
-                                break;
-                            case "3":
-                                meaning = "= Base Units X 1.03";
-                                break;
-                            case "4":
-                                meaning = "= Base Units X 1.04";
-                                break;
-                            case "5":
-                                meaning = "= Base Units X 1.05";
-                                break;
-                            case "6":
-                                meaning = "= Base Units X 1.06";
-                                break;
-                        } //end switch selectedValue
-                        break;
-                } //end switch seller/buyer
-                correspondingTextDiv.text(meaning);
-                break; //end the case for Units
-
-                case "Importance":
-                switch (selectedValue) {
-                    case "0":
-                        meaning = " Distribute Points Here";
-                        break;
-                    case "1":
-                        meaning = "= Small Patatoes";
-                        break;
-                    case "2":
-                        meaning = "= Kind Of Important";
-                        break;
-                    case "3":
-                        meaning = "= Somewhat Important";
-                        break;
-                    case "4":
-                        meaning = "= Important";
-                        break;
-                    case "5":
-                        meaning = "= Very Important";
-                        break;
-                    case "6":
-                        meaning = "= Vital Importance";
-                        break;
-                } //end switch selectedValue
-                correspondingTextDiv.text(meaning);
-                break; //end the case for Importance
-
-                case "Quality":
-                switch (groupRole){
-                    case -1: //SELLER case
-                        switch (selectedValue) {
-                            case "0":
-                                meaning = " Distribute Points Here";
-                                break;
-                            case "1":
-                                meaning = "= Only Capable of Low Quality";
-                                break;
-                            case "2":
-                                meaning = "= Only Capable of Low Quality";
-                                break;
-                            case "3":
-                                meaning = "= Capable of Average Quality";
-                                break;
-                            case "4":
-                                meaning = "= Capable of Average Quality";
-                                break;
-                            case "5":
-                                meaning = "= Capable of High Quality";
-                                break;
-                            case "6":
-                                meaning = "= Capable of High Quality";
-                                break;
-                        } //end switch selectedValue
-                        break;
-                    case 1: //BUYER case
-                        switch (selectedValue) {
-                            case "0":
-                                meaning = " Distribute Points Here";
-                                break;
-                            case "1":
-                                meaning = "= High Quality Required";
-                                break;
-                            case "2":
-                                meaning = "= Hight Quality Required";
-                                break;
-                            case "3":
-                                meaning = "= Average Quality Acceptable";
-                                break;
-                            case "4":
-                                meaning = "= Average Quality Acceptable";
-                                break;
-                            case "5":
-                                meaning = "= Low Quality Acceptable";
-                                break;
-                            case "6":
-                                meaning = "= Low Quality Acceptable";
-                                break;
-                        } //end switch selectedValue
-                        break;
-                } //end switch seller/buyer
-                correspondingTextDiv.text(meaning);
-                break; //end the case for Quality
-
-        } //end case for  attribute
-
-        //Sum the points used so far to get the remaining points to distribute
-        let totalPointsUsed = 0;
-        $(".point-dropdown").each(function() {
-            totalPointsUsed += parseInt($(this).val(), 10) || 0;
-        });
-        pointsLeft = groupDiceLastRoll - totalPointsUsed;
-        $("#txtPointsLeft").text(pointsLeft);
-
-    });//end dropdown changed listener
-*/
-
-
     //Show meaning of changes to dropdowns when distributing dice points
     const meaningMap = {
         Resistance: {
@@ -822,8 +512,8 @@ $(document).ready(function() {
 
 
     // Programmatically trigger change event for dropdowns otherwise the first change does NOT trigger display of help and remaining points
-    $(".point-dropdown").first().trigger("change");
-
+    //$(".point-dropdown").first().trigger("change");
+    //CLYDE NOT SURE THIS IS NEEDED ANY MORE
 
     //Rotate anime graphics once on page load
     let randomIndex = Math.floor(Math.random() * 20); // Random number between 0 and 19
