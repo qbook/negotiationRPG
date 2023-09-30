@@ -35,21 +35,31 @@
     <div class="container">
         <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
 
-            <div class="card text-dark bg-light mb-1">
+            <div class="card text-dark bg-light mb-3 shadow">
                 <div class="mb-3">
                     <h1>DICE Page</h1><h2>Group: {{ groupDigit }}</h2><h4>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
                 </div>
             </div>
-            <a href="{% url 'home' %}"><div class="card text-light mb-1 text-center" 
-                style="background-image: url({% static 'images/logoClass01_blur.png' %}); 
-                    background-size: cover; 
-                    background-position: center; 
-                    backdrop-filter: blur(100px);">
-                <div class="mb-3">
-                    <img id="imgRandomImage" alt="A random anime image" style="width: 200px; height: 200px; object-fit: cover;">
+
+            <a href="{% url 'home' %}">
+                <div class="card text-light mb-3 shadow text-center position-relative"
+                    style="background-image: url({% static 'images/logoClass01_blur.png' %}); 
+                           background-size: cover; 
+                           background-position: center; 
+                           backdrop-filter: blur(100px);">
+            
+                    <div class="mb-3">
+                        <img id="imgRandomImage" alt="A random anime image" style="width: 200px; height: 200px; object-fit: cover;">
+                    </div>
+            
+                    <!-- Overlay text -->
+                    <div class="position-absolute bottom-0 start-0 mb-2 ms-2">
+                        <span class="bg-dark text-light py-1 px-3" style="border-radius: 5px;">GO TO LOGIN PAGE</span>
+                    </div>
                 </div>
-            </div></a>
-            <div class="card text-dark bg-light mb-1">
+            </a>
+
+            <div class="card text-dark bg-light mb-3 shadow">
                 <h4 class="card-header">Role Status</h4>
                 <div class="card-body">
                     <h4>RPG Round: {{ rpg_closest_round }}</h4>
@@ -57,10 +67,12 @@
                     <p>Dice Roll Starts: {{ rpg_closest_start_date }}<br>
                         Dice Roll Ends: {{ rpg_closest_end_date }}<br>
                     </p>
+                    <hr class="my-1 bg-primary">
                     <p>
                         <div id="countDownStart">Time Left To START Roll: </div>
                         <div id="countDownEnd">Time Left To END Roll: </div>
                     </p>
+                    <hr class="my-1 bg-primary">                    
                     <p>
                         RPG {{ rpg_closest_round }} Deals End: {{ rpg_play_days_left }}
                     </p>
@@ -106,13 +118,14 @@
                 </div>
             </div>
             
-            <div class="card text-dark bg-light mb-1" id="bsRoleDice">
+            <div class="card text-dark bg-light mb-3 shadow" id="bsRoleDice">
                 <h4 class="card-header">Role Dice</h4>
                 <div class="card-body">
                     <h4>RPG Round: {{ rpg_closest_round }}</h4>
                     <p>Dice Roll Start: {{ rpg_closest_start_date }}<br>
                         Dice Roll End: {{ rpg_closest_end_date }}
                     </p>
+                    <hr class="my-1 bg-primary">
                     <div class="container mt-1">
                         <!-- Button to roll dice -->
                         <button class="btn btn-primary col-sm-5 text-center" id="btnRollDice">Roll Dice</button>
@@ -127,7 +140,7 @@
                 </div>
             </div>
 
-            <div class="card text-dark bg-light mb-1" id="bsDistributePoints">
+            <div class="card text-dark bg-light mb-3 shadow" id="bsDistributePoints">
                 <h4 id="txtDistributeNow" class="card-header">Distribute Points <div style="display: inline-block;" id="txtPointsLeft"></div></h4>
                 <div class="card-body">
                     <p class="small text-muted">Spend your points here. Click Play Now when ready.<br>(Once you click Play Now, your position is locked and cannot be changed for this RPG round.).</p>
@@ -216,7 +229,7 @@
                             <option value="6" {% if groupQuality == 6 %}selected{% endif %}>6</option>
                         </select>
                         <div id="txtQuality" class="d-inline-block align-middle small text-muted"></div><br>
-            
+                        <hr class="my-1 bg-primary">
                         <button class="btn btn-primary col-sm-5 text-center" id="btnPlayNow">Play NOW</button>
                     </form>
                 </div>
@@ -247,8 +260,7 @@ $(document).ready(function() {
 
 
     function turnOnOffDiceRoll(state){        
-        //if (state == -1){ //turn off the rolldice and distribute card areas
-        if (state == 1){ //turn off the rolldice and distribute card areas
+        if (state == -1){ //turn off the rolldice and distribute card areas
             document.getElementById("bsRoleDice").classList.add("text-muted", "bg-secondary");
             document.getElementById("bsRoleDice").style.cursor = "not-allowed";
             document.getElementById("bsDistributePoints").classList.add("text-muted", "bg-secondary");
