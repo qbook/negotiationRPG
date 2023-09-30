@@ -78,7 +78,7 @@
 <body>    
     <div class="container">
         <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
-            <div class="card text-dark bg-light mb-1">
+            <div class="card text-dark bg-light mb-3 shadow">
                 <div class="mb-3">
                     <h1><i>RPG DASHBOARD</i></h1><h2><span class="txtRole" id="txtRole0"></span><br>RPG Round: {{ rpg_closest_round }}<br>Product: {{ rpg_current_product_name|safe }}</h2><h4>Group: {{ groupDigit }}<br>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
                     <p>RPG {{ rpg_closest_round }} Deals End: {{ rpg_play_days_left }}</p>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
             </a>
-            <div class="card custom-card mb-1">
+            <div class="card custom-card mb-3 shadow">
                 <h4 class="card-header custom-card-header">Negotiation Position <i>Quick View</i></h4>
                 <div class="card-body">
                     <div class="row fw-bold">
@@ -135,7 +135,7 @@
             </div> <!-- End Card -->
         
 
-            <div class="card custom-card mb-1">
+            <div class="card custom-card mb-3 shadow">
                 <h4 class="card-header custom-card-header">Actions</h4>
                 <div class="card-body">
                     <div class="container mt-1">
@@ -276,7 +276,7 @@
 
             </div> <!-- End of card -->
 
-            <div class="card custom-card mb-1">
+            <div class="card custom-card mb-3 shadow">
                 <h4 class="card-header custom-card-header">Deals Completed<sup>a</sup></h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
@@ -307,7 +307,7 @@
                 <div class="small text-muted"><sup>a</sup>Deals waiting for counterparties are not shown here.</div>
             </div> <!-- End card -->
 
-            <div class="card custom-card mb-1">
+            <div class="card custom-card mb-3 shadow">
                 <h4 class="card-header custom-card-header">Canceled Deals</h4>
                 <div class="card-body">
                     <h4 class="card-header">Deals Canceled With Penalty</h4>
@@ -362,7 +362,7 @@
                 <div class="small text-muted"><sup>a</sup>Role 1 = Buyer; -1 = Seller.</div>
             </div> <!-- End card -->
             
-            <div class="card custom-card mb-1">
+            <div class="card custom-card mb-3 shadow">
                 <h4 class="card-header custom-card-header">Flex Points: {{ rpgFlexPoints }}</h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
@@ -405,7 +405,7 @@
                 <br><div id="txtFlexMsg4" class="small text-muted"><sup>c</sup>Production over MAX costs 1 Flex Point for every 10% increase over UNITS.</div>
             </div> <!-- End card -->
 
-            <div class="card custom-card custom-card text-dark bg-light mb-1">
+            <div class="card custom-card custom-card text-dark bg-light mb-3 shadow">
                 <h4 class="card-header custom-card-header">Weighted Avg. Price</h4>
                 <div class="card-body">
                     <table class="table table-bordered table-striped table-responsive">
@@ -444,7 +444,7 @@
                 </div> <!-- End card body-->
             </div> <!-- End card -->
 
-            <div class="card custom-card text-dark bg-light mb-1" id="crdInventory">
+            <div class="card custom-card text-dark bg-light mb-3 shadow" id="crdInventory">
                 <h4 class="card-header custom-card-header">Inventory Bought</h4>
                 <div class="card-body">
                     <table class="table table-striped table-responsive">
@@ -473,7 +473,7 @@
                 <div class="small text-muted">Inventory bought over your MAX Purchase ({{ rpg_max_purchase }}) will cause bankruptcy.</div>
             </div> <!-- End card -->
 
-            <div class="card custom-card text-dark bg-light mb-1">
+            <div class="card custom-card text-dark bg-light mb-3 shadow">
                 <h4 class="card-header custom-card-header">Flex Point Send/Receive</h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
@@ -500,7 +500,7 @@
                 <div class="small text-muted">Note: Only messages for the current RPG round are shown.</div>                    
             </div> <!-- End card -->
 
-            <div class="card custom-card text-dark bg-light mb-1">
+            <div class="card custom-card text-dark bg-light mb-3 shadow">
                 <h4 class="card-header">Deals Waiting For Counterpart</h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
@@ -530,7 +530,7 @@
                 </div> <!-- End card body-->
             </div> <!-- End card -->
 
-            <div class="card custom-card text-dark bg-light mb-1">
+            <div class="card custom-card text-dark bg-light mb-3 shadow">
                 <h4 class="card-header">Deals Waiting For You</h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive deal-row:hover">
@@ -560,7 +560,7 @@
                 </div><!-- End card body-->
             </div> <!-- End card -->
 
-            <div class="card custom-card text-dark bg-light mb-1">
+            <div class="card custom-card text-dark bg-light mb-3 shadow">
                 <h4 class="custom-card-warn-header">Deals Mismatched<sup>a</sup></h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
@@ -597,7 +597,7 @@
                 <div class="small text-muted">Note: Role 1 = Buyer; -1 = Seller.</div>
             </div> <!-- End card -->
 
-            <div class="card custom-card text-dark bg-light mb-1">
+            <div class="card custom-card text-dark bg-light mb-3 shadow">
                 <h4 class="card-header custom-card-header">RPG Score: {{ rpg_scoreFinal }}</h4>
                 <div class="card-body">
                     <table class="table">
@@ -695,7 +695,7 @@
                 </div> <!-- End card body -->
             </div> <!-- End card -->
 
-            <div class="card custom-card text-dark bg-light mb-1">
+            <div class="card custom-card text-dark bg-light mb-3 shadow">
                 <h4 class="card-header custom-card-header">Messages Received<sup>a</sup></h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
@@ -724,7 +724,7 @@
                 <div class="small text-muted"><sup>a</sup>Note: Only messages for the current RPG round are shown.</div>                    
             </div><!-- End card -->
 
-            <div class="card custom-card text-dark bg-light mb-1">
+            <div class="card custom-card text-dark bg-light mb-3 shadow">
                 <h4 class="card-header custom-card-header">Marketplace<sup></sup></h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
