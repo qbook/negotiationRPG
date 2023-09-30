@@ -520,7 +520,7 @@ def query_messages(rpg_closest_round, currentClassName, currentGroupNumber):
     ).filter(
         Q(groupDigit=currentGroupNumber) | 
         Q(messageReceiver=currentGroupNumber)
-    ).values('groupDigit', 'messageReceiver', 'messageSubject', 'messageContent')
+    ).values('groupDigit', 'messageReceiver', 'messageSubject', 'messageContent', 'messageDateStamp').order_by('-messageDateStamp') # order by timestamp in descending order
 
     return all_messages
 

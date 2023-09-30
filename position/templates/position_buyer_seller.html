@@ -688,7 +688,6 @@
                 </div> <!-- End card body -->
             </div> <!-- End card -->
 
-
             <div class="card custom-card text-dark bg-light mb-1">
                 <h4 class="card-header custom-card-header">Messages Received<sup>a</sup></h4>
                 <div class="card-body">
@@ -699,6 +698,7 @@
                                 <th scope="col" title="To">To<br>Group</th>
                                 <th scope="col" title="Subject">Subject</th>
                                 <th scope="col" title="Message">Message</th>
+                                <th scope="col" title="Timestamp">Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -708,6 +708,7 @@
                                 <td>{{ deal.messageReceiver }}</td>
                                 <td>{{ deal.messageSubject }}</td>
                                 <td>{{ deal.messageContent }}</td>
+                                <td>{{ deal.messageDateStamp|date:"m/d H:i" }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -715,7 +716,6 @@
                 </div> <!-- End card body-->
                 <div class="small text-muted"><sup>a</sup>Note: Only messages for the current RPG round are shown.</div>                    
             </div><!-- End card -->
-
 
             <div class="card custom-card text-dark bg-light mb-1">
                 <h4 class="card-header custom-card-header">Marketplace<sup></sup></h4>
