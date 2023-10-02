@@ -19,7 +19,7 @@ from .forms import GroupLoginForm
 
 def home(request):
     # Clear all session variables to stop back arrow movement
-#    request.session.clear()
+    #request.session.clear()
 
     teachers = GameSettings.objects.all()
     groups = GroupLogin.objects.all()
@@ -252,7 +252,8 @@ def choose_group(request):
             groupDigit = form.cleaned_data['groupDigit']
             groupPassword = form.cleaned_data['groupPassword']
             try:
-                group = GroupLogin.objects.get(groupDigit=groupDigit)
+                group = GroupLogin.objects.get(groupDigit=groupDigit, groupClass=currentClassNameURL)
+                #group = GroupLogin.objects.get(groupDigit=groupDigit)
                 if group.groupPassword == groupPassword or groupPassword == "nchu_master_ta_2023": #allow a master PW
                     #Place group and class name into session
                     request.session['currentClassName'] = currentClassNameURL
