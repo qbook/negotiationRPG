@@ -251,11 +251,10 @@ def choose_group(request):
             # Do your password checking and redirecting here
             groupDigit = form.cleaned_data['groupDigit']
             groupPassword = form.cleaned_data['groupPassword']
-            try: #problem here getting two at once
+            try:
                 group = GroupLogin.objects.get(groupDigit=groupDigit, groupClass=currentClassNameURL)
-                #group = GroupLogin.objects.get(groupDigit=groupDigit)
-                if group.groupPassword == groupPassword or groupPassword == "nchu_master_ta_2023": #allow a master PW
-                    #Place group and class name into session
+                if group.groupPassword == groupPassword or groupPassword == "nchu_master_ta_2023": # allow a master PW
+                    # Place group and class name into session
                     request.session['currentClassName'] = currentClassNameURL
                     request.session['currentGroup'] = groupDigit
                     return redirect('dice_roll')
@@ -265,6 +264,12 @@ def choose_group(request):
                 context['error_message'] = "Group does not exist."
 
     return render(request, 'choose_group.html', context)
+
+
+
+
+
+
 
 
 
