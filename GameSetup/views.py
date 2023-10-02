@@ -251,7 +251,7 @@ def choose_group(request):
             # Do your password checking and redirecting here
             groupDigit = form.cleaned_data['groupDigit']
             groupPassword = form.cleaned_data['groupPassword']
-            try:
+            try: #problem here getting two at once
                 group = GroupLogin.objects.get(groupDigit=groupDigit, groupClass=currentClassNameURL)
                 #group = GroupLogin.objects.get(groupDigit=groupDigit)
                 if group.groupPassword == groupPassword or groupPassword == "nchu_master_ta_2023": #allow a master PW
