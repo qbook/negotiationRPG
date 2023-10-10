@@ -36,9 +36,13 @@ urlpatterns = [
     path('roll_dice/', diceRollViews.roll_dice, name='roll_dice'),
     path('update_attributes/', diceRollViews.update_attributes, name='update_attributes'),
 
+    # Current position status readouts
     path('position_buyer_seller/', positionViews.position_buyer_seller, name='position_buyer_seller'),
-
     path('position_marketplace/', positionViews.position_marketplace, name='position_marketplace'),
+    
+    # Manual RPG round selection for current position status readouts
+    path('position_marketplace_manual/', positionViews.position_marketplace_manual, name='position_marketplace_manual'),
+    path('position_buyer_seller/', positionViews.position_buyer_seller, name='position_buyer_seller_manual'),
 
     path('save_deal/', positionViews.save_deal, name='save_deal'),
     path('cancel_deal/', positionViews.cancel_deal, name='cancel_deal'),

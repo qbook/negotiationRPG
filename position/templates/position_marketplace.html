@@ -69,8 +69,18 @@
                 </div>
             </div></a> <!-- End Card -->
 
-
             <div class="card custom-card mb-1">
+
+                <form id="selectRPGForm" method="get" action="{% url 'position_marketplace_manual' %}">
+                    <select name="rpg_choice" id="rpg_choice">
+                        <option value="-1" selected>Change Round</option>
+                        {% for rpg in "0123456789"|make_list %}
+                            <option value="{{ rpg }}" {% if rpg == request.GET.rpg_choice %}selected{% endif %}>RPG {{ rpg }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Go</button>
+                </form>
+
                 <h4 class="card-header custom-card-header">Deals Completed<sup>a</sup></h4>
                 <div class="card-body">
                     <div class="container">

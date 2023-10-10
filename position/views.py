@@ -32,22 +32,34 @@ import math
 # Create your views here.
 
 #----------------------------BUILD MARKETPLACE HTML PAGE-------
-def position_marketplace(request): # called by the page position_marketplace.html
-    context = position_marketplace_calculations(request, -1) # Marketplace function; specify this is for MARKETPLACE page
+def position_marketplace(request): # called by the page position_marketplace.html on opening
+    context = position_marketplace_calculations(request, -1, -1) # Marketplace function; specify this is for MARKETPLACE page AND NO spcecific RPG round
     return render(request, 'position_marketplace.html', context)
 
+#----------------------------BUILD MARKETPLACE HTML PAGE FOR SPECIFIC RPG ROUND-------
+def position_marketplace_manual(request): # called by the page position_marketplace.html when dropdown for specific RPG round is choosen
+    rpg_choice = int(request.GET.get('rpg_choice', None)) # Get the specific RPG round chosen by user
+    # This accounts for user did NOT click GO without choosing an RPG round number as the rpg_choice is -1 for NO choice
+    context = position_marketplace_calculations(request, -1, rpg_choice) # Marketplace function; specify this is for MARKETPLACE page AND specific RPG round
+    return render(request, 'position_marketplace.html', context)
 
+def position_buyer_seller_manual(request): # called by the page position_buyer_seller.html when dropdown for specific RPG round is choosen
+    rpg_choice = int(request.GET.get('rpg_choice', None)) # Get the specific RPG round chosen by user
+    # This accounts for user did NOT click GO without choosing an RPG round number as the rpg_choice is -1 for NO choice
+    #context = position_marketplace_calculations(request, -1, rpg_choice) # Marketplace function; specify this is for MARKETPLACE page AND specific RPG round
+    #return render(request, 'position_buyer_seller.html', context)
+    
 
 #----------------------------MARKETPLACE CALCULATIONS i.e. SCORES FOR ALL GROUPS-------
-def position_marketplace_calculations(request, buyer_seller): # 1 for buyer/seller page -1 for marketplace
+def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): # 1 for buyer/seller page, -1 for marketplace, -1 for NO custom RPG round
     all_groups_results = [] # Holder to store all groups
 
-    #get teacher & class & group from session
+    #get teacher & class from session
     currentTeacher = request.session.get('currentTeacher')
     currentClassName = request.session.get('currentClassName')
 
     #call the function to check game settings for this CLASS
-    result_from_check_start_time = check_start_time(currentTeacher, currentClassName)
+    result_from_check_start_time = check_start_time(currentTeacher, currentClassName, rpg_manual_round)
     # Extracting a value from the dictionary of results from function check_start_time
     rpg_closest_round = int(result_from_check_start_time['rpg_closest_round'])
 
@@ -55,6 +67,15 @@ def position_marketplace_calculations(request, buyer_seller): # 1 for buyer/sell
     #Use extracted value to query for this class ALL GROUP's DiceRoll data for this RPG round
     #Each group will have ONE for the current RPG
     allGroupCharacterSheet = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupRPG=rpg_closest_round)
+
+    # Initialize context outside of the loop incase an RPG round is manually selected but it has NO DEALS
+    context = { # Supply values and an empty set value just in case
+        'rpg_closest_round': rpg_closest_round,
+        'currentTeacher': currentTeacher,
+        'currentClassName': currentClassName,
+        'allGroupCharacterSheet': allGroupCharacterSheet,
+        'all_groups_results': []  # Set an empty list to start
+    }
 
     # Loop through each group and calculate.
     for group in allGroupCharacterSheet:
@@ -70,7 +91,7 @@ def position_marketplace_calculations(request, buyer_seller): # 1 for buyer/sell
             transformed_delivery = int(((group.groupDelivery + 1) / 2))
             group_role_name = 'Seller'
 
-        # Use the Flex Points from the dice results (not modification needed)
+        # Use the Flex Points from the dice results (no modification needed)
         flex_points = int(group.groupFlex)
 
 
@@ -114,12 +135,13 @@ def position_marketplace_calculations(request, buyer_seller): # 1 for buyer/sell
             scoreE = scoreD * group.groupImportance
             scoreFinal = scoreE * rpg_fraction_close_to_max
             scoreFinal = round(scoreFinal, 2)
-        else:
+        else: # no filtered deals in query result assign zero values to show deals have not been made yet
             scoreA = 0
             scoreB = 0
             scoreC = 0
             scoreD = scoreC + flex_points
             scoreE = scoreD * group.groupImportance
+            bonus_flex_points = 0
             scoreFinal = -1
 
         # Collect the results for the current group.
@@ -171,7 +193,7 @@ def position_buyer_seller(request):
 
 
     #call the function to check game settings for this CLASS
-    result_from_check_start_time = check_start_time(currentTeacher, currentClassName)
+    result_from_check_start_time = check_start_time(currentTeacher, currentClassName, -1)
     # Extracting a value from the dictionary of results from function check_start_time
     rpg_closest_round = int(result_from_check_start_time['rpg_closest_round'])
     
@@ -252,7 +274,8 @@ def position_buyer_seller(request):
         scoreFinal = 0
 
 #----------------------------GET MARKETPLACE ARRAY OF DATA-------    
-    all_groups_results = position_marketplace_calculations(request, 1) # Marketplace function; specify this is for buyer_seller page
+    rpg_choice = int(request.GET.get('rpg_choice', rpg_closest_round))  # defaulting to RPG round 1 IF no manual RPG choice.
+    all_groups_results = position_marketplace_calculations(request, 1, rpg_choice) # specify this is for buyer_seller page; manual RPG round
 
     context = {
         'groupDigit': currentGroupNumber,
