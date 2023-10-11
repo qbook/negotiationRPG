@@ -14,10 +14,8 @@ from .forms import GroupDigitForm
 from .forms import GroupLoginForm
 
 
-
-
-
 def home(request):
+    # CLYDE this caused login problems--may need to do a check FIRST if variables are already in session before clearing
     # Clear all session variables to stop back arrow movement
     #request.session.clear()
 
@@ -32,9 +30,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-
-
-#-------CLYDE THIS FUNCTION MAY NOT BE IN USE ANY LONGER----------------------
+#-------CLYDE THIS FUNCTION MAY NOT BE IN USE ANY LONGER----------------------START
 def login(request):
     #get the login teacher and className from URL
     currentTeacherURL = request.GET.get('teacher')
@@ -64,7 +60,7 @@ def login(request):
         request.session['currentClassPrimaryKey'] = currentTeacherClass.pk
 
     return render(request, 'login.html', context)
-
+# END-------CLYDE THIS FUNCTION MAY NOT BE IN USE ANY LONGER----------------------END
 
 def setup(request):
     #get teacher & class from session
@@ -77,7 +73,7 @@ def setup(request):
     return render(request, 'setup.html', result_from_check_start_time)
 
 
-def check_start_time(currentTeacher, currentClassName):
+def check_start_time(currentTeacher, currentClassName, rpg_manual_round):
     #query for this teacher/class data
 #    currentTeacherClass = GameSettings.objects.filter(teacher=currentTeacher).filter(className=currentClassName).first()
     currentTeacherClass = GameSettings.objects.filter(className=currentClassName).first()
@@ -164,11 +160,22 @@ def check_start_time(currentTeacher, currentClassName):
 
     #Use a timezone-aware now time
     now = timezone.now()
-    # Filter out END dates that have already passed and then sort the list
-    # This will create a list of tuples, each containing (index, datetime)
-    rpg_future_dates = sorted([(index, dt) for index, dt in enumerate(rpg_end_dates) if (dt  + timedelta(playDays)) > now], key=lambda x: x[1])
+    # ---------------Check if looking for CLOSEST non passed RPG or MANUAL user choosen RPG round------------------
+    if rpg_manual_round != -1: # IF user chooses a specific RPG rpg_manual_round
+        rpg_future_dates = sorted([(index, dt) for index, dt in enumerate(rpg_end_dates)], key=lambda x: x[1])
+        rpg_closest_end_date_tuple = rpg_future_dates[rpg_manual_round] if rpg_future_dates else None # grab the FIRST one in this remaining date list
+    else:
+        # IF the default current RPG round is being asked for (i.e., the defult)
+        # Filter out END dates that have already passed and then sort the list
+        # This will create a list of tuples, each containing (index, datetime)
+        rpg_future_dates = sorted([(index, dt) for index, dt in enumerate(rpg_end_dates) if (dt  + timedelta(playDays)) > now], key=lambda x: x[1])
+        rpg_closest_end_date_tuple = rpg_future_dates[0] if rpg_future_dates else None # grab the FIRST one in this remaining date list
+        # ---------------------------MANAUAL RPG FOR TESTING------CLYDE--------------------------------------------------------------------------------------
+        # Comment OUT the above two lines the use these TWO lines to force group RPG to the number set here: rpg_future_dates[XXX]
+        #rpg_future_dates = sorted([(index, dt) for index, dt in enumerate(rpg_end_dates)], key=lambda x: x[1])
+        #rpg_closest_end_date_tuple = rpg_future_dates[0] if rpg_future_dates else None # grab the FIRST one in this remaining date list
 
-    rpg_closest_end_date_tuple = rpg_future_dates[0] if rpg_future_dates else None
+
     if rpg_closest_end_date_tuple:
         rpg_closest_round, rpg_closest_end_date = rpg_closest_end_date_tuple
         #Use the index number to now get the START date from the list rpg_start_dates
@@ -247,11 +254,20 @@ def choose_group(request):
     # Check for POST request (form submission)
     if request.method == 'POST':
         form = GroupLoginForm(request.POST)
+
+
         if form.is_valid():
             # Do your password checking and redirecting here
             groupDigit = form.cleaned_data['groupDigit']
             groupPassword = form.cleaned_data['groupPassword']
             try:
+
+                # If administrator do not use is_valid checking
+                if groupDigit == "1000" and groupPassword == "nchu_master_ta_2023":
+                    request.session['currentClassName'] = currentClassNameURL
+                    request.session['currentGroup'] = "1"
+                    return redirect('position_marketplace') # go to administration page
+
                 group = GroupLogin.objects.get(groupDigit=groupDigit, groupClass=currentClassNameURL)
                 if group.groupPassword == groupPassword or groupPassword == "nchu_master_ta_2023": # allow a master PW
                     # Place group and class name into session
@@ -264,15 +280,6 @@ def choose_group(request):
                 context['error_message'] = "Group does not exist."
 
     return render(request, 'choose_group.html', context)
-
-
-
-
-
-
-
-
-
 
 def save_note(request):
     if request.method == 'POST':
