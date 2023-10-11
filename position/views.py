@@ -157,8 +157,16 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'scoreFinal': scoreFinal,
         }
         all_groups_results.append(group_data)
+
         # Order the list by group number
         #all_groups_results = sorted(all_groups_results, key=lambda x: x['group_digit'])
+
+        def safe_key(item): # make nested fuction here to avoid the error of group number MIA inside the DB for some reason (it happened in my class)
+            try:
+                return item['group_digit']
+            except KeyError:
+                return float('inf')  # This will place problematic items at the end of the list
+        all_groups_results = sorted(all_groups_results, key=safe_key)
 
         context = {
             'rpg_closest_round': rpg_closest_round,
