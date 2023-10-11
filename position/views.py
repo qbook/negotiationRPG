@@ -135,7 +135,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             scoreE = scoreD * group.groupImportance
             scoreFinal = scoreE * rpg_fraction_close_to_max
             scoreFinal = round(scoreFinal, 2)
-        else: # no filtered deals in query result assign zero values to show deals have not been made yet
+        else: # no filtered deals in query result assign zero values to show deals have not been made yet 
             scoreA = 0
             scoreB = 0
             scoreC = 0
