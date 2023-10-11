@@ -158,7 +158,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
         }
         all_groups_results.append(group_data)
         # Order the list by group number
-        all_groups_results = sorted(all_groups_results, key=lambda x: x['group_digit'])
+        #all_groups_results = sorted(all_groups_results, key=lambda x: x['group_digit'])
 
         context = {
             'rpg_closest_round': rpg_closest_round,
