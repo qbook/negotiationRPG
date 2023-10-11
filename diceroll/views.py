@@ -26,7 +26,7 @@ def group_character(request):
     currentClassName = request.session.get('currentClassName')
     currentGroupNumber = request.session.get('currentGroup')
     #call the function to check game settings for this class
-    result_from_check_start_time = check_start_time(currentTeacher, currentClassName)
+    result_from_check_start_time = check_start_time(currentTeacher, currentClassName, -1)
     # Extracting a value from the dictionary of results from function check_start_time
     rpg_closest_round = result_from_check_start_time['rpg_closest_round']
     #Use extracted value to query for this class this GROUP's data for this RPG round
