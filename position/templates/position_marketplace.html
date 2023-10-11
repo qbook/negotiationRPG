@@ -68,9 +68,10 @@
                     <img id="imgRandomImage" alt="A random anime image" style="width: 200px; height: 200px; object-fit: cover;">
                 </div>
             </div></a> <!-- End Card -->
+        </div> <!-- End of row with prefer two columns -->
 
+        <div class="row row-cols-1 row-cols-md-1 row-cols-lg-1 row-cols-xl-2 g-3"></div>
             <div class="card custom-card mb-1">
-
                 <form id="selectRPGForm" method="get" action="{% url 'position_marketplace_manual' %}">
                     <select name="rpg_choice" id="rpg_choice">
                         <option value="-1" selected>Change Round</option>
@@ -90,8 +91,8 @@
                                     <th scope="col" title="Group">Group</th>
                                     <th scope="col" title="Role">Role</th>
                                     <th scope="col" title="Score">Score</th>
-                                    <th scope="col" title="?">?</th>
-                                    <th scope="col" title="?">?</th>
+                                    <th scope="col" title="?">Dice<br>Left</th>
+                                    <th scope="col" title="?">Last<br>Roll</th>
                                     <th scope="col" title="?">?</th>
                                 </tr>
                             </thead>
@@ -101,9 +102,9 @@
                                     <td>{{ group.group_digit }}</td>
                                     <td>{{ group.group_role_name }}</td>
                                     <td>{{ group.scoreFinal }}</td>
+                                    <td>{{ group.dice_left }}</td>
+                                    <td>{{ group.last_roll }}</td>
                                     <td>?</td>
-                                    <td></td>
-                                    <td></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -112,6 +113,9 @@
                 </div>
                 <div class="small text-muted"><sup>a</sup>Deals waiting for counterparties are not shown here.</div>
             </div> <!-- End card -->
+        </div> <!-- End of row with prefer ONE columns -->
+
+
 <br>allGroupCharacterSheet: {{ allGroupCharacterSheet }}
 <br>canceled_deals_count: {{ canceled_deals_count }}
 <br>fitered_deals: {{ filtered_deals }}
@@ -122,7 +126,8 @@
 <br>
 
 
-            
+
+        <div class="row row-cols-1 row-cols-md-1 row-cols-lg-1 row-cols-xl-2 g-3"></div>
             <div class="card text-dark bg-light mb-1">
                 <h4 class="card-header custom-card-header">RPG Score: {{ rpg_scoreFinal }}</h4>
                 <div class="card-body">

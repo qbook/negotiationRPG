@@ -155,6 +155,8 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'resistance': resistance,
             'bonous_flex_points': bonus_flex_points,
             'scoreFinal': scoreFinal,
+            'dice_left': group.groupDiceLeft,
+            'last_roll': group.groupDiceLastRoll,
         }
         all_groups_results.append(group_data)
 
