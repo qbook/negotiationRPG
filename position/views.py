@@ -67,6 +67,8 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
     #Use extracted value to query for this class ALL GROUP's DiceRoll data for this RPG round
     #Each group will have ONE for the current RPG
     allGroupCharacterSheet = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupRPG=rpg_closest_round)
+    #allGroupCharacterSheet = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupRPG=rpg_closest_round).exclude(groupDigit__isnull=True).exclude(groupDigit="")
+
 
     # Initialize context outside of the loop incase an RPG round is manually selected but it has NO DEALS
     context = { # Supply values and an empty set value just in case
@@ -161,14 +163,10 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
         all_groups_results.append(group_data)
 
         # Order the list by group number
-        #all_groups_results = sorted(all_groups_results, key=lambda x: x['group_digit'])
-
-        def safe_key(item): # make nested fuction here to avoid the error of group number MIA inside the DB for some reason (it happened in my class)
-            try:
-                return item['group_digit']
-            except KeyError:
-                return float('inf')  # This will place problematic items at the end of the list
-        all_groups_results = sorted(all_groups_results, key=safe_key)
+        # Filter out items where 'group_digit' is None or doesn't exist
+        all_groups_results = [item for item in all_groups_results if item.get('group_digit') is not None]
+        # Now you can safely sort the list, if needed
+        all_groups_results = sorted(all_groups_results, key=lambda x: x['group_digit'])
 
         context = {
             'rpg_closest_round': rpg_closest_round,
@@ -184,10 +182,6 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
     else:
         #return render(request, 'position_marketplace.html', context)
         return context # Return all context variables for the calling function to build the html page marketplace
-
-
-
-
 
 #----------------------------BUILD POSITION_BUYER_SELLER HTML PAGE-------
 #setting up the initial page and placing useful variables into session
@@ -212,6 +206,7 @@ def position_buyer_seller(request):
 
     #Use extracted value to query for this class this GROUP's data for this RPG round
     currentGroupCharacterSheet = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupDigit=currentGroupNumber).filter(groupRPG=rpg_closest_round).first()
+    # The above line does NOT exclude null groupNumber as the marketplace does because this is the group data (i.e., null user would not be here and page cannot run without current user)
 
     # Transform the values of quality & delivery to match THREE levels and not dice values
     if int(currentGroupCharacterSheet.groupRole) == 1:
@@ -505,10 +500,18 @@ def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, groupRo
     # Calculate average of the weighted if total_units is not zero
     average_weighted = round((total_weighted / total_units) if total_units else 0, 2)
 
-    # Calculate the resistance price
+    # Calculate the resistance price and mod units
+    # Use two indipendent matrix as buyer/seller are mixed up here
     attribute_value = 1
     if int(groupRole) == 1: # case of buyer
         resistance_levels = {
+            2: 1.02,
+            3: 1.03,
+            4: 1.04,
+            5: 1.05,
+            6: 1.06
+        }
+        mod_levels = {
             2: 1.02,
             3: 1.03,
             4: 1.04,
@@ -523,15 +526,21 @@ def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, groupRo
             5: .92,
             6: .91
         }
-
+        mod_levels = {
+            2: 1.02,
+            3: 1.03,
+            4: 1.04,
+            5: 1.05,
+            6: 1.06
+        }
+    # Resistance Price calculation
     attribute_value = resistance_levels.get(currentGroupCharacterSheet.groupResistancePrice, 1)
-
     resistance = round(attribute_value * float(result_from_check_start_time['rpg_current_product_price']), 2)
 
     # Calculate modUnits based on attribute values
-    attribute_value_units = resistance_levels.get(currentGroupCharacterSheet.groupUnits, 1)
+    attribute_value_units = mod_levels.get(currentGroupCharacterSheet.groupUnits, 1) # the points from dice
     rpg_mod_units = int(round(attribute_value_units * float(result_from_check_start_time['rpg_current_product_units'])))
-
+    
     # Calculate maximum that can be purchased
     max_purchase_levels = {
         (1, 2): 1.1,
