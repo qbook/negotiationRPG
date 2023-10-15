@@ -116,6 +116,53 @@
         </div> <!-- End of row with prefer ONE columns -->
 
 
+CLYDE TESTING00
+
+            <div class="container">
+                <div class="card custom-card mb-1">
+                    <h4 class="card-header custom-card-header">Deals Completed</h4>
+                    <div class="card-body">
+                        <div class="container">
+                            <!-- Loop through each group and its deals -->
+                            {% for group, deals in all_group_deals_library.items %}
+                                <h5 class="mt-4">Group: {{ group.groupDigit }}</h5>
+                                <table class="table table-hover table-striped table-responsive">
+                                    <thead class="custom-thead">
+                                        <tr>
+                                            <th scope="col">Deal ID</th>
+                                            <th scope="col">Counterpart</th>
+                                            <th scope="col">Time</th>
+                                            <th scope="col">Units</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Quality</th>
+                                            <th scope="col">Delivery</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Loop through each deal within a group -->
+                                        {% for deal in deals %}
+                                            <tr>
+                                                <td>{{ deal.dealDealID }}</td>
+                                                <td>{{ deal.dealCounterpart }}</td>
+                                                <td>{{ deal.dealDateStamp }}</td>
+                                                <td>{{ deal.dealUnits }}</td>
+                                                <td>{{ deal.dealPrice }}</td>
+                                                <td>{{ deal.dealQuality }}</td>
+                                                <td>{{ deal.dealDelivery }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+
+CLYDE TESTING01 <br>
 <br>allGroupCharacterSheet: {{ allGroupCharacterSheet }}
 <br>canceled_deals_count: {{ canceled_deals_count }}
 <br>fitered_deals: {{ filtered_deals }}

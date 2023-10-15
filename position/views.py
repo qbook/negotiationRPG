@@ -51,7 +51,7 @@ def position_buyer_seller_manual(request): # called by the page position_buyer_s
     
 
 #----------------------------MARKETPLACE CALCULATIONS i.e. SCORES FOR ALL GROUPS-------
-def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): # 1 for buyer/seller page, -1 for marketplace, -1 for NO custom RPG round
+def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): # 1 for buyer/seller page, buyer_seller=>-1 for marketplace, rpg_manual_round=>-1 for NO custom RPG round
     all_groups_results = [] # Holder to store all groups
 
     #get teacher & class from session
@@ -78,6 +78,8 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
         'allGroupCharacterSheet': allGroupCharacterSheet,
         'all_groups_results': []  # Set an empty list to start
     }
+
+    all_group_deals_library = {} # Library holding list of deals for each group (initialze outside the for loop)
 
     # Loop through each group and calculate.
     for group in allGroupCharacterSheet:
@@ -107,6 +109,10 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
         #-------------------QUERY ALL DEALS LESS CANCELS----------------
         #if filtered_deals:
         final_deals, error_deals, waiting_for_counterpart, waiting_for_you, deal_quality_gap, deal_delivery_gap, deal_flex_points, flex_points = categorize_deals(filtered_deals, group.groupDigit, transformed_quality, transformed_delivery, flex_points, group.groupRole)
+
+        all_group_deals_library[group] = final_deals # All the final deals for CURRENT group put into library with group number as KEY
+
+        
 
         #-------------------CALCULATING INVENTORY NUMBERS----------------
         #if final_deals:
@@ -168,20 +174,27 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
         # Now you can safely sort the list, if needed
         all_groups_results = sorted(all_groups_results, key=lambda x: x['group_digit'])
 
+        # Order the DICTIONARY by group number
+        # First filter out items where 'group_digit' is None or doesn't exist
+        all_group_deals_library = {group: deals for group, deals in all_group_deals_library.items() if group.groupDigit is not None}
+        # Sorting the dictionary by groupID
+        all_group_deals_library = {k: v for k, v in sorted(all_group_deals_library.items(), key=lambda item: item[0].groupDigit)}
+
         context = {
             'rpg_closest_round': rpg_closest_round,
             'currentTeacher': currentTeacher,
             'currentClassName': currentClassName,
             'allGroupCharacterSheet': allGroupCharacterSheet,
-
             'all_groups_results': all_groups_results,
+
+            'all_group_deals_library': all_group_deals_library,
         }
     
-    if buyer_seller == 1: # Funciton argument passed from the buyer_seller function
-        return all_groups_results # Only return the scoring info for all groups
-    else:
+    if buyer_seller == 1: # Funciton argument passed from the buyer_seller function  (buyer_seller=>-1 for marketplace)
+        return all_groups_results # Only return the scoring info for the group
+    else: # Marketplace data
         #return render(request, 'position_marketplace.html', context)
-        return context # Return all context variables for the calling function to build the html page marketplace
+        return context # Return all context variables for the calling function to build the html page marketplace 
 
 #----------------------------BUILD POSITION_BUYER_SELLER HTML PAGE-------
 #setting up the initial page and placing useful variables into session
@@ -453,7 +466,7 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
                 else:
                     waiting_for_counterpart.append(deal1)
 
-         # Create place in dictionary and context and add up flex point changes from gaps in quality and delivery
+         # Create place in list and context and add up flex point changes from gaps in quality and delivery
         # Loop through each final deal to calculate the quality and delivery gaps
         for deal in final_deals:
             # Buyer/Seller are in oposite directions for flex gain/loss
@@ -471,7 +484,7 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
             # Add the gain/loss of Flex to a session variable -----CLYDE I THINK THIS MAY NOT BE NEEDED ANY LONGER----------------
             flex_points += (deal_quality_gap + deal_delivery_gap) * deal_flex_units
 
-            # Add the gaps to the deal dictionary so you can use them in your template if needed
+            # Add the gaps to the deal list so you can use them in your template if needed
             deal['deal_quality_gap'] = deal_quality_gap
             deal['deal_delivery_gap'] = deal_delivery_gap
             deal['deal_flex_units'] = deal_flex_units
