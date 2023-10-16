@@ -19,8 +19,8 @@ class GroupLoginForm(forms.Form):
         super(GroupLoginForm, self).__init__(*args, **kwargs)
         self.fields['groupDigit'].choices = [(group.groupDigit, group.groupDigit) for group in GroupLogin.objects.all()]
 
-
-class GameSettingsForm(forms.ModelForm): #for the administration changes of RPG game settings
+#for the administration changes of RPG game settings
+class GameSettingsForm(forms.ModelForm): 
     class Meta:
         model = GameSettings
         exclude = ['teacher', 'className', 'created']
