@@ -26,6 +26,7 @@ urlpatterns = [
     path('', gameSetupViews.home, name='home'),
     path('setup/', gameSetupViews.setup, name='setup'),
     path('save_note/', gameSetupViews.save_note, name='save_note'),
+    path('edit_game_settings/', gameSetupViews.edit_game_settings, name='edit_game_settings'),
 
     path('choose_group/', gameSetupViews.choose_group, name='choose_group'),
 
@@ -49,6 +50,9 @@ urlpatterns = [
 
     path('gift_flex/', positionViews.gift_flex, name='gift_flex'),
     path('send_message/', positionViews.send_message, name='send_message'),
+
+    
+
 
 ]
 
