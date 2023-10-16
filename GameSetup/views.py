@@ -169,12 +169,12 @@ def check_start_time(currentTeacher, currentClassName, rpg_manual_round):
         # IF the default current RPG round is being asked for (i.e., the defult)
         # Filter out END dates that have already passed and then sort the list
         # This will create a list of tuples, each containing (index, datetime)
-        #rpg_future_dates = sorted([(index, dt) for index, dt in enumerate(rpg_end_dates) if (dt  + timedelta(playDays)) > now], key=lambda x: x[1])
-        #rpg_closest_end_date_tuple = rpg_future_dates[0] if rpg_future_dates else None # grab the FIRST one in this remaining date list
+        rpg_future_dates = sorted([(index, dt) for index, dt in enumerate(rpg_end_dates) if (dt  + timedelta(playDays)) > now], key=lambda x: x[1])
+        rpg_closest_end_date_tuple = rpg_future_dates[0] if rpg_future_dates else None # grab the FIRST one in this remaining date list
         # ---------------------------MANAUAL RPG FOR TESTING------CLYDE--------------------------------------------------------------------------------------
         # Comment OUT the above two lines the use these TWO lines to force group RPG to the number set here: rpg_future_dates[XXX]
-        rpg_future_dates = sorted([(index, dt) for index, dt in enumerate(rpg_end_dates)], key=lambda x: x[1])
-        rpg_closest_end_date_tuple = rpg_future_dates[2] if rpg_future_dates else None # Manually set to X
+        #rpg_future_dates = sorted([(index, dt) for index, dt in enumerate(rpg_end_dates)], key=lambda x: x[1])
+        #rpg_closest_end_date_tuple = rpg_future_dates[X] if rpg_future_dates else None # Manually set to X
 
 
     if rpg_closest_end_date_tuple:
