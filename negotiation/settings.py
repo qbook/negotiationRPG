@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'GameSetup.apps.GameSetupConfig',
     'diceroll.apps.dicerollConfig',
-    'position'
+    'position',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
