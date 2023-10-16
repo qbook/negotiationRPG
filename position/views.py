@@ -186,7 +186,8 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'currentClassName': currentClassName,
             'allGroupCharacterSheet': allGroupCharacterSheet,
             'all_groups_results': all_groups_results,
-
+            'rpg_closest_end_date': result_from_check_start_time['rpg_closest_end_date'],
+            'rpg_current_product_name': result_from_check_start_time['rpg_current_product_name'],
             'all_group_deals_library': all_group_deals_library,
         }
     
