@@ -1,6 +1,7 @@
 # forms.py
 from django import forms
 from .models import GroupLogin
+from .models import GameSettings
 
 class GroupDigitForm(forms.Form):
     group_digit = forms.ChoiceField(choices=[])
@@ -19,3 +20,7 @@ class GroupLoginForm(forms.Form):
         self.fields['groupDigit'].choices = [(group.groupDigit, group.groupDigit) for group in GroupLogin.objects.all()]
 
 
+class GameSettingsForm(forms.ModelForm):
+    class Meta:
+        model = GameSettings
+        exclude = ['teacher', 'className', 'created']
