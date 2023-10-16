@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
 from django.utils import timezone
 from datetime import timedelta
@@ -12,6 +11,8 @@ from .models import GroupLogin
 from .models import GameSettings
 from .forms import GroupDigitForm
 from .forms import GroupLoginForm
+from .forms import GameSettingsForm
+
 
 
 def home(request):
@@ -302,5 +303,26 @@ def save_note(request):
 def about(request):
     return HttpResponse('<h1>ABOUT THE GAME</h1>')
 
+
+def edit_game_settings(request):
+    #get teacher & class from session
+    currentTeacher = request.session.get('currentTeacher')
+    class_name = request.session.get('currentClassName')
+
+
+    instance = get_object_or_404(GameSettings, className=class_name)
+
+
+
+    if request.method == 'POST':
+        form = GameSettingsForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            # Redirect to a success page or the same page with a success message
+            return redirect('success_url_or_same_url')
+    else:
+        form = GameSettingsForm(instance=instance)
+
+    return render(request, 'edit_game_settings.html', {'form': form})
 
 
