@@ -319,7 +319,7 @@ def edit_game_settings(request):
         if form.is_valid():
             form.save()
             # Redirect to a success page or the same page with a success message
-            return redirect('success_url_or_same_url')
+            return redirect('edit_game_settings')
     else:
         form = GameSettingsForm(instance=instance)
 
