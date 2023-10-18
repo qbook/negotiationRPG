@@ -12,7 +12,7 @@ class GroupDigitForm(forms.Form):
 
 
 class GroupLoginForm(forms.Form):
-    groupPassword = forms.CharField(max_length=20, widget=forms.PasswordInput)
+    groupPassword = forms.CharField(max_length=20, widget=forms.PasswordInput(attrs={'style': 'max-width: 100%; width: 300px;'}))
     groupDigit = forms.ChoiceField(choices=[])
 
     def __init__(self, *args, **kwargs):
