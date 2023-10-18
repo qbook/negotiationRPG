@@ -15,7 +15,7 @@
                     <h2><i>RPG MARKETPLACE ADMIN</i><br>RPG Round: {{ rpg_closest_round }}</h2>
                     <h4>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
                     <p>RPG {{ rpg_closest_round }} Dice Roll Ends: {{ rpg_closest_end_date }}
-                        <br>Product: {{ rpg_current_product_name|safe }} {{ CLYDETEST00 }}                        
+                        <br>Product: {{ rpg_current_product_name|safe }}                        
                     </p>
                     <a href="{% url 'edit_game_settings' %}">Change RPG Settings</a>
                 </div>
@@ -41,8 +41,8 @@
                         {% endfor %}
                     </select>
                     <button type="submit">Go</button>
+                    BUYERS: {{ buyers_count }} SELLERS: {{ sellers_count }}
                 </form>
-
                 <h4 class="card-header custom-card-header">Deals Completed<sup>a</sup></h4>
                 <div class="card-body">
                     <div class="container">

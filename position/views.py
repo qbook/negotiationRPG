@@ -63,12 +63,13 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
     # Extracting a value from the dictionary of results from function check_start_time
     rpg_closest_round = int(result_from_check_start_time['rpg_closest_round'])
 
-
+    #QUERY DB
     #Use extracted value to query for this class ALL GROUP's DiceRoll data for this RPG round
     #Each group will have ONE for the current RPG
     allGroupCharacterSheet = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupRPG=rpg_closest_round)
-    #allGroupCharacterSheet = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupRPG=rpg_closest_round).exclude(groupDigit__isnull=True).exclude(groupDigit="")
 
+    # Get count of buyers and sellers in the market
+    buyers_count, sellers_count = query_buyer_seller_number(rpg_closest_round, currentClassName)
 
     # Initialize context outside of the loop incase an RPG round is manually selected but it has NO DEALS
     context = { # Supply values and an empty set value just in case
@@ -76,10 +77,13 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
         'currentTeacher': currentTeacher,
         'currentClassName': currentClassName,
         'allGroupCharacterSheet': allGroupCharacterSheet,
+        'buyers_count': 0,
+        'sellers_count': 0,
         'all_groups_results': []  # Set an empty list to start
     }
 
     all_group_deals_library = {} # Library holding list of deals for each group (initialze outside the for loop)
+    #counting_library = {} # Library holding stuff to count across all groups
 
     # Loop through each group and calculate.
     for group in allGroupCharacterSheet:
@@ -188,7 +192,11 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'all_groups_results': all_groups_results,
             'rpg_closest_end_date': result_from_check_start_time['rpg_closest_end_date'],
             'rpg_current_product_name': result_from_check_start_time['rpg_current_product_name'],
+            'buyers_count': buyers_count,
+            'sellers_count': sellers_count,
             'all_group_deals_library': all_group_deals_library,
+            'dice_left': group.groupDiceLeft,
+            'last_roll': group.groupDiceLastRoll,
         }
     
     if buyer_seller == 1: # Funciton argument passed from the buyer_seller function  (buyer_seller=>-1 for marketplace)
@@ -208,7 +216,6 @@ def position_buyer_seller(request):
     #get teacher & class & group from session
     currentTeacher = request.session.get('currentTeacher')
     currentClassName = request.session.get('currentClassName')
-
 
     #call the function to check game settings for this CLASS
     result_from_check_start_time = check_start_time(currentTeacher, currentClassName, -1)
@@ -293,16 +300,20 @@ def position_buyer_seller(request):
         scoreFinal = 0
 
 #----------------------------GET MARKETPLACE ARRAY OF DATA-------    
-    rpg_choice = int(request.GET.get('rpg_choice', rpg_closest_round))  # defaulting to RPG round 1 IF no manual RPG choice.
+    rpg_choice = int(request.GET.get('rpg_choice', rpg_closest_round))  # defaulting to RPG closest RPG round 1 IF no manual RPG choice.
     all_groups_results = position_marketplace_calculations(request, 1, rpg_choice) # specify this is for buyer_seller page; manual RPG round
+
+    # Get count of buyers and sellers in the market
+    buyers_count, sellers_count = query_buyer_seller_number(rpg_choice, currentClassName)
+    #buyers_count, sellers_count = query_buyer_seller_number(rpg_manual_round, currentClassName)
 
     context = {
         'groupDigit': currentGroupNumber,
         'currentClassName': currentClassName,
         'currentTeacher': currentTeacher,
         'rpg_closest_round': rpg_closest_round,
-        #'groupRPG': rpg_closest_round,
-        #'canceled_deals': canceled_deals,
+        'buyers_count': buyers_count,
+        'sellers_count': sellers_count,
         'final_deals': final_deals,
         'penalized_deals': penalized_deals,
         'mutually_canceled_deals': mutually_canceled_deals,
@@ -584,6 +595,15 @@ def query_messages(rpg_closest_round, currentClassName, currentGroupNumber):
     ).values('groupDigit', 'messageReceiver', 'messageSubject', 'messageContent', 'messageDateStamp').order_by('-messageDateStamp') # order by timestamp in descending order
 
     return all_messages
+
+#-------------------QUERY BUYER SELLER NUMBERS IN MARKET----------------
+def query_buyer_seller_number(rpg_closest_round, currentClassName):
+
+    # Get count of buyers and sellers by query all the group character sheets for current RPG round and class
+    buyers_count = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupRPG=rpg_closest_round).filter(groupRole=1).count()
+    sellers_count = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupRPG=rpg_closest_round).filter(groupRole=-1).count()
+
+    return buyers_count, sellers_count
 
 #----------------------------FLEX POINTS CALCULATIONS-------
 
