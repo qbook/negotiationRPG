@@ -26,8 +26,10 @@ from position.models import messaging
 from position.models import cancel
 from django.db.models import Q
 from collections import defaultdict
+from django.db.models import Max, F
 import random
 import math
+
 
 # Create your views here.
 
@@ -376,20 +378,44 @@ def session_set_variables(request, group_role): # Set any session variable neede
 
 #----------------------------CANCELED DEALS DB QUERY-------
 def query_cancel_db(rpg_closest_round, currentClassName):
+
+    
+
     # Query the CANCEL database
-    all_canceled_deals = cancel.objects.filter(
+    all_canceled_deals = cancel.objects.filter(groupRPG=rpg_closest_round, groupClass=currentClassName).values('groupDigit', 'dealDealID', 'dealCounterpart')
+
+
+    '''# Step 1: Annotate with the max id for each combination
+    max_ids = cancel.objects.filter(
         groupRPG=rpg_closest_round,
         groupClass=currentClassName
-    ).values('groupDigit', 'dealDealID')
+    ).values('groupDigit', 'dealDealID').annotate(max_id=Max('id'))
+
+    # Step 2: Filter where id matches the annotated max id
+    all_canceled_deals = cancel.objects.filter(
+        id__in=[item['max_id'] for item in max_ids]
+    ).values('groupDigit', 'dealDealID')'''
+
+    
+
 
     # Create a defaultdict to track canceled deals
     canceled_deals_count = defaultdict(int)
-
     for canceled in all_canceled_deals:
         deal_id = canceled['dealDealID']
         group_digit = canceled['groupDigit']
+        counterpart = canceled['dealCounterpart']
         canceled_deals_count[(deal_id, group_digit)] += 1
+    #return canceled_deals_count
+
+    print('CLYDE')
+
+
+    #print(canceled_deals_count)
+    print(canceled_deals_count.get(2, 36))
+    
     return canceled_deals_count
+
 
 #-------------------CHECK DEAL AFFECTED BY CANCEL AND CALCULATE PENALTY----------------
 def fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumber, canceled_deals_count, flex_points):
@@ -407,10 +433,15 @@ def fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumb
         Q(dealCounterpart=currentGroupNumber)
     ).values('groupDigit','dealDealID', 'dealBuySell', 'dealCounterpart', 'dealQuality', 'dealDelivery', 'dealUnits', 'dealPrice')
 
+
+
     for deal in all_deals:
         deal_id = deal['dealDealID']
         group_digit = deal['groupDigit']
-        cancel_count = canceled_deals_count.get((deal_id, group_digit), 0)
+        counterpart = deal['dealCounterpart']
+        cancel_count = 0 # reset the counter
+        cancel_count = canceled_deals_count.get((deal_id, group_digit), 0) # Count up if two but from TWO different groups
+        cancel_count += canceled_deals_count.get((deal_id, counterpart), 0)
         
         if cancel_count == 0:
             filtered_deals.append(deal)
@@ -426,7 +457,9 @@ def fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumb
                 deal['penalty_amount'] = penalty_amount
             penalized_deals.append(deal)  # Add to penalized_deals list regardless of who canceled
         elif cancel_count == 2:
-            mutually_canceled_deals.append(deal)
+            # Check if deal with the same dealDealID is already in the mutually_canceled_deals
+            if not any(existing_deal['dealDealID'] == deal_id for existing_deal in mutually_canceled_deals):
+                mutually_canceled_deals.append(deal)
 
     return filtered_deals, penalized_deals, mutually_canceled_deals, all_deals, flex_points
 
