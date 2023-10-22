@@ -61,7 +61,9 @@
                             <tbody>
                                 {% for group in all_groups_results %}
                                 <tr>
-                                    <td>{{ group.group_digit }}</td>
+                                    <td>
+                                        <a href="{% url 'position_buyer_seller' %}?group={{ group.group_digit }}&RPG={{ rpg_closest_round }}" target="_blank">{{ group.group_digit }}</a>
+                                    </td>
                                     <td>{{ group.group_role_name }}</td>
                                     <td>{{ group.scoreFinal }}</td>
                                     <td>{{ group.dice_left }}</td>
@@ -79,7 +81,7 @@
         </div> <!-- End of row with prefer ONE columns -->
 
 
-CLYDE TESTING00
+CLYDETEST00
 
             <div class="container">
                 <div class="card custom-card mb-1">

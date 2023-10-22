@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from datetime import datetime
 from django.utils import timezone
@@ -33,17 +33,23 @@ import math
 
 # Create your views here.
 
-#----------------------------BUILD MARKETPLACE HTML PAGE-------
+#----------------------------BUILD MARKETPLACE HTML PAGE-------Admin ONLY-----------------
 def position_marketplace(request): # called by the page position_marketplace.html on opening
-    context = position_marketplace_calculations(request, -1, -1) # Marketplace function; specify this is for MARKETPLACE page AND NO spcecific RPG round
-    return render(request, 'position_marketplace.html', context)
+    if request.session['admin_pass'] == 1: # First check if the administrator has a session PW pass
+        context = position_marketplace_calculations(request, -1, -1) # Marketplace function; specify this is for MARKETPLACE page AND NO spcecific RPG round
+        return render(request, 'position_marketplace.html', context)
+    else:
+        return redirect('home')
 
-#----------------------------BUILD MARKETPLACE HTML PAGE FOR SPECIFIC RPG ROUND-------
+#----------------------------BUILD MARKETPLACE HTML PAGE FOR SPECIFIC RPG ROUND-------Admin ONLY----------
 def position_marketplace_manual(request): # called by the page position_marketplace.html when dropdown for specific RPG round is choosen
-    rpg_choice = int(request.GET.get('rpg_choice', None)) # Get the specific RPG round chosen by user
-    # This accounts for user did NOT click GO without choosing an RPG round number as the rpg_choice is -1 for NO choice
-    context = position_marketplace_calculations(request, -1, rpg_choice) # Marketplace function; specify this is for MARKETPLACE page AND specific RPG round
-    return render(request, 'position_marketplace.html', context)
+    if request.session['admin_pass'] == 1: # First check if the administrator has a session PW pass
+        rpg_choice = int(request.GET.get('rpg_choice', None)) # Get the specific RPG round chosen by user
+        # This accounts for user did NOT click GO without choosing an RPG round number as the rpg_choice is -1 for NO choice
+        context = position_marketplace_calculations(request, -1, rpg_choice) # Marketplace function; specify this is for MARKETPLACE page AND specific RPG round
+        return render(request, 'position_marketplace.html', context)
+    else:
+        return redirect('home')
 
 def position_buyer_seller_manual(request): # called by the page position_buyer_seller.html when dropdown for specific RPG round is choosen
     rpg_choice = int(request.GET.get('rpg_choice', None)) # Get the specific RPG round chosen by user
@@ -216,20 +222,40 @@ def position_buyer_seller(request):
 
     #@@@CLYDE this needs to get changed to not be session when all other stuff is working
     currentGroupNumber = int(request.session.get('currentGroup'))
-
-
-    #get teacher & class & group from session
+    #get teacher & class from session
     currentTeacher = request.session.get('currentTeacher')
     currentClassName = request.session.get('currentClassName')
 
-    #call the function to check game settings for this CLASS
-    result_from_check_start_time = check_start_time(currentTeacher, currentClassName, -1)
-    # Extracting a value from the dictionary of results from function check_start_time
-    rpg_closest_round = int(result_from_check_start_time['rpg_closest_round'])
-    
-    # Add RPG Round to session
-    request.session['rpg_closest_round'] = rpg_closest_round
 
+    # --------------------- Administrator opening this page from position_marketplace.html admin page -----------------------
+    # TEST if this is the administrator who can choose ANY RPG or group to run
+    #get the login teacher and className from URL
+    currentGroupURL = request.GET.get('group') # Get the URL argument to check if administrator
+    currentRoundURL = request.GET.get('RPG') # If Administrator get RPG round number
+    if currentGroupURL and currentRoundURL and request.session['admin_pass'] == 1: # First check if the administrator has a session PW pass
+
+        #Place Group and RPG Round into session
+        request.session['currentGroup'] = currentGroupURL
+        request.session['rpg_closest_round'] = currentRoundURL
+
+        currentGroupNumber = int(currentGroupURL)
+        rpg_closest_round = int(currentRoundURL)
+
+        result_from_check_start_time = check_start_time(currentTeacher, currentClassName, rpg_closest_round)
+
+    else:
+        # NON admin starts here, i.e, students RUN this part-----------------
+
+        #call the function to check game settings for this CLASS
+        result_from_check_start_time = check_start_time(currentTeacher, currentClassName, -1)
+        # Extracting a value from the dictionary of results from function check_start_time
+        rpg_closest_round = int(result_from_check_start_time['rpg_closest_round'])
+        
+        # Add RPG Round to session
+        request.session['rpg_closest_round'] = rpg_closest_round
+
+
+    # END admin i.e, students RUN this part-----------------
     #Use extracted value to query for this class this GROUP's data for this RPG round
     currentGroupCharacterSheet = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupDigit=currentGroupNumber).filter(groupRPG=rpg_closest_round).first()
     # The above line does NOT exclude null groupNumber as the marketplace does because this is the group data (i.e., null user would not be here and page cannot run without current user)

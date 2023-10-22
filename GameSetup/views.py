@@ -257,6 +257,8 @@ def choose_group(request):
     if request.method == 'POST':
         form = GroupLoginForm(request.POST)
 
+        #Session to tell if administrator logged in
+        request.session['admin_pass'] = -1 # -1 NOT admin 1 admin pw passed
 
         if form.is_valid():
             # Do your password checking and redirecting here
@@ -267,7 +269,8 @@ def choose_group(request):
                 # If administrator do not use is_valid checking
                 if groupDigit == "1000" and groupPassword == "nchu_master_ta_2023":
                     request.session['currentClassName'] = currentClassNameURL
-                    request.session['currentGroup'] = "1"
+                    request.session['currentGroup'] = 1
+                    request.session['admin_pass'] = 1
                     return redirect('position_marketplace') # go to administration page
 
                 group = GroupLogin.objects.get(groupDigit=groupDigit, groupClass=currentClassNameURL)
