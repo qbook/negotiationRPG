@@ -671,7 +671,6 @@ def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, groupRo
 
     return total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max
 
-
 #-------------------QUERY MESSAGES----------------
 def query_messages(rpg_closest_round, currentClassName, currentGroupNumber):
     all_messages = messaging.objects.filter(
