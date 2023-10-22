@@ -54,7 +54,8 @@
                                     <th scope="col" title="Score">Score</th>
                                     <th scope="col" title="?">Dice<br>Left</th>
                                     <th scope="col" title="?">Last<br>Roll</th>
-                                    <th scope="col" title="?">?</th>
+                                    <th scope="col" title="?">ID<br>Repeats</th>
+                                    <th scope="col" title="?">Cancel<br>Repeats</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +66,8 @@
                                     <td>{{ group.scoreFinal }}</td>
                                     <td>{{ group.dice_left }}</td>
                                     <td>{{ group.last_roll }}</td>
-                                    <td>?</td>
+                                    <td>{{ group.repeated_deals }}</td>
+                                    <td>{{ group.repeated_cancels }}</td>                                    
                                 </tr>
                                 {% endfor %}
                             </tbody>

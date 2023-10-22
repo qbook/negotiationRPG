@@ -107,10 +107,10 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
 
         # Call functions
         #----------------------------CANCELED DEALS DB QUERY-------
-        canceled_deals_count = query_cancel_db(rpg_closest_round, currentClassName)
+        canceled_deals_count, repeated_cancels = query_cancel_db(rpg_closest_round, currentClassName, group.groupDigit)
 
         #-------------------CHECK DEAL AFFECTED BY CANCEL AND CALCULATE PENALTY----------------
-        filtered_deals, penalized_deals, mutually_canceled_deals, all_deals, flex_points = fetch_and_filter_deals(rpg_closest_round, currentClassName, group.groupDigit, canceled_deals_count, flex_points)
+        filtered_deals, penalized_deals, mutually_canceled_deals, all_deals, flex_points, repeated_deals = fetch_and_filter_deals(rpg_closest_round, currentClassName, group.groupDigit, canceled_deals_count, flex_points)
         
         #-------------------QUERY ALL DEALS LESS CANCELS----------------
         #if filtered_deals:
@@ -171,6 +171,9 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'scoreFinal': scoreFinal,
             'dice_left': group.groupDiceLeft,
             'last_roll': group.groupDiceLastRoll,
+            'repeated_deals': len(repeated_deals),
+            'repeated_cancels': len(repeated_cancels),
+            #'repeated_cancels': repeated_cancels,            
         }
         all_groups_results.append(group_data)
 
@@ -255,10 +258,10 @@ def position_buyer_seller(request):
    
 
 #----------------------------CANCELED DEALS DB QUERY-------
-    canceled_deals_count = query_cancel_db(rpg_closest_round, currentClassName)
+    canceled_deals_count, repeated_cancels = query_cancel_db(rpg_closest_round, currentClassName, currentGroupNumber)
     
 #-------------------CHECK DEAL AFFECTED BY CANCEL AND CALCULATE PENALTY----------------
-    filtered_deals, penalized_deals, mutually_canceled_deals, all_deals, flex_points = fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumber, canceled_deals_count, flex_points)
+    filtered_deals, penalized_deals, mutually_canceled_deals, all_deals, flex_points, repeated_deals = fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumber, canceled_deals_count, flex_points)
 
 #-------------------QUERY ALL DEALS LESS CANCELS----------------
     #if filtered_deals:
@@ -319,6 +322,8 @@ def position_buyer_seller(request):
         'final_deals': final_deals,
         'penalized_deals': penalized_deals,
         'mutually_canceled_deals': mutually_canceled_deals,
+        'repeated_deals': repeated_deals,
+        'repeated_cancels': repeated_cancels,
         'bonus_flex_points': bonus_flex_points,
         'overproduction_flex_fee': overproduction_flex_fee,
         'error_deals': error_deals,
@@ -377,45 +382,52 @@ def session_set_variables(request, group_role): # Set any session variable neede
     request.session['groupRole'] = group_role
 
 #----------------------------CANCELED DEALS DB QUERY-------
-def query_cancel_db(rpg_closest_round, currentClassName):
+def query_cancel_db(rpg_closest_round, currentClassName, group):
 
-    
+    # Query the CANCEL database for THIS GROUP's cancels (see below for an overall query)
+    all_canceled_deals = cancel.objects.filter(groupRPG=rpg_closest_round, groupClass=currentClassName, groupDigit=group).values('groupDigit', 'dealDealID', 'dealCounterpart')
 
-    # Query the CANCEL database
+
+    # First, classify the cancels based on dealDealID, groupDigit, and dealCounterpart
+    cancel_classification = defaultdict(int)  # This will store counts
+
+    for canceled in all_canceled_deals:
+        cancel_id = canceled['dealDealID']
+        key = (cancel_id, canceled['groupDigit'], canceled['dealCounterpart'])
+        cancel_classification[key] += 1
+
+    # Now process each cancel and classify it as valid or repeated
+    valid_cancels = []
+    repeated_cancels = []
+
+    for canceled in all_canceled_deals:
+        cancel_id = canceled['dealDealID']
+        key = (cancel_id, canceled['groupDigit'], canceled['dealCounterpart'])
+
+        # If this specific combination has occurred more than once
+        if cancel_classification[key] > 1:
+            repeated_cancels.append(canceled)
+            cancel_classification[key] -= 1  # Decrement the count
+        else:
+            valid_cancels.append(canceled)
+
+    # The work above and below are not really related. CLYDE consider moving these into different functions
+    # Query the CANCEL database to come up with the total LIST of cancels for later use
     all_canceled_deals = cancel.objects.filter(groupRPG=rpg_closest_round, groupClass=currentClassName).values('groupDigit', 'dealDealID', 'dealCounterpart')
 
+    # Create a default dict to track canceled deals
+    canceled_deals_count = defaultdict(lambda: {'count': 0, 'counterpart': None})
 
-    '''# Step 1: Annotate with the max id for each combination
-    max_ids = cancel.objects.filter(
-        groupRPG=rpg_closest_round,
-        groupClass=currentClassName
-    ).values('groupDigit', 'dealDealID').annotate(max_id=Max('id'))
-
-    # Step 2: Filter where id matches the annotated max id
-    all_canceled_deals = cancel.objects.filter(
-        id__in=[item['max_id'] for item in max_ids]
-    ).values('groupDigit', 'dealDealID')'''
-
-    
-
-
-    # Create a defaultdict to track canceled deals
-    canceled_deals_count = defaultdict(int)
     for canceled in all_canceled_deals:
         deal_id = canceled['dealDealID']
         group_digit = canceled['groupDigit']
         counterpart = canceled['dealCounterpart']
-        canceled_deals_count[(deal_id, group_digit)] += 1
-    #return canceled_deals_count
 
-    print('CLYDE')
-
-
-    #print(canceled_deals_count)
-    print(canceled_deals_count.get(2, 36))
+        key = (deal_id, group_digit)
+        canceled_deals_count[key]['count'] += 1
+        canceled_deals_count[key]['counterpart'] = counterpart  # store counterpart
     
-    return canceled_deals_count
-
+    return canceled_deals_count, repeated_cancels
 
 #-------------------CHECK DEAL AFFECTED BY CANCEL AND CALCULATE PENALTY----------------
 def fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumber, canceled_deals_count, flex_points):
@@ -433,35 +445,72 @@ def fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumb
         Q(dealCounterpart=currentGroupNumber)
     ).values('groupDigit','dealDealID', 'dealBuySell', 'dealCounterpart', 'dealQuality', 'dealDelivery', 'dealUnits', 'dealPrice')
 
+    # FIRST REMOVE any deals that are using the same Deal ID over two matching deals
+    # Step 1: Classify the deals based on their DealID and Buy/Sell.
+    deal_classification = defaultdict(list)
 
+    for deal in all_deals:
+        deal_id = deal['dealDealID']
+        deal_type = deal['dealBuySell']
+        deal_classification[deal_id].append(deal_type)
+
+    # Step 2: Filter out valid and invalid deals.
+    valid_deals = []
+    repeated_deals = []
+
+    for deal in all_deals:
+        deal_id = deal['dealDealID']
+        deal_type = deal['dealBuySell']
+
+        # Check if the deal_id has a valid buyer/seller combination.
+        occurrences = deal_classification[deal_id]
+        if occurrences.count(1) <= 1 and occurrences.count(-1) <= 1: # Checking for 1 occurance of buyer and 1 of seller
+            valid_deals.append(deal)
+        else:
+            repeated_deals.append(deal)
+
+            # Remove the deal from further consideration to retain only the first two.
+            occurrences.remove(deal_type)
+            if len(occurrences) == 0:
+                del deal_classification[deal_id]
+
+    all_deals = valid_deals  # Replace the original all_deals with the filtered valid deals.
 
     for deal in all_deals:
         deal_id = deal['dealDealID']
         group_digit = deal['groupDigit']
-        counterpart = deal['dealCounterpart']
+        dealCounterpart = deal['dealCounterpart']
+        key1 = (deal_id, group_digit) # this deal's sender
+        key2 = (deal_id, dealCounterpart) # this deal's counterpart
+
         cancel_count = 0 # reset the counter
-        cancel_count = canceled_deals_count.get((deal_id, group_digit), 0) # Count up if two but from TWO different groups
-        cancel_count += canceled_deals_count.get((deal_id, counterpart), 0)
-        
+
+        if key1 in canceled_deals_count: # Check if this deal's ID & group are in the cancels (The deal group is also a cancel group)
+            cancel_counterpart = canceled_deals_count[key1]['counterpart'] # get the counterpart for this cancel
+            if cancel_counterpart == dealCounterpart:
+                cancel_count += 1  # This deal was canceled by this deal group (even the counterpart matches)
+                # Now we want to see if there is a cancel that is the reverse of this one
+                if key2 in canceled_deals_count: # Check if the counterpart has submitted a cancel for this deal
+                    cancel_count += 1 # both this deal's group sender and counterpart have submitted cancel
+
         if cancel_count == 0:
             filtered_deals.append(deal)
         elif cancel_count == 1:
             # Delete from FLEX points here 0.5 Flex for 100 units only if the canceling group is the currentGroupNumber
-            if group_digit == currentGroupNumber:
-                penalty_amount = (deal['dealUnits'] / 100) * .5
-                penalty_amount = math.floor(penalty_amount)
-                deal['penalty_amount'] = penalty_amount
-                flex_points -= penalty_amount  # Add the deduction to the overall Flex Point count
+            penalty_amount = (deal['dealUnits'] / 100) * .5
+            if 0 < penalty_amount < 1: # Mimum fee of 1
+                penalty_amount = 1
             else:
-                penalty_amount = 0  # No penalty if the canceling group is not currentGroupNumber
-                deal['penalty_amount'] = penalty_amount
+                penalty_amount = math.floor(penalty_amount) # Round DOWN
+            deal['penalty_amount'] = penalty_amount
+            flex_points -= penalty_amount  # Add the deduction to the overall Flex Point count
             penalized_deals.append(deal)  # Add to penalized_deals list regardless of who canceled
         elif cancel_count == 2:
             # Check if deal with the same dealDealID is already in the mutually_canceled_deals
             if not any(existing_deal['dealDealID'] == deal_id for existing_deal in mutually_canceled_deals):
                 mutually_canceled_deals.append(deal)
 
-    return filtered_deals, penalized_deals, mutually_canceled_deals, all_deals, flex_points
+    return filtered_deals, penalized_deals, mutually_canceled_deals, all_deals, flex_points, repeated_deals
 
 
 #-------------------QUERY ALL DEALS LESS CANCELS----------------
@@ -611,8 +660,14 @@ def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, groupRo
             attribute_value_max_purchase = v
             break
 
-    rpg_max_purchase = int(attribute_value_max_purchase * rpg_mod_units)
-    rpg_fraction_close_to_max = min(round(total_units / rpg_mod_units, 2), 1)
+    rpg_max_purchase = int(attribute_value_max_purchase * rpg_mod_units) # This is for BUYERs on in ADDITION to MOD UNITS
+    
+    if groupRole == -1: # If Seller
+        rpg_fraction_close_to_max = min(round(total_units / rpg_mod_units, 2), 1) # Caps anything over 1 at 1 for Seller
+    else:
+        rpg_fraction_close_to_max = round(total_units / rpg_max_purchase, 2) # Does not cap for Buyer
+        if groupRole == 1 and rpg_fraction_close_to_max > 1: # The case of BUYER BANKRUPT if purchase over limit (seler has no problem)
+            rpg_fraction_close_to_max = -1 # This should cause this RPG round score to be zero
 
     return total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max
 
@@ -683,9 +738,12 @@ def calculate_flex_points(final_deals, rpg_mod_units, rpg_closest_round, current
     if groupRole == -1: # Only applies to SELLER
         for deal in final_deals:
             units_total += deal['dealUnits']
+        if units_total >= rpg_mod_units:
+            overproduction_flex_fee = math.ceil((units_total - rpg_mod_units) / (rpg_mod_units * 0.1))
 
-    if units_total >= rpg_mod_units:
-        overproduction_flex_fee = math.ceil((units_total - rpg_mod_units) / (rpg_mod_units * 0.1))
+    # Buyer over buys, a hard fail; force overall score to zero
+
+
 
     # Calculate the final flex points
     flex_points = flex_points + flex_points_received - flex_points_sent + bonus_flex_points - overproduction_flex_fee
