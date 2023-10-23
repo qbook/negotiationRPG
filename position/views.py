@@ -128,9 +128,10 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
 
         #-------------------CALCULATING INVENTORY NUMBERS----------------
         #if final_deals:
-        total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max = calculate_inventory_numbers(final_deals, group, group.groupRole, result_from_check_start_time)
+        total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max, rpg_fraction_close_to_mod = calculate_inventory_numbers(final_deals, group, group.groupRole, result_from_check_start_time)
         # Fix value formats to decimal
         rpg_fraction_close_to_max = Decimal(rpg_fraction_close_to_max)
+        rpg_fraction_close_to_mod = Decimal(rpg_fraction_close_to_mod)
         resistance = round(Decimal(resistance), 2)
         average_weighted = round(Decimal(average_weighted), 2)
 
@@ -153,7 +154,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             scoreC = scoreB * 100
             scoreD = scoreC + flex_points
             scoreE = scoreD * group.groupImportance
-            scoreFinal = scoreE * rpg_fraction_close_to_max
+            scoreFinal = scoreE * rpg_fraction_close_to_mod
             scoreFinal = round(scoreFinal, 2)
         else: # no filtered deals in query result assign zero values to show deals have not been made yet 
             scoreA = 0
@@ -297,7 +298,7 @@ def position_buyer_seller(request):
 
 #-------------------CALCULATING INVENTORY NUMBERS----------------
     #if final_deals:
-    total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max = calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, currentGroupCharacterSheet.groupRole, result_from_check_start_time)
+    total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max, rpg_fraction_close_to_mod = calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, currentGroupCharacterSheet.groupRole, result_from_check_start_time)
     # Fix value formats to decimal
     rpg_fraction_close_to_max = round(Decimal(rpg_fraction_close_to_max), 2)
     average_weighted = round(Decimal(average_weighted), 2)
@@ -380,6 +381,7 @@ def position_buyer_seller(request):
         'total_units': total_units,
         'average_weighted': average_weighted,
         'rpg_fraction_close_to_max': rpg_fraction_close_to_max,
+        'rpg_fraction_close_to_mod': rpg_fraction_close_to_mod,
         'rpg_mod_units': rpg_mod_units,
         'rpg_max_purchase': rpg_max_purchase,
         'rpg_resistance': resistance,
@@ -686,16 +688,26 @@ def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, groupRo
             attribute_value_max_purchase = v
             break
 
-    rpg_max_purchase = int(attribute_value_max_purchase * rpg_mod_units) # This is for BUYERs on in ADDITION to MOD UNITS
-    
+    rpg_max_purchase = int(attribute_value_max_purchase * rpg_mod_units) # This is in ADDITION to MOD UNITS ()
+
+
+
+
     if groupRole == -1: # If Seller
-        rpg_fraction_close_to_max = min(round(total_units / rpg_mod_units, 2), 1) # Caps anything over 1 at 1 for Seller
-    else:
-        rpg_fraction_close_to_max = round(total_units / rpg_max_purchase, 2) # Does not cap for Buyer
+
+
+        rpg_fraction_close_to_mod = min(round(total_units / rpg_mod_units, 2), 1) # Caps anything over 1 (the LOWER target for SELLERs)
+        rpg_fraction_close_to_max = round(total_units / rpg_max_purchase, 2) # This can go OVER the mod units target (paid for with Flex)
+
+    else:  # Buyer (ONLY BUYER has the MAX hard limit to buy)
+        rpg_fraction_close_to_mod = min(round(total_units / rpg_mod_units, 2), 1) # Caps anything over (the LOWER target for BUYERS)
+
+        rpg_fraction_close_to_max = round(total_units / rpg_max_purchase, 2) # Does not cap for Buyer--shows OVER buying level
+
         if groupRole == 1 and rpg_fraction_close_to_max > 1: # The case of BUYER BANKRUPT if purchase over limit (seler has no problem)
             rpg_fraction_close_to_max = -1 # This should cause this RPG round score to be zero
 
-    return total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max
+    return total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max, rpg_fraction_close_to_mod
 
 #-------------------QUERY MESSAGES----------------
 def query_messages(rpg_closest_round, currentClassName, currentGroupNumber):

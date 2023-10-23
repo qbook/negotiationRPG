@@ -457,13 +457,14 @@
                             <tr>
                             <td>{{ total_units }}</td>
                             <td>{{ rpg_mod_units }}</td>
-                            <td>{{ rpg_fraction_close_to_max }}</td>
+                            <td>{{ rpg_fraction_close_to_mod }}</td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
                             <th colspan="1"><div id="txtInventoryTarget">Not Go Over:</div></th>
                             <td colspan="1">{{ rpg_max_purchase }}</td>
+                            <td colspan="1">{{ rpg_fraction_close_to_max }}</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -679,7 +680,7 @@
                         </thead>
                         <tbody>
                             <tr class="text-center fw-bold fs-3">
-                            <td scope="col" class="fs-6 py-0 px-0 text-center">{{ rpg_fraction_close_to_max }}</td>
+                            <td scope="col" class="fs-6 py-0 px-0 text-center">{{ rpg_fraction_close_to_mod }}</td>
                             <td scope="col" class="fs-6 py-0 px-0 text-center"><i class="fas fa-equals"></i></td>
                             <td scope="col" class="fs-6 py-0 px-0 text-center">{{ rpg_scoreFinal }}</td>
                             </tr>
