@@ -122,7 +122,8 @@
                                         <!-- Loop through each deal within a group -->
                                         {% for deal in deals %}
                                             <tr>
-                                                <td>{{ deal.dealDealID }}</td>
+                                                <td>{{ deal.dealDealID }}                                                
+                                                <a href="{% url 'remove_deal' deal_id=deal.dealDealID %}?rpg_choice={{ request.GET.rpg_choice }}" onclick="return confirm('Are you sure you want to remove this deal?');">Remove Deal</a></td>
                                                 <td>{{ deal.dealCounterpart }}</td>
                                                 <td>{{ deal.dealDateStamp }}</td>
                                                 <td>{{ deal.dealUnits }}</td>
@@ -139,8 +140,6 @@
                 </div>
             </div>
             
-
-
 <!--
 CLYDE TESTING01 <br>
 <br>allGroupCharacterSheet: {{ allGroupCharacterSheet }}
@@ -152,7 +151,6 @@ CLYDE TESTING01 <br>
 <br>
 <br>
 -->
-
 
             <div class="container">
                 <div class="card custom-card mb-1">

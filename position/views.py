@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.http import HttpResponseRedirect
 from datetime import datetime
 from django.utils import timezone
@@ -29,7 +30,6 @@ from collections import defaultdict
 from django.db.models import Max, F
 import random
 import math
-
 
 # Create your views here.
 
@@ -470,7 +470,7 @@ def fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumb
     ).filter(
         Q(groupDigit=currentGroupNumber) | 
         Q(dealCounterpart=currentGroupNumber)
-    ).values('groupDigit','dealDealID', 'dealBuySell', 'dealCounterpart', 'dealQuality', 'dealDelivery', 'dealUnits', 'dealPrice')
+    ).values('groupDigit','dealDealID', 'dealBuySell', 'dealCounterpart', 'dealQuality', 'dealDelivery', 'dealUnits', 'dealPrice', 'dealDateStamp')
 
     # FIRST REMOVE any deals that are using the same Deal ID over two matching deals
     # Step 1: Classify the deals based on their DealID and Buy/Sell.
@@ -921,6 +921,37 @@ def send_message(request):
     else:
         messages.error(request, "Method not allowed.")
         return HttpResponseRedirect('/position_buyer_seller/')
+
+
+
+
+
+
+def remove_deal(request, deal_id):
+    # Fetch all deals with the given dealDealID
+    deals = responses.objects.filter(dealDealID=deal_id)
+
+    if not deals:
+        messages.error(request, f"Deal with ID {deal_id} does not exist.")
+        return redirect('position_marketplace')
+
+    # Iterate over each deal and update the RPG round number
+    for deal in deals:
+        deal.groupRPG += 100
+        deal.save()
+
+    messages.success(request, f"Deal {deal_id} was successfully updated.")
+
+    # Get the RPG choice from the query parameters
+    rpg_choice = request.GET.get('rpg_choice', None)
+
+    # Generate the redirect URL. If rpg_choice is present, append it as a query parameter.
+    redirect_url = reverse('position_marketplace')
+    if rpg_choice:
+        redirect_url += f"?rpg_choice={rpg_choice}"
+
+    return redirect(redirect_url)  # Redirect back to the admin page with the optional RPG choice.
+
 
 #-----------------------DB INSERT FUNCTIONS END---------------------------
 

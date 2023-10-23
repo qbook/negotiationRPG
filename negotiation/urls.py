@@ -51,7 +51,9 @@ urlpatterns = [
     path('gift_flex/', positionViews.gift_flex, name='gift_flex'),
     path('send_message/', positionViews.send_message, name='send_message'),
 
-    
+    # Admin page actions
+    path('remove_deal/<int:deal_id>/', positionViews.remove_deal, name='remove_deal'),
+
 
 
 ]
