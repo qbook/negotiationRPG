@@ -180,7 +180,6 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'last_roll': group.groupDiceLastRoll,
             'repeated_deals': len(repeated_deals),
             'repeated_cancels': len(repeated_cancels),
-            #'repeated_cancels': repeated_cancels,            
         }
         all_groups_results.append(group_data)
 
