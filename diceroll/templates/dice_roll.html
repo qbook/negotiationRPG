@@ -232,7 +232,7 @@ $(document).ready(function() {
     var groupRole = {{ groupRole }} //use this variable across functions; Load on page load but remember to change as needed
     var groupDiceLastRoll = {{ groupDiceLastRoll }} //use this variable across functions;
     var pointsLeft = 0;
-
+    var originalHref = $("#btnGoToDashboard").attr("href"); //store the Go to Dashboard href for turning it on
 
     function turnOnOffDiceRoll(state){        
         if (state == -1){ //turn off the rolldice and distribute card areas
@@ -253,6 +253,8 @@ $(document).ready(function() {
             $("[id^='btn']").prop("disabled", false);
             $("[id^='drp']").prop("disabled", false);
             document.getElementById("countDownStart").innerHTML = "Time To Roll Dice!";
+            // turn OFF the button GoToDashboard
+            $("#btnGoToDashboard").removeAttr("href").css("pointer-events", "none").css("opacity", "0.5");
         }//end if state
         return;
     }//end function turnOnOffDiceRoll
