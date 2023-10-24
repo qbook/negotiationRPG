@@ -374,9 +374,6 @@ def position_buyer_seller(request):
         'groupUnits': currentGroupCharacterSheet.groupUnits,
         'groupImportance': currentGroupCharacterSheet.groupImportance,
         'groupQuality': int(transformed_quality),
-        # These are in the group rpg model but are not being used I think CLYDE
-        #'groupBasePrice': currentGroupCharacterSheet.groupBasePrice,
-        #'groupBaseUnits': currentGroupCharacterSheet.groupBaseUnits,
         'groupNote': currentGroupCharacterSheet.groupNote,
         'groupRole': currentGroupCharacterSheet.groupRole,
         'formDeal': formDeal,
