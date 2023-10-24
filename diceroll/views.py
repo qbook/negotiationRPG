@@ -56,8 +56,6 @@ def group_character(request):
         'groupUnits': currentGroupCharacterSheet.groupUnits,
         'groupImportance': currentGroupCharacterSheet.groupImportance,
         'groupQuality': currentGroupCharacterSheet.groupQuality,
-#        'groupBasePrice': currentGroupCharacterSheet.groupBasePrice,
-#        'groupBaseUnits': currentGroupCharacterSheet.groupBaseUnits,
         'groupNote': currentGroupCharacterSheet.groupNote,
         'groupRole': currentGroupCharacterSheet.groupRole,
     }
