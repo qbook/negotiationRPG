@@ -56,8 +56,8 @@ def group_character(request):
         'groupUnits': currentGroupCharacterSheet.groupUnits,
         'groupImportance': currentGroupCharacterSheet.groupImportance,
         'groupQuality': currentGroupCharacterSheet.groupQuality,
-        'groupBasePrice': currentGroupCharacterSheet.groupBasePrice,
-        'groupBaseUnits': currentGroupCharacterSheet.groupBaseUnits,
+#        'groupBasePrice': currentGroupCharacterSheet.groupBasePrice,
+#        'groupBaseUnits': currentGroupCharacterSheet.groupBaseUnits,
         'groupNote': currentGroupCharacterSheet.groupNote,
         'groupRole': currentGroupCharacterSheet.groupRole,
     }
@@ -93,8 +93,13 @@ def roll_dice(request):
             currentGroupCharacterSheet.groupDiceLastRoll = roll_result
             # Randomly select between buyer 1 and seller -1
             currentGroupCharacterSheet.groupRole = random.choice([1, -1])
+
+            if currentGroupCharacterSheet.groupDiceLeft == 4:  # The first dice roll after minus one above
+                currentGroupCharacterSheet.groupFirstRoll = timezone.now() # For Research
+
             # Save the record
             currentGroupCharacterSheet.save()
+
             #fix the Buyer/Seller to text not integer
             #if currentGroupCharacterSheet.groupRole == -1:
             #    groupRole = 'SELLER'
@@ -134,6 +139,9 @@ def update_attributes(request):
         currentGroupCharacterSheet.groupUnits = request.POST.get('units')
         currentGroupCharacterSheet.groupImportance = request.POST.get('importance')
         currentGroupCharacterSheet.groupQuality = request.POST.get('quality')
+
+        currentGroupCharacterSheet.groupPlayNow = timezone.now() # For research
+
         # Save the record
         currentGroupCharacterSheet.save()
 

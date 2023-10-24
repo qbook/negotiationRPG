@@ -20,11 +20,12 @@ class GroupCharacterSheet(models.Model):
     groupImportance = models.IntegerField(blank=True, null=True, default=0)
     groupQuality = models.IntegerField(blank=True, null=True, default=0)
     groupRole = models.IntegerField(blank=True, null=True, default=0)
-    #Base are not being used
-    groupBasePrice = models.IntegerField(blank=True, null=True, default=0)
-    groupBaseUnits = models.IntegerField(blank=True, null=True, default=0)
+    # Research data collection
+    groupFirstRoll = models.DateTimeField(blank=True, null=True)
+    groupPlayNow = models.DateTimeField(blank=True, null=True)
+    groupPageRefresh = models.IntegerField(blank=True, null=True, default=0)
+    # Note (not currently used on student side)
     groupNote = models.CharField(max_length=200, default='Note.')
-    
 
     def __str__(self):
         return str(self.groupDigit)

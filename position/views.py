@@ -221,7 +221,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
         #return render(request, 'position_marketplace.html', context)
         return context # Return all context variables for the calling function to build the html page marketplace 
 
-#----------------------------BUILD POSITION_BUYER_SELLER HTML PAGE----------------------------------------
+#---------------------------------------BUILD POSITION_BUYER_SELLER HTML PAGE----------------------------------------
 #setting up the initial page and placing useful variables into session
 def position_buyer_seller(request):
 
@@ -237,6 +237,7 @@ def position_buyer_seller(request):
     #get the login teacher and className from URL
     currentGroupURL = request.GET.get('group') # Get the URL argument to check if administrator
     currentRoundURL = request.GET.get('RPG') # If Administrator get RPG round number
+
     if currentGroupURL and currentRoundURL and request.session['admin_pass'] == 1: # First check if the administrator has a session PW pass
 
         #Place Group and RPG Round into session
@@ -249,7 +250,7 @@ def position_buyer_seller(request):
         result_from_check_start_time = check_start_time(currentTeacher, currentClassName, rpg_closest_round)
 
     else:
-        # NON admin starts here, i.e, students RUN this part-----------------
+        # Students starts here, i.e, students RUN this part-----------------
 
         #call the function to check game settings for this CLASS
         result_from_check_start_time = check_start_time(currentTeacher, currentClassName, -1)
@@ -259,11 +260,16 @@ def position_buyer_seller(request):
         # Add RPG Round to session
         request.session['rpg_closest_round'] = rpg_closest_round
 
-    # END admin i.e, students RUN this part-----------------
+    # END students RUN this part------------------------------------------
 
     #Use extracted value to query for this class this GROUP's data for this RPG round
     currentGroupCharacterSheet = GroupCharacterSheet.objects.filter(groupClass=currentClassName).filter(groupDigit=currentGroupNumber).filter(groupRPG=rpg_closest_round).first()
     # The above line does NOT exclude null groupNumber as the marketplace does because this is the group data (i.e., null user would not be here and page cannot run without current user)
+
+    # Update the page refresh count for RESEARCH (ONLY for when students load page NOT counting administrator)
+    if request.session['admin_pass'] != 1: # NOT administrator/teacher
+        currentGroupCharacterSheet.groupPageRefresh += 1 # Fetch the current value and increment by 1
+        currentGroupCharacterSheet.save() # Save the record
 
     # Transform the values of quality & delivery to match THREE levels and not dice values
     if int(currentGroupCharacterSheet.groupRole) == 1:
@@ -326,7 +332,7 @@ def position_buyer_seller(request):
         scoreC = scoreB * 100
         scoreD = scoreC + flex_points
         scoreE = scoreD * currentGroupCharacterSheet.groupImportance
-        scoreFinal = scoreE * Decimal(rpg_fraction_close_to_max)
+        scoreFinal = scoreE * Decimal(rpg_fraction_close_to_mod)
     else:
         scoreA = 0
         scoreB = 0
@@ -791,7 +797,7 @@ def calculate_flex_points(final_deals, rpg_mod_units, rpg_closest_round, current
 
 #-----------------------DB INSERT/DELETE FUNCTIONS START---------------------------
 
-#Deal form insert to DB
+# Deal form insert to DB
 def save_deal(request):
     if request.method == 'POST':
         form = DealForm(request.POST)
