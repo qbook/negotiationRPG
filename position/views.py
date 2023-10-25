@@ -134,7 +134,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
         average_weighted = round(Decimal(average_weighted), 2)
 
         #-------------------QUERY MESSAGES----------------
-        # all_messages = query_messages(rpg_closest_round, currentClassName, group.groupDigit)
+        all_messages = query_messages(rpg_closest_round, currentClassName, group.groupDigit)
 
         #--------------------Sum dice spent to check if locked in (PLAY NOW)---------------------------
         dice_spent = 0 # start/reset to zero
@@ -182,8 +182,12 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'scoreFinal': scoreFinal,
             'dice_left': group.groupDiceLeft,
             'last_roll': group.groupDiceLastRoll,
+            'first_roll': group.groupFirstRoll,
+            'play_now': group.groupPlayNow,
+            'page_refresh': group.groupPageRefresh,
             'repeated_deals': len(repeated_deals),
             'repeated_cancels': len(repeated_cancels),
+            'message_count': len(all_messages),
             'dice_spent_locked': dice_spent_locked,
         }
         all_groups_results.append(group_data)

@@ -56,7 +56,11 @@
                                     <th scope="col">Last<br>Roll</th>
                                     <th scope="col">Roll<br>Status</th>
                                     <th scope="col">ID<br>Repeats</th>
-                                    <th scope="col">Cancel<br>Repeats</th>                                    
+                                    <th scope="col">Cancel<br>Repeats</th>    
+                                    <th scope="col">message<br>count</th>                                                                        
+                                    <th scope="col">First<br>Roll</th>
+                                    <th scope="col">Play<br>Now</th>                                    
+                                    <th scope="col">Page<br>Refresh</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,7 +83,11 @@
                                         {% endif %}
                                     </td>
                                     <td>{{ group.repeated_deals }}</td>
-                                    <td>{{ group.repeated_cancels }}</td>                                    
+                                    <td>{{ group.repeated_cancels }}</td>
+                                    <td>{{ group.message_count }}</td>
+                                    <td>{{ group.first_roll }}</td>
+                                    <td>{{ group.play_now }}</td>
+                                    <td>{{ group.page_refresh }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
