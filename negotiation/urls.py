@@ -53,8 +53,8 @@ urlpatterns = [
 
     # Admin page actions
     path('remove_deal/<int:deal_id>/', positionViews.remove_deal, name='remove_deal'),
-
-
+    path('position_result', positionViews.position_result, name='position_result'),
+    path('position_result_manual', positionViews.position_result_manual, name='position_result_manual'),
 
 ]
 

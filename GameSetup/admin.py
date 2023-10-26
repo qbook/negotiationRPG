@@ -111,7 +111,7 @@ class GroupCharacterSheetAdmin(admin.ModelAdmin):
 from position.models import responses
 @admin.register(responses)
 class responsesAdmin(admin.ModelAdmin):
-    list_display = ('display_deal_id', 'display_group', 'display_counterpart','display_buysell', 'display_class', 'display_rpg')
+    list_display = ('display_deal_id', 'display_group', 'display_counterpart','display_buysell', 'display_class', 'display_rpg', 'display_date')
     ordering = ('groupClass', 'groupRPG', 'dealDealID')
     search_fields = ('dealDealID', )
     list_filter = ('groupClass', 'groupRPG', 'dealBuySell',)
@@ -139,6 +139,11 @@ class responsesAdmin(admin.ModelAdmin):
     def display_rpg(self, obj):
         return obj.groupRPG
     display_rpg.short_description = 'RPG'
+
+    def display_date(self, obj):
+        return obj.dealDateStamp
+    display_date.short_description = 'Time'
+
 
 from position.models import cancel
 @admin.register(cancel)

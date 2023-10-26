@@ -51,6 +51,27 @@ def position_marketplace_manual(request): # called by the page position_marketpl
     else:
         return redirect('home')
 
+#----------------------------ADMIN GRADE PAGE FOR COPYING TO GOOGLE-------------------------
+
+#----------------------------BUILD MARKETPLACE GRADE PAGE-------Admin ONLY-----------------
+def position_result(request): # called by the page position_marketplace.html on opening
+    if request.session['admin_pass'] == 1: # First check if the administrator has a session PW pass
+        context = position_marketplace_calculations(request, -1, -1) # Marketplace function; specify this is for MARKETPLACE page AND NO spcecific RPG round
+        return render(request, 'position_result.html', context)
+    else:
+        return redirect('home')
+
+#----------------------------BUILD MARKETPLACE GRADE PAGE FOR SPECIFIC RPG ROUND-------Admin ONLY----------
+def position_result_manual(request): # called by the page position_marketplace.html when dropdown for specific RPG round is choosen
+    if request.session['admin_pass'] == 1: # First check if the administrator has a session PW pass
+        rpg_choice = int(request.GET.get('rpg_choice', None)) # Get the specific RPG round chosen by user
+        # This accounts for user did NOT click GO without choosing an RPG round number as the rpg_choice is -1 for NO choice
+        context = position_marketplace_calculations(request, -1, rpg_choice) # Marketplace function; specify this is for MARKETPLACE page AND specific RPG round
+        return render(request, 'position_result.html', context)
+    else:
+        return redirect('home')
+#----------------------------------------END ADMIN PAGES--------------------------------
+
 def position_buyer_seller_manual(request): # called by the page position_buyer_seller.html when dropdown for specific RPG round is choosen
     rpg_choice = int(request.GET.get('rpg_choice', None)) # Get the specific RPG round chosen by user
     # This accounts for user did NOT click GO without choosing an RPG round number as the rpg_choice is -1 for NO choice

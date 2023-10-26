@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "_header_00.html" %}
+    <title>RPG Marketplace</title>
+</head>
+
+<body>
+    {% include "_menu_admin.html" %}
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
+            <div class="card text-dark bg-light mb-1">
+                <div class="mb-3">
+                    <h2><i>RPG MARKETPLACE ADMIN</i><br>RPG Round: {{ rpg_closest_round }}</h2>
+                    <h4>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
+                    <p>RPG {{ rpg_closest_round }} Dice Roll Ends: {{ rpg_closest_end_date }}</p>
+                </div>
+            </div> <!-- End Card -->
+            <div class="card text-dark bg-light mb-1">
+                Copy from here to paste into Google sheet for your grading.
+            </div> <!-- End Card -->
+<br>
+            <div class="card custom-card mb-1">
+                <form id="selectRPGForm" method="get" action="{% url 'position_result_manual' %}">
+                    <select name="rpg_choice" id="rpg_choice">
+                        <option value="-1" selected>Change Round</option>
+                        {% for rpg in "0123456789"|make_list %}
+                            <option value="{{ rpg }}" {% if rpg == request.GET.rpg_choice %}selected{% endif %}>RPG {{ rpg }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Go</button>
+                    BUYERS: {{ buyers_count }} SELLERS: {{ sellers_count }}
+                </form>
+                <h4 class="card-header custom-card-header">Results</h4>
+                <div class="card-body">
+                    <div class="container">
+                        <table class="table table-hover table-striped table-responsive">
+                            <thead class="custom-thead">
+                                <tr>
+                                    <th scope="col">Group<br></th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for group in all_groups_results %}
+                                <tr>
+                                    <td>{{ group.group_digit }}</td>
+                                    <td>{{ group.scoreFinal }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- End card -->
+    </div> <!-- End of container -->
+</body>
+
+<script>
+$(document).ready(function() {
+
+/*    //fix the Buyer/Seller to text not integer on page when first loading page
+    if ({{ groupRole }} == -1){
+        $(".txtRole").text("SELLER");
+        $("#txtOrderTitle").text("SALE INVOICE");
+    }else if({{ groupRole }} == 1){
+        $(".txtRole").text("BUYER");   
+        $("#txtOrderTitle").text("PURCHASE ORDER");
+    }else{
+        $(".txtRole").text("NONE");
+    }//end elseIf
+    
+    // Declare variables that need wide scope here
+    var groupRole = {{ groupRole }}; //use this variable across functions; Load on page load but remember to change as needed
+
+
+
+    //Rotate anime graphics once on page load
+    let randomIndex = Math.floor(Math.random() * 11); // Random number between 0 and 19
+    let filename = "deals_animeStyle_" + String(randomIndex).padStart(2, '0') + ".jpg";
+    document.getElementById("imgRandomImage").src = "{% static 'images/' %}" + filename;
+*/
+
+});//document ready
+
+</script>
+
+</html>
