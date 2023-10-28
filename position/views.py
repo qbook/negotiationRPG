@@ -212,7 +212,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'first_roll': group.groupFirstRoll,
             'play_now': group.groupPlayNow,
             'page_refresh': group.groupPageRefresh,
-            'group_deals': len(all_deals),
+            'group_deals': len(all_deals), 
             'group_cancels': len(mutually_canceled_deals),
             'repeated_deals': len(repeated_deals),
             'repeated_cancels': len(repeated_cancels),
