@@ -2,9 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
 from django.utils import timezone
 from datetime import timedelta
-
-# Create your views here.
-
 from django.http import HttpResponse
 from django.http import JsonResponse
 from .models import GroupLogin
@@ -12,8 +9,12 @@ from .models import GameSettings
 from .forms import GroupDigitForm
 from .forms import GroupLoginForm
 from .forms import GameSettingsForm
+from .forms import GroupSettingsForm
+from .models import GroupLogin
 
 
+
+# Create your views here.
 
 def home(request):
     # CLYDE this caused login problems--may need to do a check FIRST if variables are already in session before clearing
@@ -177,7 +178,6 @@ def check_start_time(currentTeacher, currentClassName, rpg_manual_round):
         #rpg_future_dates = sorted([(index, dt) for index, dt in enumerate(rpg_end_dates)], key=lambda x: x[1])
         #rpg_closest_end_date_tuple = rpg_future_dates[X] if rpg_future_dates else None # Manually set to X
 
-
     if rpg_closest_end_date_tuple:
         rpg_closest_round, rpg_closest_end_date = rpg_closest_end_date_tuple
         #Use the index number to now get the START date from the list rpg_start_dates
@@ -269,7 +269,7 @@ def choose_group(request):
                 # If administrator do not use is_valid checking
                 if groupDigit == "1000" and groupPassword == "nchu_master_ta_2023":
                     request.session['currentClassName'] = currentClassNameURL
-                    request.session['currentGroup'] = 1
+                    request.session['currentGroup'] = 1000
                     request.session['admin_pass'] = 1
                     return redirect('position_marketplace') # go to administration page
 
@@ -307,25 +307,66 @@ def about(request):
     return HttpResponse('<h1>ABOUT THE GAME</h1>')
 
 
-def edit_game_settings(request):
-    #get teacher & class from session
-    currentTeacher = request.session.get('currentTeacher')
+# Group change password
+def group_password(request):
+    # Get group & class from session
+    current_group = request.session.get('currentGroup')
     class_name = request.session.get('currentClassName')
 
+    # Retrieve the GroupLogin instance based on session values
+    group = get_object_or_404(GroupLogin, groupDigit=current_group, groupClass=class_name)
 
+    # Create a new form instance
+    form = GroupSettingsForm(instance=group)
+
+    # Create context early to also add message for rendering in the template
+    context = {
+        'form': form,
+        'current_group': current_group,
+        'class_name': class_name,
+    }
+    
+    # Check if the request method is POST
+    if request.method == 'POST':
+        form = GroupSettingsForm(request.POST, instance=group)
+        
+        # Validate the form data
+        if form.is_valid():
+            form.save()
+            # Add a success message
+            context['message'] = 'Password updated successfully!'
+
+            if current_group != 1000: # non admin go to dice_roll while admin to to marketplace
+                # Redirect to the desired URL after updating
+                return redirect('dice_roll')
+            else:
+                return redirect('position_marketplace')
+    # If not POST, then it's a GET request, so create a blank form
+    else:
+        form = GroupSettingsForm(instance=group)
+        
+    return render(request, 'group_password.html', context)
+
+
+# Teacher change RPG settings
+def edit_game_settings(request):
+    # get teacher & class from session
+    currentTeacher = request.session.get('currentTeacher')
+    class_name = request.session.get('currentClassName')
     instance = get_object_or_404(GameSettings, className=class_name)
-
-
 
     if request.method == 'POST':
         form = GameSettingsForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            # Redirect to a success page or the same page with a success message
             return redirect('edit_game_settings')
     else:
         form = GameSettingsForm(instance=instance)
 
-    return render(request, 'edit_game_settings.html', {'form': form})
+    context = {
+        'form': form,
+        'currentTeacher': currentTeacher,
+        'class_name': class_name
+    }
 
-
+    return render(request, 'edit_game_settings.html', context)

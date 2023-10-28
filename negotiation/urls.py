@@ -27,6 +27,7 @@ urlpatterns = [
     path('setup/', gameSetupViews.setup, name='setup'),
     path('save_note/', gameSetupViews.save_note, name='save_note'),
     path('edit_game_settings/', gameSetupViews.edit_game_settings, name='edit_game_settings'),
+    path('admin_password/', gameSetupViews.group_password, name='group_password'),
 
     path('choose_group/', gameSetupViews.choose_group, name='choose_group'),
 
@@ -36,6 +37,9 @@ urlpatterns = [
     path('generate_random_number/', diceRollViews.generate_random_number, name='generate_random_number'),
     path('roll_dice/', diceRollViews.roll_dice, name='roll_dice'),
     path('update_attributes/', diceRollViews.update_attributes, name='update_attributes'),
+
+    path('group_password/', gameSetupViews.group_password, name='group_password'),
+    #path('update_group_password/<int:group_id>/', gameSetupViews.update_group_password, name='update_group_password'),
 
     # Current position status readouts
     path('position_buyer_seller/', positionViews.position_buyer_seller, name='position_buyer_seller'),

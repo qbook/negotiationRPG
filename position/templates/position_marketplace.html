@@ -15,6 +15,7 @@
                     <h2><i>RPG MARKETPLACE ADMIN</i><br>RPG Round: {{ rpg_closest_round }}</h2>
                     <h4>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
                     <p>RPG {{ rpg_closest_round }} Dice Roll Ends: {{ rpg_closest_end_date }}
+                        <br>Deals End: {{ rpg_play_days_left }}
                         <br>Product: {{ rpg_current_product_name|safe }}                        
                     </p>
                     <a href="{% url 'edit_game_settings' %}">Change RPG Settings</a>
@@ -56,8 +57,9 @@
                                     <th scope="col">Last<br>Roll</th>
                                     <th scope="col">Roll<br>Status</th>
                                     <th scope="col">ID<br>Repeats</th>
-                                    <th scope="col">Cancel<br>Repeats</th>    
-                                    <th scope="col">message<br>count</th>                                                                        
+                                    <th scope="col">Cancel<br>Repeats</th>
+                                    <th scope="col">Message<br>count</th>
+                                    <th scope="col">Gift<br>count</th>
                                     <th scope="col">First<br>Roll</th>
                                     <th scope="col">Play<br>Now</th>                                    
                                     <th scope="col">Page<br>Refresh</th>
@@ -85,6 +87,7 @@
                                     <td>{{ group.repeated_deals }}</td>
                                     <td>{{ group.repeated_cancels }}</td>
                                     <td>{{ group.message_count }}</td>
+                                    <td>{{ group.gift_count }}</td>
                                     <td>{{ group.first_roll }}</td>
                                     <td>{{ group.play_now }}</td>
                                     <td>{{ group.page_refresh }}</td>

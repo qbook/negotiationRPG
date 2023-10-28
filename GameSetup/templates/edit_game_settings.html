@@ -4,9 +4,8 @@
 <html>
 <head>
 {% include "_header_00.html" %}
-<title>RPG Marketplace</title>
+<title>RPG Settings</title>
 </head>
-
 <body>
 {% include "_menu_admin.html" %}
     {% block content %}
@@ -17,7 +16,7 @@
                     <div class="align-self-center">
                         <a href="{% url 'home' %}">
                             <img src="{% static 'images/logoClass01_blur.png' %}" alt="Logo" class="img-fluid" style="width: 50%; height: auto;"></a>
-                            <a href="{% url 'position_marketplace'  %}">Back to Marketplace</a>
+                            <br>Class: {{ class_name }}<br>Teacher: {{ currentTeacher }}
                     </div>
                     <div class="card-header">
                         Edit Game Settings for {{ form.instance.className }}
