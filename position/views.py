@@ -212,12 +212,14 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'first_roll': group.groupFirstRoll,
             'play_now': group.groupPlayNow,
             'page_refresh': group.groupPageRefresh,
+            'group_deals': len(all_deals),
+            'group_cancels': len(mutually_canceled_deals),
             'repeated_deals': len(repeated_deals),
             'repeated_cancels': len(repeated_cancels),
             'message_count': len(all_messages),
             'gift_count': len(all_gifts),
             'dice_spent_locked': dice_spent_locked,
-        }
+        } 
         all_groups_results.append(group_data)
 
         # Order the list by group number

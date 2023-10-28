@@ -56,9 +56,11 @@
                                     <th scope="col">Dice<br>Left</th>
                                     <th scope="col">Last<br>Roll</th>
                                     <th scope="col">Roll<br>Status</th>
+                                    <th scope="col">Deals<br></th>
+                                    <th scope="col">CX<br></th>                                    
                                     <th scope="col">ID<br>Repeats</th>
-                                    <th scope="col">Cancel<br>Repeats</th>
-                                    <th scope="col">Message<br>count</th>
+                                    <th scope="col">CX<br>Repeats</th>
+                                    <th scope="col">Messg<br>count</th>
                                     <th scope="col">Gift<br>count</th>
                                     <th scope="col">First<br>Roll</th>
                                     <th scope="col">Play<br>Now</th>                                    
@@ -84,6 +86,8 @@
                                                 {{ group.dice_spent_locked }}
                                         {% endif %}
                                     </td>
+                                    <td>{{ group.group_deals }}</td>
+                                    <td>{{ group.group_cancels }}</td>
                                     <td>{{ group.repeated_deals }}</td>
                                     <td>{{ group.repeated_cancels }}</td>
                                     <td>{{ group.message_count }}</td>
