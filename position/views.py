@@ -199,7 +199,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             bonus_flex_points = 0
             scoreFinal = -1
 
-        # Collect the results for the current group. THIS IS A TEST.
+        # Collect the results for the current group.
         group_data = {
             'group_digit': group.groupDigit,
             'group_role': group.groupRole,
