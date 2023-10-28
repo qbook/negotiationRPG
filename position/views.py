@@ -91,6 +91,9 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
     result_from_check_start_time = check_start_time(currentTeacher, currentClassName, rpg_manual_round)
     # Extracting a value from the dictionary of results from function check_start_time
     rpg_closest_round = int(result_from_check_start_time['rpg_closest_round'])
+    rpg_play_days_left = result_from_check_start_time['rpg_play_days_left']
+    rpg_closest_end_date = result_from_check_start_time['rpg_closest_end_date']
+    rpg_current_product_name = result_from_check_start_time['rpg_current_product_name']
 
     #QUERY DB
     #Use extracted value to query for this class ALL GROUP's DiceRoll data for this RPG round
@@ -103,6 +106,9 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
     # Initialize context outside of the loop incase an RPG round is manually selected but it has NO DEALS
     context = { # Supply values and an empty set value just in case
         'rpg_closest_round': rpg_closest_round,
+        'rpg_closest_end_date': rpg_closest_end_date,
+        'rpg_play_days_left': rpg_play_days_left,
+        'rpg_current_product_name': rpg_current_product_name,
         'currentTeacher': currentTeacher,
         'currentClassName': currentClassName,
         'allGroupCharacterSheet': allGroupCharacterSheet,
@@ -209,6 +215,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'repeated_deals': len(repeated_deals),
             'repeated_cancels': len(repeated_cancels),
             'message_count': len(all_messages),
+            'gift_count': len(all_gifts),
             'dice_spent_locked': dice_spent_locked,
         }
         all_groups_results.append(group_data)
@@ -227,6 +234,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
 
         context = {
             'rpg_closest_round': rpg_closest_round,
+            'rpg_play_days_left': rpg_play_days_left,
             'currentTeacher': currentTeacher,
             'currentClassName': currentClassName,
             'allGroupCharacterSheet': allGroupCharacterSheet,
@@ -340,6 +348,10 @@ def position_buyer_seller(request):
 
 #-------------------QUERY MESSAGES----------------
     all_messages = query_messages(rpg_closest_round, currentClassName, currentGroupNumber)
+
+#-------------------QUERY GIFTING----------------
+    # Query the gifting model
+    all_gifts = query_messages(rpg_closest_round, currentClassName, currentGroupNumber)
 
 #----------------------------FLEX POINTS CALCULATIONS-------
     # Get the Flex Point count from a function
@@ -750,6 +762,19 @@ def query_messages(rpg_closest_round, currentClassName, currentGroupNumber):
 
     return all_messages
 
+#-------------------QUERY GIFTS----------------
+def query_messages(rpg_closest_round, currentClassName, currentGroupNumber):
+    # Query the gifting model
+    all_gifts = gifting.objects.filter(
+        groupRPG=rpg_closest_round,
+        groupClass=currentClassName
+    ).filter(
+        Q(groupDigit=currentGroupNumber) | 
+        Q(giftReceiver=currentGroupNumber)
+    ).values('groupDigit', 'giftReceiver', 'giftAmount', 'giftMessage')
+
+    return all_gifts
+
 #-------------------QUERY BUYER SELLER NUMBERS IN MARKET----------------
 def query_buyer_seller_number(rpg_closest_round, currentClassName):
 
@@ -781,13 +806,7 @@ def calculate_flex_points(final_deals, rpg_mod_units, rpg_closest_round, current
             bonus_flex_points += 1
 
     # Query the gifting model
-    all_gifts = gifting.objects.filter(
-        groupRPG=rpg_closest_round,
-        groupClass=currentClassName
-    ).filter(
-        Q(groupDigit=currentGroupNumber) | 
-        Q(giftReceiver=currentGroupNumber)
-    ).values('groupDigit', 'giftReceiver', 'giftAmount', 'giftMessage')
+    all_gifts = query_messages(rpg_closest_round, currentClassName, currentGroupNumber)
 
     # Initialize variables for flex points sent and received
     flex_points_sent = 0
