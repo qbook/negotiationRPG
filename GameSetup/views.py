@@ -312,6 +312,11 @@ def group_password(request):
     # Get group & class from session
     current_group = request.session.get('currentGroup')
     class_name = request.session.get('currentClassName')
+    # Session to tell if administrator logged in
+    admin_pass = request.session.get('admin_pass')
+    # If the session admin passed, then make sure password change useses the 1000 group number
+    if admin_pass == 1:
+        current_group = 1000
 
     # Retrieve the GroupLogin instance based on session values
     group = get_object_or_404(GroupLogin, groupDigit=current_group, groupClass=class_name)
@@ -324,6 +329,7 @@ def group_password(request):
         'form': form,
         'current_group': current_group,
         'class_name': class_name,
+        'admin_pass': admin_pass,
     }
     
     # Check if the request method is POST
