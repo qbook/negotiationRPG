@@ -243,6 +243,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'allGroupCharacterSheet': allGroupCharacterSheet,
             'all_groups_results': all_groups_results,
             'rpg_closest_end_date': result_from_check_start_time['rpg_closest_end_date'],
+            'rpg_closest_start_date': result_from_check_start_time['rpg_closest_start_date'],            
             'rpg_current_product_name': result_from_check_start_time['rpg_current_product_name'],
             'buyers_count': buyers_count,
             'sellers_count': sellers_count,
