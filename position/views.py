@@ -7,7 +7,7 @@ from datetime import timedelta
 from django.contrib import messages
 from django.http import HttpResponse
 from django.http import JsonResponse
-
+from django.db.models import Sum
 from decimal import Decimal
 from django.db.models import Count
 from collections import defaultdict
@@ -21,7 +21,6 @@ from position.forms import CancelForm
 from position.forms import GiftingForm
 from position.forms import MessagingForm
 from position.models import responses
-from position.models import cancel
 from position.models import gifting
 from position.models import messaging
 from position.models import cancel
@@ -355,7 +354,7 @@ def position_buyer_seller(request):
 
 #-------------------QUERY GIFTING----------------
     # Query the gifting model
-    all_gifts = query_messages(rpg_closest_round, currentClassName, currentGroupNumber)
+    all_gifts = query_gifts(rpg_closest_round, currentClassName, currentGroupNumber)
 
 #----------------------------FLEX POINTS CALCULATIONS-------
     # Get the Flex Point count from a function
@@ -767,7 +766,7 @@ def query_messages(rpg_closest_round, currentClassName, currentGroupNumber):
     return all_messages
 
 #-------------------QUERY GIFTS----------------
-def query_messages(rpg_closest_round, currentClassName, currentGroupNumber):
+def query_gifts(rpg_closest_round, currentClassName, currentGroupNumber):
     # Query the gifting model
     all_gifts = gifting.objects.filter(
         groupRPG=rpg_closest_round,
@@ -810,7 +809,7 @@ def calculate_flex_points(final_deals, rpg_mod_units, rpg_closest_round, current
             bonus_flex_points += 1
 
     # Query the gifting model
-    all_gifts = query_messages(rpg_closest_round, currentClassName, currentGroupNumber)
+    all_gifts = query_gifts(rpg_closest_round, currentClassName, currentGroupNumber)
 
     # Initialize variables for flex points sent and received
     flex_points_sent = 0
