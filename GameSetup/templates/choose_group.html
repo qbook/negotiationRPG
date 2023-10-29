@@ -62,8 +62,9 @@
 <script>
     // Make sure the page is fully loaded before we attach our event handlers
     $(document).ready(function(){
-        // This code will be executed after the entire page has loaded
-
+        // Select option with value 1000 and text "1000" then remove it
+        $("#groupDigit option[value='1000']:contains('1000')").remove();
+        
     });
 </script>
 

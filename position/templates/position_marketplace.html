@@ -18,7 +18,6 @@
                         <br>Deals End: {{ rpg_play_days_left }}
                         <br>Product: {{ rpg_current_product_name|safe }}                        
                     </p>
-                    <a href="{% url 'edit_game_settings' %}">Change RPG Settings</a>
                 </div>
             </div> <!-- End Card -->
             <a href="{% url 'home' %}"><div class="card text-light mb-1 text-center"  
@@ -49,6 +48,16 @@
                     <div class="container">
                         <table class="table table-hover table-striped table-responsive">
                             <thead class="custom-thead">
+
+                                <!-- Upper-level headers -->
+                                <tr>
+                                    <th scope="col" colspan="6" class="upper-level-header">Status</th>
+                                    <th scope="col" colspan="2" class="upper-level-header">Deals</th>
+                                    <th scope="col" colspan="3" class="upper-level-header">Errors</th>
+                                    <th scope="col" colspan="2" class="upper-level-header">Actions</th>
+                                    <th scope="col" colspan="3" class="upper-level-header">Research</th>
+                                </tr>
+
                                 <tr>
                                     <th scope="col">Group<br></th>
                                     <th scope="col">Role</th>
@@ -57,7 +66,8 @@
                                     <th scope="col">Last<br>Roll</th>
                                     <th scope="col">Roll<br>State</th>
                                     <th scope="col">Deals<br></th>
-                                    <th scope="col">CX<br></th>                                    
+                                    <th scope="col">CX<br></th>
+                                    <th scope="col">Err<br>Deals</th>
                                     <th scope="col">ID<br>Rpts</th>
                                     <th scope="col">CX<br>Rpts</th>
                                     <th scope="col">Messg<br>#</th>
@@ -88,6 +98,7 @@
                                     </td>
                                     <td>{{ group.group_deals }}</td>
                                     <td>{{ group.group_cancels }}</td>
+                                    <td>{{ group.error_deals }}</td>
                                     <td>{{ group.repeated_deals }}</td>
                                     <td>{{ group.repeated_cancels }}</td>
                                     <td>{{ group.message_count }}</td>

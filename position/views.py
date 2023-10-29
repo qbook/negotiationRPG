@@ -216,6 +216,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'group_cancels': len(mutually_canceled_deals),
             'repeated_deals': len(repeated_deals),
             'repeated_cancels': len(repeated_cancels),
+            'error_deals': len(error_deals),
             'message_count': len(all_messages),
             'gift_count': len(all_gifts),
             'dice_spent_locked': dice_spent_locked,
@@ -842,6 +843,9 @@ def calculate_flex_points(final_deals, rpg_mod_units, rpg_closest_round, current
 
 # Deal form insert to DB
 def save_deal(request):
+
+
+
     if request.method == 'POST':
         form = DealForm(request.POST)
         if form.is_valid():

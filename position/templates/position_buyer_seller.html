@@ -13,7 +13,10 @@
             <div class="card text-dark bg-light mb-3 shadow">
                 <div class="mb-3">
                     <h1><i>RPG DASHBOARD</i></h1><h2><span class="txtRole" id="txtRole0"></span><br>RPG Round: {{ rpg_closest_round }}<br>Product: {{ rpg_current_product_name|safe }}</h2><h4>Group: {{ groupDigit }}<br>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
-                    <p>RPG {{ rpg_closest_round }} Deals End: {{ rpg_play_days_left }}</p>
+                    <p>
+                        <br>Deals Begin: {{ rpg_closest_end_date }}
+                        <br>Deals End: {{ rpg_play_days_left }}
+                    </p>
                 </div>
             </div> <!-- End Card -->
 
@@ -760,7 +763,6 @@
                 <div class="small text-muted"><sup></sup></div>                    
             </div> <!-- End card -->
 
-
         </div> <!-- End of row with prefer two columns -->
     </div> <!-- End of container -->
 </body>
@@ -798,6 +800,15 @@ $(document).ready(function() {
         $("#txtInventoryTarget").text("Do NOT Buy Over:");
         $("#txtInventoryNote").text("Inventory bought over your MAX Purchase ({{ rpg_max_purchase }}) will cause bankruptcy.");
     }//end elseIf
+
+    //setting up time checking for playing RPG----Put here for wide scope used to check submissions allowed or now
+    var dealsBegin = new Date({{ rpg_closest_end_date|date:"U" }} * 1000); // Convert to milliseconds
+    var dealsEnd = new Date({{ rpg_play_days_left|date:"U" }} * 1000); // Convert to milliseconds
+    //setup time
+    var now = new Date();
+    //FIRST for the END time (check end first then check start)
+    var timeDifferenceBegin = dealsBegin - now;
+    var timeDifferenceEnd = dealsEnd - now;
 
     function toggleDiv(divId) {
     // Close all divs first
@@ -946,6 +957,15 @@ $(document).ready(function() {
     $("#btnSubmitDeal").click(function(event){
         var isValid = true; // Initialize flag
         var errorMessage = ''; // Initialize error message
+
+        if(timeDifferenceBegin < 0 && timeDifferenceEnd > 0) { //time for roll is OVER OR PlayNow has already been used
+            var isValid = true; // Set flag as pass
+        }else{ //NOT time now
+            var isValid = false; // Set flag as fail
+            errorMessage = "Not time for deals yet.\n Deals can begin at " + dealsBegin + ".";
+            event.preventDefault(); // Prevent form submission
+        }
+
         // Validate counter_part_group_number
         var counterPart = $("input[name='counterparty']").val();
         if(counterPart === "" || counterPart <= 0) {
@@ -1021,16 +1041,12 @@ $(document).ready(function() {
         }
     }); // End click button function
     
-
-
     // User chooses to input the NEW Deal ID with a single click
     $("#txtUseThisID").click(function(e) {
         e.preventDefault();  // Prevent the default link behavior
         var dealID = $("#newDealID").text();  // Get the Deal ID
         $("#inputDealID").val(timeStampInMilliseconds);
     });
-
-
 
     $('.deal-link').on('click', function(e) {
     e.preventDefault();  // To prevent the default behavior of the hyperlink
