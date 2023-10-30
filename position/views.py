@@ -218,8 +218,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'error_deals': len(error_deals),
             'message_count': len(all_messages),
             'gift_count': len(all_gifts),
-            #'gift_sent_total': all_gifts_sent,
-            'gift_sent_total': 0,
+            'gift_sent_total': all_gifts_sent,
             'dice_spent_locked': dice_spent_locked,
         } 
         all_groups_results.append(group_data)
