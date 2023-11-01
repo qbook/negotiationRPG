@@ -267,18 +267,23 @@ def choose_group(request):
             try:
 
                 # If administrator do not use is_valid checking
-                if groupDigit == "1000" and groupPassword == "nchu_master_ta_2023":
+                '''if groupDigit == "1000" and groupPassword == "nchu_master_ta_2023":
                     request.session['currentClassName'] = currentClassNameURL
                     request.session['currentGroup'] = 1000
                     request.session['admin_pass'] = 1
-                    return redirect('position_marketplace') # go to administration page
+                    return redirect('position_marketplace') # go to administration page '''
 
-                group = GroupLogin.objects.get(groupDigit=groupDigit, groupClass=currentClassNameURL)
+                group = GroupLogin.objects.get(groupDigit=groupDigit, groupClass=currentClassNameURL) # Query DB
                 if group.groupPassword == groupPassword or groupPassword == "nchu_master_ta_2023": # allow a master PW
                     # Place group and class name into session
                     request.session['currentClassName'] = currentClassNameURL
                     request.session['currentGroup'] = groupDigit
-                    return redirect('dice_roll')
+
+                    if groupDigit == "1000":
+                        request.session['admin_pass'] = 1
+                        return redirect('position_marketplace') # go to administration page
+                    else:
+                        return redirect('dice_roll') # go to dice roll page
                 else:
                     context['error_message'] = "Wrong password."
             except GroupLogin.DoesNotExist:
