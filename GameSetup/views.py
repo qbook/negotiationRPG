@@ -11,6 +11,7 @@ from .forms import GroupLoginForm
 from .forms import GameSettingsForm
 from .forms import GroupSettingsForm
 from .models import GroupLogin
+from django.contrib import messages
 
 
 
@@ -345,7 +346,7 @@ def group_password(request):
         if form.is_valid():
             form.save()
             # Add a success message
-            context['message'] = 'Password updated successfully!'
+            messages.success(request, 'Password updated successfully!')
 
             if current_group != 1000: # non admin go to dice_roll while admin to to marketplace
                 # Redirect to the desired URL after updating

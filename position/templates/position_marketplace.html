@@ -8,6 +8,15 @@
 
 <body>
     {% include "_menu_admin.html" %}
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+
     <div class="container">
         <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
             <div class="card text-dark bg-light mb-1">
@@ -255,6 +264,7 @@ CLYDE TESTING01 <br>
 
         </div> <!-- End of row with prefer two columns -->
     </div> <!-- End of container -->
+
 </body>
 
 <script>
