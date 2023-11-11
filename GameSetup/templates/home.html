@@ -1,18 +1,30 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
     {% include "_header_00.html" %}
     <title>Negotiation RPG Choose Class</title>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <a href="#" class="language-link" data-language="en">English</a>
+    <a href="#" class="language-link" data-language="zh-hant">中文 (繁體)</a>
+
+    <form action="{% url 'set_language' %}" method="post" id="languageForm">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.path }}">
+        <input type="hidden" name="language" id="languageInput">
+    </form>
+
     <div class="text-center">
         <img src="{% static 'images/' %}logoClass01_blur.png" class="img-fluid w-50" alt="Responsive logo">
     </div>
 
     <div class="container">
         <div class="row col-md-6 mx-auto">
-            <h2>Choose your class:</h2>
+            <h2>{% trans "Choose your class:" %}</h2>
         </div>
     </div>
     <div class="row col-md-6 mx-auto">
@@ -22,7 +34,7 @@
                 <div class="card-body">
                     <h4 class="card-title fw-bold">{{ teachers.teacher }}</h4>
                     <p5 class="card-text">{{ teachers.className }}</h5><br>
-                    <a class="btn btn-primary" href="{% url 'choose_group' %}?teacher={{ teachers.teacher }}&className={{ teachers.className }}">My Class</a>
+                    <a class="btn btn-primary" href="{% url 'choose_group' %}?teacher={{ teachers.teacher }}&className={{ teachers.className }}">{% trans "My Class" %}</a>
                 </div>
             </div>
         </div>
@@ -34,9 +46,27 @@
 <script>
     // Make sure the page is fully loaded before we attach our event handlers
     $(document).ready(function(){
-        // This code will be executed after the entire page has loaded
-
     });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to change language
+        function changeLanguage(lang) {
+            document.getElementById('languageInput').value = lang;
+            document.getElementById('languageForm').submit();
+        }
+
+        // Event listener for language change links
+        var languageLinks = document.querySelectorAll('.language-link');
+        languageLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent the default anchor link behavior
+                var lang = this.dataset.language;
+                changeLanguage(lang);
+            });
+        });
+    });
+
 </script>
 
 </html>

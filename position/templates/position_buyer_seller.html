@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -12,10 +13,10 @@
         <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
             <div class="card text-dark bg-light mb-3 shadow">
                 <div class="mb-3">
-                    <h1><i>RPG DASHBOARD</i></h1><h2><span class="txtRole" id="txtRole0"></span><br>RPG Round: {{ rpg_closest_round }}<br>Product: {{ rpg_current_product_name|safe }}</h2><h4>Group: {{ groupDigit }}<br>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
+                    <h1><i>{% trans "RPG DASHBOARD" %}</i></h1><h2><span class="txtRole" id="txtRole0"></span><br>{% trans "RPG Round:"%} {{ rpg_closest_round }}<br>{% trans "Product:" %} {{ rpg_current_product_name|safe }}</h2><h4>{% trans "Group:" %} {{ groupDigit }}<br>{% trans "Class:" %} {{ currentClassName }}<br>{% trans "Teacher:"%} {{ currentTeacher }}</h4>
                     <p>
-                        <br>Deals Begin: {{ rpg_closest_end_date }}
-                        <br>Deals End: {{ rpg_play_days_left }}
+                        <br>{% trans "Deals Begin:" %} {{ rpg_closest_end_date }}
+                        <br>{% trans "Deals End:" %} {{ rpg_play_days_left }}
                     </p>
                 </div>
             </div> <!-- End Card -->
@@ -34,82 +35,82 @@
                 
                         <!-- Overlay text -->
                         <div class="position-absolute bottom-0 start-0 mb-2 ms-2">
-                            <span class="bg-dark text-light py-1 px-3" style="border-radius: 5px;">GO TO LOGIN PAGE</span>
+                            <span class="bg-dark text-light py-1 px-3" style="border-radius: 5px;">{% trans "GO TO LOGIN PAGE" %}</span>
                         </div>
                     </div>
                 </a>
                 <a href="{{ request.path }}">
                     <div class="alert alert-warning text-end" role="alert">
-                        <h1><i>REFRESH TO UPDATE</i></h1>
+                        <h1><i>{% trans "REFRESH TO UPDATE" %}</i></h1>
                     </div>
                 </a>
             </div>
 
             <div class="card custom-card mb-3 shadow">
-                <h4 class="card-header custom-card-header">Negotiation Position <i>Quick View</i></h4>
+                <h4 class="card-header custom-card-header">{% trans "Negotiation Position" %} <i>Quick View</i></h4>
                 <div class="card-body">
                     <div class="row fw-bold">
-                        <div class="col-4">RESISTANCE:</div>
+                        <div class="col-4">{% trans "RESISTANCE:" %}</div>
                         <div class="col-8"><span id="txtPositionResistance">{{ rpg_resistance }}</span><span id="txtPositionResistanceHelp" class="small text-muted"></span></div>
-                        <div class="col-4">FLEX:</div>
+                        <div class="col-4">{% trans "FLEX:" %}</div>
                         <div class="col-8"><span id="txtPositionFlex">{{ groupFlex }}</span><span id="txtPositionFlexHelp" class="small text-muted"></span></div>
-                        <div class="col-4"><span id="txtMaxPurchase">MAX Purchase:</span></div>
+                        <div class="col-4"><span id="txtMaxPurchase">{% trans "MAX Purchase:" %}</span></div>
                         <div class="col-8"><span id="txtPositionMaxPurchase">{{ rpg_max_purchase }}</span><span id="txtPositionMaxPurchaseHelp" class="small text-muted"></span></div>
-                        <div class="col-4">DELIVERY:</div>
+                        <div class="col-4">{% trans "DELIVERY:" %}</div>
                         <div class="col-8"><span id="txtPositionDelivery">{{ groupDelivery }}</span><span id="txtPositionDeliveryHelp" class="small text-muted"></span></div>
-                        <div class="col-4">UNITS:</div>
+                        <div class="col-4">{% trans "UNITS:" %}</div>
                         <div class="col-8"><span id="txtPositionUnits">{{ rpg_mod_units }}</span><span id="txtPositionUnitsHelp" class="small text-muted"></span></div>
-                        <div class="col-4">IMPORTANCE:</div>
+                        <div class="col-4">{% trans "IMPORTANCE:" %}</div>
                         <div class="col-8"><span id="txtPositionImportance">{{ groupImportance }}</span><span id="txtPositionImportanceHelp" class="small text-muted"></span></div>
-                        <div class="col-4">QUALITY:</div>
+                        <div class="col-4">{% trans "QUALITY:" %}</div>
                         <div class="col-8"><span id="txtPositionQuality">{{ groupQuality }}</span><span id="txtPositionQualityHelp" class="small text-muted"></span></div>
-                        <div class="col-4">ROLE:</div>
+                        <div class="col-4">{% trans "ROLE:" %}</div>
                         <div class="col-8">[{{ groupRole }}] <span class="txtRole" id="txtRole1">{{ groupRole }}</span></div>
                     </div>
 
-                    <p style="display: none;">Notes:<br>
+                    <p style="display: none;">{% trans "Notes:" %}<br>
                         <div id="txtGroupNote" onclick="editNote()" style="display: none;"></div>
                     </p>
                     <!-- Not in use at this time -->
-                    <div style="display: none" class="text-info" onclick="editNote()">(Click to edit note)</div>
+                    <div style="display: none" class="text-info" onclick="editNote()">{% trans "(Click to edit note)" %}</div>
                     <!-- Hidden input field for editing -->
                     <textarea id="txtTeacherNoteEdit" style="display: none;"></textarea>
-                    <button id="btnSaveNote" style="display: none;" onclick="saveNote()">Save</button>
+                    <button id="btnSaveNote" style="display: none;" onclick="saveNote()">{% trans "Save" %}</button>
                 </div>
             </div> <!-- End Card -->
         
 
             <div class="card custom-card mb-3 shadow">
-                <h4 class="card-header custom-card-header">Actions</h4>
+                <h4 class="card-header custom-card-header">{% trans "Actions" %}</h4>
                 <div class="card-body">
                     <div class="container mt-1">
                         <div id="icoSpinner" class="spinner-border text-secondary" role="status" style="display:none;">
                             <span class="visually-hidden">ROLLING</span>
                         </div>
                         <!-- Buttons to send deal or points or cancel -->
-                        <button class="btn btn-primary col-sm-5 text-center mt-3" id="btnSendDeal">Send A Deal</button>
-                        <button class="btn btn-primary col-sm-5 text-center mt-3" id="btnCancelDeal"> Cancel A Deal</button>
-                        <button class="btn btn-primary col-sm-5 text-center mt-3" id="btnSendFlex">Gift Flex Points</button>
-                        <button class="btn btn-primary col-sm-5 text-center mt-3" id="btnSendMessage">Message A Group</button>
+                        <button class="btn btn-primary col-sm-5 text-center mt-3" id="btnSendDeal">{% trans "Send A Deal" %}</button>
+                        <button class="btn btn-primary col-sm-5 text-center mt-3" id="btnCancelDeal"> {% trans "Cancel A Deal" %}</button>
+                        <button class="btn btn-primary col-sm-5 text-center mt-3" id="btnSendFlex">{% trans "Gift Flex Points" %}</button>
+                        <button class="btn btn-primary col-sm-5 text-center mt-3" id="btnSendMessage">{% trans "Message A Group" %}</button>
 
                         <!-- Adding form for sending DEAL -->
                         <div id="btnOpenDealForm" class="hidden-form mt-3 row align-items-center">
                             <div class="col-12 text-center mb-4">
-                                <h1 class="display-7" id="txtOrderTitle">PURCHASE/SALE ORDER</h1>
+                                <h1 class="display-7" id="txtOrderTitle">{% trans "PURCHASE/SALE ORDER" %}</h1>
                             </div>
                             <form id="frmDealForm" method="post" action="{% url 'save_deal' %}">
                                 {% csrf_token %}
                                 <div class="row">
-                                    <div class="col-4">Counterpart:</div>
+                                    <div class="col-4">{% trans "Counterpart:" %}</div>
                                     <div class="col-8"><input id="inputCounterparty" type="number" name="counterparty" class="form-control" style="width: 150px;"></div>
 
-                                    <div class="col-4 mt-2">Units:</div>
+                                    <div class="col-4 mt-2">{% trans "Units:" %}</div>
                                     <div class="col-8 mt-2"><input id="inputUnits" type="number" name="units" class="form-control" style="width: 150px;"></div>
 
-                                    <div class="col-4 mt-2">Price:</div>
+                                    <div class="col-4 mt-2">{% trans "Price:" %}</div>
                                     <div class="col-8 mt-2"><input id="inputPrice" type="number" name="price" step="0.01" class="form-control" style="width: 150px;"></div>
 
-                                    <div class="col-4 mt-2">Quality:</div>
+                                    <div class="col-4 mt-2">{% trans "Quality:" %}</div>
                                     <div class="col-8 mt-2">
                                         <select id="sltQuality" name="quality" class="form-select"  style="width: 150px;>
                                             {% for value, display_name in formDeal.fields.quality.choices %}
@@ -117,7 +118,7 @@
                                             {% endfor %}
                                         </select>
                                     </div>
-                                    <div class="col-4 mt-2">Delivery:</div>
+                                    <div class="col-4 mt-2">{% trans "Delivery:" %}</div>
                                     <div class="col-8 mt-2">
                                         <select id="sltDelivery" name="delivery" class="form-select"  style="width: 150px;>
                                             {% for value, display_name in formDeal.fields.delivery.choices %}
@@ -128,11 +129,11 @@
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <button id="btnSubmitDeal" type="submit" class="btn btn-success mt-3">Send Deal</button>
+                                        <button id="btnSubmitDeal" type="submit" class="btn btn-success mt-3">{% trans "Send Deal" %}</button>
                                     </div>
                                     <div class="col-8 mt-3">
-                                        Deal ID:<input type="number" id="inputDealID" name="dealID" class="form-control" style="width: 175px;"><span id="txtDealID" class="small text-muted">Buyer and seller must use SAME Deal ID.</span>
-                                        <br><span id="newDealID"></span><a href="#" id="txtUseThisID" class="small text-muted"><=Use this NEW Deal ID.</a>
+                                        {% trans "Deal ID:" %}<input type="number" id="inputDealID" name="dealID" class="form-control" style="width: 175px;"><span id="txtDealID" class="small text-muted">{% trans "Buyer and seller must use SAME Deal ID." %}</span>
+                                        <br><span id="newDealID"></span><a href="#" id="txtUseThisID" class="small text-muted"><={% trans "Use this NEW Deal ID." %}</a>
                                     </div>
                                 </div>
                             </form>
@@ -141,19 +142,19 @@
                         <!-- Adding form for CANCEL DEAL -->
                         <div id="btnOpenCancelForm" class="hidden-form mt-3 row align-items-center">
                             <div class="col-12 text-center mb-4">
-                                <h1 class="display-7">CANCEL PURCHASE ORDER</h1>
+                                <h1 class="display-7">{% trans "CANCEL PURCHASE ORDER" %}</h1>
                             </div>
                             <form id="frmCancelForm" method="post" action="{% url 'cancel_deal' %}">
                                 {% csrf_token %}
                                 <div class="row">
-                                    <div class="col-4">Counterpart:</div>
+                                    <div class="col-4">{% trans "Counterpart:" %}</div>
                                     <div class="col-8"><input type="number" name="counterpartyCancel" class="form-control" style="width: 75px;"></div>
-                                    <div class="col-4">Deal ID:</div>
+                                    <div class="col-4">{% trans "Deal ID:" %}</div>
                                     <div class="col-8"><input type="number" id="dealIDCancel" name="dealIDCancel" class="form-control" style="width: 175px;"></div>
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <button id="btnSubmitCancel" type="submit" class="btn btn-success mt-3">Cancel Deal</button>
+                                        <button id="btnSubmitCancel" type="submit" class="btn btn-success mt-3">{% trans "Cancel Deal" %}}</button>
                                     </div>
                                 </div>
                             </form>
@@ -164,21 +165,21 @@
                         <!-- Adding form for Gifting Flex Points -->
                         <div id="btnOpenSendFlexForm" class="hidden-form mt-3 row align-items-center">
                             <div class="col-12 text-center mb-4">
-                                <h1 class="display-7">SEND FLEX POINTS</h1>
+                                <h1 class="display-7">{% trans "SEND FLEX POINTS" %}</h1>
                             </div>
                             <form id="frmSendFlexForm" method="post" action="{% url 'gift_flex' %}">
                                 {% csrf_token %}
                                 <div class="row">
-                                    <div class="col-4">Send To:</div>
+                                    <div class="col-4">{% trans "Send To:" %}</div>
                                     <div class="col-8"><input type="number" name="giftReceiver" class="form-control" style="width: 75px;"></div>
-                                    <div class="col-4">Flex Points:</div>
+                                    <div class="col-4">{% trans "Flex Points:" %}</div>
                                     <div class="col-8"><input type="number" id="txtGiftAmount" name="giftAmount" class="form-control" style="width: 75px;"></div>
-                                    <div class="col-4">Message:</div>
+                                    <div class="col-4">{% trans "Message:" %}</div>
                                     <div class="col-8"><textarea id="txtMessageArea" name="giftMessage" rows="4" cols="50" class="form-control"></textarea></div>
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <button id="btnSubmitGiftFlex" type="submit" class="btn btn-success mt-3">Send Flex Points</button>
+                                        <button id="btnSubmitGiftFlex" type="submit" class="btn btn-success mt-3">{% trans "Send Flex Points" %}</button>
                                     </div>
                                 </div>
                             </form>
@@ -187,21 +188,21 @@
                         <!-- Adding form for Messaging other groups -->
                         <div id="btnOpenSendMessageForm" class="hidden-form mt-3 row align-items-center">
                             <div class="col-12 text-center mb-4">
-                                <h1 class="display-7">SEND MESSAGE</h1>
+                                <h1 class="display-7">{% trans "SEND MESSAGE" %}</h1>
                             </div>
                             <form id="frmSendMessageForm" method="post" action="{% url 'send_message' %}">
                                 {% csrf_token %}
                                 <div class="row">
-                                    <div class="col-4">Send To:</div>
+                                    <div class="col-4">{% trans "Send To:" %}</div>
                                     <div class="col-8"><input type="number" name="messageReceiver" class="form-control" style="width: 150px;"></div>
-                                    <div class="col-4">Message Subject:</div>
+                                    <div class="col-4">{% trans "Message Subject:" %}</div>
                                     <div class="col-8"><input type="text" id="txtMessageSubject" name="messageSubject" class="form-control" style="width: 350px;"></div>
-                                    <div class="col-4">Message:</div>
+                                    <div class="col-4">{% trans "Message:" %}</div>
                                     <div class="col-8"><textarea name="messageContent" rows="4" cols="50" class="form-control"></textarea></div>
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <button id="btnSubmitSendMessage" type="submit" class="btn btn-success mt-3">Send Message</button>
+                                        <button id="btnSubmitSendMessage" type="submit" class="btn btn-success mt-3">{% trans "Send Message" %}</button>
                                     </div>
                                 </div>
                             </form>
@@ -221,24 +222,24 @@
             </div> <!-- End of card -->
 
             <div class="card custom-card mb-3 shadow">
-                <h4 class="card-header custom-card-header">Deals Completed<sup>a</sup></h4>
+                <h4 class="card-header custom-card-header">{% trans "Deals Completed" %}<sup>a</sup></h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
                         <thead class="custom-thead">
                             <tr>
-                                <th scope="col" title="Deal Identifier">Deal ID</th>
-                                <th scope="col" title="Counterpart Group">With</th>
-                                <th scope="col" title="Number of Units">Units</th>
-                                <th scope="col" title="Deal Price">Price</th>
-                                <th scope="col" title="Quality Level">Qual.</th>
-                                <th scope="col" title="Delivery Speed">Deliv.</th>
+                                <th scope="col" title="Deal Identifier">{% trans "Deal ID" %}</th>
+                                <th scope="col" title="Counterpart Group">{% trans "With" %}</th>
+                                <th scope="col" title="Number of Units">{% trans "Units" %}</th>
+                                <th scope="col" title="Deal Price">{% trans "Price" %}</th>
+                                <th scope="col" title="Quality Level">{% trans "Qual." %}</th>
+                                <th scope="col" title="Delivery Speed">{% trans "Deliv." %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for deal in final_deals %}
                             <tr>
                                 <td>{{ deal.dealDealID }}</td>
-                                <td>Group {{ deal.dealCounterpart }}</td>
+                                <td>{% trans "Group" %} {{ deal.dealCounterpart }}</td>
                                 <td>{{ deal.dealUnits }}</td>
                                 <td>{{ deal.dealPrice }}</td>
                                 <td>{{ deal.dealQuality }}</td>
@@ -248,53 +249,53 @@
                         </tbody>
                     </table>
                 </div> <!-- End card body-->
-                <div class="small text-muted"><sup>a</sup>Deals waiting for counterparties are not shown here.</div>
+                <div class="small text-muted"><sup>a</sup>{% trans "Deals waiting for counterparties are not shown here." %}</div>
             </div> <!-- End card -->
 
             <div class="card custom-card mb-3 shadow">
-                <h4 class="card-header custom-card-header">Canceled Deals</h4>
+                <h4 class="card-header custom-card-header">{% trans "Canceled Deals" %}</h4>
                 <div class="card-body">
-                    <h4 class="card-header">Deals Canceled With Penalty</h4>
+                    <h4 class="card-header">{% trans "Deals Canceled With Penalty" %}</h4>
                     <table class="table table-hover table-striped table-responsive">
                         <thead class="custom-thead">
                             <tr>
-                                <th scope="col" title="Deal Identifier">Deal ID</th>
-                                <th scope="col" title="Canceling Group">Canceled By</th>
-                                <th scope="col" title="Canceler's Role">Counterpart</th>
-                                <th scope="col" title="Canceler's Role">Role</th>                                
-                                <th scope="col" title="Units">Units</th>
-                                <th scope="col" title="Penalty"><sup>a</sup>Penalty</th>
+                                <th scope="col" title="Deal Identifier">{% trans "Deal ID" %}</th>
+                                <th scope="col" title="Canceling Group">{% trans "Canceled By" %}</th>
+                                <th scope="col" title="Canceler's Role">{% trans "Counterpart" %}</th>
+                                <th scope="col" title="Canceler's Role">{% trans "Role" %}</th>                                
+                                <th scope="col" title="Units">{% trans "Units" %}</th>
+                                <th scope="col" title="Penalty"><sup>a</sup>{% trans "Penalty" %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for deal in penalized_deals %}
                             <tr>
                                 <td>{{ deal.dealDealID }}</td>
-                                <td>Group {{ deal.groupDigit }}</td>
-                                <td>Group {{ deal.dealCounterpart }}</td>                                
+                                <td>{% trans "Group" %} {{ deal.groupDigit }}</td>
+                                <td>{% trans "Group" %} {{ deal.dealCounterpart }}</td>                                
                                 <td>{{ deal.dealBuySell }}</td>
                                 <td>{{ deal.dealUnits }}</td>
-                                <td><i class="fas fa-minus"></i> {{ deal.penalty_amount }} Flex Points</td>
+                                <td><i class="fas fa-minus"></i> {{ deal.penalty_amount }} {% trans "Flex Points" %}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div> <!--end card body-->
                 <div class="card-body">
-                    <h4 class="card-header">Deals Canceled By Both</h4>
+                    <h4 class="card-header">{% trans "Deals Canceled By Both" %}</h4>
                         <table class="table table-hover table-striped table-responsive">
                             <thead class="custom-thead">
                                 <tr>
-                                    <th scope="col" title="Deal Identifier">Deal ID</th>
-                                    <th scope="col" title="Canceling Group">Canceled By</th>
-                                    <th scope="col" title="Cancelers Role"><sup>b</sup>Role</th>
+                                    <th scope="col" title="Deal Identifier">{% trans "Deal ID" %}</th>
+                                    <th scope="col" title="Canceling Group">{% trans "Canceled By" %}</th>
+                                    <th scope="col" title="Cancelers Role"><sup>b</sup>{% trans "Role" %}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for deal in mutually_canceled_deals %}
                                 <tr>
                                     <td>{{ deal.dealDealID }}</td>
-                                    <td>Group {{ deal.groupDigit }} & {{ deal.dealCounterpart }}</td>
+                                    <td>{% trans "Group" %} {{ deal.groupDigit }} & {{ deal.dealCounterpart }}</td>
                                     <td>{{ deal.dealBuySell }}</td>
                                 </tr>
                                 {% endfor %}
@@ -303,77 +304,77 @@
                 </div> <!-- End card body-->
 
                 <div class="card-body">
-                    <h4 class="card-header">Invalid Deals<span class="small text-muted"> (Repeated Deal ID)<sup>c</sup></span></h4>
+                    <h4 class="card-header">{% trans "Invalid Deals" %}<span class="small text-muted"> {% trans "(Repeated Deal ID)" %}<sup>c</sup></span></h4>
                     {% if repeated_deals %}
                         <table class="table table-hover table-striped table-responsive">
                             <thead class="custom-thead">
                                 <tr>
-                                    <th scope="col" title="Deal Identifier">Deal ID</th>
-                                    <th scope="col" title="Canceling Group">Sent By</th>
-                                    <th scope="col" title="Cancelers Role">Counterpart</th>
+                                    <th scope="col" title="Deal Identifier">{% trans "Deal ID" %}</th>
+                                    <th scope="col" title="Canceling Group">{% trans "Sent By" %}</th>
+                                    <th scope="col" title="Cancelers Role">{% trans "Counterpart" %}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for deal in repeated_deals %}
                                 <tr>
                                     <td>{{ deal.dealDealID }}</td>
-                                    <td>Group {{ deal.groupDigit }} </td>
+                                    <td>{% trans "Group" %} {{ deal.groupDigit }} </td>
                                     <td>{{ deal.dealCounterpart }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
                     {% else %}
-                        <p>No repeated Deal IDs.</p>
+                        <p>{% trans "No repeated Deal IDs." %}</p>
                     {% endif %}
                 </div> <!-- End card body-->
 
 
                 <div class="card-body">
-                    <h4 class="card-header">Invalid Cancels<span class="small text-muted"> (Repeated Deal ID)<sup>c</sup></span></h4>
+                    <h4 class="card-header">{% trans "Invalid Cancels" %}<span class="small text-muted"> {% trans "(Repeated Deal ID)" %}<sup>c</sup></span></h4>
                     {% if repeated_cancels %}
                         <table class="table table-hover table-striped table-responsive">
                             <thead class="custom-thead">
                                 <tr>
-                                    <th scope="col" title="Deal Identifier">Deal ID</th>
-                                    <th scope="col" title="Canceling Group">Sent By</th>
-                                    <th scope="col" title="Cancelers Role">Counterpart</th>
+                                    <th scope="col" title="Deal Identifier">{% trans "Deal ID" %}</th>
+                                    <th scope="col" title="Canceling Group">{% trans "Sent By" %}</th>
+                                    <th scope="col" title="Cancelers Role">{% trans "Counterpart" %}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for deal in repeated_cancels %}
                                 <tr>
                                     <td>{{ deal.dealDealID }}</td>
-                                    <td>Group {{ deal.groupDigit }} </td>
+                                    <td>{% trans "Group" %} {{ deal.groupDigit }} </td>
                                     <td>{{ deal.dealCounterpart }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
                     {% else %}
-                        <p>No repeated cancel Deal IDs.</p>
+                        <p>{% trans "No repeated cancel Deal IDs." %}</p>
                     {% endif %}
                 </div> <!-- End card body-->
 
-                <div class="small text-muted"><sup>a</sup>Canceling deals costs:</div>
-                <div class="small text-muted">A) Both parties cancel = NO cost to you & NO cost to counterparty.</div>
-                <div class="small text-muted">B) You cancel but counterparty does NOT cancel = 0.5 Flex Points per 100 units of the deal (minimum fee of 1 rounded down afterward).</div>
-                <div class="small text-muted">C) You do NOT cancel but counterparty cancels = NO extra cost to you (deal is lost).</div>
-                <div class="small text-muted"><sup>b</sup>Role 1 = Buyer; -1 = Seller.</div>
-                <div class="small text-muted"><sup>c</sup>Use a DEAL ID only ONCE!</div>
+                <div class="small text-muted"><sup>a</sup>{% trans "Canceling deals costs:" %}</div>
+                <div class="small text-muted">A) {% trans "Both parties cancel = NO cost to you & NO cost to counterparty." %}</div>
+                <div class="small text-muted">B) {% trans "You cancel but counterparty does NOT cancel = 0.5 Flex Points per 100 units of the deal (minimum fee of 1 rounded down afterward)." %}</div>
+                <div class="small text-muted">C) {% trans "You do NOT cancel but counterparty cancels = NO extra cost to you (deal is lost)." %}</div>
+                <div class="small text-muted"><sup>b</sup>{% trans "Role 1 = Buyer; -1 = Seller." %}</div>
+                <div class="small text-muted"><sup>c</sup>{% trans "Use a DEAL ID only ONCE!" %}</div>
             </div> <!-- End card -->
             
             <div class="card custom-card mb-3 shadow">
-                <h4 class="card-header custom-card-header">Flex Points: {{ rpgFlexPoints }}</h4>
+                <h4 class="card-header custom-card-header">{% trans "Flex Points:" %} {{ rpgFlexPoints }}</h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
                         <thead class="custom-thead">
                             <tr>
-                                <th scope="col" title="Deal Identifier">Deal ID</th>
-                                <th scope="col" title="Number of Units">Units</th>
-                                <th scope="col" title="Quality Level"><sup>a</sup>Qual. Gap</th>
-                                <th scope="col" title="Delivery Gap"><sup>a</sup>Deliv. Gap</th>
-                                <th scope="col" title="Loss/Gain">Loss/Gain</th>
+                                <th scope="col" title="Deal Identifier">{% trans "Deal ID" %}</th>
+                                <th scope="col" title="Number of Units">{% trans "Units" %}</th>
+                                <th scope="col" title="Quality Level"><sup>a</sup>{% trans "Qual. Gap" %}</th>
+                                <th scope="col" title="Delivery Gap"><sup>a</sup>{% trans "Deliv. Gap" %}</th>
+                                <th scope="col" title="Loss/Gain">{% trans "Loss/Gain" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -389,41 +390,41 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                            <th colspan="1"><sup>b</sup>Bonus:</th>
+                            <th colspan="1"><sup>b</sup>{% trans "Bonus:" %}</th>
                             <td colspan="1"><i class="fas fa-plus"></i>{{ bonus_flex_points }}</td>
                             </tr>
                             <tr id="txtOverProduction">
-                                <th colspan="1"><sup>c</sup>Over Production:</th>
+                                <th colspan="1"><sup>c</sup>{% trans "Over Production:" %}</th>
                                 <td colspan="1"><i class="fas fa-minus"></i>{{ overproduction_flex_fee }}</td>
                             </tr>
                         </tfoot>
                     </table>
                 </div> <!-- End card body-->
-                <div id="txtFlexMsg0" class="small text-muted"><sup>a</sup>Going higher gains Flex Points (1 point per 100 units--round up).</div>
-                <div id="txtFlexMsg1" class="small text-muted">Going lower spends Flex Points (1 point per 100 units--round up).</div>
-                <div  id="txtFlexMsg2" class="small text-muted">Canceling a deal will have a cost if both sides do NOT agree (see Canceled Deals area).</div>
-                <br><div id="txtFlexMsg3" class="small text-muted"><sup>b</sup>Earn extra Flex Points by making more deals with different groups (at least 10% of target units with different groups).</div>
-                <br><div id="txtFlexMsg4" class="small text-muted"><sup>c</sup>Production over MAX costs 1 Flex Point for every 10% increase over UNITS.</div>
+                <div id="txtFlexMsg0" class="small text-muted"><sup>a</sup>{% trans "Going higher gains Flex Points (1 point per 100 units--round up)." %}</div>
+                <div id="txtFlexMsg1" class="small text-muted">{% trans "Going lower spends Flex Points (1 point per 100 units--round up)." %}</div>
+                <div  id="txtFlexMsg2" class="small text-muted">{% trans "Canceling a deal will have a cost if both sides do NOT agree (see Canceled Deals area)." %}</div>
+                <br><div id="txtFlexMsg3" class="small text-muted"><sup>b</sup>{% trans "Earn extra Flex Points by making more deals with different groups (at least 10% of target units with different groups)." %}</div>
+                <br><div id="txtFlexMsg4" class="small text-muted"><sup>c</sup>{% trans "Production over MAX costs 1 Flex Point for every 10% increase over UNITS." %}</div>
             </div> <!-- End card -->
 
             <div class="card custom-card custom-card text-dark bg-light mb-3 shadow">
-                <h4 class="card-header custom-card-header">Weighted Avg. Price</h4>
+                <h4 class="card-header custom-card-header">{% trans "Weighted Avg. Price" %}</h4>
                 <div class="card-body">
                     <table class="table table-bordered table-striped table-responsive">
                         <thead class="custom-thead">
                             <tr>
-                            <th scope="col">Deal ID</th>
-                            <th scope="col">Counterpart</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity (Units)</th>
-                            <th scope="col">Weighted Price</th>
+                            <th scope="col">{% trans "Deal ID" %}</th>
+                            <th scope="col">{% trans "Counterpart" %}</th>
+                            <th scope="col">{% trans "Price" %}</th>
+                            <th scope="col">{% trans "Quantity (Units)" %}</th>
+                            <th scope="col">{% trans "Weighted Price" %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for deal in final_deals %}
                             <tr>
                             <td>{{ deal.dealDealID }}</td>
-                            <td>Group {{ deal.dealCounterpart }}</td>
+                            <td>{% trans "Group" %} {{ deal.dealCounterpart }}</td>
                             <td>{{ deal.dealPrice }}</td>
                             <td>{{ deal.dealUnits }}</td>
                             <td>{{ deal.weighted_price }}</td>
@@ -432,11 +433,11 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                            <th colspan="3">Total Units:</th>
+                            <th colspan="3">{% trans "Total Units:" %}</th>
                             <td colspan="1">{{ total_units }}</td>
                             </tr>
                             <tr>
-                            <th colspan="3">Average Weighted Price:</th>
+                            <th colspan="3">{% trans "Average Weighted Price:" %}</th>
                             <td></td>
                             <td colspan="2">{{ average_weighted }}</td>
                             </tr>
@@ -446,13 +447,13 @@
             </div> <!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow" id="crdInventory">
-                <h4 class="card-header custom-card-header"><div id="txtInventoryTitle">Inventory</div></h4>
+                <h4 class="card-header custom-card-header"><div id="txtInventoryTitle">{% trans "Inventory" %}</div></h4>
                 <div class="card-body">
                     <table class="table table-striped table-responsive">
                         <thead class="custom-thead">
                             <tr>
-                            <th>Total</th>
-                            <th>Target</th>
+                            <th>{% trans "Total" %}</th>
+                            <th>{% trans "Target" %}</th>
                             <th>%</th>
                             </tr>
                         </thead>
@@ -465,26 +466,28 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                            <th colspan="1"><div id="txtInventoryTarget">Not Go Over:</div></th>
+                            <th colspan="1"><div id="txtInventoryTarget">{% trans "Not Go Over:" %}</div></th>
                             <td colspan="1">{{ rpg_max_purchase }}</td>
                             <td colspan="1">{{ rpg_fraction_close_to_max }}</td>
                             </tr>
                         </tfoot>
                     </table>
                 </div> <!-- End card body-->
-                <div class="small text-muted" id="txtInventoryNote">Inventory bought over your MAX Purchase ({{ rpg_max_purchase }}) will cause bankruptcy.</div>
+                <span class="small text-muted" id="txtInventoryNote0">{% trans "Inventory bought over your MAX Purchase" %}</span> 
+                ({{ rpg_max_purchase }}) 
+                <span class="small text-muted" id="txtInventoryNote1"> {% trans "will cause bankruptcy." %}</span>
             </div> <!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow">
-                <h4 class="card-header custom-card-header">Flex Point Send/Receive</h4>
+                <h4 class="card-header custom-card-header">{% trans "Flex Point Send/Receive" %}</h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col" title="From">From Group</th>
-                                <th scope="col" title="To">To Group</th>
-                                <th scope="col" title="Flex Points">Flex Points</th>
-                                <th scope="col" title="Message">Message</th>
+                                <th scope="col" title="From">{% trans "From Group" %}</th>
+                                <th scope="col" title="To">{% trans "To Group" %}</th>
+                                <th scope="col" title="Flex Points">{% trans "Flex Points" %}</th>
+                                <th scope="col" title="Message">{% trans "Message" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -499,21 +502,21 @@
                         </tbody>
                     </table>
                 </div> <!-- End card body-->
-                <div class="small text-muted">Note: Only messages for the current RPG round are shown.</div>                    
+                <div class="small text-muted">{% trans "Note: Only messages for the current RPG round are shown." %}</div>                    
             </div> <!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow">
-                <h4 class="card-header">Deals Waiting For Counterpart</h4>
+                <h4 class="card-header">{% trans "Deals Waiting For Counterpart" %}</h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col" title="Deal Identifier">Deal ID</th>
-                                <th scope="col" title="Counterpart Group">To<br>Group</th>
-                                <th scope="col" title="Number of Units">Units</th>
-                                <th scope="col" title="Deal Price">Price</th>
-                                <th scope="col" title="Quality Level">Qual.</th>
-                                <th scope="col" title="Delivery Speed">Deliv.</th>
+                                <th scope="col" title="Deal Identifier">{% trans "Deal ID" %}</th>
+                                <th scope="col" title="Counterpart Group">{% trans "To" %}<br>{% trans "Group" %}</th>
+                                <th scope="col" title="Number of Units">{% trans "Units" %}</th>
+                                <th scope="col" title="Deal Price">{% trans "Price" %}</th>
+                                <th scope="col" title="Quality Level">{% trans "Qual." %}</th>
+                                <th scope="col" title="Delivery Speed">{% trans "Deliv." %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -533,17 +536,17 @@
             </div> <!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow">
-                <h4 class="card-header">Deals Waiting For You</h4>
+                <h4 class="card-header">{% trans "Deals Waiting For You" %}</h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive deal-row:hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col" title="Deal Identifier">Deal ID</th>
-                                <th scope="col" title="Counterpart Group">From<br>Group</th>
-                                <th scope="col" title="Number of Units">Units</th>
-                                <th scope="col" title="Deal Price">Price</th>
-                                <th scope="col" title="Quality Level">Qual.</th>
-                                <th scope="col" title="Delivery Speed">Deliv.</th>
+                                <th scope="col" title="Deal Identifier">{% trans "Deal ID" %}</th>
+                                <th scope="col" title="Counterpart Group">{% trans "From" %}<br>{% trans "Group" %}</th>
+                                <th scope="col" title="Number of Units">{% trans "Units" %}</th>
+                                <th scope="col" title="Deal Price">{% trans "Price" %}</th>
+                                <th scope="col" title="Quality Level">{% trans "Qual." %}</th>
+                                <th scope="col" title="Delivery Speed">{% trans "Deliv." %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -563,19 +566,19 @@
             </div> <!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow">
-                <h4 class="custom-card-warn-header">Deals Mismatched<sup>a</sup></h4>
+                <h4 class="custom-card-warn-header">{% trans "Deals Mismatched" %}<sup>a</sup></h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col" title="Deal Identifier">Deal ID</th>
-                                <th scope="col" title="From">To<br>Group</th>
-                                <th scope="col" title="To">From<br>Group</th>
-                                <th scope="col" title="Role">Role</th>
-                                <th scope="col" title="Number of Units">Units</th>
-                                <th scope="col" title="Deal Price">Price</th>
-                                <th scope="col" title="Quality Level">Qual.</th>
-                                <th scope="col" title="Delivery Speed">Deliv.</th>
+                                <th scope="col" title="Deal Identifier">{% trans "Deal ID" %}</th>
+                                <th scope="col" title="From">{% trans "To" %}<br>{% trans "Group" %}</th>
+                                <th scope="col" title="To">{% trans "From" %}<br>{% trans "Group" %}</th>
+                                <th scope="col" title="Role">{% trans "Role" %}</th>
+                                <th scope="col" title="Number of Units">{% trans "Units" %}</th>
+                                <th scope="col" title="Deal Price">{% trans "Price" %}</th>
+                                <th scope="col" title="Quality Level">{% trans "Qual." %}</th>
+                                <th scope="col" title="Delivery Speed">{% trans "Deliv." %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -594,27 +597,27 @@
                         </tbody>
                     </table>
                 </div> <!-- End card body-->
-                <div class="small text-muted"><sup>a</sup>These deals use the same Deal ID but do not match.</div>
-                <div class="small text-muted">Senders need to cancel these.</div>
-                <div class="small text-muted">Note: Role 1 = Buyer; -1 = Seller.</div>
+                <div class="small text-muted"><sup>a</sup>{% trans "These deals use the same Deal ID but do not match." %}</div>
+                <div class="small text-muted">{% trans "Senders need to cancel these." %}</div>
+                <div class="small text-muted">{% trans "Note: Role 1 = Buyer; -1 = Seller." %}</div>
             </div> <!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow">
-                <h4 class="card-header custom-card-header">RPG Score: {{ rpg_scoreFinal }}</h4>
+                <h4 class="card-header custom-card-header">{% trans "RPG Score:" %} {{ rpg_scoreFinal }}</h4>
                 <div class="card-body">
                     <table class="table">
                         <thead class="text-secondary">
                             <tr>
-                                <th id="txtBuyerScorePriceTop0" scope="col" class="d-none fs-6 py-0 px-0 text-center">Resistance<br>Price</th>
+                                <th id="txtBuyerScorePriceTop0" scope="col" class="d-none fs-6 py-0 px-0 text-center">{% trans "Resistance" %}<br>{% trans "Price" %}</th>
                                 <th id="txtBuyerScorePriceTop1" scope="col" class="d-none fs-6 py-0 px-0 text-center"><i class="fas fa-minus"></i></th>
-                                <th id="txtBuyerScorePriceTop2" scope="col" class="d-none fs-6 py-0 px-0 text-center">Weighted<br>Avg. Price</th>
-                                <th id="txtSellerScorePriceTop0" scope="col" class="d-none fs-6 py-0 px-0 text-center">Weighted<br>Avg. Price</th>
+                                <th id="txtBuyerScorePriceTop2" scope="col" class="d-none fs-6 py-0 px-0 text-center">{% trans "Weighted" %}<br>{% trans "Avg. Price" %}</th>
+                                <th id="txtSellerScorePriceTop0" scope="col" class="d-none fs-6 py-0 px-0 text-center">{% trans "Weighted" %}<br>{% trans "Avg. Price" %}</th>
                                 <th id="txtSellerScorePriceTop1" scope="col" class="d-none fs-6 py-0 px-0 text-center"><i class="fas fa-minus"></i></th>
-                                <th id="txtSellerScorePriceTop2" scope="col" class="d-none fs-6 py-0 px-0 text-center">Resistance<br>Price</th>
+                                <th id="txtSellerScorePriceTop2" scope="col" class="d-none fs-6 py-0 px-0 text-center">{% trans "Resistance" %}<br>{% trans "Price" %}</th>
                                 <th scope="col" class="fs-6 py-0 px-0 text-center"><i class="fas fa-equals"></i></th>
                                 <th scope="col" class="fs-6 py-0 px-0 text-center">__</th>
                                 <th scope="col" class="fs-6 py-0 px-0 text-center"><i class="fas fa-divide"></i></th>
-                                <th scope="col" class="fs-6 py-0 px-0 text-center">Resistance<br>Price</th>                            
+                                <th scope="col" class="fs-6 py-0 px-0 text-center">{% trans "Resistance" %}<br>{% trans "Price" %}</th>      
                                 <th scope="col" class="fs-6 py-0 px-0 text-center"><i class="fas fa-equals"></i></th>
                                 <th scope="col" class="fs-6 py-0 px-0 text-center">__</th>
                                 <th scope="col" class="fs-6 py-0 px-0 text-center">X<i class="fw-bolder"></i></th>
@@ -638,8 +641,8 @@
                                 <td scope="col" class="fs-6 py-0 px-0 text-center">X<i class="fw-bolder"></i></td>
                                 <td scope="col" class="fs-6 py-0 px-0 text-center">100<i class="fw-bolder"></i></td>
                             </tr>
-                        </tbody>
-                        <tfoot>
+                         </tbody>
+                         <tfoot>
                             <tr class="fw-bolder fs-3">
                             <th colspan="3"><i class="fas fa-equals"></i> {{ rpg_scoreC }}<i class="fas fa-plus"></i></th>
                             </tr>
@@ -649,11 +652,11 @@
                     <table class="table">
                         <thead class="text-secondary table-responsive">
                             <tr>
-                            <th scope="col" class="fs-6 py-0 px-0 text-center">Flex Points</th>
+                            <th scope="col" class="fs-6 py-0 px-0 text-center">{% trans "Flex Points" %}</th>
                             <th scope="col" class="fs-6 py-0 px-0 text-center"><i class="fas fa-equals"></i></th>
                             <th scope="col" class="fs-6 py-0 px-0 text-center">__</th>
                             <th scope="col" class="fs-6 py-0 px-0 text-center">X<i class="fw-bolder"></i></th>
-                            <th scope="col" class="fs-6 py-0 px-0 text-center">Importance</th>
+                            <th scope="col" class="fs-6 py-0 px-0 text-center">{% trans "Importance" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -675,10 +678,10 @@
                     <table class="table">
                         <thead class="text-secondary table-responsive">
                             <tr>
-                            <th id="txtBuyerScoreInventory" scope="col" class="d-none fs-6 py-0 px-0 text-center">Inventory Bought</th>
-                            <th id="txtSellerScoreInventory" scope="col" class="d-none fs-6 py-0 px-0 text-center">Inventory Sold</th>
+                            <th id="txtBuyerScoreInventory" scope="col" class="d-none fs-6 py-0 px-0 text-center">{% trans "Inventory Bought" %}</th>
+                            <th id="txtSellerScoreInventory" scope="col" class="d-none fs-6 py-0 px-0 text-center">{% trans "Inventory Sold" %}</th>
                             <th scope="col" class="fs-6 py-0 px-0 text-center"><i class="fas fa-equals"></i></th>
-                            <th scope="col" class="fs-6 py-0 px-0 text-center">Score</th>                            
+                            <th scope="col" class="fs-6 py-0 px-0 text-center">{% trans "Score" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -690,7 +693,7 @@
                         </tbody>
                         <tfoot>
                             <tr class="fw-bolder fs-1">
-                            <th colspan="3">SCORE: {{ rpg_scoreFinal }}</th>
+                            <th colspan="3">{% trans "SCORE:" %} {{ rpg_scoreFinal }}</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -698,16 +701,16 @@
             </div> <!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow">
-                <h4 class="card-header custom-card-header">Messages Received<sup>a</sup></h4>
+                <h4 class="card-header custom-card-header">{% trans "Messages Received" %}<sup>a</sup></h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col" title="From">From<br>Group</th>
-                                <th scope="col" title="To">To<br>Group</th>
-                                <th scope="col" title="Subject">Subject</th>
-                                <th scope="col" title="Message">Message</th>
-                                <th scope="col" title="Timestamp">Date</th>
+                                <th scope="col" title="From">{% trans "From" %}<br>{% trans "Group" %}</th>
+                                <th scope="col" title="To">{% trans "To" %}<br>{% trans "Group" %}</th>
+                                <th scope="col" title="Subject">{% trans "Subject" %}</th>
+                                <th scope="col" title="Message">{% trans "Message" %}</th>
+                                <th scope="col" title="Timestamp">{% trans "Date" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -719,34 +722,34 @@
                                 <td>{{ deal.messageContent }}</td>
                                 <td>{{ deal.messageDateStamp|date:"m/d H:i" }}</td>
                             </tr>
-                            {% endfor %}
+                            {% endfor %}                            
                         </tbody>
                     </table>
                 </div> <!-- End card body-->
-                <div class="small text-muted"><sup>a</sup>Note: Only messages for the current RPG round are shown.</div>                    
+                <div class="small text-muted"><sup>a</sup>{% trans "Note: Only messages for the current RPG round are shown." %}</div>
             </div><!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow">
 
                 <form id="selectRPGForm" method="get" action="{% url 'position_buyer_seller_manual' %}">
                     <select name="rpg_choice" id="rpg_choice">
-                        <option value="-1" selected>Change Round</option>
+                        <option value="-1" selected>{% trans "Change Round" %}</option>
                         {% for rpg in "0123456789"|make_list %}
                             <option value="{{ rpg }}" {% if rpg == request.GET.rpg_choice %}selected{% endif %}>RPG {{ rpg }}</option>
                         {% endfor %}
                     </select>
                     <button type="submit">Go</button>
-                    BUYERS: {{ buyers_count }} SELLERS: {{ sellers_count }}
+                    {% trans "BUYERS:" %} {{ buyers_count }} {% trans "SELLERS:" %} {{ sellers_count }}
                 </form>
 
-                <h4 class="card-header custom-card-header">Marketplace<sup></sup></h4>
+                <h4 class="card-header custom-card-header">{% trans "Marketplace" %}<sup></sup></h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col" title="Group">Group</th>
-                                <th scope="col" title="Role">RPG Role</th>
-                                <th scope="col" title="Score">Current Score</th>
+                                <th scope="col" title="Group">{% trans "Group" %}</th>
+                                <th scope="col" title="Role">{% trans "RPG Role" %}</th>
+                                <th scope="col" title="Score">{% trans "Current Score" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -765,9 +768,63 @@
 
         </div> <!-- End of row with prefer two columns -->
     </div> <!-- End of container -->
-</body>
 
 <script>
+// Loading localizations to be used  in javascript 
+var translations = { //create object to hold translations
+    averageLabel: "{% trans 'Average' %}",
+    averageQualityLabel: "{% trans '[2] Average' %}",
+    buyerLabel: "{% trans 'BUYER' %}",
+    cannotBuyOver: "{% trans 'You cannot buy over your resistance price.' %}",
+    cannotSellBelow: "{% trans 'You cannot sell below your resistance price.' %}",
+    counterpartPositive: "{% trans 'Counterpart must be a positive number.' %}",
+    dealForFaster: "{% trans ' Try to make a deal for faster.' %}",
+    dealForHigher: "{% trans ' Try to make a deal for higher.' %}",
+    dealForLower: "{% trans ' Try to make a deal for lower.' %}",
+    dealForSlower: "{% trans ' Try to make a deal for slower.' %}",
+    deliveryBetween: "{% trans 'Delivery must be between Slow and Fast.' %}",
+    distributePointsHere: "{% trans ' Distribute Points Here' %}",
+    doNotBuyMoreThanThis: "{% trans ' Do not buy more than this.' %}",
+    doNotBuyOver: "{% trans 'Do NOT Buy Over:' %}",
+    doNotPayMoreThan: "{% trans ' Do not pay more than this.' %}",
+    doNotSellForLess: "{% trans ' Do not sell for less than this.' %}",
+    flexPointsDescription: "{% trans ' Spend, collect, or gift these.' %}",
+    goingHigherGains: "{% trans 'Going higher gains Flex Points (1 point per 100 units--round up).' %}",
+    goingHigherSpends: "{% trans 'Going HIGHER spends Flex Points (1 point per 100 units--round up).' %}",
+    goingLowerGains: "{% trans 'Going LOWER gains Flex Points (1 point per 100 units--round up).' %}",
+    goingLowerSpends: "{% trans 'Going lower spends Flex Points (1 point per 100 units--round up).' %}",
+    highQualityLabel: "{% trans '[3] High' %}",
+    howImportant: "{% trans 'How important is this deal.' %}",
+    importantLabel: "{% trans 'Important' %}",
+    inventoryBought: "{% trans 'Inventory Bought' %}",
+    inventoryBoughtOverMax0: "{% trans 'Inventory bought over your MAX Purchase' %}",
+    inventoryBoughtOverMax1: "{% trans 'will cause bankruptcy.' %}",
+    inventorySold: "{% trans 'Inventory Sold' %}",
+    kindOfImportant: "{% trans 'Kind Of Important' %}",
+    lowQualityLabel: "{% trans '[1] Low' %}",
+    maxSales: "{% trans 'MAX Sales:' %}",
+    newDealID: "{% trans 'New Deal ID:' %}",
+    noneLabel: "{% trans 'NONE' %}",
+    notTimeForDeals0: "{% trans 'Not time for deals yet.' %}",
+    notTimeForDeals1: "{% trans 'Deals can begin at ' %}",
+    pricePositive: "{% trans 'Price must be a positive number.' %}",
+    purchaseOrder: "{% trans 'PURCHASE ORDER' %}",
+    qualityBetween: "{% trans 'Quality must be between Low and High.' %}",
+    saleInvoice: "{% trans 'SALE INVOICE' %}",
+    sellerLabel: "{% trans 'SELLER' %}",
+    sellingOverMax: "{% trans 'Selling over MAX will cost Flex Points to increase capacity.' %}",
+    sellingOverThis: "{% trans ' Selling over this will cost Flex Points.' %}",
+    slowLabel: "{% trans 'Slow' %}",
+    smallPotatoes: "{% trans 'Small Potatoes' %}",
+    somewhatImportant: "{% trans 'Somewhat Important' %}",
+    targetBuyingAtLeast: "{% trans ' Target buying at least this many.' %}",
+    targetSellingAtLeast: "{% trans ' Target selling at least this many.' %}",
+    targetThis: "{% trans 'Target This:' %}",
+    unitsPositive: "{% trans 'Units must be a positive number.' %}",
+    veryImportantLabel: "{% trans 'Very Important' %}",
+    vitalImportanceLabel: "{% trans 'Vital Importance' %}",
+}; // end javacript translations
+
 $(document).ready(function() {
     // Array to hold the IDs of the divs you are toggling
     const divsToToggle = ['btnOpenDealForm', 'btnOpenCancelForm', 'btnOpenSendFlexForm', 'btnOpenSendMessageForm'];
@@ -778,7 +835,7 @@ $(document).ready(function() {
         toggleDiv('btnOpenDealForm');
         // Generate UNIX timestamp in milliseconds
         timeStampInMilliseconds = new Date().getTime();
-        $('#newDealID').text("New Deal ID: " + timeStampInMilliseconds);
+        $('#newDealID').text(translations.newDealID + timeStampInMilliseconds);
     });
     $('#btnCancelDeal').click(function() {
         toggleDiv('btnOpenCancelForm');
@@ -792,14 +849,15 @@ $(document).ready(function() {
 
     // Different text for buyer/seller
     if ({{ groupRole }} == -1){ //seller case
-        $("#txtInventoryTitle").text("Inventory Sold");
-        $("#txtInventoryTarget").text("Target This:");
-        $("#txtInventoryNote").text("Selling over MAX will cost Flex Points to increase capacity.");
+        $("#txtInventoryTitle").text(translations.inventorySold);
+        $("#txtInventoryTarget").text(translations.targetThis);
+        $("#txtInventoryNote0").text(translations.sellingOverMax);
     }else{ //buyer case
-        $("#txtInventoryTitle").text("Inventory Bought");
-        $("#txtInventoryTarget").text("Do NOT Buy Over:");
-        $("#txtInventoryNote").text("Inventory bought over your MAX Purchase ({{ rpg_max_purchase }}) will cause bankruptcy.");
-    }//end elseIf
+        $("#txtInventoryTitle").text(translations.inventoryBought);
+        $("#txtInventoryTarget").text(translations.doNotBuyOver);
+        $("#txtInventoryNote0").text(translations.inventoryBoughtOverMax0);
+        $("#txtInventoryNote1").text(translations.inventoryBoughtOverMax1);
+    } //end elseIf
 
     //setting up time checking for playing RPG----Put here for wide scope used to check submissions allowed or now
     var dealsBegin = new Date({{ rpg_closest_end_date|date:"U" }} * 1000); // Convert to milliseconds
@@ -834,21 +892,21 @@ $(document).ready(function() {
     //fix the Buyer/Seller to text not integer on page when first loading page
     // Also hide/show parts specific to Buyer/Seller
     if ({{ groupRole }} == -1){
-        $(".txtRole").text("SELLER");
-        $("#txtOrderTitle").text("SALE INVOICE");
-        $("#txtFlexMsg0").html("<sup>a</sup>Going LOWER gains Flex Points (1 point per 100 units--round up).");
-        $("#txtFlexMsg1").html("Going HIGHER spends Flex Points (1 point per 100 units--round up).");
+        $(".txtRole").text(translations.sellerLabel);
+        $("#txtOrderTitle").text(translations.saleInvoice);
+        $("#txtFlexMsg0").html("<sup>a</sup>" + translations.goingLowerGains);
+        $("#txtFlexMsg1").html(translations.goingHigherSpends);
         $("[id^='txtSellerScore']").removeClass('d-none'); // Buyer RPG calculation Resistance - Price
     }else if({{ groupRole }} == 1){
-        $(".txtRole").text("BUYER");   
-        $("#txtOrderTitle").text("PURCHASE ORDER");
-        $("#txtFlexMsg0").html("<sup>a</sup>Going higher gains Flex Points (1 point per 100 units--round up).");
-        $("#txtFlexMsg1").html("Going lower spends Flex Points (1 point per 100 units--round up).");
+        $(".txtRole").text(translations.buyerLabel);
+        $("#txtOrderTitle").text(translations.purchaseOrder);
+        $("#txtFlexMsg0").html("<sup>a</sup>" + translations.goingHigherGains);
+        $("#txtFlexMsg1").html(translations.goingLowerSpends);
         $("#txtFlexMsg4").hide();
         $("#txtOverProduction").hide(); // Buyer does not have over production
         $("[id^='txtBuyerScore']").removeClass('d-none'); // Buyer RPG calculation Resistance - Price
     }else{
-        $(".txtRole").text("NONE");
+        $(".txtRole").text(translations.noneLabel);
     }//end elseIf
     
     // Declare variables that need wide scope here
@@ -864,10 +922,10 @@ $(document).ready(function() {
         switch (attributeValue) {
             case 0:
             case 1:
-                attributeValueText = "Slow";
+                attributeValueText = translations.slowLabel;
                 break;
             case 2:
-                attributeValueText = "Average";
+                attributeValueText = translations.averageLabel;
                 break;
             case 3:
                 attributeValueText = "Fast";
@@ -877,56 +935,56 @@ $(document).ready(function() {
     $("#txtPositionDelivery").text("[{{ groupDelivery }}] " + attributeValueText);
     // Different text for buyer/seller
     if ({{ groupRole }} == -1){
-        $("#txtPositionDeliveryHelp").text(" Try to make a deal for slower.");
+        $("#txtPositionDeliveryHelp").text(translations.dealForSlower);
         //Resistance
-        $("#txtPositionResistanceHelp").text(" Do not sell for less than this.");
+        $("#txtPositionResistanceHelp").text(translations.doNotSellForLess);
         //Mod Units
-        $("#txtPositionUnitsHelp").text(" Target selling at least this many.");
+        $("#txtPositionUnitsHelp").text(translations.targetSellingAtLeast);
         //MAX Purchase
-        $("#txtPositionMaxPurchaseHelp").text(" Selling over this will cost Flex Points.");
-        $("#txtMaxPurchase").text("MAX Sales:")
+        $("#txtPositionMaxPurchaseHelp").text(translations.sellingOverThis);
+        $("#txtMaxPurchase").text(translations.maxSales);
     }else{
-        $("#txtPositionDeliveryHelp").text(" Try to make a deal for faster.");
+        $("#txtPositionDeliveryHelp").text(translations.dealForFaster);
         //Resistance
-        $("#txtPositionResistanceHelp").text(" Do not pay more than this.");
+        $("#txtPositionResistanceHelp").text(translations.doNotPayMoreThan);
         //Mod Units
-        $("#txtPositionUnitsHelp").text(" Target buying at least this many.");
+        $("#txtPositionUnitsHelp").text(translations.targetBuyingAtLeast);
         //MAX Purchase
-        $("#txtPositionMaxPurchaseHelp").text(" Do not buy more than this.");
+        $("#txtPositionMaxPurchaseHelp").text(translations.doNotBuyMoreThanThis);
     }//end elseIf
 
     //Flex
-    $("#txtPositionFlexHelp").text(" Spend, collect, or gift these.");
+    $("#txtPositionFlexHelp").text(translations.flexPointsDescription);
 
     //Importance
     attributeValueText = "";
     var attributeValue = {{ groupImportance }};
         switch (attributeValue) {
             case 0:
-                attributeValueText = " Distribute Points Here";
+                attributeValueText = translations.distributePointsHere;
                 break;
             case 1:
-                attributeValueText = " Small Patatoes";
+                attributeValueText = translations.smallPotatoes;
                 break;
             case 2:
-                attributeValueText = " Kind Of Important";
+                attributeValueText = translations.kindOfImportant;
                 break;
             case 3:
-                attributeValueText = " Somewhat Important";
+                attributeValueText = translations.somewhatImportant;
                 break;
             case 4:
-                attributeValueText = " Important";
+                attributeValueText = translations.importantLabel;
                 break;
             case 5:
-                attributeValueText = " Very Important";
+                attributeValueText = translations.veryImportantLabel;
                 break;
             case 6:
-                attributeValueText = " Vital Importance";
+                attributeValueText = translations.vitalImportanceLabel;
                 break;
         } //end switch selectedValue
     //add text to attribute
     $("#txtPositionImportance").text("[{{ groupImportance }}] " + attributeValueText);
-    $("#txtPositionImportanceHelp").text(" How important is this deal.");
+    $("#txtPositionImportanceHelp").text(translations.howImportant);
 
     //Quality
     attributeValueText = "";
@@ -934,13 +992,13 @@ $(document).ready(function() {
         switch (attributeValue) {
             case 0:
             case 1:
-                attributeValueText = "[1] Low";
+                attributeValueText = translations.lowQualityLabel;
                 break;
             case 2:
-                attributeValueText = "[2] Average";
+                attributeValueText = translations.averageQualityLabel;
                 break;
             case 3:
-                attributeValueText = "[3] High";
+                attributeValueText = translations.highQualityLabel;
                 break;
         } //end switch selectedValue
     //add text to attribute
@@ -948,9 +1006,9 @@ $(document).ready(function() {
 
     // Different text for buyer/seller
     if ({{ groupRole }} == -1){ //seller case
-        $("#txtPositionQualityHelp").text(" Try to make a deal for lower.");
+        $("#txtPositionQualityHelp").text(translations.dealForLower);
     }else{ //buyer case
-        $("#txtPositionQualityHelp").text(" Try to make a deal for higher.");
+        $("#txtPositionQualityHelp").text(translations.dealForHigher);
     }//end elseIf
 
     // When btnSubmitDeal is clicked, the form inputs are checked
@@ -962,7 +1020,7 @@ $(document).ready(function() {
             var isValid = true; // Set flag as pass
         }else{ //NOT time now
             var isValid = false; // Set flag as fail
-            errorMessage = "Not time for deals yet.\n Deals can begin at " + dealsBegin + ".";
+            errorMessage = translations.notTimeForDeals0 + "\n" + translations.notTimeForDeals1 + dealsBegin + ".";
             event.preventDefault(); // Prevent form submission
         }
 
@@ -976,36 +1034,36 @@ $(document).ready(function() {
         var units = $("input[name='units']").val();
         if(units === "" || units <= 0) {
             isValid = false;
-            errorMessage += "Units must be a positive number.\n";
+            errorMessage += translations.unitsPositive + "\n";
         }
         // Validate price
         var price = $("input[name='price']").val();
         if(price === "" || price <= 0) {
             isValid = false;
-            errorMessage += "Price must be a positive number.\n";
+            errorMessage += translations.pricePositive + "\n";
         }
         if ({{ groupRole }} == -1){ // Seller case
             if(price < {{ rpg_resistance }}) {
                 isValid = false;
-                errorMessage += "You cannot sell below your resistance price.\n";
+                errorMessage += translations.cannotSellBelow + "\n";
             }
         }else{
             if(price > {{ rpg_resistance }}) {
                 isValid = false;
-                errorMessage += "You cannot buy over your resistance price.\n";
+                errorMessage += translations.cannotBuyOver + "\n";
             }
         }
         // Validate quality
         var quality = $("select[name='quality']").val();
         if(quality < 1 || quality > 3) {
             isValid = false;
-            errorMessage += 'Quality must be between Low and High.\n';
+            errorMessage += translations.qualityBetween + "\n";
         }
         // Validate delivery
         var delivery = $("select[name='delivery']").val();
         if(delivery < 1 || delivery > 3) {
             isValid = false;
-            errorMessage += 'Delivery must be between Slow and Fast.\n';
+            errorMessage += translations.deliveryBetween + '\n';
         }
         // Validate Deal ID
         var dealID = $("input[name='dealID']").val();
@@ -1027,7 +1085,7 @@ $(document).ready(function() {
         var counterPart = $("input[name='counterpartyCancel']").val();
         if(counterPart === "" || counterPart <= 0) {
             isValid = false;
-            errorMessage += "Counterpart must be a positive number.\n";
+            errorMessage += translations.counterpartPositive + "\n";
         }
         // Validate Deal ID
         var dealID = $("input[name='dealIDCancel']").val();
@@ -1107,4 +1165,5 @@ $(document).ready(function() {
 
 </script>
 
+</body>
 </html>

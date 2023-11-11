@@ -2,16 +2,16 @@ from django.shortcuts import render
 from datetime import datetime
 from django.utils import timezone
 from datetime import timedelta
-
-# Create your views here.
-
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.utils.translation import gettext as _
+
 #from GameSetup.models import GroupLogin
 from .models import GroupCharacterSheet
 from GameSetup.models import GameSettings
 from GameSetup.views import check_start_time
 import random
+
 
 
 def generate_random_number(request):
@@ -107,7 +107,7 @@ def roll_dice(request):
             #    groupRole = 'UNKNOWN'
             #end elseIf
 
-            return JsonResponse({"status": "success", "rolls_left": currentGroupCharacterSheet.groupDiceLeft, "latest_roll": roll_result, "latest_role": currentGroupCharacterSheet.groupRole, "message": "Roll sent to server."})
+            return JsonResponse({"status": "success", "rolls_left": currentGroupCharacterSheet.groupDiceLeft, "latest_roll": roll_result, "latest_role": currentGroupCharacterSheet.groupRole, "message": _("Roll sent to server.")})
         else:
             return JsonResponse({"status": "fail", "message": "No rolls left"})
 

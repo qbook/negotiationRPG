@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -6,6 +7,16 @@
     <title>Choose Group</title>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <a href="#" class="language-link" data-language="en">English</a>
+    <a href="#" class="language-link" data-language="zh-hant">中文 (繁體)</a>
+
+    <form action="{% url 'set_language' %}" method="post" id="languageForm">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.path }}">
+        <input type="hidden" name="language" id="languageInput">
+    </form>
+
     <a href="{% url 'home' %}"><div class="text-center">
         <img src="{% static 'images/' %}logoClass01_blur.png" class="img-fluid w-50" alt="Responsive logo">
     </div></a>
@@ -15,17 +26,17 @@
             <div class="col-md-6 mx-auto">  <!-- 'col-md-6' will make card take half of the width for medium screens and up -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title fw-bold">GROUP LOG IN:</h5> 
+                        <h5 class="card-title fw-bold">{% trans "GROUP LOG IN:" %}</h5> 
                         <h4>
                             <!-- Dropdown for choose_group view -->
                         <form action="{% url 'choose_group' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="groupDigit">Choose a group:</label>
+                                <label for="groupDigit">{% trans "Choose a group:" %}</label>
                                 <select class="form-control form-select form-select-lg mb-3" id="groupDigit" name="groupDigit">
-                                    <option value="" selected disabled>My Group</option>
+                                    <option value="" selected disabled>{% trans "My Group" %}</option>
                                     {% for group in this_class_groups %}
-                                        <option value="{{ group.groupDigit }}">Group {{ group.groupDigit }}</option>
+                                        <option value="{{ group.groupDigit }}">{% trans "Group" %} {{ group.groupDigit }}</option>
                                     {% endfor %}
                                         <option value="1000">Administrator</option>
                                 </select>
@@ -33,10 +44,10 @@
 
                             <!-- Form for check_group view -->
                             <div class="form-group">
-                                Password:<br> {{ form.groupPassword }}
+                                {% trans "Password:" %}<br> {{ form.groupPassword }}
                             </div><br>
 
-                            <button type="submit" class="btn btn-primary">Log In</button>
+                            <button type="submit" class="btn btn-primary">{% trans "Log In" %}</button>
 
                                 <!-- store the class name here in case PW fails and URL is lost -->
                                 <input type="hidden" name="className" value="{{ currentClassName }}">
@@ -50,7 +61,7 @@
                             </div>
                         {% endif %}
                     </h4>
-                    <p class="card-text">Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</p>                    
+                    <p class="card-text">{% trans "Class:" %} {{ currentClassName }}<br>{% trans "Teacher:" %} {{ currentTeacher }}</p>                    
                 </div>
             </div>
         </div>
@@ -66,6 +77,42 @@
         $("#groupDigit option[value='1000']:contains('1000')").remove();
         
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // Function to change language and include existing URL arguments
+        function changeLanguage(lang) {
+            var form = document.getElementById('languageForm');
+            var nextInput = form.querySelector('input[name="next"]');
+            var currentUrl = window.location.href;
+            var baseUrl = currentUrl.split('?')[0]; // Base URL without query params
+            var queryParams = new URLSearchParams(window.location.search);
+
+            // Update the 'next' input field with the current URL
+            nextInput.value = `${baseUrl}?${queryParams.toString()}`;
+
+            // Update the 'languageInput' with the selected language
+            document.getElementById('languageInput').value = lang;
+
+            // Submit the form
+            form.submit();
+        }
+
+        // Event listener for language change links
+        var languageLinks = document.querySelectorAll('.language-link');
+        languageLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent the default anchor link behavior
+                var lang = this.getAttribute('data-language');
+                changeLanguage(lang);
+            });
+        });
+    });
+
+
+
+
+
+    
 </script>
 
 </html>

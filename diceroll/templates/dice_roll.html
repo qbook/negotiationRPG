@@ -1,9 +1,10 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     {% include "_header_00.html" %}
-    <title>Dice Roll</title>
+    <title>{% trans "Dice Roll" %}</title>
 </head>
 <body>
     {% include "_menu_group.html" %}
@@ -22,7 +23,7 @@
 
             <div class="card text-dark bg-light mb-3 shadow">
                 <div class="mb-3">
-                    <h1>DICE Page</h1><h2>Group: {{ groupDigit }}</h2><h4>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h4>
+                    <h1>{% trans "DICE Page" %}</h1><h2>{% trans "Group:" %} {{ groupDigit }}</h2><h4>{% trans "Class:" %} {{ currentClassName }}<br>{% trans "Teacher:" %} {{ currentTeacher }}</h4>
                 </div>
             </div>
 
@@ -39,64 +40,64 @@
             
                     <!-- Overlay text -->
                     <div class="position-absolute bottom-0 start-0 mb-2 ms-2">
-                        <span class="bg-dark text-light py-1 px-3" style="border-radius: 5px;">GO TO LOGIN PAGE</span>
+                        <span class="bg-dark text-light py-1 px-3" style="border-radius: 5px;">{% trans "GO TO LOGIN PAGE" %}</span>
                     </div>
                 </div>
             </a>
 
             <div class="card text-dark bg-light mb-3 shadow">
-                <h4 class="card-header">Role Status</h4>
+                <h4 class="card-header">{% trans "Role Status" %}</h4>
                 <div class="card-body">
-                    <h4>RPG Round: {{ rpg_closest_round }}</h4>
-                    <p id="timeNow">Time Now: </p>
-                    <p>Dice Roll Starts: {{ rpg_closest_start_date }}<br>
-                        Dice Roll Ends: {{ rpg_closest_end_date }}<br>
+                    <h4>{% trans "RPG Round:" %} {{ rpg_closest_round }}</h4>
+                    <p>{% trans "Time Now:" %} <span id="timeNow"></span></p>
+                    <p>{% trans "Dice Roll Starts:" %} {{ rpg_closest_start_date }}<br>
+                        {% trans "Dice Roll Ends:" %} {{ rpg_closest_end_date }}<br>
                     </p>
                     <hr class="my-1 bg-primary">
                     <p>
-                        <div id="countDownStart">Time Left To START Roll: </div>
-                        <div id="countDownEnd">Time Left To END Roll: </div>
+                        <div>{% trans "Time Left To START Roll:" %} <span id="countDownStart"></span></div>
+                        <div>{% trans "Time Left To END Roll:" %} <span id="countDownEnd"></span></div>
                     </p>
                     <hr class="my-1 bg-primary">                    
                     <p>
-                        RPG {{ rpg_closest_round }} Deals End: {{ rpg_play_days_left }}
+                        RPG {{ rpg_closest_round }} {% trans "Deals End:" %} {{ rpg_play_days_left }}
                     </p>
-                    <h4 class="card-header">Product</h4>                    
-                    <p>Product: {{ rpg_current_product_name|safe}}<br>
-                        Base Price: {{ rpg_current_product_price }}<br>
-                        Base Units: {{ rpg_current_product_units }}<br>
-                        Currency: {{ rpg_current_product_currency }}<br>
+                    <h4 class="card-header">{% trans "Product" %}</h4>
+                    <p>{% trans "Product:" %} {{ rpg_current_product_name|safe}}<br>
+                        {% trans "Base Price:" %} {{ rpg_current_product_price }}<br>
+                        {% trans "Base Units:" %} {{ rpg_current_product_units }}<br>
+                        {% trans "Currency:" %} {{ rpg_current_product_currency }}<br>
                     </p>
                 </div>
             </div>
 
             <div class="card text-dark bg-light mb-3 shadow"> <!-- Added shadow for elevated effect -->
-                <h4 class="card-header">Negotiation Position</h4>
+                <h4 class="card-header">{% trans "Negotiation Position" %}</h4>
                 <div class="card-body">
                     <div id="txtPosition">
-                        <p class="mb-2">RESISTANCE: <strong>{{ groupResistancePrice }}</strong></p>
+                        <p class="mb-2">{% trans "RESISTANCE:" %} <strong>{{ groupResistancePrice }}</strong></p>
                         <hr class="my-1 bg-primary"> <!-- Colored horizontal line -->
-                        <p class="mb-2">FLEX: <strong>{{ groupFlex }}</strong></p>
+                        <p class="mb-2">{% trans "FLEX:" %} <strong>{{ groupFlex }}</strong></p>
                         <hr class="my-1 bg-primary"> 
-                        <p class="mb-2">MAX Purchase: <strong>{{ groupMaxPurchase }}</strong></p>
+                        <p class="mb-2">{% trans "MAX Purchase:" %} <strong>{{ groupMaxPurchase }}</strong></p>
                         <hr class="my-1 bg-primary"> 
-                        <p class="mb-2">DELIVERY: <strong>{{ groupDelivery }}</strong></p>
+                        <p class="mb-2">{% trans "DELIVERY:"%} <strong>{{ groupDelivery }}</strong></p>
                         <hr class="my-1 bg-primary"> 
-                        <p class="mb-2">UNITS: <strong>{{ groupUnits }}</strong></p>
+                        <p class="mb-2">{% trans "UNITS:" %} <strong>{{ groupUnits }}</strong></p>
                         <hr class="my-1 bg-primary"> 
-                        <p class="mb-2">IMPORTANCE: <strong>{{ groupImportance }}</strong></p>
+                        <p class="mb-2">{% trans "IMPORTANCE:" %} <strong>{{ groupImportance }}</strong></p>
                         <hr class="my-1 bg-primary"> 
-                        <p class="mb-2">QUALITY: <strong>{{ groupQuality }}</strong></p>
+                        <p class="mb-2">{% trans "QUALITY:" %} <strong>{{ groupQuality }}</strong></p>
                         <hr class="my-1 bg-primary"> 
                     </div>
-                    <p class="mb-3">ROLE: <span class="txtRole fw-bold" id="txtRole0">{{ groupRole }}</span></p>
+                    <p class="mb-3">{% trans "ROLE:" %} <span class="txtRole fw-bold" id="txtRole0">{{ groupRole }}</span></p>
                     <hr class="my-1 bg-primary"> 
-                    <a class="btn btn-primary mb-3" id="btnGoToDashboard" href="{% url 'position_buyer_seller' %}">Go To RPG Dashboard</a>
+                    <a class="btn btn-primary mb-3" id="btnGoToDashboard" href="{% url 'position_buyer_seller' %}">{% trans "Go To RPG Dashboard" %}</a>
                     <!--note not implemented here at this time-->
-                    <p style="display: none;">Notes:<br>
+                    <p style="display: none;">{% trans "Notes:" %}<br>
                         <div id="txtGroupNote" onclick="editNote()"></div>
                     </p>
-                    <div style="display: none;" class="text-info mb-2" onclick="editNote()">(Click to edit note)</div>
+                    <div style="display: none;" class="text-info mb-2" onclick="editNote()">{% trans "(Click to edit note)" %}</div>
                     <!-- Hidden input field for editing -->
                     <textarea id="txtTeacherNoteEdit" style="display: none;" class="form-control mb-2"></textarea>
                     <button id="btnSaveNote" style="display: none;" onclick="saveNote()" class="btn btn-secondary">Save</button>
@@ -104,34 +105,34 @@
             </div>
             
             <div class="card text-dark bg-light mb-3 shadow" id="bsRoleDice">
-                <h4 class="card-header">Role Dice</h4>
+                <h4 class="card-header">{% trans "Role Dice" %}</h4>
                 <div class="card-body">
-                    <h4>RPG Round: {{ rpg_closest_round }}</h4>
-                    <p>Dice Roll Start: {{ rpg_closest_start_date }}<br>
-                        Dice Roll End: {{ rpg_closest_end_date }}
+                    <h4>{% trans "RPG Round:"%} {{ rpg_closest_round }}</h4>
+                    <p>{% trans "Dice Roll Start:" %} {{ rpg_closest_start_date }}<br>
+                        {% trans "Dice Roll End:" %} {{ rpg_closest_end_date }}
                     </p>
                     <hr class="my-1 bg-primary">
                     <div class="container mt-1">
                         <!-- Button to roll dice -->
-                        <button class="btn btn-primary col-sm-5 text-center" id="btnRollDice">Roll Dice</button>
+                        <button class="btn btn-primary col-sm-5 text-center" id="btnRollDice">{% trans "Roll Dice" %}</button>
                         <div id="icoSpinner" class="spinner-border text-secondary" role="status" style="display:none;">
-                            <span class="visually-hidden">ROLLING</span>
+                            <span class="visually-hidden">{% trans "ROLLING" %}</span>
                         </div>
                         <!-- Display remaining rolls and latest roll -->
-                        <br>Rolls Left: <span class="bg-warning" id="txtRollsLeft">{{ groupDiceLeft }}</span><br>
-                        Spend These Points: <span class="bg-warning" id="txtRollScore">{{ groupDiceLastRoll }}</span><br>
-                        Negotiation Role: <span class="txtRole bg-warning" id="txtRole1">{{ groupRole }}</span>
+                        <br>{% trans "Rolls Left:" %} <span class="bg-warning" id="txtRollsLeft">{{ groupDiceLeft }}</span><br>
+                        {% trans "Spend These Points:" %} <span class="bg-warning" id="txtRollScore">{{ groupDiceLastRoll }}</span><br>
+                        {% trans "Negotiation Role:" %} <span class="txtRole bg-warning" id="txtRole1">{{ groupRole }}</span>
                     </div>
                 </div>
             </div>
 
             <div class="card text-dark bg-light mb-3 shadow" id="bsDistributePoints">
-                <h4 id="txtDistributeNow" class="card-header">Distribute Points <div style="display: inline-block;" id="txtPointsLeft"></div></h4>
+                <h4 id="txtDistributeNow" class="card-header">{% trans "Distribute Points" %} <div style="display: inline-block;" id="txtPointsLeft"></div></h4>
                 <div class="card-body">
-                    <p class="small text-muted">Spend your points here. Click <strong>Play Now</strong> when ready.<br>(Once you click Play Now, your position is locked and cannot be changed for this RPG round.).</p>
+                    <p class="small text-muted">{% trans "Spend your points here."%} {% trans "Click" %} <strong>{% trans "Play Now" %}</strong> {% trans "when ready." %}<br>{% trans "(Once you click Play Now, your position is locked and cannot be changed for this RPG round.)" %}.</p>
                     <form id="attributeForm" class="form-horizontal">
                         <!-- RESISTANCE: -->
-                        <label for="drpResistance" class="col-sm-3 col-form-label">RESISTANCE:</label>
+                        <label for="drpResistance" class="col-sm-3 col-form-label">{% trans "RESISTANCE:" %}</label>
                         <select class="point-dropdown mb-2" name="drpResistance" id="drpResistance">
                             <option value="1" {% if groupResistancePrice == 1 %}selected{% endif %}>1</option>
                             <option value="2" {% if groupResistancePrice == 2 %}selected{% endif %}>2</option>
@@ -143,7 +144,7 @@
                         <div id="txtResistance" class="d-inline-block align-middle small text-muted"></div><br>
                         
                         <!-- FLEX: -->
-                        <label for="drpFlex" class="col-sm-3 col-form-label">FLEX:</label>
+                        <label for="drpFlex" class="col-sm-3 col-form-label">{% trans "FLEX:" %}</label>
                         <select class="point-dropdown mb-2" name="drpFlex" id="drpFlex">
                             <option value="1" {% if groupFlex == 1 %}selected{% endif %}>1</option>
                             <option value="2" {% if groupFlex == 2 %}selected{% endif %}>2</option>
@@ -155,7 +156,7 @@
                         <div id="txtFlex" class="d-inline-block align-middle small text-muted"></div><br>
             
                         <!-- MAX Purchase: -->
-                        <label for="drpMaxPurchase" class="col-sm-3 col-form-label">MAX Purchase:</label>
+                        <label for="drpMaxPurchase" class="col-sm-3 col-form-label">{% trans "MAX Purchase:" %}</label>
                         <select class="point-dropdown mb-2" name="drpMaxPurchase" id="drpMaxPurchase">
                             <option value="0" {% if groupMaxPurchase == 1 %}selected{% endif %}>0</option>
                             <option value="1" {% if groupMaxPurchase == 1 %}selected{% endif %}>1</option>                            
@@ -168,7 +169,7 @@
                         <div id="txtMaxPurchase" class="d-inline-block align-middle small text-muted"></div><br>
             
                         <!-- DELIVERY: -->
-                        <label for="drpDelivery" class="col-sm-3 col-form-label">DELIVERY:</label>
+                        <label for="drpDelivery" class="col-sm-3 col-form-label">{% trans "DELIVERY:" %}</label>
                         <select class="point-dropdown mb-2" name="drpDelivery" id="drpDelivery">
                             <option value="1" {% if groupDelivery == 1 %}selected{% endif %}>1</option>
                             <option value="2" {% if groupDelivery == 2 %}selected{% endif %}>2</option>
@@ -180,7 +181,7 @@
                         <div id="txtDelivery" class="d-inline-block align-middle small text-muted"></div><br>
             
                         <!-- UNITS: -->
-                        <label for="drpUnits" class="col-sm-3 col-form-label">UNITS:</label>
+                        <label for="drpUnits" class="col-sm-3 col-form-label">{% trans "UNITS:" %}</label>
                         <select class="point-dropdown mb-2" name="drpUnits" id="drpUnits">
                             <option value="1" {% if groupUnits == 1 %}selected{% endif %}>1</option>
                             <option value="2" {% if groupUnits == 2 %}selected{% endif %}>2</option>
@@ -192,7 +193,7 @@
                         <div id="txtUnits" class="d-inline-block align-middle small text-muted"></div><br>
             
                         <!-- IMPORTANCE: -->
-                        <label for="drpImportance" class="col-sm-3 col-form-label">IMPORTANCE:</label>
+                        <label for="drpImportance" class="col-sm-3 col-form-label">{% trans "IMPORTANCE:" %}</label>
                         <select class="point-dropdown mb-2" name="drpImportance" id="drpImportance">
                             <option value="1" {% if groupImportance == 1 %}selected{% endif %}>1</option>
                             <option value="2" {% if groupImportance == 2 %}selected{% endif %}>2</option>
@@ -204,7 +205,7 @@
                         <div id="txtImportance" class="d-inline-block align-middle small text-muted"></div><br>
             
                         <!-- QUALITY: -->
-                        <label for="drpQuality" class="col-sm-3 col-form-label">QUALITY:</label>
+                        <label for="drpQuality" class="col-sm-3 col-form-label">{% trans "QUALITY:" %}</label>
                         <select class="point-dropdown mb-2" name="drpQuality" id="drpQuality">
                             <option value="1" {% if groupQuality == 1 %}selected{% endif %}>1</option>
                             <option value="2" {% if groupQuality == 2 %}selected{% endif %}>2</option>
@@ -215,27 +216,63 @@
                         </select>
                         <div id="txtQuality" class="d-inline-block align-middle small text-muted"></div><br>
                         <hr class="my-1 bg-primary">
-                        <button class="btn btn-primary col-sm-5 text-center" id="btnPlayNow">Play NOW</button>
+                        <button class="btn btn-primary col-sm-5 text-center" id="btnPlayNow">{% trans "Play NOW" %}</button>
                     </form>
                 </div>
             </div>
-                        
         </div>
     </div><!--End container-->
-</body>
-
 <script>
+// Loading localizations to be used  in javascript 
+var translations = { //create object to hold translations
+    areYouSure: "{% trans 'Are you sure you want to lock in your numbers for this RPG?\nThis cannot be undone.' %}",
+    attributeUpdate: "{% trans 'Attributes updated successfully.' %}",
+    attributeUpdateFail: "{% trans 'Failed to update attributes.' %}",
+    averageDeliveryAcceptable: "{% trans 'Average Delivery Acceptable' %}",
+    averageQualityAcceptable: "{% trans 'Average Quality Acceptable' %}",
+    basePrice: "{% trans 'Base Price' %}",
+    baseUnits: "{% trans 'Base Units' %}",
+    buyerLabel: "{% trans 'BUYER' %}",
+    capableAvgDelivery: "{% trans 'Capable of Average Delivery' %}",
+    capableAvgQuality: "{% trans 'Capable of Average Quality' %}",
+    capableFastDelivery: "{% trans 'Capable of Fast Delivery' %}",
+    capableHighQuality: "{% trans 'Capable of High Quality' %}",
+    distributePointsHere: "{% trans 'Distribute Points Here' %}",
+    errorOccurred: "{% trans 'An error occurred.' %}",
+    fastDeliveryRequired: "{% trans 'Fast Delivery Required' %}",
+    flexPoint: "{% trans 'Flex Point' %}",
+    flexPoints: "{% trans 'Flex Points' %}",
+    highQualityRequired: "{% trans 'High Quality Required' %}",
+    important: "{% trans 'Important' %}",
+    kindOfImportant: "{% trans 'Kind Of Important' %}",
+    lowQualityAcceptable: "{% trans 'Low Quality Acceptable' %}",
+    modifyUnits: "{% trans 'Mod. Units' %}",
+    none: "{% trans 'NONE' %}",
+    onlyForBuyer: "{% trans 'Only For Buyer' %}",
+    onlyLowQuality: "{% trans 'Only Capable of Low Quality' %}",
+    onlySlowDelivery: "{% trans 'Only Capable of Slow Delivery' %}",
+    rollDiceFirst: "{% trans 'Roll dice before distributing points!' %}",
+    sellerLabel: "{% trans 'SELLER' %}",
+    slowDeliveryAcceptable: "{% trans 'Slow Delivery Acceptable' %}",
+    smallPotatoes: "{% trans 'Small Potatoes' %}",
+    somewhatImportant: "{% trans 'Somewhat Important' %}",
+    spendTooMuchA: "{% trans 'You cannot spend more than your total points. \n Remove: ' %}",
+    spendTooMuchB: "{% trans '. Try again' %}",
+    veryImportant: "{% trans 'Very Important' %}",
+    vitalImportance: "{% trans 'Vital Importance' %}",
+};
+
 // Make sure the page is fully loaded before we attach our event handlers
 //This is only for the initial page refresh to fix buyer/seller to now show integer
 $(document).ready(function() {
-
+//alert(translations.distributePointsHere);
     //fix the Buyer/Seller to text not integer on page when first loading page
     if ({{ groupRole }} == -1){
-        $(".txtRole").text("SELLER");
+        $(".txtRole").text(translations.sellerLabel);
     }else if({{ groupRole }} == 1){
-        $(".txtRole").text("BUYER");                        
+        $(".txtRole").text(translations.buyerLabel);
     }else{
-        $(".txtRole").text("NONE");
+        $(".txtRole").text(translations.none);
     }//end elseIf
     
     // Declare variables that need wide scope here
@@ -276,7 +313,7 @@ $(document).ready(function() {
         //setup time
         var now = new Date();
         //show the time now on page
-        document.getElementById("timeNow").innerHTML = "Time Now: " + now;
+        document.getElementById("timeNow").innerHTML = now;
 
         //FIRST for the END time (check end first then check start)
         var timeDifferenceEnd = endTime - now;
@@ -301,12 +338,12 @@ $(document).ready(function() {
         var hours = Math.floor(timeDifferenceStart / 3600000); // Convert to hours
         var minutes = Math.floor((timeDifferenceStart % 3600000) / 60000); // Convert to minutes
         var seconds = Math.floor((timeDifferenceStart % 60000) / 1000); // Convert to seconds
-        document.getElementById("countDownStart").innerHTML = "Time Left To START Roll: " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+        document.getElementById("countDownStart").innerHTML = hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
 
         var hours = Math.floor(timeDifferenceEnd / 3600000); // Convert to hours
         var minutes = Math.floor((timeDifferenceEnd % 3600000) / 60000); // Convert to minutes
         var seconds = Math.floor((timeDifferenceEnd % 60000) / 1000); // Convert to seconds
-        document.getElementById("countDownEnd").innerHTML = "Time Left To END Roll: " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+        document.getElementById("countDownEnd").innerHTML = hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
     }
 
     // Update every second
@@ -352,12 +389,12 @@ $(document).ready(function() {
 
                     //for page display, variable to hold the English for the ROLE integer value
                     if (response.latest_role == -1){
-                        $(".txtRole").text("SELLER");
+                        $(".txtRole").text(translations.buyerLabel);
                     }else if(response.latest_role == 1){
-                        $(".txtRole").text("BUYER");                        
+                        $(".txtRole").text(translations.buyerLabel);                        
                     }else{
-                        $(".txtRole").text("NONE");
-                    }//end elseIf
+                        $(".txtRole").text(translations.none);
+                    } //end elseIf
 
                     // Reset back to original class after some seconds
                     setTimeout(function() {
@@ -378,7 +415,6 @@ $(document).ready(function() {
             }
         });
     });
-
 
     //Button Play NOW clicked
     $("#btnPlayNow").click(function(e) {
@@ -420,22 +456,22 @@ $(document).ready(function() {
                     },
                     success: function(response) {
                         if (response.status == "success") {
-                            alert("Attributes updated successfully");
+                            alert("Attributes updated successfully.");
                             // Disable the form to prevent further changes
                             $("#attributeForm :input").prop("disabled", true);
                         } else {
-                            alert("Failed to update attributes");
+                            alert("Failed to update attributes.");
                         }
                     }
                 }); //end ajax
 
             }else{
                 if (pointsLeft < -0){
-                    alert("You cannot spend more than your total points. \n Remove " + pointsLeft + " and try again.");
+                    alert("You cannot spend more than your total points. \n Remove: " + pointsLeft + ". Try again.");
                     e.preventDefault();  // Prevent the form from submitting which resets all the dropdowns and refreshes page
                     return
                 }else if (pointsLeft > -1 || groupRole == 0){
-                    alert("You have not ROLLED the DICE yet!\nRoll dice before distributing points!");
+                    alert(translations.rollDiceFirst);
                     return;
                 } //end if else
             } //end if not over points from DB
@@ -445,37 +481,35 @@ $(document).ready(function() {
         }
     });//end click PlayNow
 
-
     //Show meaning of changes to dropdowns when distributing dice points
     const meaningMap = {
         Resistance: {
-            '-1': ["Base Price", "= Base Price X 0.98", "= Base Price X 0.96", "= Base Price X 0.94", "= Base Price X 0.92", "= Base Price X 0.91"],
-            '1': ["= Base Price", "= Base Price X 1.02", "= Base Price X 1.03", "= Base Price X 1.04", "= Base Price X 1.05", "= Base Price X 1.06"]
+            '-1': ["= " + translations.basePrice, "= " + translations.basePrice + " X 0.98", "= " + translations.basePrice + " X 0.96", "= " + translations.basePrice + " X 0.94", "= " + translations.basePrice + " X 0.92", "= " + translations.basePrice + " X 0.91"],
+            '1': ["= " + translations.basePrice, "= " + translations.basePrice + " X 1.02", "= " + translations.basePrice + " X 1.03", "= " + translations.basePrice + " X 1.04", "= " + translations.basePrice + " X 1.05", "= " + translations.basePrice + " X 1.06"]
         },
-        Flex: ["= 1 Flex Point", "= 2 Flex Points", "= 3 Flex Points", "= 4 Flex Points", "= 5 Flex Points", "= 6 Flex Points"],
+        Flex: ["= 1 " + translations.flexPoint, "= 2 " + translations.flexPoints, "= 3 " + translations.flexPoints, "= 4 " + translations.flexPoints, "= 5 " + translations.flexPoints, "= 6 " + translations.flexPoints],
         MaxPurchase: {
-            '-1': ["= Only For Buyer"],
-            '1': ["= Mod. Units X 1.1", "= Mod. Units X 1.1", "= Mod. Units X 1.2", "= Mod. Units X 1.2", "= Mod. Units X 1.3", "= Mod. Units X 1.3"]
+            '-1': ["= " + translations.onlyForBuyer],
+            '1': ["= " + translations.modifyUnits + " X 1.1", "= " + translations.modifyUnits + " X 1.1", "= " + translations.modifyUnits + " X 1.2", "= " + translations.modifyUnits + " X 1.2", "= " + translations.modifyUnits + " X 1.3", "= " + translations.modifyUnits + " X 1.3"]
         },
         Delivery: {
-            '-1': ["= Only Capable of Slow Delivery", "= Only Capable of Slow Delivery", "= Capable of Average Delivery", "= Capable of Average Delivery", "= Capable of Fast Delivery", "= Capable of Fast Delivery"],
-            '1': ["= Fast Delivery Required", "= Fast Delivery Required", "= Average Delivery Acceptable", "= Average Delivery Acceptable", "= Slow Delivery Acceptable", "= Slow Delivery Acceptable"]
+            '-1': ["= " + translations.onlySlowDelivery, "= " + translations.onlySlowDelivery, "= " + translations.capableAvgDelivery, "= " + translations.capableAvgDelivery, "= " + translations.capableFastDelivery, "= " + translations.capableFastDelivery],
+            '1': ["= " + translations.fastDeliveryRequired, "= " + translations.fastDeliveryRequired, "= " + translations.averageDeliveryAcceptable, "= " + translations.averageDeliveryAcceptable, "= " + translations.slowDeliveryAcceptable, "= " + translations.slowDeliveryAcceptable]
         },
         Units: {
-            '-1': ["= Base Units X 1", "= Base Units X 1.02", "= Base Units X 1.03", "= Base Units X 1.04", "= Base Units X 1.05", "= Base Units X 1.06"],
-            '1': ["= Base Units", "= Base Units X 1.02", "= Base Units X 1.03", "= Base Units X 1.04", "= Base Units X 1.05", "= Base Units X 1.06"]
+            '-1': ["= " + translations.baseUnits + " X 1", "= " + translations.baseUnits + " X 1.02", "= " + translations.baseUnits + " X 1.03", "= " + translations.baseUnits + " X 1.04", "= " + translations.baseUnits + " X 1.05", "= " + translations.baseUnits + " X 1.06"],
+            '1': ["= " + translations.baseUnits, "= " + translations.baseUnits + " X 1.02", "= " + translations.baseUnits + " X 1.03", "= " + translations.baseUnits + " X 1.04", "= " + translations.baseUnits + " X 1.05", "= " + translations.baseUnits + " X 1.06"]
         },
-        Importance: ["= Small Potatoes", "= Kind Of Important", "= Somewhat Important", "= Important", "= Very Important", "= Vital Importance"],
+        Importance: ["= " + translations.smallPotatoes, "= " + translations.kindOfImportant, "= " + translations.somewhatImportant, "= " + translations.important, "= " + translations.veryImportant, "= " + translations.vitalImportance],
         Quality: {
-            '-1': ["= Only Capable of Low Quality", "= Only Capable of Low Quality", "= Capable of Average Quality", "= Capable of Average Quality", "= Capable of High Quality", "= Capable of High Quality"],
-            '1': ["= High Quality Required", "= High Quality Required", "= Average Quality Acceptable", "= Average Quality Acceptable", "= Low Quality Acceptable", "= Low Quality Acceptable"]
+            '-1': ["= " + translations.onlyLowQuality, "= " + translations.onlyLowQuality, "= " + translations.capableAvgQuality, "= " + translations.capableAvgQuality, "= " + translations.capableHighQuality, "= " + translations.capableHighQuality],
+            '1': ["= " + translations.highQualityRequired, "= " + translations.highQualityRequired, "= " + translations.averageQualityAcceptable, "= " + translations.averageQualityAcceptable, "= " + translations.lowQualityAcceptable, "= " + translations.lowQualityAcceptable]
         }
     };
 
-
     $(".point-dropdown").change(function () {   //end dropdown changed listener
         if (groupRole === 0) {
-            alert("Roll dice before distributing points!");
+            alert(translations.rollDiceFirst);
             return;
         }
         
@@ -483,12 +517,12 @@ $(document).ready(function() {
         const attributeName = $(this).attr('id').substring(3); // Removing 'drp' prefix to get the attribute name
         const correspondingTextDiv = $("#txt" + attributeName); // Getting the ID of the text div
 
-        let meaning = "Distribute Points Here";  // Initialize meaning to the default message
+        let meaning = translations.distributePointsHere;  // Initialize meaning to the default message
         
         if (attributeName === "MaxPurchase" && groupRole === -1) {
             // Special handling for MaxPurchase when the user is a SELLER
             $("#drpMaxPurchase").val("0"); // Reset the dropdown to zero
-            meaning = "= Only For Buyer";  // Warn user
+            meaning = "= " + translations.onlyForBuyer;  // Warn user
         } else if (meaningMap[attributeName]) {
             const attributeMeanings = meaningMap[attributeName];
             if (Array.isArray(attributeMeanings)) {
@@ -519,10 +553,7 @@ $(document).ready(function() {
     let filename = "dice_animeStyle_" + String(randomIndex).padStart(2, '0') + ".jpg";
     document.getElementById("imgRandomImage").src = "{% static 'images/' %}" + filename;
 
-
-
-
 });//document ready
 </script>
-
+</body>
 </html>
