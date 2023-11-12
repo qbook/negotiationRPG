@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 20:28+0800\n"
+"POT-Creation-Date: 2023-11-12 15:05+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: GameSetup/forms.py:28 GameSetup/templates/group_password.html:49
+#: GameSetup/templates/group_password.html:63
+msgid "Update Password"
+msgstr "更新密碼"
 
 #: GameSetup/templates/choose_group.html:29
 msgid "GROUP LOG IN:"
@@ -42,8 +47,8 @@ msgstr "我的組"
 #: position/templates/position_buyer_seller.html:545
 #: position/templates/position_buyer_seller.html:575
 #: position/templates/position_buyer_seller.html:576
-#: position/templates/position_buyer_seller.html:707
-#: position/templates/position_buyer_seller.html:708
+#: position/templates/position_buyer_seller.html:709
+#: position/templates/position_buyer_seller.html:710
 #: position/templates/position_buyer_seller.html:750
 msgid "Group"
 msgstr "組別："
@@ -57,6 +62,7 @@ msgid "Log In"
 msgstr "登入"
 
 #: GameSetup/templates/choose_group.html:64
+#: GameSetup/templates/group_password.html:21
 #: diceroll/templates/dice_roll.html:26
 #: position/templates/position_buyer_seller.html:16
 msgid "Class:"
@@ -68,6 +74,27 @@ msgstr "課程："
 msgid "Teacher:"
 msgstr "教師："
 
+#: GameSetup/templates/group_password.html:20
+#: shared_templates/_menu_group.html:17
+msgid "Account Settings"
+msgstr "帳戶設置"
+
+#: GameSetup/templates/group_password.html:21
+#: diceroll/templates/dice_roll.html:26
+#: position/templates/position_buyer_seller.html:16
+msgid "Group:"
+msgstr "組別："
+
+#: GameSetup/templates/group_password.html:38
+#: diceroll/templates/dice_roll.html:43
+#: position/templates/position_buyer_seller.html:38
+msgid "GO TO LOGIN PAGE"
+msgstr "前往登錄頁面"
+
+#: GameSetup/templates/group_password.html:45
+msgid "Password"
+msgstr "密碼"
+
 #: GameSetup/templates/home.html:27
 msgid "Choose your class:"
 msgstr "選擇你的班級："
@@ -76,6 +103,10 @@ msgstr "選擇你的班級："
 msgid "My Class"
 msgstr "我的課"
 
+#: GameSetup/views.py:348
+msgid "Password updated successfully!"
+msgstr "密碼更新成功！"
+
 #: diceroll/templates/dice_roll.html:7 shared_templates/_menu_group.html:11
 msgid "Dice Roll"
 msgstr "擲骰"
@@ -83,16 +114,6 @@ msgstr "擲骰"
 #: diceroll/templates/dice_roll.html:26
 msgid "DICE Page"
 msgstr "骰子頁面"
-
-#: diceroll/templates/dice_roll.html:26
-#: position/templates/position_buyer_seller.html:16
-msgid "Group:"
-msgstr "組別："
-
-#: diceroll/templates/dice_roll.html:43
-#: position/templates/position_buyer_seller.html:38
-msgid "GO TO LOGIN PAGE"
-msgstr "前往登錄頁面"
 
 #: diceroll/templates/dice_roll.html:49
 msgid "Role Status"
@@ -321,8 +342,8 @@ msgstr "能夠快速交貨"
 msgid "Capable of High Quality"
 msgstr "能提供高質量"
 
-#: position/templates/position_buyer_seller.html:786
 #: diceroll/templates/dice_roll.html:240
+#: position/templates/position_buyer_seller.html:786
 msgid "Distribute Points Here"
 msgstr "在此分配點數"
 
@@ -341,7 +362,7 @@ msgstr "靈活點數"
 #: diceroll/templates/dice_roll.html:244
 #: position/templates/position_buyer_seller.html:278
 #: position/templates/position_buyer_seller.html:489
-#: position/templates/position_buyer_seller.html:653
+#: position/templates/position_buyer_seller.html:655
 msgid "Flex Points"
 msgstr "靈活點數"
 
@@ -580,6 +601,17 @@ msgstr "與"
 msgid "Units"
 msgstr "單位"
 
+#: position/templates/position_buyer_seller.html:233
+#: position/templates/position_buyer_seller.html:418
+#: position/templates/position_buyer_seller.html:517
+#: position/templates/position_buyer_seller.html:547
+#: position/templates/position_buyer_seller.html:579
+#: position/templates/position_buyer_seller.html:611
+#: position/templates/position_buyer_seller.html:616
+#: position/templates/position_buyer_seller.html:620
+msgid "Price"
+msgstr "價格"
+
 #: position/templates/position_buyer_seller.html:234
 #: position/templates/position_buyer_seller.html:518
 #: position/templates/position_buyer_seller.html:548
@@ -742,16 +774,6 @@ msgstr "生產超過最大值，每增加10%%的單位就要花費1個彈性點�
 msgid "Weighted Avg. Price"
 msgstr "加權平均價格"
 
-#: position/templates/position_buyer_seller.html:418
-#: position/templates/position_buyer_seller.html:517
-#: position/templates/position_buyer_seller.html:547
-#: position/templates/position_buyer_seller.html:579
-#: position/templates/position_buyer_seller.html:611
-#: position/templates/position_buyer_seller.html:616
-#: position/templates/position_buyer_seller.html:620
-msgid "Price"
-msgstr "價格"
-
 #: position/templates/position_buyer_seller.html:419
 msgid "Quantity (Units)"
 msgstr "數量（單位）"
@@ -807,7 +829,7 @@ msgid "To Group"
 msgstr "到群組"
 
 #: position/templates/position_buyer_seller.html:490
-#: position/templates/position_buyer_seller.html:710
+#: position/templates/position_buyer_seller.html:712
 msgid "Message"
 msgstr "消息"
 
@@ -822,7 +844,7 @@ msgstr "等待对手的交易"
 
 #: position/templates/position_buyer_seller.html:515
 #: position/templates/position_buyer_seller.html:575
-#: position/templates/position_buyer_seller.html:708
+#: position/templates/position_buyer_seller.html:710
 msgid "To"
 msgstr "至"
 
@@ -832,7 +854,7 @@ msgstr "等待您的交易"
 
 #: position/templates/position_buyer_seller.html:545
 #: position/templates/position_buyer_seller.html:576
-#: position/templates/position_buyer_seller.html:707
+#: position/templates/position_buyer_seller.html:709
 msgid "From"
 msgstr "来自"
 
@@ -872,37 +894,37 @@ msgstr "加权"
 msgid "Avg. Price"
 msgstr "平均价格"
 
-#: position/templates/position_buyer_seller.html:657
+#: position/templates/position_buyer_seller.html:659
 msgid "Importance"
 msgstr "重要性"
 
-#: position/templates/position_buyer_seller.html:679
+#: position/templates/position_buyer_seller.html:681
 #: position/templates/position_buyer_seller.html:799
 msgid "Inventory Bought"
 msgstr "购买的库存"
 
-#: position/templates/position_buyer_seller.html:680
+#: position/templates/position_buyer_seller.html:682
 #: position/templates/position_buyer_seller.html:802
 msgid "Inventory Sold"
 msgstr "售出的库存"
 
-#: position/templates/position_buyer_seller.html:682
+#: position/templates/position_buyer_seller.html:684
 msgid "Score"
 msgstr "得分"
 
-#: position/templates/position_buyer_seller.html:694
+#: position/templates/position_buyer_seller.html:696
 msgid "SCORE:"
 msgstr "得分："
 
-#: position/templates/position_buyer_seller.html:702
+#: position/templates/position_buyer_seller.html:704
 msgid "Messages Received"
 msgstr "收到的消息"
 
-#: position/templates/position_buyer_seller.html:709
+#: position/templates/position_buyer_seller.html:711
 msgid "Subject"
 msgstr "主题"
 
-#: position/templates/position_buyer_seller.html:711
+#: position/templates/position_buyer_seller.html:713
 msgid "Date"
 msgstr "日期"
 
@@ -1070,13 +1092,35 @@ msgstr "目標這個："
 msgid "Units must be a positive number."
 msgstr "單位必須是正數。"
 
+#: position/views.py:883
+msgid "Deal saved."
+msgstr "交易已儲存。"
+
+#: position/views.py:887 position/views.py:919 position/views.py:950
+#: position/views.py:981
+msgid "Form is not valid."
+msgstr "表單無效。"
+
+#: position/views.py:891 position/views.py:922 position/views.py:953
+#: position/views.py:984
+msgid "Method not allowed."
+msgstr "不允許的方法。"
+
+#: position/views.py:916
+msgid "Cancel of deal saved."
+msgstr "交易取消已儲存。"
+
+#: position/views.py:947
+msgid "Gift sent."
+msgstr "禮物已發送。"
+
+#: position/views.py:978
+msgid "Message sent."
+msgstr "訊息已發送。"
+
 #: shared_templates/_menu_group.html:14
 msgid "RPG Dashboard"
 msgstr "RPG控制台"
-
-#: shared_templates/_menu_group.html:17
-msgid "Account Settings"
-msgstr "帳戶設置"
 
 #: shared_templates/_menu_group.html:20
 msgid "Help"

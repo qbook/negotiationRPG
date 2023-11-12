@@ -11,7 +11,7 @@ from django.db.models import Sum
 from decimal import Decimal
 from django.db.models import Count
 from collections import defaultdict
-
+from django.utils.translation import gettext as _
 from GameSetup.models import GroupLogin
 from diceroll.models import GroupCharacterSheet
 from GameSetup.models import GameSettings
@@ -880,15 +880,15 @@ def save_deal(request):
             )
             deal.save()
 
-            messages.success(request, "Deal saved.")
+            messages.success(request, _('Deal saved.'))
             return HttpResponseRedirect('/position_buyer_seller/')
 
         else:
-            messages.error(request, "Form is not valid.")
+            messages.error(request, _('Form is not valid.'))
             return HttpResponseRedirect('/position_buyer_seller/')
 
     else:
-        messages.error(request, "Method not allowed.")
+        messages.error(request, _('Method not allowed.'))
         return HttpResponseRedirect('/position_buyer_seller/')
 
 
@@ -913,13 +913,13 @@ def cancel_deal(request):
             )
             deal.save()
 
-            messages.success(request, "Cancel of deal saved.")
+            messages.success(request, _('Cancel of deal saved.'))
             return HttpResponseRedirect('/position_buyer_seller/')
         else:
-            messages.error(request, "Form is not valid.")
+            messages.error(request, _('Form is not valid.'))
             return HttpResponseRedirect('/position_buyer_seller/')
     else:
-        messages.error(request, "Method not allowed.")
+        messages.error(request, _('Method not allowed.'))
         return HttpResponseRedirect('/position_buyer_seller/')
 
 
@@ -944,13 +944,13 @@ def gift_flex(request):
             )
             gift.save()
 
-            messages.success(request, "Gift sent.")
+            messages.success(request, _('Gift sent.'))
             return HttpResponseRedirect('/position_buyer_seller/')
         else:
-            messages.error(request, "Form is not valid.")
+            messages.error(request, _('Form is not valid.'))
             return HttpResponseRedirect('/position_buyer_seller/')
     else:
-        messages.error(request, "Method not allowed.")
+        messages.error(request, _('Method not allowed.'))
         return HttpResponseRedirect('/position_buyer_seller/')
 
 
@@ -975,13 +975,13 @@ def send_message(request):
             )
             message.save()
 
-            messages.success(request, "Message sent.")
+            messages.success(request, _('Message sent.'))
             return HttpResponseRedirect('/position_buyer_seller/')
         else:
-            messages.error(request, "Form is not valid.")
+            messages.error(request, _('Form is not valid.'))
             return HttpResponseRedirect('/position_buyer_seller/')
     else:
-        messages.error(request, "Method not allowed.")
+        messages.error(request, _('Method not allowed.'))
         return HttpResponseRedirect('/position_buyer_seller/')
 
 def remove_deal(request, deal_id):

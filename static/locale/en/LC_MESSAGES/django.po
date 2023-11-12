@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 20:28+0800\n"
+"POT-Creation-Date: 2023-11-12 15:05+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: GameSetup/forms.py:28 GameSetup/templates/group_password.html:49
+#: GameSetup/templates/group_password.html:63
+msgid "Update Password"
+msgstr "Update Password"
 
 #: GameSetup/templates/choose_group.html:29
 msgid "GROUP LOG IN:"
@@ -42,8 +47,8 @@ msgstr "My Group:"
 #: position/templates/position_buyer_seller.html:545
 #: position/templates/position_buyer_seller.html:575
 #: position/templates/position_buyer_seller.html:576
-#: position/templates/position_buyer_seller.html:707
-#: position/templates/position_buyer_seller.html:708
+#: position/templates/position_buyer_seller.html:709
+#: position/templates/position_buyer_seller.html:710
 #: position/templates/position_buyer_seller.html:750
 msgid "Group"
 msgstr "Group:"
@@ -57,6 +62,7 @@ msgid "Log In"
 msgstr "Log In"
 
 #: GameSetup/templates/choose_group.html:64
+#: GameSetup/templates/group_password.html:21
 #: diceroll/templates/dice_roll.html:26
 #: position/templates/position_buyer_seller.html:16
 msgid "Class:"
@@ -68,6 +74,27 @@ msgstr "Class:"
 msgid "Teacher:"
 msgstr "Teacher:"
 
+#: GameSetup/templates/group_password.html:20
+#: shared_templates/_menu_group.html:17
+msgid "Account Settings"
+msgstr "Account Settings"
+
+#: GameSetup/templates/group_password.html:21
+#: diceroll/templates/dice_roll.html:26
+#: position/templates/position_buyer_seller.html:16
+msgid "Group:"
+msgstr "Group:"
+
+#: GameSetup/templates/group_password.html:38
+#: diceroll/templates/dice_roll.html:43
+#: position/templates/position_buyer_seller.html:38
+msgid "GO TO LOGIN PAGE"
+msgstr "GO TO LOGIN PAGE"
+
+#: GameSetup/templates/group_password.html:45
+msgid "Password"
+msgstr "Password"
+
 #: GameSetup/templates/home.html:27
 msgid "Choose your class:"
 msgstr "Choose your class:"
@@ -76,6 +103,10 @@ msgstr "Choose your class:"
 msgid "My Class"
 msgstr "My Class"
 
+#: GameSetup/views.py:348
+msgid "Password updated successfully!"
+msgstr "Password updated successfully!"
+
 #: diceroll/templates/dice_roll.html:7 shared_templates/_menu_group.html:11
 msgid "Dice Roll"
 msgstr "Dice Roll"
@@ -83,16 +114,6 @@ msgstr "Dice Roll"
 #: diceroll/templates/dice_roll.html:26
 msgid "DICE Page"
 msgstr "DICE Page"
-
-#: diceroll/templates/dice_roll.html:26
-#: position/templates/position_buyer_seller.html:16
-msgid "Group:"
-msgstr "Group:"
-
-#: diceroll/templates/dice_roll.html:43
-#: position/templates/position_buyer_seller.html:38
-msgid "GO TO LOGIN PAGE"
-msgstr "GO TO LOGIN PAGE"
 
 #: diceroll/templates/dice_roll.html:49
 msgid "Role Status"
@@ -325,10 +346,10 @@ msgstr "Capable of Fast Delivery"
 msgid "Capable of High Quality"
 msgstr "Capable of High Quality"
 
-#: position/templates/position_buyer_seller.html:786
 #: diceroll/templates/dice_roll.html:240
+#: position/templates/position_buyer_seller.html:786
 msgid "Distribute Points Here"
-msgstr "Distribute Points Here"
+msgstr " Distribute Points Here"
 
 #: diceroll/templates/dice_roll.html:241
 msgid "An error occurred."
@@ -345,7 +366,7 @@ msgstr "Flex Points"
 #: diceroll/templates/dice_roll.html:244
 #: position/templates/position_buyer_seller.html:278
 #: position/templates/position_buyer_seller.html:489
-#: position/templates/position_buyer_seller.html:653
+#: position/templates/position_buyer_seller.html:655
 msgid "Flex Points"
 msgstr "Flex Points"
 
@@ -584,6 +605,17 @@ msgstr "With"
 msgid "Units"
 msgstr "Units"
 
+#: position/templates/position_buyer_seller.html:233
+#: position/templates/position_buyer_seller.html:418
+#: position/templates/position_buyer_seller.html:517
+#: position/templates/position_buyer_seller.html:547
+#: position/templates/position_buyer_seller.html:579
+#: position/templates/position_buyer_seller.html:611
+#: position/templates/position_buyer_seller.html:616
+#: position/templates/position_buyer_seller.html:620
+msgid "Price"
+msgstr "Price"
+
 #: position/templates/position_buyer_seller.html:234
 #: position/templates/position_buyer_seller.html:518
 #: position/templates/position_buyer_seller.html:548
@@ -752,16 +784,6 @@ msgstr ""
 msgid "Weighted Avg. Price"
 msgstr "Weighted Avg. Price"
 
-#: position/templates/position_buyer_seller.html:418
-#: position/templates/position_buyer_seller.html:517
-#: position/templates/position_buyer_seller.html:547
-#: position/templates/position_buyer_seller.html:579
-#: position/templates/position_buyer_seller.html:611
-#: position/templates/position_buyer_seller.html:616
-#: position/templates/position_buyer_seller.html:620
-msgid "Price"
-msgstr "Price"
-
 #: position/templates/position_buyer_seller.html:419
 msgid "Quantity (Units)"
 msgstr "Quantity (Units)"
@@ -801,8 +823,6 @@ msgstr "Inventory bought over your MAX Purchase"
 
 #: position/templates/position_buyer_seller.html:478
 #: position/templates/position_buyer_seller.html:801
-#, fuzzy
-#| msgid " will cause bankruptcy."
 msgid "will cause bankruptcy."
 msgstr "will cause bankruptcy."
 
@@ -819,7 +839,7 @@ msgid "To Group"
 msgstr "To Group"
 
 #: position/templates/position_buyer_seller.html:490
-#: position/templates/position_buyer_seller.html:710
+#: position/templates/position_buyer_seller.html:712
 msgid "Message"
 msgstr "Message"
 
@@ -834,7 +854,7 @@ msgstr "Deals Waiting For Counterpart"
 
 #: position/templates/position_buyer_seller.html:515
 #: position/templates/position_buyer_seller.html:575
-#: position/templates/position_buyer_seller.html:708
+#: position/templates/position_buyer_seller.html:710
 msgid "To"
 msgstr "To"
 
@@ -844,7 +864,7 @@ msgstr "Deals Waiting For You"
 
 #: position/templates/position_buyer_seller.html:545
 #: position/templates/position_buyer_seller.html:576
-#: position/templates/position_buyer_seller.html:707
+#: position/templates/position_buyer_seller.html:709
 msgid "From"
 msgstr "From"
 
@@ -884,37 +904,37 @@ msgstr "Weighted"
 msgid "Avg. Price"
 msgstr "Avg. Price"
 
-#: position/templates/position_buyer_seller.html:657
+#: position/templates/position_buyer_seller.html:659
 msgid "Importance"
 msgstr "Importance"
 
-#: position/templates/position_buyer_seller.html:679
+#: position/templates/position_buyer_seller.html:681
 #: position/templates/position_buyer_seller.html:799
 msgid "Inventory Bought"
 msgstr "Inventory Bought"
 
-#: position/templates/position_buyer_seller.html:680
+#: position/templates/position_buyer_seller.html:682
 #: position/templates/position_buyer_seller.html:802
 msgid "Inventory Sold"
 msgstr "Inventory Sold"
 
-#: position/templates/position_buyer_seller.html:682
+#: position/templates/position_buyer_seller.html:684
 msgid "Score"
 msgstr "Score"
 
-#: position/templates/position_buyer_seller.html:694
+#: position/templates/position_buyer_seller.html:696
 msgid "SCORE:"
 msgstr "SCORE:"
 
-#: position/templates/position_buyer_seller.html:702
+#: position/templates/position_buyer_seller.html:704
 msgid "Messages Received"
 msgstr "Messages Received"
 
-#: position/templates/position_buyer_seller.html:709
+#: position/templates/position_buyer_seller.html:711
 msgid "Subject"
 msgstr "Subject"
 
-#: position/templates/position_buyer_seller.html:711
+#: position/templates/position_buyer_seller.html:713
 msgid "Date"
 msgstr "Date"
 
@@ -1075,22 +1095,42 @@ msgid " Target selling at least this many."
 msgstr " Target selling at least this many."
 
 #: position/templates/position_buyer_seller.html:822
-#, fuzzy
-#| msgid "Target"
 msgid "Target This:"
-msgstr "Target"
+msgstr "Target This:"
 
 #: position/templates/position_buyer_seller.html:823
 msgid "Units must be a positive number."
 msgstr "Units must be a positive number."
 
+#: position/views.py:883
+msgid "Deal saved."
+msgstr "Deals saved."
+
+#: position/views.py:887 position/views.py:919 position/views.py:950
+#: position/views.py:981
+msgid "Form is not valid."
+msgstr "Form is not valid."
+
+#: position/views.py:891 position/views.py:922 position/views.py:953
+#: position/views.py:984
+msgid "Method not allowed."
+msgstr "Method not allowed."
+
+#: position/views.py:916
+msgid "Cancel of deal saved."
+msgstr "Cancel of deal savedp"
+
+#: position/views.py:947
+msgid "Gift sent."
+msgstr "Gift sent."
+
+#: position/views.py:978
+msgid "Message sent."
+msgstr "Message sent."
+
 #: shared_templates/_menu_group.html:14
 msgid "RPG Dashboard"
 msgstr "RPG Dashboard"
-
-#: shared_templates/_menu_group.html:17
-msgid "Account Settings"
-msgstr "Account Settings"
 
 #: shared_templates/_menu_group.html:20
 msgid "Help"

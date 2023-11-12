@@ -2,6 +2,7 @@
 from django import forms
 from .models import GroupLogin
 from .models import GameSettings
+from django.utils.translation import gettext_lazy as _
 
 class GroupDigitForm(forms.Form):
     group_digit = forms.ChoiceField(choices=[])
@@ -24,7 +25,7 @@ class GroupSettingsForm(forms.ModelForm):
         model = GroupLogin
         fields = ['groupPassword']
         labels = {
-            'groupPassword': 'New Password:',
+            'groupPassword': _('Update Password'),
         }
 
 # For the administration changes of RPG game settings
