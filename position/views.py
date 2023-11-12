@@ -185,7 +185,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
 
             scoreB = scoreA / resistance
             scoreC = scoreB * 100
-            scoreD = scoreC + flex_points
+            scoreD = scoreC + round(flex_points)
             scoreE = scoreD * group.groupImportance
             scoreFinal = scoreE * rpg_fraction_close_to_mod
             scoreFinal = round(scoreFinal, 2)
@@ -193,7 +193,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             scoreA = 0
             scoreB = 0
             scoreC = 0
-            scoreD = scoreC + flex_points
+            scoreD = scoreC + round(flex_points)
             scoreE = scoreD * group.groupImportance
             bonus_flex_points = 0
             scoreFinal = -1
@@ -371,14 +371,14 @@ def position_buyer_seller(request):
 
         scoreB = scoreA / Decimal(resistance)
         scoreC = scoreB * 100
-        scoreD = scoreC + flex_points
+        scoreD = scoreC + round(flex_points)
         scoreE = scoreD * currentGroupCharacterSheet.groupImportance
         scoreFinal = scoreE * Decimal(rpg_fraction_close_to_mod)
     else:
         scoreA = 0
         scoreB = 0
         scoreC = 0
-        scoreD = scoreC + flex_points
+        scoreD = scoreC + round(flex_points)
         scoreE = scoreD * currentGroupCharacterSheet.groupImportance
         scoreFinal = 0
 
@@ -409,7 +409,7 @@ def position_buyer_seller(request):
         'groupDiceLastRoll': currentGroupCharacterSheet.groupDiceLastRoll,
         'groupResistancePrice': currentGroupCharacterSheet.groupResistancePrice,
         'groupFlex': currentGroupCharacterSheet.groupFlex,
-        'rpgFlexPoints': flex_points,
+        'rpgFlexPoints': round(flex_points, 2),
         'groupMaxPurchase': currentGroupCharacterSheet.groupMaxPurchase,
         'groupDelivery': int(transformed_delivery),
         'groupUnits': currentGroupCharacterSheet.groupUnits,
@@ -647,8 +647,13 @@ def categorize_deals(filtered_deals, currentGroupNumber, transformed_quality, tr
                 deal_quality_gap = int(transformed_quality - deal['dealQuality'])
                 deal_delivery_gap = int(transformed_delivery - deal['dealDelivery'])
 
+            #--------------------CLYDE 11_12_23---REMOVED ROUNDING UP AS STUDENTS GAME IT---USING FRACTION FP NOW----
             # Add the gaps to the total flex points per 100 rounding up
-            deal_flex_units = math.ceil(deal['dealUnits'] / 100)
+            #deal_flex_units = math.ceil(deal['dealUnits'] / 100)
+            #deal_flex_points = (deal_quality_gap + deal_delivery_gap) * deal_flex_units
+
+            # Add the gaps to the total flex points per 100 but use fractions (do not round)
+            deal_flex_units = deal['dealUnits'] / 100
             deal_flex_points = (deal_quality_gap + deal_delivery_gap) * deal_flex_units
 
             # Add the gain/loss of Flex to a session variable -----CLYDE I THINK THIS MAY NOT BE NEEDED ANY LONGER----------------

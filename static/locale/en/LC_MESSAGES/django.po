@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 15:05+0800\n"
+"POT-Creation-Date: 2023-11-12 16:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -416,7 +416,7 @@ msgstr "Roll dice before distributing points!"
 #: diceroll/templates/dice_roll.html:255
 #: position/templates/position_buyer_seller.html:814
 msgid "SELLER"
-msgstr "SELLERS:"
+msgstr "SELLER"
 
 #: diceroll/templates/dice_roll.html:256
 msgid "Slow Delivery Acceptable"
@@ -748,13 +748,13 @@ msgstr "Over Production:"
 
 #: position/templates/position_buyer_seller.html:403
 #: position/templates/position_buyer_seller.html:792
-msgid "Going higher gains Flex Points (1 point per 100 units--round up)."
-msgstr "Going higher gains Flex Points (1 point per 100 units--round up)."
+msgid "Going higher gains Flex Points (1 point per 100 units)."
+msgstr "Going higher gains Flex Points (1 point per 100 units)."
 
 #: position/templates/position_buyer_seller.html:404
 #: position/templates/position_buyer_seller.html:795
-msgid "Going lower spends Flex Points (1 point per 100 units--round up)."
-msgstr "Going lower spends Flex Points (1 point per 100 units--round up)."
+msgid "Going lower spends Flex Points (1 point per 100 units)."
+msgstr "Going lower spends Flex Points (1 point per 100 units)."
 
 #: position/templates/position_buyer_seller.html:405
 msgid ""
@@ -1023,12 +1023,12 @@ msgid " Spend, collect, or gift these."
 msgstr " Spend, collect, or gift these."
 
 #: position/templates/position_buyer_seller.html:793
-msgid "Going HIGHER spends Flex Points (1 point per 100 units--round up)."
-msgstr "Going lower spends Flex Points (1 point per 100 units--round up)."
+msgid "Going HIGHER spends Flex Points (1 point per 100 units)."
+msgstr "Going lower spends Flex Points (1 point per 100 units)."
 
 #: position/templates/position_buyer_seller.html:794
-msgid "Going LOWER gains Flex Points (1 point per 100 units--round up)."
-msgstr "Going higher gains Flex Points (1 point per 100 units--round up)."
+msgid "Going LOWER gains Flex Points (1 point per 100 units)."
+msgstr "Going higher gains Flex Points (1 point per 100 units)."
 
 #: position/templates/position_buyer_seller.html:796
 msgid "[3] High"
@@ -1102,29 +1102,29 @@ msgstr "Target This:"
 msgid "Units must be a positive number."
 msgstr "Units must be a positive number."
 
-#: position/views.py:883
+#: position/views.py:892
 msgid "Deal saved."
 msgstr "Deals saved."
 
-#: position/views.py:887 position/views.py:919 position/views.py:950
-#: position/views.py:981
+#: position/views.py:896 position/views.py:928 position/views.py:959
+#: position/views.py:990
 msgid "Form is not valid."
 msgstr "Form is not valid."
 
-#: position/views.py:891 position/views.py:922 position/views.py:953
-#: position/views.py:984
+#: position/views.py:900 position/views.py:931 position/views.py:962
+#: position/views.py:993
 msgid "Method not allowed."
 msgstr "Method not allowed."
 
-#: position/views.py:916
+#: position/views.py:925
 msgid "Cancel of deal saved."
 msgstr "Cancel of deal savedp"
 
-#: position/views.py:947
+#: position/views.py:956
 msgid "Gift sent."
 msgstr "Gift sent."
 
-#: position/views.py:978
+#: position/views.py:987
 msgid "Message sent."
 msgstr "Message sent."
 

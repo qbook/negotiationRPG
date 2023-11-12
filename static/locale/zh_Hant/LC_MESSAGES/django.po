@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 15:05+0800\n"
+"POT-Creation-Date: 2023-11-12 16:45+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -741,13 +741,13 @@ msgstr "超量生產："
 
 #: position/templates/position_buyer_seller.html:403
 #: position/templates/position_buyer_seller.html:792
-msgid "Going higher gains Flex Points (1 point per 100 units--round up)."
-msgstr "超過增加彈性點數（每100單位1點，向上取整）。"
+msgid "Going higher gains Flex Points (1 point per 100 units)."
+msgstr "超過增加彈性點數（每100單位1點）。"
 
 #: position/templates/position_buyer_seller.html:404
 #: position/templates/position_buyer_seller.html:795
-msgid "Going lower spends Flex Points (1 point per 100 units--round up)."
-msgstr "降低消耗彈性點數（每100單位1點，向上取整）。"
+msgid "Going lower spends Flex Points (1 point per 100 units)."
+msgstr "降低消耗彈性點數（每100單位1點）。"
 
 #: position/templates/position_buyer_seller.html:405
 msgid ""
@@ -1013,11 +1013,11 @@ msgid " Spend, collect, or gift these."
 msgstr " 花費、收集或贈送這些。"
 
 #: position/templates/position_buyer_seller.html:793
-msgid "Going HIGHER spends Flex Points (1 point per 100 units--round up)."
+msgid "Going HIGHER spends Flex Points (1 point per 100 units)."
 msgstr "降低消耗彈性點數（每100單位1點，向上取整）。"
 
 #: position/templates/position_buyer_seller.html:794
-msgid "Going LOWER gains Flex Points (1 point per 100 units--round up)."
+msgid "Going LOWER gains Flex Points (1 point per 100 units)."
 msgstr "超過增加彈性點數（每100單位1點，向上取整）。"
 
 #: position/templates/position_buyer_seller.html:796
@@ -1092,29 +1092,29 @@ msgstr "目標這個："
 msgid "Units must be a positive number."
 msgstr "單位必須是正數。"
 
-#: position/views.py:883
+#: position/views.py:892
 msgid "Deal saved."
 msgstr "交易已儲存。"
 
-#: position/views.py:887 position/views.py:919 position/views.py:950
-#: position/views.py:981
+#: position/views.py:896 position/views.py:928 position/views.py:959
+#: position/views.py:990
 msgid "Form is not valid."
 msgstr "表單無效。"
 
-#: position/views.py:891 position/views.py:922 position/views.py:953
-#: position/views.py:984
+#: position/views.py:900 position/views.py:931 position/views.py:962
+#: position/views.py:993
 msgid "Method not allowed."
 msgstr "不允許的方法。"
 
-#: position/views.py:916
+#: position/views.py:925
 msgid "Cancel of deal saved."
 msgstr "交易取消已儲存。"
 
-#: position/views.py:947
+#: position/views.py:956
 msgid "Gift sent."
 msgstr "禮物已發送。"
 
-#: position/views.py:978
+#: position/views.py:987
 msgid "Message sent."
 msgstr "訊息已發送。"
 
