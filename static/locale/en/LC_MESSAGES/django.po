@@ -283,8 +283,7 @@ msgstr "when ready."
 
 #: diceroll/templates/dice_roll.html:132
 msgid ""
-"(Once you click Play Now, your position is locked and cannot be changed for "
-"this RPG round.)"
+"Once you click Play Now"
 msgstr ""
 "(Once you click Play Now, your position is locked and cannot be changed for "
 "this RPG round.)"
@@ -294,12 +293,8 @@ msgid "Play NOW"
 msgstr "Play NOW"
 
 #: diceroll/templates/dice_roll.html:228
-msgid ""
-"Are you sure you want to lock in your numbers for this RPG?\\nThis cannot be "
-"undone."
-msgstr ""
-"Are you sure you want to lock in your numbers for this RPG?\\nThis cannot be "
-"undone."
+msgid "Are you sure you want to lock in your numbers"
+msgstr "Are you sure you want to lock your numbers?\\nThis cannot be undone."
 
 #: diceroll/templates/dice_roll.html:229
 msgid "Attributes updated successfully."
@@ -437,7 +432,7 @@ msgid "You cannot spend more than your total points. \\n Remove: "
 msgstr "You cannot spend more than your total points. \\n Remove: "
 
 #: diceroll/templates/dice_roll.html:260
-msgid ". Try again"
+msgid "Try again"
 msgstr ". Try again"
 
 #: diceroll/templates/dice_roll.html:261

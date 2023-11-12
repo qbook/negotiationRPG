@@ -129,7 +129,7 @@
             <div class="card text-dark bg-light mb-3 shadow" id="bsDistributePoints">
                 <h4 id="txtDistributeNow" class="card-header">{% trans "Distribute Points" %} <div style="display: inline-block;" id="txtPointsLeft"></div></h4>
                 <div class="card-body">
-                    <p class="small text-muted">{% trans "Spend your points here."%} {% trans "Click" %} <strong>{% trans "Play Now" %}</strong> {% trans "when ready." %}<br>{% trans "(Once you click Play Now, your position is locked and cannot be changed for this RPG round.)" %}.</p>
+                    <p class="small text-muted">{% trans "Spend your points here."%} {% trans "Click" %} <strong>{% trans "Play Now" %}</strong> {% trans "when ready." %}<br>{% trans "Once you click Play Now" %}.</p>
                     <form id="attributeForm" class="form-horizontal">
                         <!-- RESISTANCE: -->
                         <label for="drpResistance" class="col-sm-3 col-form-label">{% trans "RESISTANCE:" %}</label>
@@ -225,7 +225,7 @@
 <script>
 // Loading localizations to be used  in javascript 
 var translations = { //create object to hold translations
-    areYouSure: "{% trans 'Are you sure you want to lock in your numbers for this RPG?\nThis cannot be undone.' %}",
+    areYouSure: "{% trans 'Are you sure you want to lock in your numbers' %}",
     attributeUpdate: "{% trans 'Attributes updated successfully.' %}",
     attributeUpdateFail: "{% trans 'Failed to update attributes.' %}",
     averageDeliveryAcceptable: "{% trans 'Average Delivery Acceptable' %}",
@@ -257,7 +257,7 @@ var translations = { //create object to hold translations
     smallPotatoes: "{% trans 'Small Potatoes' %}",
     somewhatImportant: "{% trans 'Somewhat Important' %}",
     spendTooMuchA: "{% trans 'You cannot spend more than your total points. \n Remove: ' %}",
-    spendTooMuchB: "{% trans '. Try again' %}",
+    spendTooMuchB: "{% trans 'Try again' %}",
     veryImportant: "{% trans 'Very Important' %}",
     vitalImportance: "{% trans 'Vital Importance' %}",
 };
@@ -419,7 +419,7 @@ $(document).ready(function() {
     //Button Play NOW clicked
     $("#btnPlayNow").click(function(e) {
         //Give user chance to escape as this is final
-        var response = confirm("Are you sure you want to lock in your numbers for this RPG?\nThis cannot be undone.");
+        var response = confirm(translations.areYouSure);
 
         if (response == true) {// User clicked OK, continue with the function
             //Sum the points used so far to get the remaining points to distribute
@@ -466,8 +466,8 @@ $(document).ready(function() {
                 }); //end ajax
 
             }else{
-                if (pointsLeft < -0){
-                    alert("You cannot spend more than your total points. \n Remove: " + pointsLeft + ". Try again.");
+                if (pointsLeft < 0){
+                    alert(translations.spendTooMuchA + pointsLeft + translations.spendTooMuchB);
                     e.preventDefault();  // Prevent the form from submitting which resets all the dropdowns and refreshes page
                     return
                 }else if (pointsLeft > -1 || groupRole == 0){

@@ -283,8 +283,7 @@ msgstr "準備好時。"
 
 #: diceroll/templates/dice_roll.html:132
 msgid ""
-"(Once you click Play Now, your position is locked and cannot be changed for "
-"this RPG round.)"
+"Once you click Play Now"
 msgstr "（一旦你點擊立即玩，你的位置將被鎖定並且不能在本輪RPG中改變。）"
 
 #: diceroll/templates/dice_roll.html:219
@@ -292,9 +291,7 @@ msgid "Play NOW"
 msgstr "立即玩"
 
 #: diceroll/templates/dice_roll.html:228
-msgid ""
-"Are you sure you want to lock in your numbers for this RPG?\\nThis cannot be "
-"undone."
+msgid "Are you sure you want to lock in your numbers"
 msgstr "您確定要為這個角色扮演遊戲鎖定您的數字嗎？\\n這無法被撤銷。"
 
 #: diceroll/templates/dice_roll.html:229
@@ -433,7 +430,7 @@ msgid "You cannot spend more than your total points. \\n Remove: "
 msgstr "你不能使用超過你的總點數。\\n 移除："
 
 #: diceroll/templates/dice_roll.html:260
-msgid ". Try again"
+msgid "Try again"
 msgstr "。請再試一次"
 
 #: diceroll/templates/dice_roll.html:261
