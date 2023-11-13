@@ -160,8 +160,6 @@
                             </form>
                         </div> <!-- End Cancel Form-->
 
-
-
                         <!-- Adding form for Gifting Flex Points -->
                         <div id="btnOpenSendFlexForm" class="hidden-form mt-3 row align-items-center">
                             <div class="col-12 text-center mb-4">
@@ -789,6 +787,10 @@ var translations = { //create object to hold translations
     doNotPayMoreThan: "{% trans ' Do not pay more than this.' %}",
     doNotSellForLess: "{% trans ' Do not sell for less than this.' %}",
     flexPointsDescription: "{% trans ' Spend, collect, or gift these.' %}",
+    formFail: "{% trans 'Form validation failed:' %}",
+    giftReceiverFail: "{% trans 'Missing gift receiver.' %}",
+    giftAmountFail: "{% trans 'Missing gift amount (must be positive number).' %}",
+    giftMessageFail: "{% trans 'You must include a short message.' %}",
     goingHigherGains: "{% trans 'Going higher gains Flex Points (1 point per 100 units).' %}",
     goingHigherSpends: "{% trans 'Going HIGHER spends Flex Points (1 point per 100 units).' %}",
     goingLowerGains: "{% trans 'Going LOWER gains Flex Points (1 point per 100 units).' %}",
@@ -803,6 +805,9 @@ var translations = { //create object to hold translations
     kindOfImportant: "{% trans 'Kind Of Important' %}",
     lowQualityLabel: "{% trans '[1] Low' %}",
     maxSales: "{% trans 'MAX Sales:' %}",
+    msgReceiverFail: "{% trans 'Missing message receiver.' %}",
+    msgSubjectFail: "{% trans 'Missing message short subject.' %}",
+    msgMessageFail: "{% trans 'Missing message.' %}",
     newDealID: "{% trans 'New Deal ID:' %}",
     noneLabel: "{% trans 'NONE' %}",
     notTimeForDeals0: "{% trans 'Not time for deals yet.' %}",
@@ -1029,7 +1034,7 @@ $(document).ready(function() {
         var counterPart = $("input[name='counterparty']").val();
         if(counterPart === "" || counterPart <= 0) {
             isValid = false;
-            errorMessage += "Counterpart must be a positive number.\n";
+            errorMessage += translations.counterpartPositive + "\n";
         }
         // Validate number_of_units
         var units = $("input[name='units']").val();
@@ -1074,7 +1079,7 @@ $(document).ready(function() {
         }        
         if(!isValid) {
             event.preventDefault(); // Prevent form submission
-            alert("Form validation failed:\n" + errorMessage);
+            alert(translations.formFail + "\n" + errorMessage);
         }
     }); // End click button function
 
@@ -1096,10 +1101,69 @@ $(document).ready(function() {
         }        
         if(!isValid) {
             event.preventDefault(); // Prevent form submission
-            alert("Form validation failed:\n" + errorMessage);
+            alert(translations.formFail + "\n" + errorMessage);
         }
     }); // End click button function
-    
+
+
+
+    // When btnSubmitGiftFlex is clicked, the form inputs are checked
+    $("#btnSubmitGiftFlex").click(function(event){
+        var isValid = true; // Initialize flag
+        var errorMessage = ''; // Initialize error message
+        // Validate counter_part_group_number
+        var giftReceiver = $("input[name='giftReceiver']").val();
+        if(giftReceiver === "" || giftReceiver <= 0) {
+            isValid = false;
+            errorMessage += translations.giftReceiverFail + "\n";
+        }
+        var giftAmount = $("input[name='giftAmount']").val();
+        if(giftAmount === "" || giftAmount <= 0) {
+            isValid = false;
+            errorMessage += translations.giftAmountFail + "\n";
+        }
+
+        var giftMsg = $("textarea[name='giftMessage']").val();
+        if (giftMsg.trim().length < 2) {
+            isValid = false;
+            errorMessage += translations.giftMessageFail + "\n";
+        }
+
+        if(!isValid) {
+            event.preventDefault(); // Prevent form submission
+            alert(translations.formFail + "\n" + errorMessage);
+        }
+    }); // End click button function
+
+
+    // When btnSubmitSendMessage is clicked, the form inputs are checked
+    $("#btnSubmitSendMessage").click(function(event){
+        var isValid = true; // Initialize flag
+        var errorMessage = ''; // Initialize error message
+        // Validate counter_part_group_number
+        var msgReceiver = $("input[name='messageReceiver']").val();
+        if(msgReceiver === "" || msgReceiver <= 0) {
+            isValid = false;
+            errorMessage += translations.msgReceiverFail + "\n";
+        }
+        var msgSubject = $("input[name='messageSubject']").val();
+        if(msgSubject == "") {
+            isValid = false;
+            errorMessage += translations.msgSubjectFail + "\n";
+        }
+
+        var msgContent = $("textarea[name='messageContent']").val();
+        if (msgContent.trim().length < 2) {
+            isValid = false;
+            errorMessage += translations.msgMessageFail + "\n";
+        }
+
+        if(!isValid) {
+            event.preventDefault(); // Prevent form submission
+            alert(translations.formFail + "\n" + errorMessage);
+        }
+    }); // End click button function
+
     // User chooses to input the NEW Deal ID with a single click
     $("#txtUseThisID").click(function(e) {
         e.preventDefault();  // Prevent the default link behavior
