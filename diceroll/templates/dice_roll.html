@@ -109,7 +109,12 @@
                 <div class="card-body">
                     <h4>{% trans "RPG Round:"%} {{ rpg_closest_round }}</h4>
                     <p>{% trans "Dice Roll Start:" %} {{ rpg_closest_start_date }}<br>
-                        {% trans "Dice Roll End:" %} {{ rpg_closest_end_date }}
+                        {% trans "Dice Roll End:" %} {{ rpg_closest_end_date }}<br>
+
+                    <hr class="my-1 bg-primary">
+                    <i>{% trans "Marketplace" %}</i><br>
+                    {% trans "BUYERS:" %} {{ buyers_count }} {% trans "SELLERS:" %} {{ sellers_count }}<br>
+
                     </p>
                     <hr class="my-1 bg-primary">
                     <div class="container mt-1">

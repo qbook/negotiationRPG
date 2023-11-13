@@ -10,15 +10,14 @@ from django.utils.translation import gettext as _
 from .models import GroupCharacterSheet
 from GameSetup.models import GameSettings
 from GameSetup.views import check_start_time
+from position.views import query_buyer_seller_number # pull in market balance function
 import random
-
 
 
 def generate_random_number(request):
     low, high = 1, 100  # Or any range you've defined
     number = random.randint(low, high)
     return JsonResponse({'number': number})
-
 
 def group_character(request):
     #get teacher & class & group from session
@@ -42,6 +41,10 @@ def group_character(request):
             groupDiceLastRoll = 0  # Initialize with 0
         )
         currentGroupCharacterSheet.save()
+
+    # Get count of buyers and sellers in the market to show in dice roll area
+    buyers_count, sellers_count = query_buyer_seller_number(rpg_closest_round, currentClassName)
+
     context = {
         'groupDigit': currentGroupNumber,
         'currentClassName': currentClassName,
@@ -58,6 +61,8 @@ def group_character(request):
         'groupQuality': currentGroupCharacterSheet.groupQuality,
         'groupNote': currentGroupCharacterSheet.groupNote,
         'groupRole': currentGroupCharacterSheet.groupRole,
+        'buyers_count': buyers_count,
+        'sellers_count':sellers_count,
     }
     context = {**result_from_check_start_time, **context}
     return render(request, 'dice_roll.html', context)
