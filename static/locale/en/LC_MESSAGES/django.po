@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 15:09+0800\n"
+"POT-Creation-Date: 2023-11-13 18:31+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1157,15 +1157,31 @@ msgstr "Message sent."
 msgid "RPG Dashboard"
 msgstr "RPG Dashboard"
 
-#: shared_templates/_menu_group.html:20
+#: shared_templates/_menu_group.html:26
 msgid "Help"
 msgstr "Help"
 
-#: shared_templates/_menu_group.html:23
+#: shared_templates/_menu_group.html:30
+msgid "User Guide"
+msgstr "User Guide"
+
+#: shared_templates/_menu_group.html:33
+msgid "Class eBook"
+msgstr "Class eBook"
+
+#: shared_templates/_menu_group.html:36
+msgid "Class Slides"
+msgstr "Class Slides"
+
+#: shared_templates/_menu_group.html:39
+msgid "Class Lectures"
+msgstr "Class Lectures"
+
+#: shared_templates/_menu_group.html:45
 msgid "Login Page"
 msgstr "Login Page"
 
-#: shared_templates/_menu_group.html:30
+#: shared_templates/_menu_group.html:51
 msgid "Language"
 msgstr "Language"
 

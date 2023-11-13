@@ -16,13 +16,31 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'group_password' %}">{% trans "Account Settings" %}</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://docs.google.com/document/d/1KCIf7SJVeFeMZ05ecCmT1Wey9Z0alWUn83Tr3GjNzYU/edit?usp=drive_link" target="_blank">{% trans "Help" %}</a>
+
+            <!-- Help Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="helpDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% trans "Help" %}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="helpDropdown">
+                    <li>
+                        <a class="dropdown-item" href="https://docs.google.com/document/d/1KCIf7SJVeFeMZ05ecCmT1Wey9Z0alWUn83Tr3GjNzYU/edit?usp=drive_link" target="_blank">{% trans "User Guide" %}</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="https://drive.google.com/file/d/17TXHyR-YXaDh6Wz_bua9hTIe6eHi0NS6/view?usp=sharing" target="_blank">{% trans "Class eBook" %}</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="https://bit.ly/39NbwJe" target="_blank">{% trans "Class Slides" %}</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="https://bit.ly/3kMXnlM" target="_blank">{% trans "Class Lectures" %}</a>
+                    </li>
+                </ul>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'home' %}">{% trans "Login Page" %}</a>
             </li>
-
 
             <!-- Language Switcher Dropdown -->
             <li class="nav-item dropdown">
