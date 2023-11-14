@@ -425,7 +425,7 @@ def position_buyer_seller(request):
         'waiting_for_you': waiting_for_you,
         'deal_quality_gap': deal_quality_gap,
         'deal_delivery_gap': deal_delivery_gap,
-        'deal_flex_points': deal_flex_points,
+        'deal_flex_points': round(deal_flex_points, 2),
         'total_units': total_units,
         'average_weighted': average_weighted,
         'rpg_fraction_close_to_max': rpg_fraction_close_to_max,
@@ -756,7 +756,7 @@ def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, groupRo
 
         if groupRole == 1 and rpg_fraction_close_to_max > 1: # The case of BUYER BANKRUPT if purchase over limit (seler has no problem)
             # Clyde--both of these are set to negative as one is used in RPG calc and the other in the Inventory card
-            rpg_fraction_close_to_max = -1 # This should cause this RPG round score to be zero
+            #rpg_fraction_close_to_max = -1 # This should cause this RPG round score to be zero
             rpg_fraction_close_to_mod = -1 # This should cause this RPG round score to be zero
 
     return total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max, rpg_fraction_close_to_mod
