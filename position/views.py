@@ -755,7 +755,9 @@ def calculate_inventory_numbers(final_deals, currentGroupCharacterSheet, groupRo
         rpg_fraction_close_to_max = round(total_units / rpg_max_purchase, 2) # Does not cap for Buyer--shows OVER buying level
 
         if groupRole == 1 and rpg_fraction_close_to_max > 1: # The case of BUYER BANKRUPT if purchase over limit (seler has no problem)
+            # Clyde--both of these are set to negative as one is used in RPG calc and the other in the Inventory card
             rpg_fraction_close_to_max = -1 # This should cause this RPG round score to be zero
+            rpg_fraction_close_to_mod = -1 # This should cause this RPG round score to be zero
 
     return total_units, final_deals, average_weighted, rpg_max_purchase, rpg_mod_units, resistance, rpg_fraction_close_to_max, rpg_fraction_close_to_mod
 
