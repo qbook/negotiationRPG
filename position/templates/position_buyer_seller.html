@@ -382,7 +382,7 @@
                                 <td>{{ deal.dealUnits }}</td>
                                 <td>{{ deal.deal_quality_gap }}</td>
                                 <td>{{ deal.deal_delivery_gap }}</td>
-                                <td>{{ deal.deal_flex_points }}</td>
+                                <td>{{ deal.deal_flex_points|floatformat:2 }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
