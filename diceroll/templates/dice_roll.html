@@ -357,7 +357,8 @@ $(document).ready(function() {
     
     //Button ROLL DICE clicked
     $("#btnRollDice").click(function(e) {
-        e.preventDefault();  // Prevent the form from submitting which resets all the dropdowns and refreshes page
+        e.preventDefault();  // Prevent the form from submitting which resets all the dropdowns and refreshes page.
+                            //we want to keep these selections in case the user gets a warning
         // Show the spinner
         $("#icoSpinner").show();
         //Reset the dropdowns to one
@@ -410,13 +411,15 @@ $(document).ready(function() {
                     }, 6000);
                     alert(response.message);
                 } else {
-                    alert(response.message);
+                    alert(errorOccurred);
+                    location.reload(true);
                 }
             },
             error: function() {
                 // Hide the spinner if there's an error
                 $("#icoSpinner").hide();
                 alert('An error occurred.');
+                location.reload(true);
             }
         });
     });

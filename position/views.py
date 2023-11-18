@@ -569,8 +569,8 @@ def fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumb
                 if key2 in canceled_deals_count: # Check if the counterpart has submitted a cancel for this deal
                     cancel_count += 1 # both this deal's group sender and counterpart have submitted cancel
 
-        if cancel_count == 0:
-            filtered_deals.append(deal)
+        if cancel_count == 0 and key2 not in canceled_deals_count: # Do NOT include a canceled deal just because it is key2
+             filtered_deals.append(deal)
         elif cancel_count == 1:
             # Delete from FLEX points here 0.5 Flex for 100 units only if the canceling group is the currentGroupNumber
             penalty_amount = (deal['dealUnits'] / 100) * .5
