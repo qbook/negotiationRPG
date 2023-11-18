@@ -44,10 +44,10 @@ class GameSettings(models.Model):
     playDays = models.IntegerField(blank=True, help_text='5', default='5')
     teacherNotes = models.TextField(blank=True, default='Your notes here', help_text='Only seen by instructor')
 
-    userGuide = models.CharField(blank=False, max_length=1000, help_text='User Guide', default='&lt;a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank"&gt;Pet Feeder&lt;/a&gt;')
-    eBook = models.CharField(blank=False, max_length=1000, help_text='Class eBook', default='&lt;a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank"&gt;Pet Feeder&lt;/a&gt;')
-    classSlides = models.CharField(blank=False, max_length=1000, help_text='Class Slides', default='&lt;a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank"&gt;Pet Feeder&lt;/a&gt;')
-    videoLectures = models.CharField(blank=False, max_length=1000, help_text='Video Lectures', default='&lt;a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank"&gt;Pet Feeder&lt;/a&gt;')
+    userGuide = models.CharField(blank=False, max_length=1000, help_text='User Guide', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank"Pet Feeder</a>'))
+    eBook = models.CharField(blank=False, max_length=1000, help_text='Class eBook', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank"Pet Feeder</a>'))
+    classSlides = models.CharField(blank=False, max_length=1000, help_text='Class Slides', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank">Pet Feeder</a>'))
+    videoLectures = models.CharField(blank=False, max_length=1000, help_text='Video Lectures', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank">Pet Feeder</a>'))
 
     round0Start = models.DateTimeField(default=default_time_plus(days=0,hours=1))
     round0ProductName = models.CharField(blank=False, max_length=1000, help_text='Pet Feeder', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank">Pet Feeder</a>'))
