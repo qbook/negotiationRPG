@@ -39,7 +39,8 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{ request.path }}">
+
+                <a href="{{ request.get_full_path }}">
                     <div class="alert alert-warning text-end" role="alert">
                         <h1><i>{% trans "REFRESH TO UPDATE" %}</i></h1>
                     </div>
