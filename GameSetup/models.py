@@ -44,10 +44,10 @@ class GameSettings(models.Model):
     playDays = models.IntegerField(blank=True, help_text='5', default='5')
     teacherNotes = models.TextField(blank=True, default='Your notes here', help_text='Only seen by instructor')
 
-    userGuide = models.CharField(blank=False, max_length=1000, help_text='User Guide', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank"Pet Feeder</a>'))
-    eBook = models.CharField(blank=False, max_length=1000, help_text='Class eBook', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank"Pet Feeder</a>'))
-    classSlides = models.CharField(blank=False, max_length=1000, help_text='Class Slides', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank">Pet Feeder</a>'))
-    videoLectures = models.CharField(blank=False, max_length=1000, help_text='Video Lectures', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank">Pet Feeder</a>'))
+    userGuide = models.CharField(blank=False, max_length=1000, help_text='User Guide', default=mark_safe('https://docs.google.com/document/d/1KCIf7SJVeFeMZ05ecCmT1Wey9Z0alWUn83Tr3GjNzYU/edit?usp=drive_link'))
+    eBook = models.CharField(blank=False, max_length=1000, help_text='Class eBook', default=mark_safe('https://drive.google.com/file/d/17TXHyR-YXaDh6Wz_bua9hTIe6eHi0NS6/view?usp=sharing'))
+    classSlides = models.CharField(blank=False, max_length=1000, help_text='Class Slides', default=mark_safe('https://bit.ly/39NbwJe'))
+    videoLectures = models.CharField(blank=False, max_length=1000, help_text='Video Lectures', default=mark_safe('https://bit.ly/3kMXnlM'))
 
     round0Start = models.DateTimeField(default=default_time_plus(days=0,hours=1))
     round0ProductName = models.CharField(blank=False, max_length=1000, help_text='Pet Feeder', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank">Pet Feeder</a>'))
