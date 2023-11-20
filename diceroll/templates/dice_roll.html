@@ -263,6 +263,8 @@ var translations = { //create object to hold translations
     somewhatImportant: "{% trans 'Somewhat Important' %}",
     spendTooMuchA: "{% trans 'You cannot spend more than your total points. \n Remove: ' %}",
     spendTooMuchB: "{% trans 'Try again' %}",
+    timeOver: "{% trans 'Time Over!' %}",
+    timeToRoll: "{% trans 'Time To Roll Dice!' %}",
     veryImportant: "{% trans 'Very Important' %}",
     vitalImportance: "{% trans 'Vital Importance' %}",
 };
@@ -295,7 +297,7 @@ $(document).ready(function() {
             //disable all buttons on the page
             $("[id^='btn']").prop("disabled", true);
             $("[id^='drp']").prop("disabled", true);
-            document.getElementById("countDownStart").innerHTML = "Time Over!";
+            document.getElementById("countDownStart").innerHTML = translations.timeOver;
         }else if (state==1){ //turn everything on for rolling dice
             document.getElementById("bsRoleDice").classList.remove("text-muted", "bg-secondary");
             document.getElementById("bsRoleDice").style.cursor = "allowed";
@@ -304,7 +306,7 @@ $(document).ready(function() {
             //disable all buttons on the page
             $("[id^='btn']").prop("disabled", false);
             $("[id^='drp']").prop("disabled", false);
-            document.getElementById("countDownStart").innerHTML = "Time To Roll Dice!";
+            document.getElementById("countDownStart").innerHTML = translations.timeToRoll;
             // turn OFF the button GoToDashboard
             $("#btnGoToDashboard").removeAttr("href").css("pointer-events", "none").css("opacity", "0.5");
         }//end if state
@@ -411,14 +413,14 @@ $(document).ready(function() {
                     }, 6000);
                     alert(response.message);
                 } else {
-                    alert(errorOccurred);
+                    alert(translations.errorOccurred);
                     location.reload(true);
                 }
             },
             error: function() {
                 // Hide the spinner if there's an error
                 $("#icoSpinner").hide();
-                alert('An error occurred.');
+                alert(translations.errorOccurred);
                 location.reload(true);
             }
         });
@@ -468,7 +470,7 @@ $(document).ready(function() {
                             // Disable the form to prevent further changes
                             $("#attributeForm :input").prop("disabled", true);
                         } else {
-                            alert("Failed to update attributes.");
+                            alert(translations.errorOccurred);
                         }
                     }
                 }); //end ajax

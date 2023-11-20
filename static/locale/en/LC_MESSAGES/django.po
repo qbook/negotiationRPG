@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 18:31+0800\n"
+"POT-Creation-Date: 2023-11-20 09:36+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,20 +36,20 @@ msgid "My Group"
 msgstr "My Group:"
 
 #: GameSetup/templates/choose_group.html:39
-#: position/templates/position_buyer_seller.html:240
-#: position/templates/position_buyer_seller.html:272
+#: position/templates/position_buyer_seller.html:241
 #: position/templates/position_buyer_seller.html:273
-#: position/templates/position_buyer_seller.html:296
-#: position/templates/position_buyer_seller.html:319
-#: position/templates/position_buyer_seller.html:346
-#: position/templates/position_buyer_seller.html:425
-#: position/templates/position_buyer_seller.html:513
-#: position/templates/position_buyer_seller.html:543
-#: position/templates/position_buyer_seller.html:573
+#: position/templates/position_buyer_seller.html:274
+#: position/templates/position_buyer_seller.html:297
+#: position/templates/position_buyer_seller.html:320
+#: position/templates/position_buyer_seller.html:347
+#: position/templates/position_buyer_seller.html:426
+#: position/templates/position_buyer_seller.html:514
+#: position/templates/position_buyer_seller.html:544
 #: position/templates/position_buyer_seller.html:574
-#: position/templates/position_buyer_seller.html:707
+#: position/templates/position_buyer_seller.html:575
 #: position/templates/position_buyer_seller.html:708
-#: position/templates/position_buyer_seller.html:748
+#: position/templates/position_buyer_seller.html:709
+#: position/templates/position_buyer_seller.html:749
 msgid "Group"
 msgstr "Group:"
 
@@ -171,47 +171,47 @@ msgid "Currency:"
 msgstr "Currency:"
 
 #: diceroll/templates/dice_roll.html:75
-#: position/templates/position_buyer_seller.html:50
+#: position/templates/position_buyer_seller.html:51
 msgid "Negotiation Position"
 msgstr "Negotiation Position"
 
 #: diceroll/templates/dice_roll.html:78 diceroll/templates/dice_roll.html:140
-#: position/templates/position_buyer_seller.html:53
+#: position/templates/position_buyer_seller.html:54
 msgid "RESISTANCE:"
 msgstr "RESISTANCE:"
 
 #: diceroll/templates/dice_roll.html:80 diceroll/templates/dice_roll.html:152
-#: position/templates/position_buyer_seller.html:55
+#: position/templates/position_buyer_seller.html:56
 msgid "FLEX:"
 msgstr "FLEX:"
 
 #: diceroll/templates/dice_roll.html:82 diceroll/templates/dice_roll.html:164
-#: position/templates/position_buyer_seller.html:57
+#: position/templates/position_buyer_seller.html:58
 msgid "MAX Purchase:"
 msgstr "MAX Purchase:"
 
 #: diceroll/templates/dice_roll.html:84 diceroll/templates/dice_roll.html:177
-#: position/templates/position_buyer_seller.html:59
+#: position/templates/position_buyer_seller.html:60
 msgid "DELIVERY:"
 msgstr "DELIVERY:"
 
 #: diceroll/templates/dice_roll.html:86 diceroll/templates/dice_roll.html:189
-#: position/templates/position_buyer_seller.html:61
+#: position/templates/position_buyer_seller.html:62
 msgid "UNITS:"
 msgstr "UNITS:"
 
 #: diceroll/templates/dice_roll.html:88 diceroll/templates/dice_roll.html:201
-#: position/templates/position_buyer_seller.html:63
+#: position/templates/position_buyer_seller.html:64
 msgid "IMPORTANCE:"
 msgstr "IMPORTANCE:"
 
 #: diceroll/templates/dice_roll.html:90 diceroll/templates/dice_roll.html:213
-#: position/templates/position_buyer_seller.html:65
+#: position/templates/position_buyer_seller.html:66
 msgid "QUALITY:"
 msgstr "QUALITY:"
 
 #: diceroll/templates/dice_roll.html:93
-#: position/templates/position_buyer_seller.html:67
+#: position/templates/position_buyer_seller.html:68
 msgid "ROLE:"
 msgstr "ROLE:"
 
@@ -220,12 +220,12 @@ msgid "Go To RPG Dashboard"
 msgstr "Go To RPG Dashboard"
 
 #: diceroll/templates/dice_roll.html:97
-#: position/templates/position_buyer_seller.html:71
+#: position/templates/position_buyer_seller.html:72
 msgid "Notes:"
 msgstr "Notes:"
 
 #: diceroll/templates/dice_roll.html:100
-#: position/templates/position_buyer_seller.html:75
+#: position/templates/position_buyer_seller.html:76
 msgid "(Click to edit note)"
 msgstr "(Click to edit note)"
 
@@ -242,17 +242,17 @@ msgid "Dice Roll End:"
 msgstr "Dice Roll End:"
 
 #: diceroll/templates/dice_roll.html:115
-#: position/templates/position_buyer_seller.html:743
+#: position/templates/position_buyer_seller.html:744
 msgid "Marketplace"
 msgstr "Marketplace"
 
 #: diceroll/templates/dice_roll.html:116
-#: position/templates/position_buyer_seller.html:740
+#: position/templates/position_buyer_seller.html:741
 msgid "BUYERS:"
 msgstr "BUYERS:"
 
 #: diceroll/templates/dice_roll.html:116
-#: position/templates/position_buyer_seller.html:740
+#: position/templates/position_buyer_seller.html:741
 msgid "SELLERS:"
 msgstr "SELLERS:"
 
@@ -335,7 +335,7 @@ msgid "Base Units"
 msgstr "Base Units"
 
 #: diceroll/templates/dice_roll.html:240
-#: position/templates/position_buyer_seller.html:775
+#: position/templates/position_buyer_seller.html:776
 msgid "BUYER"
 msgstr "BUYER"
 
@@ -356,13 +356,13 @@ msgid "Capable of High Quality"
 msgstr "Capable of High Quality"
 
 #: diceroll/templates/dice_roll.html:245
-#: position/templates/position_buyer_seller.html:784
+#: position/templates/position_buyer_seller.html:785
 msgid "Distribute Points Here"
 msgstr " Distribute Points Here"
 
 #: diceroll/templates/dice_roll.html:246
 msgid "An error occurred."
-msgstr "An error occurred."
+msgstr "An error occurred. Try again."
 
 #: diceroll/templates/dice_roll.html:247
 msgid "Fast Delivery Required"
@@ -373,9 +373,9 @@ msgid "Flex Point"
 msgstr "Flex Points"
 
 #: diceroll/templates/dice_roll.html:249
-#: position/templates/position_buyer_seller.html:276
-#: position/templates/position_buyer_seller.html:487
-#: position/templates/position_buyer_seller.html:653
+#: position/templates/position_buyer_seller.html:277
+#: position/templates/position_buyer_seller.html:488
+#: position/templates/position_buyer_seller.html:654
 msgid "Flex Points"
 msgstr "Flex Points"
 
@@ -384,12 +384,12 @@ msgid "High Quality Required"
 msgstr "High Quality Required"
 
 #: diceroll/templates/dice_roll.html:251
-#: position/templates/position_buyer_seller.html:800
+#: position/templates/position_buyer_seller.html:801
 msgid "Important"
 msgstr "Important"
 
 #: diceroll/templates/dice_roll.html:252
-#: position/templates/position_buyer_seller.html:805
+#: position/templates/position_buyer_seller.html:806
 msgid "Kind Of Important"
 msgstr "Kind Of Important"
 
@@ -402,7 +402,7 @@ msgid "Mod. Units"
 msgstr "Mod. Units"
 
 #: diceroll/templates/dice_roll.html:255
-#: position/templates/position_buyer_seller.html:812
+#: position/templates/position_buyer_seller.html:813
 msgid "NONE"
 msgstr "NONE"
 
@@ -423,7 +423,7 @@ msgid "Roll dice before distributing points!"
 msgstr "Roll dice before distributing points!"
 
 #: diceroll/templates/dice_roll.html:260
-#: position/templates/position_buyer_seller.html:819
+#: position/templates/position_buyer_seller.html:820
 msgid "SELLER"
 msgstr "SELLER"
 
@@ -432,12 +432,12 @@ msgid "Slow Delivery Acceptable"
 msgstr "Slow Delivery Acceptable"
 
 #: diceroll/templates/dice_roll.html:262
-#: position/templates/position_buyer_seller.html:823
+#: position/templates/position_buyer_seller.html:824
 msgid "Small Potatoes"
 msgstr "Small Potatoes"
 
 #: diceroll/templates/dice_roll.html:263
-#: position/templates/position_buyer_seller.html:824
+#: position/templates/position_buyer_seller.html:825
 msgid "Somewhat Important"
 msgstr "Somewhat Important"
 
@@ -450,18 +450,34 @@ msgid "Try again"
 msgstr ". Try again"
 
 #: diceroll/templates/dice_roll.html:266
-#: position/templates/position_buyer_seller.html:829
+msgid "Time Over!"
+msgstr ""
+
+#: diceroll/templates/dice_roll.html:267
+msgid "Time To Roll Dice!"
+msgstr "Time To Roll Dice"
+
+#: diceroll/templates/dice_roll.html:268
+#: position/templates/position_buyer_seller.html:830
 msgid "Very Important"
 msgstr "Very Importance"
 
-#: diceroll/templates/dice_roll.html:267
-#: position/templates/position_buyer_seller.html:830
+#: diceroll/templates/dice_roll.html:269
+#: position/templates/position_buyer_seller.html:831
 msgid "Vital Importance"
 msgstr "Vital Importance"
 
 #: diceroll/views.py:115
 msgid "Roll sent to server."
 msgstr "Roll sent to server."
+
+#: diceroll/views.py:117
+msgid "No rolls left"
+msgstr "No rolls left:"
+
+#: diceroll/views.py:136
+msgid "Record not found"
+msgstr ""
 
 #: position/templates/position_buyer_seller.html:16
 msgid "RPG DASHBOARD"
@@ -471,717 +487,717 @@ msgstr "RPG DASHBOARD"
 msgid "Deals Begin:"
 msgstr "Deals Begin"
 
-#: position/templates/position_buyer_seller.html:44
+#: position/templates/position_buyer_seller.html:45
 msgid "REFRESH TO UPDATE"
 msgstr "REFRESH TO UPDATE"
 
-#: position/templates/position_buyer_seller.html:78
+#: position/templates/position_buyer_seller.html:79
 msgid "Save"
 msgstr "Save"
 
-#: position/templates/position_buyer_seller.html:84
+#: position/templates/position_buyer_seller.html:85
 msgid "Actions"
 msgstr "Actions"
 
-#: position/templates/position_buyer_seller.html:91
+#: position/templates/position_buyer_seller.html:92
 msgid "Send A Deal"
 msgstr "Send A Deal"
 
-#: position/templates/position_buyer_seller.html:92
+#: position/templates/position_buyer_seller.html:93
 msgid "Cancel A Deal"
 msgstr "Cancel A Deal"
 
-#: position/templates/position_buyer_seller.html:93
+#: position/templates/position_buyer_seller.html:94
 msgid "Gift Flex Points"
 msgstr "Gift Flex Points"
 
-#: position/templates/position_buyer_seller.html:94
+#: position/templates/position_buyer_seller.html:95
 msgid "Message A Group"
 msgstr "Message A Group"
 
-#: position/templates/position_buyer_seller.html:99
+#: position/templates/position_buyer_seller.html:100
 msgid "PURCHASE/SALE ORDER"
 msgstr "PURCHASE/SALE ORDER"
 
-#: position/templates/position_buyer_seller.html:104
-#: position/templates/position_buyer_seller.html:150
+#: position/templates/position_buyer_seller.html:105
+#: position/templates/position_buyer_seller.html:151
 msgid "Counterpart:"
 msgstr "Counterpart:"
 
-#: position/templates/position_buyer_seller.html:107
+#: position/templates/position_buyer_seller.html:108
 msgid "Units:"
 msgstr "Units:"
 
-#: position/templates/position_buyer_seller.html:110
+#: position/templates/position_buyer_seller.html:111
 msgid "Price:"
 msgstr "Price:"
 
-#: position/templates/position_buyer_seller.html:113
+#: position/templates/position_buyer_seller.html:114
 msgid "Quality:"
 msgstr "Quality"
 
-#: position/templates/position_buyer_seller.html:121
+#: position/templates/position_buyer_seller.html:122
 msgid "Delivery:"
 msgstr "Delivery:"
 
-#: position/templates/position_buyer_seller.html:132
+#: position/templates/position_buyer_seller.html:133
 msgid "Send Deal"
 msgstr "Send Deal"
 
-#: position/templates/position_buyer_seller.html:135
-#: position/templates/position_buyer_seller.html:152
+#: position/templates/position_buyer_seller.html:136
+#: position/templates/position_buyer_seller.html:153
 msgid "Deal ID:"
 msgstr "Deal ID:"
 
-#: position/templates/position_buyer_seller.html:135
+#: position/templates/position_buyer_seller.html:136
 msgid "Buyer and seller must use SAME Deal ID."
 msgstr "Buyer and seller must use SAME Deal ID."
 
-#: position/templates/position_buyer_seller.html:136
+#: position/templates/position_buyer_seller.html:137
 msgid "Use this NEW Deal ID."
 msgstr "Use this NEW Deal ID."
 
-#: position/templates/position_buyer_seller.html:145
+#: position/templates/position_buyer_seller.html:146
 msgid "CANCEL PURCHASE ORDER"
 msgstr "CANCEL PURCHASE ORDER"
 
-#: position/templates/position_buyer_seller.html:157
+#: position/templates/position_buyer_seller.html:158
 msgid "Cancel Deal"
 msgstr "Cancel Deal"
 
-#: position/templates/position_buyer_seller.html:166
+#: position/templates/position_buyer_seller.html:167
 msgid "SEND FLEX POINTS"
 msgstr "SEND FLEX POINTS"
 
-#: position/templates/position_buyer_seller.html:171
-#: position/templates/position_buyer_seller.html:194
+#: position/templates/position_buyer_seller.html:172
+#: position/templates/position_buyer_seller.html:195
 msgid "Send To:"
 msgstr "Send To:"
 
-#: position/templates/position_buyer_seller.html:173
-#: position/templates/position_buyer_seller.html:366
+#: position/templates/position_buyer_seller.html:174
+#: position/templates/position_buyer_seller.html:367
 msgid "Flex Points:"
 msgstr "Flex Points:"
 
-#: position/templates/position_buyer_seller.html:175
-#: position/templates/position_buyer_seller.html:198
+#: position/templates/position_buyer_seller.html:176
+#: position/templates/position_buyer_seller.html:199
 msgid "Message:"
 msgstr "Message:"
 
-#: position/templates/position_buyer_seller.html:180
+#: position/templates/position_buyer_seller.html:181
 msgid "Send Flex Points"
 msgstr "Send Flex Points"
 
-#: position/templates/position_buyer_seller.html:189
+#: position/templates/position_buyer_seller.html:190
 msgid "SEND MESSAGE"
 msgstr "SEND MESSAGE"
 
-#: position/templates/position_buyer_seller.html:196
+#: position/templates/position_buyer_seller.html:197
 msgid "Message Subject:"
 msgstr "Message Subject:"
 
-#: position/templates/position_buyer_seller.html:203
+#: position/templates/position_buyer_seller.html:204
 msgid "Send Message"
 msgstr "Send Message"
 
-#: position/templates/position_buyer_seller.html:223
+#: position/templates/position_buyer_seller.html:224
 msgid "Deals Completed"
 msgstr "Deals Completed"
 
-#: position/templates/position_buyer_seller.html:228
-#: position/templates/position_buyer_seller.html:260
-#: position/templates/position_buyer_seller.html:287
-#: position/templates/position_buyer_seller.html:310
-#: position/templates/position_buyer_seller.html:337
-#: position/templates/position_buyer_seller.html:371
-#: position/templates/position_buyer_seller.html:414
-#: position/templates/position_buyer_seller.html:512
-#: position/templates/position_buyer_seller.html:542
-#: position/templates/position_buyer_seller.html:572
+#: position/templates/position_buyer_seller.html:229
+#: position/templates/position_buyer_seller.html:261
+#: position/templates/position_buyer_seller.html:288
+#: position/templates/position_buyer_seller.html:311
+#: position/templates/position_buyer_seller.html:338
+#: position/templates/position_buyer_seller.html:372
+#: position/templates/position_buyer_seller.html:415
+#: position/templates/position_buyer_seller.html:513
+#: position/templates/position_buyer_seller.html:543
+#: position/templates/position_buyer_seller.html:573
 msgid "Deal ID"
 msgstr "Deal ID"
 
-#: position/templates/position_buyer_seller.html:229
+#: position/templates/position_buyer_seller.html:230
 msgid "With"
 msgstr "With"
 
-#: position/templates/position_buyer_seller.html:230
-#: position/templates/position_buyer_seller.html:264
-#: position/templates/position_buyer_seller.html:372
-#: position/templates/position_buyer_seller.html:514
-#: position/templates/position_buyer_seller.html:544
-#: position/templates/position_buyer_seller.html:576
-msgid "Units"
-msgstr "Units"
-
 #: position/templates/position_buyer_seller.html:231
-#: position/templates/position_buyer_seller.html:416
+#: position/templates/position_buyer_seller.html:265
+#: position/templates/position_buyer_seller.html:373
 #: position/templates/position_buyer_seller.html:515
 #: position/templates/position_buyer_seller.html:545
 #: position/templates/position_buyer_seller.html:577
-#: position/templates/position_buyer_seller.html:609
-#: position/templates/position_buyer_seller.html:614
-#: position/templates/position_buyer_seller.html:618
-msgid "Price"
-msgstr "Price"
+msgid "Units"
+msgstr "Units"
 
 #: position/templates/position_buyer_seller.html:232
+#: position/templates/position_buyer_seller.html:417
 #: position/templates/position_buyer_seller.html:516
 #: position/templates/position_buyer_seller.html:546
 #: position/templates/position_buyer_seller.html:578
-msgid "Qual."
-msgstr "Qual."
+#: position/templates/position_buyer_seller.html:610
+#: position/templates/position_buyer_seller.html:615
+#: position/templates/position_buyer_seller.html:619
+msgid "Price"
+msgstr "Price"
 
 #: position/templates/position_buyer_seller.html:233
 #: position/templates/position_buyer_seller.html:517
 #: position/templates/position_buyer_seller.html:547
 #: position/templates/position_buyer_seller.html:579
+msgid "Qual."
+msgstr "Qual."
+
+#: position/templates/position_buyer_seller.html:234
+#: position/templates/position_buyer_seller.html:518
+#: position/templates/position_buyer_seller.html:548
+#: position/templates/position_buyer_seller.html:580
 msgid "Deliv."
 msgstr "Deliv."
 
-#: position/templates/position_buyer_seller.html:250
+#: position/templates/position_buyer_seller.html:251
 msgid "Deals waiting for counterparties are not shown here."
 msgstr "Deals waiting for counterparties are not shown here."
 
-#: position/templates/position_buyer_seller.html:254
+#: position/templates/position_buyer_seller.html:255
 msgid "Canceled Deals"
 msgstr "Canceled Deals"
 
-#: position/templates/position_buyer_seller.html:256
+#: position/templates/position_buyer_seller.html:257
 msgid "Deals Canceled With Penalty"
 msgstr "Deals Canceled With Penalty"
 
-#: position/templates/position_buyer_seller.html:261
-#: position/templates/position_buyer_seller.html:288
+#: position/templates/position_buyer_seller.html:262
+#: position/templates/position_buyer_seller.html:289
 msgid "Canceled By"
 msgstr "Canceled By"
 
-#: position/templates/position_buyer_seller.html:262
-#: position/templates/position_buyer_seller.html:312
-#: position/templates/position_buyer_seller.html:339
-#: position/templates/position_buyer_seller.html:415
+#: position/templates/position_buyer_seller.html:263
+#: position/templates/position_buyer_seller.html:313
+#: position/templates/position_buyer_seller.html:340
+#: position/templates/position_buyer_seller.html:416
 msgid "Counterpart"
 msgstr "Counterpart"
 
-#: position/templates/position_buyer_seller.html:263
-#: position/templates/position_buyer_seller.html:289
-#: position/templates/position_buyer_seller.html:575
+#: position/templates/position_buyer_seller.html:264
+#: position/templates/position_buyer_seller.html:290
+#: position/templates/position_buyer_seller.html:576
 msgid "Role"
 msgstr "Role"
 
-#: position/templates/position_buyer_seller.html:265
+#: position/templates/position_buyer_seller.html:266
 msgid "Penalty"
 msgstr "Penalty"
 
-#: position/templates/position_buyer_seller.html:283
+#: position/templates/position_buyer_seller.html:284
 msgid "Deals Canceled By Both"
 msgstr "Deals Canceled By Both"
 
-#: position/templates/position_buyer_seller.html:305
+#: position/templates/position_buyer_seller.html:306
 msgid "Invalid Deals"
 msgstr "Invalid Deals"
 
-#: position/templates/position_buyer_seller.html:305
-#: position/templates/position_buyer_seller.html:332
+#: position/templates/position_buyer_seller.html:306
+#: position/templates/position_buyer_seller.html:333
 msgid "(Repeated Deal ID)"
 msgstr "(Repeated Deal ID)"
 
-#: position/templates/position_buyer_seller.html:311
-#: position/templates/position_buyer_seller.html:338
+#: position/templates/position_buyer_seller.html:312
+#: position/templates/position_buyer_seller.html:339
 msgid "Sent By"
 msgstr "Sent By"
 
-#: position/templates/position_buyer_seller.html:326
+#: position/templates/position_buyer_seller.html:327
 msgid "No repeated Deal IDs."
 msgstr "No repeated Deal IDs."
 
-#: position/templates/position_buyer_seller.html:332
+#: position/templates/position_buyer_seller.html:333
 msgid "Invalid Cancels"
 msgstr "Invalid Cancels"
 
-#: position/templates/position_buyer_seller.html:353
+#: position/templates/position_buyer_seller.html:354
 msgid "No repeated cancel Deal IDs."
 msgstr "No repeated cancel Deal IDs."
 
-#: position/templates/position_buyer_seller.html:357
+#: position/templates/position_buyer_seller.html:358
 msgid "Canceling deals costs:"
 msgstr "Canceling deals costs:"
 
-#: position/templates/position_buyer_seller.html:358
+#: position/templates/position_buyer_seller.html:359
 msgid "Both parties cancel = NO cost to you & NO cost to counterparty."
 msgstr "Both parties cancel = NO cost to you & NO cost to counterparty."
 
-#: position/templates/position_buyer_seller.html:359
-msgid ""
-"You cancel but counterparty does NOT cancel = 0.5 Flex Points per 100 units "
-"of the deal (minimum fee of 1 rounded down afterward)."
-msgstr ""
-"You cancel but counterparty does NOT cancel = 0.5 Flex Points per 100 units "
-"of the deal (minimum fee of 1 rounded down afterward)."
-
 #: position/templates/position_buyer_seller.html:360
 msgid ""
+"You cancel but counterparty does NOT cancel = 0.5 Flex Points per 100 units "
+"of the deal (minimum fee of 1 rounded down afterward)."
+msgstr ""
+"You cancel but counterparty does NOT cancel = 0.5 Flex Points per 100 units "
+"of the deal (minimum fee of 1 rounded down afterward)."
+
+#: position/templates/position_buyer_seller.html:361
+msgid ""
 "You do NOT cancel but counterparty cancels = NO extra cost to you (deal is "
 "lost)."
 msgstr ""
 "You do NOT cancel but counterparty cancels = NO extra cost to you (deal is "
 "lost)."
 
-#: position/templates/position_buyer_seller.html:361
+#: position/templates/position_buyer_seller.html:362
 msgid "Role 1 = Buyer; -1 = Seller."
 msgstr "Role 1 = Buyer; -1 = Seller."
 
-#: position/templates/position_buyer_seller.html:362
+#: position/templates/position_buyer_seller.html:363
 msgid "Use a DEAL ID only ONCE!"
 msgstr "Use a DEAL ID only ONCE!"
 
-#: position/templates/position_buyer_seller.html:373
+#: position/templates/position_buyer_seller.html:374
 msgid "Qual. Gap"
 msgstr "Qual. Gap"
 
-#: position/templates/position_buyer_seller.html:374
+#: position/templates/position_buyer_seller.html:375
 msgid "Deliv. Gap"
 msgstr "Deliv. Gap"
 
-#: position/templates/position_buyer_seller.html:375
+#: position/templates/position_buyer_seller.html:376
 msgid "Loss/Gain"
 msgstr "Loss/Gain"
 
-#: position/templates/position_buyer_seller.html:391
+#: position/templates/position_buyer_seller.html:392
 msgid "Bonus:"
 msgstr "Bonus:"
 
-#: position/templates/position_buyer_seller.html:395
+#: position/templates/position_buyer_seller.html:396
 msgid "Over Production:"
 msgstr "Over Production:"
 
-#: position/templates/position_buyer_seller.html:401
-#: position/templates/position_buyer_seller.html:794
+#: position/templates/position_buyer_seller.html:402
+#: position/templates/position_buyer_seller.html:795
 msgid "Going higher gains Flex Points (1 point per 100 units)."
 msgstr "Going higher gains Flex Points (1 point per 100 units)."
 
-#: position/templates/position_buyer_seller.html:402
-#: position/templates/position_buyer_seller.html:797
+#: position/templates/position_buyer_seller.html:403
+#: position/templates/position_buyer_seller.html:798
 msgid "Going lower spends Flex Points (1 point per 100 units)."
 msgstr "Going lower spends Flex Points (1 point per 100 units)."
 
-#: position/templates/position_buyer_seller.html:403
-msgid ""
-"Canceling a deal will have a cost if both sides do NOT agree (see Canceled "
-"Deals area)."
-msgstr ""
-"Canceling a deal will have a cost if both sides do NOT agree (see Canceled "
-"Deals area)."
-
 #: position/templates/position_buyer_seller.html:404
-#, python-format
 msgid ""
-"Earn extra Flex Points by making more deals with different groups (at least "
-"10%% of target units with different groups)."
+"Canceling a deal will have a cost if both sides do NOT agree (see Canceled "
+"Deals area)."
 msgstr ""
-"Earn extra Flex Points by making more deals with different groups (at least "
-"10%% of target units with different groups)."
+"Canceling a deal will have a cost if both sides do NOT agree (see Canceled "
+"Deals area)."
 
 #: position/templates/position_buyer_seller.html:405
 #, python-format
 msgid ""
+"Earn extra Flex Points by making more deals with different groups (at least "
+"10%% of target units with different groups)."
+msgstr ""
+"Earn extra Flex Points by making more deals with different groups (at least "
+"10%% of target units with different groups)."
+
+#: position/templates/position_buyer_seller.html:406
+#, python-format
+msgid ""
 "Production over MAX costs 1 Flex Point for every 10%% increase over UNITS."
 msgstr ""
 "Production over MAX costs 1 Flex Point for every 10%% increase over UNITS."
 
-#: position/templates/position_buyer_seller.html:409
+#: position/templates/position_buyer_seller.html:410
 msgid "Weighted Avg. Price"
 msgstr "Weighted Avg. Price"
 
-#: position/templates/position_buyer_seller.html:417
+#: position/templates/position_buyer_seller.html:418
 msgid "Quantity (Units)"
 msgstr "Quantity (Units)"
 
-#: position/templates/position_buyer_seller.html:418
+#: position/templates/position_buyer_seller.html:419
 msgid "Weighted Price"
 msgstr "Weighted Price"
 
-#: position/templates/position_buyer_seller.html:434
+#: position/templates/position_buyer_seller.html:435
 msgid "Total Units:"
 msgstr "Total Units:"
 
-#: position/templates/position_buyer_seller.html:438
+#: position/templates/position_buyer_seller.html:439
 msgid "Average Weighted Price:"
 msgstr "Average Weighted Price:"
 
-#: position/templates/position_buyer_seller.html:448
+#: position/templates/position_buyer_seller.html:449
 msgid "Inventory"
 msgstr "Inventory"
 
-#: position/templates/position_buyer_seller.html:453
+#: position/templates/position_buyer_seller.html:454
 msgid "Total"
 msgstr "Total"
 
-#: position/templates/position_buyer_seller.html:454
+#: position/templates/position_buyer_seller.html:455
 msgid "Target"
 msgstr "Target"
 
-#: position/templates/position_buyer_seller.html:467
+#: position/templates/position_buyer_seller.html:468
 msgid "Not Go Over:"
 msgstr "Not Go Over:"
 
-#: position/templates/position_buyer_seller.html:474
-#: position/templates/position_buyer_seller.html:802
+#: position/templates/position_buyer_seller.html:475
+#: position/templates/position_buyer_seller.html:803
 msgid "Inventory bought over your MAX Purchase"
 msgstr "Inventory bought over your MAX Purchase"
 
-#: position/templates/position_buyer_seller.html:476
-#: position/templates/position_buyer_seller.html:803
+#: position/templates/position_buyer_seller.html:477
+#: position/templates/position_buyer_seller.html:804
 msgid "will cause bankruptcy."
 msgstr "will cause bankruptcy."
 
-#: position/templates/position_buyer_seller.html:480
+#: position/templates/position_buyer_seller.html:481
 msgid "Flex Point Send/Receive"
 msgstr "Flex Point Send/Receive"
 
-#: position/templates/position_buyer_seller.html:485
+#: position/templates/position_buyer_seller.html:486
 msgid "From Group"
 msgstr "From Group"
 
-#: position/templates/position_buyer_seller.html:486
+#: position/templates/position_buyer_seller.html:487
 msgid "To Group"
 msgstr "To Group"
 
-#: position/templates/position_buyer_seller.html:488
-#: position/templates/position_buyer_seller.html:710
+#: position/templates/position_buyer_seller.html:489
+#: position/templates/position_buyer_seller.html:711
 msgid "Message"
 msgstr "Message"
 
-#: position/templates/position_buyer_seller.html:503
-#: position/templates/position_buyer_seller.html:727
+#: position/templates/position_buyer_seller.html:504
+#: position/templates/position_buyer_seller.html:728
 msgid "Note: Only messages for the current RPG round are shown."
 msgstr "Note: Only messages for the current RPG round are shown."
 
-#: position/templates/position_buyer_seller.html:507
+#: position/templates/position_buyer_seller.html:508
 msgid "Deals Waiting For Counterpart"
 msgstr "Deals Waiting For Counterpart"
 
-#: position/templates/position_buyer_seller.html:513
-#: position/templates/position_buyer_seller.html:573
-#: position/templates/position_buyer_seller.html:708
+#: position/templates/position_buyer_seller.html:514
+#: position/templates/position_buyer_seller.html:574
+#: position/templates/position_buyer_seller.html:709
 msgid "To"
 msgstr "To"
 
-#: position/templates/position_buyer_seller.html:537
+#: position/templates/position_buyer_seller.html:538
 msgid "Deals Waiting For You"
 msgstr "Deals Waiting For You"
 
-#: position/templates/position_buyer_seller.html:543
-#: position/templates/position_buyer_seller.html:574
-#: position/templates/position_buyer_seller.html:707
+#: position/templates/position_buyer_seller.html:544
+#: position/templates/position_buyer_seller.html:575
+#: position/templates/position_buyer_seller.html:708
 msgid "From"
 msgstr "From"
 
-#: position/templates/position_buyer_seller.html:567
+#: position/templates/position_buyer_seller.html:568
 msgid "Deals Mismatched"
 msgstr "Deals Mismatched"
 
-#: position/templates/position_buyer_seller.html:598
+#: position/templates/position_buyer_seller.html:599
 msgid "These deals use the same Deal ID but do not match."
 msgstr "These deals use the same Deal ID but do not match."
 
-#: position/templates/position_buyer_seller.html:599
+#: position/templates/position_buyer_seller.html:600
 msgid "Senders need to cancel these."
 msgstr "Senders need to cancel these."
 
-#: position/templates/position_buyer_seller.html:600
+#: position/templates/position_buyer_seller.html:601
 msgid "Note: Role 1 = Buyer; -1 = Seller."
 msgstr "Note: Role 1 = Buyer; -1 = Seller."
 
-#: position/templates/position_buyer_seller.html:604
+#: position/templates/position_buyer_seller.html:605
 msgid "RPG Score:"
 msgstr "RPG Score:"
 
-#: position/templates/position_buyer_seller.html:609
-#: position/templates/position_buyer_seller.html:614
-#: position/templates/position_buyer_seller.html:618
+#: position/templates/position_buyer_seller.html:610
+#: position/templates/position_buyer_seller.html:615
+#: position/templates/position_buyer_seller.html:619
 msgid "Resistance"
 msgstr "Resistance"
 
-#: position/templates/position_buyer_seller.html:611
 #: position/templates/position_buyer_seller.html:612
+#: position/templates/position_buyer_seller.html:613
 msgid "Weighted"
 msgstr "Weighted"
 
-#: position/templates/position_buyer_seller.html:611
 #: position/templates/position_buyer_seller.html:612
+#: position/templates/position_buyer_seller.html:613
 msgid "Avg. Price"
 msgstr "Avg. Price"
 
-#: position/templates/position_buyer_seller.html:657
+#: position/templates/position_buyer_seller.html:658
 msgid "Importance"
 msgstr "Importance"
 
-#: position/templates/position_buyer_seller.html:679
-#: position/templates/position_buyer_seller.html:801
+#: position/templates/position_buyer_seller.html:680
+#: position/templates/position_buyer_seller.html:802
 msgid "Inventory Bought"
 msgstr "Inventory Bought"
 
-#: position/templates/position_buyer_seller.html:680
-#: position/templates/position_buyer_seller.html:804
+#: position/templates/position_buyer_seller.html:681
+#: position/templates/position_buyer_seller.html:805
 msgid "Inventory Sold"
 msgstr "Inventory Sold"
 
-#: position/templates/position_buyer_seller.html:682
+#: position/templates/position_buyer_seller.html:683
 msgid "Score"
 msgstr "Score"
 
-#: position/templates/position_buyer_seller.html:694
+#: position/templates/position_buyer_seller.html:695
 msgid "SCORE:"
 msgstr "SCORE:"
 
-#: position/templates/position_buyer_seller.html:702
+#: position/templates/position_buyer_seller.html:703
 msgid "Messages Received"
 msgstr "Messages Received"
 
-#: position/templates/position_buyer_seller.html:709
+#: position/templates/position_buyer_seller.html:710
 msgid "Subject"
 msgstr "Subject"
 
-#: position/templates/position_buyer_seller.html:711
+#: position/templates/position_buyer_seller.html:712
 msgid "Date"
 msgstr "Date"
 
-#: position/templates/position_buyer_seller.html:734
+#: position/templates/position_buyer_seller.html:735
 msgid "Change Round"
 msgstr "Change Round"
 
-#: position/templates/position_buyer_seller.html:749
+#: position/templates/position_buyer_seller.html:750
 msgid "RPG Role"
 msgstr "RPG Role"
 
-#: position/templates/position_buyer_seller.html:750
+#: position/templates/position_buyer_seller.html:751
 msgid "Current Score"
 msgstr "Current Score"
 
-#: position/templates/position_buyer_seller.html:773
+#: position/templates/position_buyer_seller.html:774
 msgid "Average"
 msgstr "Average"
 
-#: position/templates/position_buyer_seller.html:774
+#: position/templates/position_buyer_seller.html:775
 msgid "[2] Average"
 msgstr "[2] Average"
 
-#: position/templates/position_buyer_seller.html:776
+#: position/templates/position_buyer_seller.html:777
 msgid "You cannot buy over your resistance price."
 msgstr "You cannot buy over your resistance price."
 
-#: position/templates/position_buyer_seller.html:777
+#: position/templates/position_buyer_seller.html:778
 msgid "You cannot sell below your resistance price."
 msgstr "You cannot sell below your resistance price."
 
-#: position/templates/position_buyer_seller.html:778
+#: position/templates/position_buyer_seller.html:779
 msgid "Counterpart must be a positive number."
 msgstr "Counterpart must be a positive number."
 
-#: position/templates/position_buyer_seller.html:779
+#: position/templates/position_buyer_seller.html:780
 msgid " Try to make a deal for faster."
 msgstr " Try to make a deal for faster."
 
-#: position/templates/position_buyer_seller.html:780
+#: position/templates/position_buyer_seller.html:781
 msgid " Try to make a deal for higher."
 msgstr " Try to make a deal for higher."
 
-#: position/templates/position_buyer_seller.html:781
+#: position/templates/position_buyer_seller.html:782
 msgid " Try to make a deal for lower."
 msgstr " Try to make a deal for lower."
 
-#: position/templates/position_buyer_seller.html:782
+#: position/templates/position_buyer_seller.html:783
 msgid " Try to make a deal for slower."
 msgstr " Try to make a deal for slower."
 
-#: position/templates/position_buyer_seller.html:783
+#: position/templates/position_buyer_seller.html:784
 msgid "Delivery must be between Slow and Fast."
 msgstr "Delivery must be between Slow and Fast."
 
-#: position/templates/position_buyer_seller.html:785
+#: position/templates/position_buyer_seller.html:786
 msgid " Do not buy more than this."
 msgstr " Do not buy more than this."
 
-#: position/templates/position_buyer_seller.html:786
+#: position/templates/position_buyer_seller.html:787
 msgid "Do NOT Buy Over:"
 msgstr "Do NOT Buy Over:"
 
-#: position/templates/position_buyer_seller.html:787
+#: position/templates/position_buyer_seller.html:788
 msgid " Do not pay more than this."
 msgstr " Do not pay more than this."
 
-#: position/templates/position_buyer_seller.html:788
+#: position/templates/position_buyer_seller.html:789
 msgid " Do not sell for less than this."
 msgstr " Do not sell for less than this."
 
-#: position/templates/position_buyer_seller.html:789
+#: position/templates/position_buyer_seller.html:790
 msgid " Spend, collect, or gift these."
 msgstr " Spend, collect, or gift these."
 
-#: position/templates/position_buyer_seller.html:790
+#: position/templates/position_buyer_seller.html:791
 msgid "Form validation failed:"
 msgstr "Form validation failed:"
 
-#: position/templates/position_buyer_seller.html:791
+#: position/templates/position_buyer_seller.html:792
 msgid "Missing gift receiver."
 msgstr "Missing gift receiver."
 
-#: position/templates/position_buyer_seller.html:792
+#: position/templates/position_buyer_seller.html:793
 msgid "Missing gift amount (must be positive number)."
 msgstr "Missing gift amount (must be positive number)."
 
-#: position/templates/position_buyer_seller.html:793
+#: position/templates/position_buyer_seller.html:794
 msgid "You must include a short message."
 msgstr "You must include a short message."
 
-#: position/templates/position_buyer_seller.html:795
+#: position/templates/position_buyer_seller.html:796
 msgid "Going HIGHER spends Flex Points (1 point per 100 units)."
 msgstr "Going lower spends Flex Points (1 point per 100 units)."
 
-#: position/templates/position_buyer_seller.html:796
+#: position/templates/position_buyer_seller.html:797
 msgid "Going LOWER gains Flex Points (1 point per 100 units)."
 msgstr "Going higher gains Flex Points (1 point per 100 units)."
 
-#: position/templates/position_buyer_seller.html:798
+#: position/templates/position_buyer_seller.html:799
 msgid "[3] High"
 msgstr "[3] High"
 
-#: position/templates/position_buyer_seller.html:799
+#: position/templates/position_buyer_seller.html:800
 msgid "How important is this deal."
 msgstr " How important is this deal."
 
-#: position/templates/position_buyer_seller.html:806
+#: position/templates/position_buyer_seller.html:807
 msgid "[1] Low"
 msgstr "[1] Low"
 
-#: position/templates/position_buyer_seller.html:807
+#: position/templates/position_buyer_seller.html:808
 msgid "MAX Sales:"
 msgstr "MAX Sales:"
 
-#: position/templates/position_buyer_seller.html:808
+#: position/templates/position_buyer_seller.html:809
 msgid "Missing message receiver."
 msgstr "Missing message receiver."
 
-#: position/templates/position_buyer_seller.html:809
+#: position/templates/position_buyer_seller.html:810
 msgid "Missing message short subject."
 msgstr "Missing message short subject."
 
-#: position/templates/position_buyer_seller.html:810
+#: position/templates/position_buyer_seller.html:811
 msgid "Missing message."
 msgstr "Missing message."
 
-#: position/templates/position_buyer_seller.html:811
+#: position/templates/position_buyer_seller.html:812
 msgid "New Deal ID:"
 msgstr "New Deal ID:"
 
-#: position/templates/position_buyer_seller.html:813
+#: position/templates/position_buyer_seller.html:814
 msgid "Not time for deals yet."
 msgstr "Not time for deals yet."
 
-#: position/templates/position_buyer_seller.html:814
+#: position/templates/position_buyer_seller.html:815
 msgid "Deals can begin at "
 msgstr "Deals can begin at "
 
-#: position/templates/position_buyer_seller.html:815
+#: position/templates/position_buyer_seller.html:816
 msgid "Price must be a positive number."
 msgstr "Price must be a positive number."
 
-#: position/templates/position_buyer_seller.html:816
+#: position/templates/position_buyer_seller.html:817
 msgid "PURCHASE ORDER"
 msgstr "PURCHASE ORDER"
 
-#: position/templates/position_buyer_seller.html:817
+#: position/templates/position_buyer_seller.html:818
 msgid "Quality must be between Low and High."
 msgstr "Quality must be between Low and High."
 
-#: position/templates/position_buyer_seller.html:818
+#: position/templates/position_buyer_seller.html:819
 msgid "SALE INVOICE"
 msgstr "SALE INVOICE"
 
-#: position/templates/position_buyer_seller.html:820
+#: position/templates/position_buyer_seller.html:821
 msgid "Selling over MAX will cost Flex Points to increase capacity."
 msgstr "Selling over MAX will cost Flex Points to increase capacity."
 
-#: position/templates/position_buyer_seller.html:821
+#: position/templates/position_buyer_seller.html:822
 msgid " Selling over this will cost Flex Points."
 msgstr " Selling over this will cost Flex Points."
 
-#: position/templates/position_buyer_seller.html:822
+#: position/templates/position_buyer_seller.html:823
 msgid "Slow"
 msgstr "Slow"
 
-#: position/templates/position_buyer_seller.html:825
+#: position/templates/position_buyer_seller.html:826
 msgid " Target buying at least this many."
 msgstr " Target buying at least this many."
 
-#: position/templates/position_buyer_seller.html:826
+#: position/templates/position_buyer_seller.html:827
 msgid " Target selling at least this many."
 msgstr " Target selling at least this many."
 
-#: position/templates/position_buyer_seller.html:827
+#: position/templates/position_buyer_seller.html:828
 msgid "Target This:"
 msgstr "Target This:"
 
-#: position/templates/position_buyer_seller.html:828
+#: position/templates/position_buyer_seller.html:829
 msgid "Units must be a positive number."
 msgstr "Units must be a positive number."
 
-#: position/views.py:888
+#: position/views.py:890
 msgid "Deal saved."
 msgstr "Deals saved."
 
-#: position/views.py:892 position/views.py:924 position/views.py:955
-#: position/views.py:986
+#: position/views.py:894 position/views.py:926 position/views.py:957
+#: position/views.py:988
 msgid "Form is not valid."
 msgstr "Form is not valid."
 
-#: position/views.py:896 position/views.py:927 position/views.py:958
-#: position/views.py:989
+#: position/views.py:898 position/views.py:929 position/views.py:960
+#: position/views.py:991
 msgid "Method not allowed."
 msgstr "Method not allowed."
 
-#: position/views.py:921
+#: position/views.py:923
 msgid "Cancel of deal saved."
 msgstr "Cancel of deal savedp"
 
-#: position/views.py:952
+#: position/views.py:954
 msgid "Gift sent."
 msgstr "Gift sent."
 
-#: position/views.py:983
+#: position/views.py:985
 msgid "Message sent."
 msgstr "Message sent."
+
+#: shared_templates/_menu_admin.html:26 shared_templates/_menu_group.html:23
+msgid "Help"
+msgstr "Help"
+
+#: shared_templates/_menu_admin.html:30 shared_templates/_menu_group.html:27
+msgid "User Guide"
+msgstr "User Guide"
+
+#: shared_templates/_menu_admin.html:33 shared_templates/_menu_group.html:30
+msgid "Class eBook"
+msgstr "Class eBook"
+
+#: shared_templates/_menu_admin.html:36 shared_templates/_menu_group.html:33
+msgid "Class Slides"
+msgstr "Class Slides"
+
+#: shared_templates/_menu_admin.html:39 shared_templates/_menu_group.html:36
+msgid "Class Lectures"
+msgstr "Class Lectures"
 
 #: shared_templates/_menu_group.html:14
 msgid "RPG Dashboard"
 msgstr "RPG Dashboard"
 
-#: shared_templates/_menu_group.html:26
-msgid "Help"
-msgstr "Help"
-
-#: shared_templates/_menu_group.html:30
-msgid "User Guide"
-msgstr "User Guide"
-
-#: shared_templates/_menu_group.html:33
-msgid "Class eBook"
-msgstr "Class eBook"
-
-#: shared_templates/_menu_group.html:36
-msgid "Class Slides"
-msgstr "Class Slides"
-
-#: shared_templates/_menu_group.html:39
-msgid "Class Lectures"
-msgstr "Class Lectures"
-
-#: shared_templates/_menu_group.html:45
+#: shared_templates/_menu_group.html:42
 msgid "Login Page"
 msgstr "Login Page"
 
-#: shared_templates/_menu_group.html:51
+#: shared_templates/_menu_group.html:48
 msgid "Language"
 msgstr "Language"
 

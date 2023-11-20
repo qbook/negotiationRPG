@@ -114,7 +114,7 @@ def roll_dice(request):
 
             return JsonResponse({"status": "success", "rolls_left": currentGroupCharacterSheet.groupDiceLeft, "latest_roll": roll_result, "latest_role": currentGroupCharacterSheet.groupRole, "message": _("Roll sent to server.")})
         else:
-            return JsonResponse({"status": "fail", "message": "No rolls left"})
+            return JsonResponse({"status": "fail", "message": _("No rolls left")})
 
 
 def update_attributes(request):
@@ -133,7 +133,7 @@ def update_attributes(request):
             #Use GroupID extracted value to query for this class this GROUP's data for this RPG round
             currentGroupCharacterSheet = GroupCharacterSheet.objects.filter(groupClass=currentClassName, groupDigit=currentGroupNumber, groupRPG=rpg_closest_round).first()
         except GroupCharacterSheet.DoesNotExist:
-            return JsonResponse({"status": "fail", "message": "Record not found"})
+            return JsonResponse({"status": "fail", "message": _("Record not found")})
 
         currentGroupCharacterSheet.groupResistancePrice = request.POST.get('resistance')
         currentGroupCharacterSheet.groupFlex = request.POST.get('flex')
