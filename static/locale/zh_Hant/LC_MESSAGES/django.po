@@ -360,7 +360,7 @@ msgstr "在此分配點數"
 
 #: diceroll/templates/dice_roll.html:246
 msgid "An error occurred."
-msgstr "發生錯誤。請再試一次。請再試一次。"
+msgstr "發生錯誤。請再試一次。請再試一次。\\n確保您的網絡連接正常運作。"
 
 #: diceroll/templates/dice_roll.html:247
 msgid "Fast Delivery Required"

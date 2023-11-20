@@ -362,7 +362,7 @@ msgstr " Distribute Points Here"
 
 #: diceroll/templates/dice_roll.html:246
 msgid "An error occurred."
-msgstr "An error occurred. Try again."
+msgstr "An error occurred. Try again.\\nMake sure your Internet connection is working."
 
 #: diceroll/templates/dice_roll.html:247
 msgid "Fast Delivery Required"
