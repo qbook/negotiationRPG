@@ -12,9 +12,57 @@ from .forms import GameSettingsForm
 from .forms import GroupSettingsForm
 from .models import GroupLogin
 from django.contrib import messages
+from .models import StudentList
 from django.utils.translation import gettext as _
+from .forms import CSVUploadForm
+import csv
 
 # Create your views here.
+
+def upload_csv(request):
+    # get teacher & class from session
+    currentTeacher = request.session.get('currentTeacher')
+    currentClassName = request.session.get('currentClassName')
+
+    # Create a new form instance
+    form = CSVUploadForm()
+    
+    # Create context early to also add message for rendering in the template
+    context = {
+        'form': form,
+        'currentTeacher': currentTeacher,
+        'currentClassName': currentClassName,
+    }
+
+    if request.method == 'POST':
+        form = CSVUploadForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            csv_file = request.FILES['csv_file']
+            file_data = csv_file.read().decode("utf-8")
+            lines = file_data.split("\n")
+
+            # Skip the first two rows
+            for line in lines[2:]:                        
+                fields = line.split(",")
+                if len(fields) == 4:  # Ensuring there are exactly 4 columns
+                    _, created = StudentList.objects.update_or_create(
+                        studentNumber=fields[0],
+                        chineseName=fields[1],
+                        englishName=fields[2],
+                        groupDigit=fields[3],
+                        className=currentClassName  # Set className from the session variable
+                    )
+            # return HttpResponse("CSV file has been imported")
+            # Add a success message
+            messages.success(request, 'Data imported successfully!')
+            return redirect('position_marketplace')
+
+    # If not POST, then it's a GET request, so create a blank form
+    else:
+        form = CSVUploadForm()
+    return render(request, 'upload_csv.html', context)
+
 
 def home(request):
     # CLYDE this caused login problems--may need to do a check FIRST if variables are already in session before clearing
@@ -310,7 +358,6 @@ def save_note(request):
 
 def about(request):
     return HttpResponse('<h1>ABOUT THE GAME</h1>')
-
 
 # Group change password
 def group_password(request):

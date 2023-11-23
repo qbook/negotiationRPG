@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "_header_00.html" %}
+    <title>Import Students</title>
+</head>
+
+<body>
+    {% include "_menu_admin.html" %}
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
+            <div class="card text-dark bg-light mb-1">
+                <div class="mb-3">
+                    <h2>IMPORT STUDENT LIST</h2>
+                    <h2>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h2>
+                </div>
+            </div> <!-- End Card -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <H2>Steps</H2>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">1. Export your student/group list from Google Sheet or Excel.</li>
+                    <li class="list-group-item">2. Format the data into FOUR columns:</li>
+                    <li class="list-group-item">
+                        <ul>
+                            <li>Student Number</li>
+                            <li>Chinese Name</li>
+                            <li>English Name</li>
+                            <li>Group Number</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+<br>
+            <div class="card custom-card mb-1">
+
+                <h4 class="card-header custom-card-header">Import File</h4>
+                <div class="card-body">
+                    <div class="container">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- End card -->
+    </div> <!-- End of container -->
+
+
+
+
+
+
+
+</body>
+</html>

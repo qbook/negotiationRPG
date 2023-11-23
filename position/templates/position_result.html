@@ -19,7 +19,7 @@
                 </div>
             </div> <!-- End Card -->
             <div class="card text-dark bg-light mb-1">
-                Copy from here to paste into Google sheet for your grading.
+                Copy results from here to paste into Google sheet for your grading.
             </div> <!-- End Card -->
 <br>
             <div class="card custom-card mb-1">
@@ -55,6 +55,40 @@
                     </div>
                 </div>
             </div> <!-- End card -->
+
+            <div class="card text-dark bg-light mb-1">
+                <div class="card-body">
+                    <h4 class="card-header custom-card-header">Class Members</h4>
+                    {% if class_members %}
+                        <table class="table table-striped small">
+                            <thead>
+                                <tr>
+                                    <th>Group</th>
+                                    <th>Student Number</th>
+                                    <th>English Name</th>
+                                    <th>Chinese Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for member in class_members %}
+                                    <tr>
+                                        <td>{{ member.groupDigit }}</td>
+                                        <td>{{ member.studentNumber }}</td>
+                                        <td>{{ member.englishName }}</td>
+                                        <td>{{ member.chineseName }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                    <div class="alert alert-warning" role="alert">
+                        <p>The class list has not yet been imported.<br>
+                        Go to menu: Settings-->Import Student List</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div> <!-- End Card -->
+            
     </div> <!-- End of container -->
 </body>
 

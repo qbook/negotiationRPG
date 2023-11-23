@@ -4,6 +4,11 @@ from .models import GroupLogin
 from .models import GameSettings
 from django.utils.translation import gettext_lazy as _
 
+from django import forms
+
+class CSVUploadForm(forms.Form):
+    csv_file = forms.FileField()
+
 class GroupDigitForm(forms.Form):
     group_digit = forms.ChoiceField(choices=[])
     def __init__(self, *args, **kwargs):

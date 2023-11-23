@@ -30,11 +30,40 @@ class GroupLoginAdmin(admin.ModelAdmin):
         return obj.groupComment
     display_comment.short_description = 'Note'
 
-from .models import GameTest
+'''from .models import GameTest
 @admin.register(GameTest)
 class GameTestAdmin(admin.ModelAdmin):
     list_display = ('gameGroupComment', 'gameGroupNumber', 'gameGroupDigit')
+'''
 
+from .models import StudentList
+@admin.register(StudentList)
+class GroupLoginAdmin(admin.ModelAdmin):
+    list_display = ('display_number','display_group', 'display_chineseName', 'display_englishName', 'display_className')
+    ordering = ('className', 'groupDigit', 'studentNumber')
+    search_fields = ('studentNumber', 'englishName', 'chineseName')
+    list_filter = ('className',)
+
+    def display_number(self, obj):
+        return obj.studentNumber
+    display_number.short_description = 'S_Number'
+
+    def display_group(self, obj):
+        return obj.groupDigit
+    display_group.short_description = 'Group'
+
+    def display_chineseName(self, obj):
+        return obj.chineseName
+    display_chineseName.short_description = 'C_Name'
+
+    def display_englishName(self, obj):
+        return obj.englishName
+    display_englishName.short_description = 'E_Name'
+
+    def display_className(self, obj):
+        return obj.className
+    display_className.short_description = 'Class'
+   
 from .models import GameSettings
 @admin.register(GameSettings)
 class GameSettingsAdmin(admin.ModelAdmin):

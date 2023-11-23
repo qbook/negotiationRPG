@@ -15,6 +15,7 @@ from django.utils.translation import gettext as _
 from GameSetup.models import GroupLogin
 from diceroll.models import GroupCharacterSheet
 from GameSetup.models import GameSettings
+from GameSetup.models import StudentList
 from GameSetup.views import check_start_time
 from position.forms import DealForm
 from position.forms import CancelForm
@@ -82,9 +83,12 @@ def position_buyer_seller_manual(request): # called by the page position_buyer_s
 def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): # 1 for buyer/seller page, buyer_seller=>-1 for marketplace, rpg_manual_round=>-1 for NO custom RPG round
     all_groups_results = [] # Holder to store all groups
 
-    #get teacher & class from session
+    # Get teacher & class from session
     currentTeacher = request.session.get('currentTeacher')
     currentClassName = request.session.get('currentClassName')
+
+    # Get list of students in this class
+    class_members = query_class_members(currentClassName)
 
     #call the function to check game settings for this CLASS
     result_from_check_start_time = check_start_time(currentTeacher, currentClassName, rpg_manual_round)
@@ -240,6 +244,7 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'rpg_play_days_left': rpg_play_days_left,
             'currentTeacher': currentTeacher,
             'currentClassName': currentClassName,
+            'class_members': class_members,
             'allGroupCharacterSheet': allGroupCharacterSheet,
             'all_groups_results': all_groups_results,
             'rpg_closest_end_date': result_from_check_start_time['rpg_closest_end_date'],
@@ -357,6 +362,10 @@ def position_buyer_seller(request):
     # Query the gifting model
     all_gifts = query_gifts(rpg_closest_round, currentClassName, currentGroupNumber)
 
+#-------------------QUERY GROUP MEMBERS---------------------------------
+    # Query the group members for current group
+    group_members = query_group_members(currentClassName, currentGroupNumber)
+
 #----------------------------FLEX POINTS CALCULATIONS-------
     # Get the Flex Point count from a function
     bonus_flex_points, flex_points, all_gifts, all_gifts_sent, overproduction_flex_fee = calculate_flex_points(final_deals, rpg_mod_units, rpg_closest_round, currentClassName, currentGroupNumber, flex_points, currentGroupCharacterSheet.groupRole)
@@ -394,6 +403,7 @@ def position_buyer_seller(request):
         'groupDigit': currentGroupNumber,
         'currentClassName': currentClassName,
         'currentTeacher': currentTeacher,
+        'group_members':group_members,
         'rpg_closest_round': rpg_closest_round,
         'buyers_count': buyers_count,
         'sellers_count': sellers_count,
@@ -796,6 +806,26 @@ def query_gifts_sent(rpg_closest_round, currentClassName, currentGroupNumber):
     ).aggregate(total_amount=Sum('giftAmount'))
     
     return all_gifts_sent['total_amount'] or 0  # return 0 if the result is None
+
+#-------------------QUERY GROUP MEMBERS---------------------------------
+def query_group_members(currentClassName, currentGroupNumber):
+    # Query the StudentList model
+    group_members = StudentList.objects.filter(
+        className=currentClassName,
+        groupDigit=currentGroupNumber
+    ).values('chineseName', 'englishName', 'studentNumber')
+    
+    return group_members
+
+#-------------------QUERY ALL CLASS MEMBERS---------------------------------
+def query_class_members(currentClassName):
+    # Query the StudentList model
+
+    class_members = StudentList.objects.filter(
+        className=currentClassName,
+    ).values('chineseName', 'englishName', 'studentNumber', 'groupDigit').order_by('groupDigit', 'studentNumber')
+
+    return class_members
 
 #-------------------QUERY BUYER SELLER NUMBERS IN MARKET----------------
 def query_buyer_seller_number(rpg_closest_round, currentClassName):

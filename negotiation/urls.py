@@ -31,6 +31,9 @@ urlpatterns = [
     path('save_note/', gameSetupViews.save_note, name='save_note'),
     path('edit_game_settings/', gameSetupViews.edit_game_settings, name='edit_game_settings'),
     path('admin_password/', gameSetupViews.group_password, name='group_password'),
+    # Import CSV class/group membership
+    path('upload_csv/', gameSetupViews.upload_csv, name='upload_csv'),
+
 
     path('choose_group/', gameSetupViews.choose_group, name='choose_group'),
 
@@ -62,6 +65,7 @@ urlpatterns = [
     path('remove_deal/<int:deal_id>/', positionViews.remove_deal, name='remove_deal'),
     path('position_result', positionViews.position_result, name='position_result'),
     path('position_result_manual', positionViews.position_result_manual, name='position_result_manual'),
+
 
 ]
 

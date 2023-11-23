@@ -5,6 +5,18 @@ from django.utils.safestring import mark_safe
 
 # Create your models here.
 
+class StudentList(models.Model):
+    chineseName = models.CharField(max_length=100)
+    englishName = models.CharField(max_length=20)
+    studentNumber = models.CharField(max_length=20)
+    groupDigit = models.CharField(max_length=50)
+    className = models.CharField(max_length=200, help_text='NTU_Negotiation_2023_2', default='NTU_Negotiation_2023_2')
+    def __str__(self):
+        return self.studentNumber
+    class Meta:
+        verbose_name = 'Student Number'
+        verbose_name_plural = 'Student Numbers'
+
 class GroupLogin(models.Model):
     groupComment = models.CharField(max_length=100)
     groupPassword = models.CharField(max_length=20)
@@ -17,7 +29,7 @@ class GroupLogin(models.Model):
         verbose_name = 'Group Login'
         verbose_name_plural = 'Group Login'
 
-class GameTest(models.Model):
+'''class GameTest(models.Model):  # CLYDE I don't think this is needed any more
     gameGroupComment = models.CharField(max_length=200)
     gameGroupNumber = models.CharField(max_length=200)
     gameGroupDigit = models.IntegerField(blank=True, default=0)
@@ -26,11 +38,11 @@ class GameTest(models.Model):
     class Meta:
         verbose_name = 'Game Test Clyde'
         verbose_name_plural = 'Game Test Clyde'
+'''
 
 # Helper function to provide default datetime with added hours/days
 def default_time_plus(days=0, hours=0):
     return timezone.now() + timedelta(days=days, hours=hours)
-
 
 class GameSettings(models.Model):
     teacher = models.CharField(max_length=200, help_text = 'Prof. Clyde Warden', default='Prof. Clyde Warden')
@@ -44,10 +56,10 @@ class GameSettings(models.Model):
     playDays = models.IntegerField(blank=True, help_text='5', default='5')
     teacherNotes = models.TextField(blank=True, default='Your notes here', help_text='Only seen by instructor')
 
-    userGuide = models.CharField(blank=False, max_length=1000, help_text='User Guide', default=mark_safe('https://docs.google.com/document/d/1KCIf7SJVeFeMZ05ecCmT1Wey9Z0alWUn83Tr3GjNzYU/edit?usp=drive_link'))
-    eBook = models.CharField(blank=False, max_length=1000, help_text='Class eBook', default=mark_safe('https://drive.google.com/file/d/17TXHyR-YXaDh6Wz_bua9hTIe6eHi0NS6/view?usp=sharing'))
-    classSlides = models.CharField(blank=False, max_length=1000, help_text='Class Slides', default=mark_safe('https://bit.ly/39NbwJe'))
-    videoLectures = models.CharField(blank=False, max_length=1000, help_text='Video Lectures', default=mark_safe('https://bit.ly/3kMXnlM'))
+    userGuide = models.CharField(blank=False, max_length=1000, help_text='User Guide (use # for no link)', default=mark_safe('https://docs.google.com/document/d/1KCIf7SJVeFeMZ05ecCmT1Wey9Z0alWUn83Tr3GjNzYU/edit?usp=drive_link'))
+    eBook = models.CharField(blank=False, max_length=1000, help_text='Class eBook (use # for no link)', default=mark_safe('https://drive.google.com/file/d/17TXHyR-YXaDh6Wz_bua9hTIe6eHi0NS6/view?usp=sharing'))
+    classSlides = models.CharField(blank=False, max_length=1000, help_text='Class Slides (use # for no link)', default=mark_safe('https://bit.ly/39NbwJe'))
+    videoLectures = models.CharField(blank=False, max_length=1000, help_text='Video Lectures (use # for no link)', default=mark_safe('https://bit.ly/3kMXnlM'))
 
     round0Start = models.DateTimeField(default=default_time_plus(days=0,hours=1))
     round0ProductName = models.CharField(blank=False, max_length=1000, help_text='Pet Feeder', default=mark_safe('<a href="https://drive.google.com/open?id=1erZQh-xTOjtuajoRr4pIa030z3d2729d" target="_blank">Pet Feeder</a>'))
