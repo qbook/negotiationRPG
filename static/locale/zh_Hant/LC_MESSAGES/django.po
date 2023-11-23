@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-20 09:36+0800\n"
+"POT-Creation-Date: 2023-11-21 14:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: GameSetup/forms.py:28 GameSetup/templates/group_password.html:49
+#: GameSetup/forms.py:33 GameSetup/templates/group_password.html:49
 #: GameSetup/templates/group_password.html:63
 msgid "Update Password"
 msgstr "更新密碼"
@@ -103,7 +103,11 @@ msgstr "選擇你的班級："
 msgid "My Class"
 msgstr "我的課"
 
-#: GameSetup/views.py:348
+#: GameSetup/views.py:57
+msgid "Data imported successfully!"
+msgstr "數據成功導入！"
+
+#: GameSetup/views.py:395
 msgid "Password updated successfully!"
 msgstr "密碼更新成功！"
 
@@ -863,7 +867,7 @@ msgstr "消息"
 #: position/templates/position_buyer_seller.html:504
 #: position/templates/position_buyer_seller.html:728
 msgid "Note: Only messages for the current RPG round are shown."
-msgstr "注意：仅显示当前RPG轮次的消息。"
+msgstr "注意：僅顯示目前 RPG 回合的數據。"
 
 #: position/templates/position_buyer_seller.html:508
 msgid "Deals Waiting For Counterpart"
@@ -1161,23 +1165,27 @@ msgstr "禮物已發送。"
 msgid "Message sent."
 msgstr "訊息已發送。"
 
-#: shared_templates/_menu_admin.html:26 shared_templates/_menu_group.html:23
+#: shared_templates/_menu_admin.html:20
+msgid "Settings"
+msgstr "設定"
+
+#: shared_templates/_menu_admin.html:38 shared_templates/_menu_group.html:23
 msgid "Help"
 msgstr "幫助"
 
-#: shared_templates/_menu_admin.html:30 shared_templates/_menu_group.html:27
+#: shared_templates/_menu_admin.html:42 shared_templates/_menu_group.html:27
 msgid "User Guide"
 msgstr "使用指南"
 
-#: shared_templates/_menu_admin.html:33 shared_templates/_menu_group.html:30
+#: shared_templates/_menu_admin.html:45 shared_templates/_menu_group.html:30
 msgid "Class eBook"
 msgstr "課程電子書"
 
-#: shared_templates/_menu_admin.html:36 shared_templates/_menu_group.html:33
+#: shared_templates/_menu_admin.html:48 shared_templates/_menu_group.html:33
 msgid "Class Slides"
 msgstr "課程投影片"
 
-#: shared_templates/_menu_admin.html:39 shared_templates/_menu_group.html:36
+#: shared_templates/_menu_admin.html:51 shared_templates/_menu_group.html:36
 msgid "Class Lectures"
 msgstr "課程講座"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-20 09:36+0800\n"
+"POT-Creation-Date: 2023-11-21 14:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: GameSetup/forms.py:28 GameSetup/templates/group_password.html:49
+#: GameSetup/forms.py:33 GameSetup/templates/group_password.html:49
 #: GameSetup/templates/group_password.html:63
 msgid "Update Password"
 msgstr "Update Password"
@@ -103,7 +103,11 @@ msgstr "Choose your class:"
 msgid "My Class"
 msgstr "My Class"
 
-#: GameSetup/views.py:348
+#: GameSetup/views.py:57
+msgid "Data imported successfully!"
+msgstr "Data imported successfully!"
+
+#: GameSetup/views.py:395
 msgid "Password updated successfully!"
 msgstr "Password updated successfully!"
 
@@ -362,7 +366,9 @@ msgstr " Distribute Points Here"
 
 #: diceroll/templates/dice_roll.html:246
 msgid "An error occurred."
-msgstr "An error occurred. Try again.\\nMake sure your Internet connection is working."
+msgstr ""
+"An error occurred. Try again.\\nMake sure your Internet connection is "
+"working."
 
 #: diceroll/templates/dice_roll.html:247
 msgid "Fast Delivery Required"
@@ -870,8 +876,8 @@ msgstr "Message"
 
 #: position/templates/position_buyer_seller.html:504
 #: position/templates/position_buyer_seller.html:728
-msgid "Note: Only messages for the current RPG round are shown."
-msgstr "Note: Only messages for the current RPG round are shown."
+msgid "Note: Only data for the current RPG round are shown."
+msgstr "Note: Only data for the current RPG round are shown."
 
 #: position/templates/position_buyer_seller.html:508
 msgid "Deals Waiting For Counterpart"
@@ -1169,23 +1175,27 @@ msgstr "Gift sent."
 msgid "Message sent."
 msgstr "Message sent."
 
-#: shared_templates/_menu_admin.html:26 shared_templates/_menu_group.html:23
+#: shared_templates/_menu_admin.html:20
+msgid "Settings"
+msgstr "Settings"
+
+#: shared_templates/_menu_admin.html:38 shared_templates/_menu_group.html:23
 msgid "Help"
 msgstr "Help"
 
-#: shared_templates/_menu_admin.html:30 shared_templates/_menu_group.html:27
+#: shared_templates/_menu_admin.html:42 shared_templates/_menu_group.html:27
 msgid "User Guide"
 msgstr "User Guide"
 
-#: shared_templates/_menu_admin.html:33 shared_templates/_menu_group.html:30
+#: shared_templates/_menu_admin.html:45 shared_templates/_menu_group.html:30
 msgid "Class eBook"
 msgstr "Class eBook"
 
-#: shared_templates/_menu_admin.html:36 shared_templates/_menu_group.html:33
+#: shared_templates/_menu_admin.html:48 shared_templates/_menu_group.html:33
 msgid "Class Slides"
 msgstr "Class Slides"
 
-#: shared_templates/_menu_admin.html:39 shared_templates/_menu_group.html:36
+#: shared_templates/_menu_admin.html:51 shared_templates/_menu_group.html:36
 msgid "Class Lectures"
 msgstr "Class Lectures"
 
