@@ -866,7 +866,7 @@ msgstr "消息"
 
 #: position/templates/position_buyer_seller.html:504
 #: position/templates/position_buyer_seller.html:728
-msgid "Note: Only messages for the current RPG round are shown."
+msgid "Note: Only data for the current RPG round are shown."
 msgstr "注意：僅顯示目前 RPG 回合的數據。"
 
 #: position/templates/position_buyer_seller.html:508

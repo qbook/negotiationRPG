@@ -45,6 +45,14 @@
                         <h1><i>{% trans "REFRESH TO UPDATE" %}</i></h1>
                     </div>
                 </a>
+
+                    <span class="small">
+                        <strong>Members:</strong><br>
+                        {% for member in group_members %}
+                            [{{ member.studentNumber }} {{ member.englishName }}] 
+                        {% endfor %}
+                    </span>
+
             </div>
 
             <div class="card custom-card mb-3 shadow">
@@ -446,9 +454,12 @@
             </div> <!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow" id="crdInventory">
-                <h4 class="card-header custom-card-header"><div id="txtInventoryTitle">{% trans "Inventory" %}</div></h4>
+                <h4 class="card-header custom-card-header">
+                    <div id="txtInventoryTitle">{% trans "Inventory" %}</div>
+                </h4>
                 <div class="card-body">
-                    <table class="table table-striped table-responsive">
+                    <table class="table table-striped">
+
                         <thead class="custom-thead">
                             <tr>
                             <th>{% trans "Total" %}</th>
@@ -471,10 +482,12 @@
                             </tr>
                         </tfoot>
                     </table>
+                    <div class="text-muted small text-nowrap" id="txtInventoryNote"> <!-- Wrapper div with nowrap -->
+                        {% trans "Inventory bought over your MAX Purchase" %}
+                        ({{ rpg_max_purchase }})
+                        {% trans "will cause bankruptcy." %}
+                    </div>
                 </div> <!-- End card body-->
-                <span class="small text-muted" id="txtInventoryNote0">{% trans "Inventory bought over your MAX Purchase" %}</span> 
-                ({{ rpg_max_purchase }}) 
-                <span class="small text-muted" id="txtInventoryNote1"> {% trans "will cause bankruptcy." %}</span>
             </div> <!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow">
@@ -501,7 +514,7 @@
                         </tbody>
                     </table>
                 </div> <!-- End card body-->
-                <div class="small text-muted">{% trans "Note: Only messages for the current RPG round are shown." %}</div>                    
+                <div class="small text-muted">{% trans "Note: Only data for the current RPG round are shown." %}</div>                    
             </div> <!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow">
@@ -725,7 +738,7 @@
                         </tbody>
                     </table>
                 </div> <!-- End card body-->
-                <div class="small text-muted"><sup>a</sup>{% trans "Note: Only messages for the current RPG round are shown." %}</div>
+                <div class="small text-muted"><sup>a</sup>{% trans "Note: Only data for the current RPG round are shown." %}</div>
             </div><!-- End card -->
 
             <div class="card custom-card text-dark bg-light mb-3 shadow">
