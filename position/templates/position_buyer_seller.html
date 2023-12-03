@@ -487,11 +487,13 @@
                             </tr>
                         </tfoot>
                     </table>
-                    <div class="text-muted small text-nowrap" id="txtInventoryNote"> <!-- Wrapper div with nowrap -->
-                        {% trans "Inventory bought over your MAX Purchase" %}
+
+                    <div class="text-muted small text-nowrap">
+                        <span id="txtInventoryNote0"></span>
                         ({{ rpg_max_purchase }})
-                        {% trans "will cause bankruptcy." %}
+                        <span id="txtInventoryNote1"></span>
                     </div>
+
                 </div> <!-- End card body-->
             </div> <!-- End card -->
 
