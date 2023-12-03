@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 14:20+0800\n"
+"POT-Creation-Date: 2023-11-28 18:46+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,20 +36,20 @@ msgid "My Group"
 msgstr "我的組"
 
 #: GameSetup/templates/choose_group.html:39
-#: position/templates/position_buyer_seller.html:241
-#: position/templates/position_buyer_seller.html:273
-#: position/templates/position_buyer_seller.html:274
-#: position/templates/position_buyer_seller.html:297
-#: position/templates/position_buyer_seller.html:320
-#: position/templates/position_buyer_seller.html:347
-#: position/templates/position_buyer_seller.html:426
-#: position/templates/position_buyer_seller.html:514
-#: position/templates/position_buyer_seller.html:544
-#: position/templates/position_buyer_seller.html:574
-#: position/templates/position_buyer_seller.html:575
-#: position/templates/position_buyer_seller.html:708
-#: position/templates/position_buyer_seller.html:709
-#: position/templates/position_buyer_seller.html:749
+#: position/templates/position_buyer_seller.html:254
+#: position/templates/position_buyer_seller.html:286
+#: position/templates/position_buyer_seller.html:287
+#: position/templates/position_buyer_seller.html:310
+#: position/templates/position_buyer_seller.html:333
+#: position/templates/position_buyer_seller.html:360
+#: position/templates/position_buyer_seller.html:439
+#: position/templates/position_buyer_seller.html:532
+#: position/templates/position_buyer_seller.html:562
+#: position/templates/position_buyer_seller.html:592
+#: position/templates/position_buyer_seller.html:593
+#: position/templates/position_buyer_seller.html:726
+#: position/templates/position_buyer_seller.html:727
+#: position/templates/position_buyer_seller.html:767
 msgid "Group"
 msgstr "組別："
 
@@ -103,11 +103,7 @@ msgstr "選擇你的班級："
 msgid "My Class"
 msgstr "我的課"
 
-#: GameSetup/views.py:57
-msgid "Data imported successfully!"
-msgstr "數據成功導入！"
-
-#: GameSetup/views.py:395
+#: GameSetup/views.py:402
 msgid "Password updated successfully!"
 msgstr "密碼更新成功！"
 
@@ -175,47 +171,47 @@ msgid "Currency:"
 msgstr "貨幣："
 
 #: diceroll/templates/dice_roll.html:75
-#: position/templates/position_buyer_seller.html:51
+#: position/templates/position_buyer_seller.html:64
 msgid "Negotiation Position"
 msgstr "談判位置"
 
 #: diceroll/templates/dice_roll.html:78 diceroll/templates/dice_roll.html:140
-#: position/templates/position_buyer_seller.html:54
+#: position/templates/position_buyer_seller.html:67
 msgid "RESISTANCE:"
 msgstr "抵抗價："
 
 #: diceroll/templates/dice_roll.html:80 diceroll/templates/dice_roll.html:152
-#: position/templates/position_buyer_seller.html:56
+#: position/templates/position_buyer_seller.html:69
 msgid "FLEX:"
 msgstr "靈活性："
 
 #: diceroll/templates/dice_roll.html:82 diceroll/templates/dice_roll.html:164
-#: position/templates/position_buyer_seller.html:58
+#: position/templates/position_buyer_seller.html:71
 msgid "MAX Purchase:"
 msgstr "最大購買量："
 
 #: diceroll/templates/dice_roll.html:84 diceroll/templates/dice_roll.html:177
-#: position/templates/position_buyer_seller.html:60
+#: position/templates/position_buyer_seller.html:73
 msgid "DELIVERY:"
 msgstr "交貨："
 
 #: diceroll/templates/dice_roll.html:86 diceroll/templates/dice_roll.html:189
-#: position/templates/position_buyer_seller.html:62
+#: position/templates/position_buyer_seller.html:75
 msgid "UNITS:"
 msgstr "單位："
 
 #: diceroll/templates/dice_roll.html:88 diceroll/templates/dice_roll.html:201
-#: position/templates/position_buyer_seller.html:64
+#: position/templates/position_buyer_seller.html:77
 msgid "IMPORTANCE:"
 msgstr "重要性："
 
 #: diceroll/templates/dice_roll.html:90 diceroll/templates/dice_roll.html:213
-#: position/templates/position_buyer_seller.html:66
+#: position/templates/position_buyer_seller.html:79
 msgid "QUALITY:"
 msgstr "品質："
 
 #: diceroll/templates/dice_roll.html:93
-#: position/templates/position_buyer_seller.html:68
+#: position/templates/position_buyer_seller.html:81
 msgid "ROLE:"
 msgstr "角色："
 
@@ -224,12 +220,12 @@ msgid "Go To RPG Dashboard"
 msgstr "前往RPG控制台"
 
 #: diceroll/templates/dice_roll.html:97
-#: position/templates/position_buyer_seller.html:72
+#: position/templates/position_buyer_seller.html:85
 msgid "Notes:"
 msgstr "筆記："
 
 #: diceroll/templates/dice_roll.html:100
-#: position/templates/position_buyer_seller.html:76
+#: position/templates/position_buyer_seller.html:89
 msgid "(Click to edit note)"
 msgstr "（點擊以編輯筆記）"
 
@@ -246,17 +242,17 @@ msgid "Dice Roll End:"
 msgstr "擲骰結束："
 
 #: diceroll/templates/dice_roll.html:115
-#: position/templates/position_buyer_seller.html:744
+#: position/templates/position_buyer_seller.html:762
 msgid "Marketplace"
 msgstr "市场"
 
 #: diceroll/templates/dice_roll.html:116
-#: position/templates/position_buyer_seller.html:741
+#: position/templates/position_buyer_seller.html:759
 msgid "BUYERS:"
 msgstr "买家"
 
 #: diceroll/templates/dice_roll.html:116
-#: position/templates/position_buyer_seller.html:741
+#: position/templates/position_buyer_seller.html:759
 msgid "SELLERS:"
 msgstr "卖家："
 
@@ -337,7 +333,7 @@ msgid "Base Units"
 msgstr "基礎單位"
 
 #: diceroll/templates/dice_roll.html:240
-#: position/templates/position_buyer_seller.html:776
+#: position/templates/position_buyer_seller.html:794
 msgid "BUYER"
 msgstr "买家"
 
@@ -358,7 +354,7 @@ msgid "Capable of High Quality"
 msgstr "能提供高質量"
 
 #: diceroll/templates/dice_roll.html:245
-#: position/templates/position_buyer_seller.html:785
+#: position/templates/position_buyer_seller.html:803
 msgid "Distribute Points Here"
 msgstr "在此分配點數"
 
@@ -375,9 +371,9 @@ msgid "Flex Point"
 msgstr "靈活點數"
 
 #: diceroll/templates/dice_roll.html:249
-#: position/templates/position_buyer_seller.html:277
-#: position/templates/position_buyer_seller.html:488
-#: position/templates/position_buyer_seller.html:654
+#: position/templates/position_buyer_seller.html:290
+#: position/templates/position_buyer_seller.html:506
+#: position/templates/position_buyer_seller.html:672
 msgid "Flex Points"
 msgstr "靈活點數"
 
@@ -386,12 +382,12 @@ msgid "High Quality Required"
 msgstr "需要高質量"
 
 #: diceroll/templates/dice_roll.html:251
-#: position/templates/position_buyer_seller.html:801
+#: position/templates/position_buyer_seller.html:819
 msgid "Important"
 msgstr "重要性"
 
 #: diceroll/templates/dice_roll.html:252
-#: position/templates/position_buyer_seller.html:806
+#: position/templates/position_buyer_seller.html:824
 msgid "Kind Of Important"
 msgstr "有點重要"
 
@@ -404,7 +400,7 @@ msgid "Mod. Units"
 msgstr "單位"
 
 #: diceroll/templates/dice_roll.html:255
-#: position/templates/position_buyer_seller.html:813
+#: position/templates/position_buyer_seller.html:831
 msgid "NONE"
 msgstr "無"
 
@@ -425,7 +421,7 @@ msgid "Roll dice before distributing points!"
 msgstr "分配點數前請先擲骰子！"
 
 #: diceroll/templates/dice_roll.html:260
-#: position/templates/position_buyer_seller.html:820
+#: position/templates/position_buyer_seller.html:838
 msgid "SELLER"
 msgstr "卖家"
 
@@ -434,12 +430,12 @@ msgid "Slow Delivery Acceptable"
 msgstr "可接受慢速交貨"
 
 #: diceroll/templates/dice_roll.html:262
-#: position/templates/position_buyer_seller.html:824
+#: position/templates/position_buyer_seller.html:842
 msgid "Small Potatoes"
 msgstr "小事"
 
 #: diceroll/templates/dice_roll.html:263
-#: position/templates/position_buyer_seller.html:825
+#: position/templates/position_buyer_seller.html:843
 msgid "Somewhat Important"
 msgstr "頗為重要"
 
@@ -453,19 +449,19 @@ msgstr "。請再試一次"
 
 #: diceroll/templates/dice_roll.html:266
 msgid "Time Over!"
-msgstr ""
+msgstr "時間結束！"
 
 #: diceroll/templates/dice_roll.html:267
 msgid "Time To Roll Dice!"
 msgstr "是時候擲骰子了！"
 
 #: diceroll/templates/dice_roll.html:268
-#: position/templates/position_buyer_seller.html:830
+#: position/templates/position_buyer_seller.html:848
 msgid "Very Important"
 msgstr "非常重要"
 
 #: diceroll/templates/dice_roll.html:269
-#: position/templates/position_buyer_seller.html:831
+#: position/templates/position_buyer_seller.html:849
 msgid "Vital Importance"
 msgstr "至關重要"
 
@@ -479,7 +475,7 @@ msgstr "沒有剩餘擲骰次數"
 
 #: diceroll/views.py:136
 msgid "Record not found"
-msgstr ""
+msgstr "未找到記錄"
 
 #: position/templates/position_buyer_seller.html:16
 msgid "RPG DASHBOARD"
@@ -493,300 +489,304 @@ msgstr "交易開始："
 msgid "REFRESH TO UPDATE"
 msgstr "刷新以更新"
 
-#: position/templates/position_buyer_seller.html:79
+#: position/templates/position_buyer_seller.html:55
+msgid "FINISH SURVEY NOW"
+msgstr "請立即完成調查（獲得100新台幣）"
+
+#: position/templates/position_buyer_seller.html:92
 msgid "Save"
 msgstr "保存"
 
-#: position/templates/position_buyer_seller.html:85
+#: position/templates/position_buyer_seller.html:98
 msgid "Actions"
 msgstr "操作"
 
-#: position/templates/position_buyer_seller.html:92
+#: position/templates/position_buyer_seller.html:105
 msgid "Send A Deal"
 msgstr "發送交易"
 
-#: position/templates/position_buyer_seller.html:93
+#: position/templates/position_buyer_seller.html:106
 msgid "Cancel A Deal"
 msgstr "取消交易"
 
-#: position/templates/position_buyer_seller.html:94
+#: position/templates/position_buyer_seller.html:107
 msgid "Gift Flex Points"
 msgstr "贈送靈活點數"
 
-#: position/templates/position_buyer_seller.html:95
+#: position/templates/position_buyer_seller.html:108
 msgid "Message A Group"
 msgstr "給團體發消息"
 
-#: position/templates/position_buyer_seller.html:100
+#: position/templates/position_buyer_seller.html:113
 msgid "PURCHASE/SALE ORDER"
 msgstr "購買/銷售訂單"
 
-#: position/templates/position_buyer_seller.html:105
-#: position/templates/position_buyer_seller.html:151
+#: position/templates/position_buyer_seller.html:118
+#: position/templates/position_buyer_seller.html:164
 msgid "Counterpart:"
 msgstr "對手方："
 
-#: position/templates/position_buyer_seller.html:108
+#: position/templates/position_buyer_seller.html:121
 msgid "Units:"
 msgstr "單位："
 
-#: position/templates/position_buyer_seller.html:111
+#: position/templates/position_buyer_seller.html:124
 msgid "Price:"
 msgstr "價格："
 
-#: position/templates/position_buyer_seller.html:114
+#: position/templates/position_buyer_seller.html:127
 msgid "Quality:"
 msgstr "品質："
 
-#: position/templates/position_buyer_seller.html:122
+#: position/templates/position_buyer_seller.html:135
 msgid "Delivery:"
 msgstr "交付："
 
-#: position/templates/position_buyer_seller.html:133
+#: position/templates/position_buyer_seller.html:146
 msgid "Send Deal"
 msgstr "發送交易"
 
-#: position/templates/position_buyer_seller.html:136
-#: position/templates/position_buyer_seller.html:153
+#: position/templates/position_buyer_seller.html:149
+#: position/templates/position_buyer_seller.html:166
 msgid "Deal ID:"
 msgstr "交易編號："
 
-#: position/templates/position_buyer_seller.html:136
+#: position/templates/position_buyer_seller.html:149
 msgid "Buyer and seller must use SAME Deal ID."
 msgstr "買家和賣家必須使用相同的交易編號。"
 
-#: position/templates/position_buyer_seller.html:137
+#: position/templates/position_buyer_seller.html:150
 msgid "Use this NEW Deal ID."
 msgstr "使用這個新的交易編號。"
 
-#: position/templates/position_buyer_seller.html:146
+#: position/templates/position_buyer_seller.html:159
 msgid "CANCEL PURCHASE ORDER"
 msgstr "取消購買訂單"
 
-#: position/templates/position_buyer_seller.html:158
+#: position/templates/position_buyer_seller.html:171
 msgid "Cancel Deal"
 msgstr "取消交易"
 
-#: position/templates/position_buyer_seller.html:167
+#: position/templates/position_buyer_seller.html:180
 msgid "SEND FLEX POINTS"
 msgstr "發送靈活點數"
 
-#: position/templates/position_buyer_seller.html:172
-#: position/templates/position_buyer_seller.html:195
+#: position/templates/position_buyer_seller.html:185
+#: position/templates/position_buyer_seller.html:208
 msgid "Send To:"
 msgstr "發送至："
 
-#: position/templates/position_buyer_seller.html:174
-#: position/templates/position_buyer_seller.html:367
+#: position/templates/position_buyer_seller.html:187
+#: position/templates/position_buyer_seller.html:380
 msgid "Flex Points:"
 msgstr "靈活點數："
 
-#: position/templates/position_buyer_seller.html:176
-#: position/templates/position_buyer_seller.html:199
+#: position/templates/position_buyer_seller.html:189
+#: position/templates/position_buyer_seller.html:212
 msgid "Message:"
 msgstr "消息："
 
-#: position/templates/position_buyer_seller.html:181
+#: position/templates/position_buyer_seller.html:194
 msgid "Send Flex Points"
 msgstr "發送靈活點數"
 
-#: position/templates/position_buyer_seller.html:190
+#: position/templates/position_buyer_seller.html:203
 msgid "SEND MESSAGE"
 msgstr "發送消息"
 
-#: position/templates/position_buyer_seller.html:197
+#: position/templates/position_buyer_seller.html:210
 msgid "Message Subject:"
 msgstr "訊息主題："
 
-#: position/templates/position_buyer_seller.html:204
+#: position/templates/position_buyer_seller.html:217
 msgid "Send Message"
 msgstr "發送訊息"
 
-#: position/templates/position_buyer_seller.html:224
+#: position/templates/position_buyer_seller.html:237
 msgid "Deals Completed"
 msgstr "已完成交易"
 
-#: position/templates/position_buyer_seller.html:229
-#: position/templates/position_buyer_seller.html:261
-#: position/templates/position_buyer_seller.html:288
-#: position/templates/position_buyer_seller.html:311
-#: position/templates/position_buyer_seller.html:338
-#: position/templates/position_buyer_seller.html:372
-#: position/templates/position_buyer_seller.html:415
-#: position/templates/position_buyer_seller.html:513
-#: position/templates/position_buyer_seller.html:543
-#: position/templates/position_buyer_seller.html:573
+#: position/templates/position_buyer_seller.html:242
+#: position/templates/position_buyer_seller.html:274
+#: position/templates/position_buyer_seller.html:301
+#: position/templates/position_buyer_seller.html:324
+#: position/templates/position_buyer_seller.html:351
+#: position/templates/position_buyer_seller.html:385
+#: position/templates/position_buyer_seller.html:428
+#: position/templates/position_buyer_seller.html:531
+#: position/templates/position_buyer_seller.html:561
+#: position/templates/position_buyer_seller.html:591
 msgid "Deal ID"
 msgstr "交易編號"
 
-#: position/templates/position_buyer_seller.html:230
+#: position/templates/position_buyer_seller.html:243
 msgid "With"
 msgstr "與"
 
-#: position/templates/position_buyer_seller.html:231
-#: position/templates/position_buyer_seller.html:265
-#: position/templates/position_buyer_seller.html:373
-#: position/templates/position_buyer_seller.html:515
-#: position/templates/position_buyer_seller.html:545
-#: position/templates/position_buyer_seller.html:577
+#: position/templates/position_buyer_seller.html:244
+#: position/templates/position_buyer_seller.html:278
+#: position/templates/position_buyer_seller.html:386
+#: position/templates/position_buyer_seller.html:533
+#: position/templates/position_buyer_seller.html:563
+#: position/templates/position_buyer_seller.html:595
 msgid "Units"
 msgstr "單位"
 
-#: position/templates/position_buyer_seller.html:232
-#: position/templates/position_buyer_seller.html:417
-#: position/templates/position_buyer_seller.html:516
-#: position/templates/position_buyer_seller.html:546
-#: position/templates/position_buyer_seller.html:578
-#: position/templates/position_buyer_seller.html:610
-#: position/templates/position_buyer_seller.html:615
-#: position/templates/position_buyer_seller.html:619
+#: position/templates/position_buyer_seller.html:245
+#: position/templates/position_buyer_seller.html:430
+#: position/templates/position_buyer_seller.html:534
+#: position/templates/position_buyer_seller.html:564
+#: position/templates/position_buyer_seller.html:596
+#: position/templates/position_buyer_seller.html:628
+#: position/templates/position_buyer_seller.html:633
+#: position/templates/position_buyer_seller.html:637
 msgid "Price"
 msgstr "價格"
 
-#: position/templates/position_buyer_seller.html:233
-#: position/templates/position_buyer_seller.html:517
-#: position/templates/position_buyer_seller.html:547
-#: position/templates/position_buyer_seller.html:579
+#: position/templates/position_buyer_seller.html:246
+#: position/templates/position_buyer_seller.html:535
+#: position/templates/position_buyer_seller.html:565
+#: position/templates/position_buyer_seller.html:597
 msgid "Qual."
 msgstr "質量"
 
-#: position/templates/position_buyer_seller.html:234
-#: position/templates/position_buyer_seller.html:518
-#: position/templates/position_buyer_seller.html:548
-#: position/templates/position_buyer_seller.html:580
+#: position/templates/position_buyer_seller.html:247
+#: position/templates/position_buyer_seller.html:536
+#: position/templates/position_buyer_seller.html:566
+#: position/templates/position_buyer_seller.html:598
 msgid "Deliv."
 msgstr "交付"
 
-#: position/templates/position_buyer_seller.html:251
+#: position/templates/position_buyer_seller.html:264
 msgid "Deals waiting for counterparties are not shown here."
 msgstr "在此不顯示等待交易對手的交易。"
 
-#: position/templates/position_buyer_seller.html:255
+#: position/templates/position_buyer_seller.html:268
 msgid "Canceled Deals"
 msgstr "已取消交易"
 
-#: position/templates/position_buyer_seller.html:257
+#: position/templates/position_buyer_seller.html:270
 msgid "Deals Canceled With Penalty"
 msgstr "帶有罰款的取消交易"
 
-#: position/templates/position_buyer_seller.html:262
-#: position/templates/position_buyer_seller.html:289
+#: position/templates/position_buyer_seller.html:275
+#: position/templates/position_buyer_seller.html:302
 msgid "Canceled By"
 msgstr "取消者"
 
-#: position/templates/position_buyer_seller.html:263
-#: position/templates/position_buyer_seller.html:313
-#: position/templates/position_buyer_seller.html:340
-#: position/templates/position_buyer_seller.html:416
+#: position/templates/position_buyer_seller.html:276
+#: position/templates/position_buyer_seller.html:326
+#: position/templates/position_buyer_seller.html:353
+#: position/templates/position_buyer_seller.html:429
 msgid "Counterpart"
 msgstr "交易對手"
 
-#: position/templates/position_buyer_seller.html:264
-#: position/templates/position_buyer_seller.html:290
-#: position/templates/position_buyer_seller.html:576
+#: position/templates/position_buyer_seller.html:277
+#: position/templates/position_buyer_seller.html:303
+#: position/templates/position_buyer_seller.html:594
 msgid "Role"
 msgstr "角色"
 
-#: position/templates/position_buyer_seller.html:266
+#: position/templates/position_buyer_seller.html:279
 msgid "Penalty"
 msgstr "罰金"
 
-#: position/templates/position_buyer_seller.html:284
+#: position/templates/position_buyer_seller.html:297
 msgid "Deals Canceled By Both"
 msgstr "雙方取消的交易"
 
-#: position/templates/position_buyer_seller.html:306
+#: position/templates/position_buyer_seller.html:319
 msgid "Invalid Deals"
 msgstr "無效交易"
 
-#: position/templates/position_buyer_seller.html:306
-#: position/templates/position_buyer_seller.html:333
+#: position/templates/position_buyer_seller.html:319
+#: position/templates/position_buyer_seller.html:346
 msgid "(Repeated Deal ID)"
 msgstr "（重複的交易編號）"
 
-#: position/templates/position_buyer_seller.html:312
-#: position/templates/position_buyer_seller.html:339
+#: position/templates/position_buyer_seller.html:325
+#: position/templates/position_buyer_seller.html:352
 msgid "Sent By"
 msgstr "發送者"
 
-#: position/templates/position_buyer_seller.html:327
+#: position/templates/position_buyer_seller.html:340
 msgid "No repeated Deal IDs."
 msgstr "沒有重複的交易編號。"
 
-#: position/templates/position_buyer_seller.html:333
+#: position/templates/position_buyer_seller.html:346
 msgid "Invalid Cancels"
 msgstr "無效取消"
 
-#: position/templates/position_buyer_seller.html:354
+#: position/templates/position_buyer_seller.html:367
 msgid "No repeated cancel Deal IDs."
 msgstr "沒有重複的取消交易編號。"
 
-#: position/templates/position_buyer_seller.html:358
+#: position/templates/position_buyer_seller.html:371
 msgid "Canceling deals costs:"
 msgstr "取消交易的成本："
 
-#: position/templates/position_buyer_seller.html:359
+#: position/templates/position_buyer_seller.html:372
 msgid "Both parties cancel = NO cost to you & NO cost to counterparty."
 msgstr "雙方取消 = 您無成本 & 交易對手無成本。"
 
-#: position/templates/position_buyer_seller.html:360
+#: position/templates/position_buyer_seller.html:373
 msgid ""
 "You cancel but counterparty does NOT cancel = 0.5 Flex Points per 100 units "
 "of the deal (minimum fee of 1 rounded down afterward)."
 msgstr ""
 "您取消但交易對手不取消 = 每100單位0.5彈性點數之後（最低費用為1，向下取整）。"
 
-#: position/templates/position_buyer_seller.html:361
+#: position/templates/position_buyer_seller.html:374
 msgid ""
 "You do NOT cancel but counterparty cancels = NO extra cost to you (deal is "
 "lost)."
 msgstr "您不取消但交易對手取消 = 您無額外成本（交易失效）。"
 
-#: position/templates/position_buyer_seller.html:362
+#: position/templates/position_buyer_seller.html:375
 msgid "Role 1 = Buyer; -1 = Seller."
 msgstr "角色 1 = 買家；-1 = 賣家。"
 
-#: position/templates/position_buyer_seller.html:363
+#: position/templates/position_buyer_seller.html:376
 msgid "Use a DEAL ID only ONCE!"
 msgstr "只使用一次交易編號！"
 
-#: position/templates/position_buyer_seller.html:374
+#: position/templates/position_buyer_seller.html:387
 msgid "Qual. Gap"
 msgstr "質量差距"
 
-#: position/templates/position_buyer_seller.html:375
+#: position/templates/position_buyer_seller.html:388
 msgid "Deliv. Gap"
 msgstr "交付差距"
 
-#: position/templates/position_buyer_seller.html:376
+#: position/templates/position_buyer_seller.html:389
 msgid "Loss/Gain"
 msgstr "損失/收益"
 
-#: position/templates/position_buyer_seller.html:392
+#: position/templates/position_buyer_seller.html:405
 msgid "Bonus:"
 msgstr "獎金："
 
-#: position/templates/position_buyer_seller.html:396
+#: position/templates/position_buyer_seller.html:409
 msgid "Over Production:"
 msgstr "超量生產："
 
-#: position/templates/position_buyer_seller.html:402
-#: position/templates/position_buyer_seller.html:795
+#: position/templates/position_buyer_seller.html:415
+#: position/templates/position_buyer_seller.html:813
 msgid "Going higher gains Flex Points (1 point per 100 units)."
 msgstr "超過增加彈性點數（每100單位1點）。"
 
-#: position/templates/position_buyer_seller.html:403
-#: position/templates/position_buyer_seller.html:798
+#: position/templates/position_buyer_seller.html:416
+#: position/templates/position_buyer_seller.html:816
 msgid "Going lower spends Flex Points (1 point per 100 units)."
 msgstr "降低消耗彈性點數（每100單位1點）。"
 
-#: position/templates/position_buyer_seller.html:404
+#: position/templates/position_buyer_seller.html:417
 msgid ""
 "Canceling a deal will have a cost if both sides do NOT agree (see Canceled "
 "Deals area)."
 msgstr "如果雙方不同意，取消交易將會有成本（參見已取消交易區域）。"
 
-#: position/templates/position_buyer_seller.html:405
+#: position/templates/position_buyer_seller.html:418
 #, python-format
 msgid ""
 "Earn extra Flex Points by making more deals with different groups (at least "
@@ -795,373 +795,377 @@ msgstr ""
 "通過與不同群組達成更多交易來賺取額外的彈性點數（至少10%%的目標單位與不同群"
 "組）。"
 
-#: position/templates/position_buyer_seller.html:406
+#: position/templates/position_buyer_seller.html:419
 #, python-format
 msgid ""
 "Production over MAX costs 1 Flex Point for every 10%% increase over UNITS."
 msgstr "生產超過最大值，每增加10%%的單位就要花費1個彈性點數。"
 
-#: position/templates/position_buyer_seller.html:410
+#: position/templates/position_buyer_seller.html:423
 msgid "Weighted Avg. Price"
 msgstr "加權平均價格"
 
-#: position/templates/position_buyer_seller.html:418
+#: position/templates/position_buyer_seller.html:431
 msgid "Quantity (Units)"
 msgstr "數量（單位）"
 
-#: position/templates/position_buyer_seller.html:419
+#: position/templates/position_buyer_seller.html:432
 msgid "Weighted Price"
 msgstr "加權價格"
 
-#: position/templates/position_buyer_seller.html:435
+#: position/templates/position_buyer_seller.html:448
 msgid "Total Units:"
 msgstr "總單位："
 
-#: position/templates/position_buyer_seller.html:439
+#: position/templates/position_buyer_seller.html:452
 msgid "Average Weighted Price:"
 msgstr "平均加權價格："
 
-#: position/templates/position_buyer_seller.html:449
+#: position/templates/position_buyer_seller.html:463
 msgid "Inventory"
 msgstr "庫存"
 
-#: position/templates/position_buyer_seller.html:454
+#: position/templates/position_buyer_seller.html:470
 msgid "Total"
 msgstr "總計"
 
-#: position/templates/position_buyer_seller.html:455
+#: position/templates/position_buyer_seller.html:471
 msgid "Target"
 msgstr "目標"
 
-#: position/templates/position_buyer_seller.html:468
+#: position/templates/position_buyer_seller.html:484
 msgid "Not Go Over:"
 msgstr "不超過："
 
-#: position/templates/position_buyer_seller.html:475
-#: position/templates/position_buyer_seller.html:803
+#: position/templates/position_buyer_seller.html:491
+#: position/templates/position_buyer_seller.html:821
 msgid "Inventory bought over your MAX Purchase"
 msgstr "購買的庫存超過您的最大購買量"
 
-#: position/templates/position_buyer_seller.html:477
-#: position/templates/position_buyer_seller.html:804
+#: position/templates/position_buyer_seller.html:493
+#: position/templates/position_buyer_seller.html:822
 msgid "will cause bankruptcy."
 msgstr "將導致破產。"
 
-#: position/templates/position_buyer_seller.html:481
+#: position/templates/position_buyer_seller.html:499
 msgid "Flex Point Send/Receive"
 msgstr "彈性點數發送/接收"
 
-#: position/templates/position_buyer_seller.html:486
+#: position/templates/position_buyer_seller.html:504
 msgid "From Group"
 msgstr "來自群組"
 
-#: position/templates/position_buyer_seller.html:487
+#: position/templates/position_buyer_seller.html:505
 msgid "To Group"
 msgstr "到群組"
 
-#: position/templates/position_buyer_seller.html:489
-#: position/templates/position_buyer_seller.html:711
+#: position/templates/position_buyer_seller.html:507
+#: position/templates/position_buyer_seller.html:729
 msgid "Message"
 msgstr "消息"
 
-#: position/templates/position_buyer_seller.html:504
-#: position/templates/position_buyer_seller.html:728
+#: position/templates/position_buyer_seller.html:522
+#: position/templates/position_buyer_seller.html:746
 msgid "Note: Only data for the current RPG round are shown."
 msgstr "注意：僅顯示目前 RPG 回合的數據。"
 
-#: position/templates/position_buyer_seller.html:508
+#: position/templates/position_buyer_seller.html:526
 msgid "Deals Waiting For Counterpart"
 msgstr "等待对手的交易"
 
-#: position/templates/position_buyer_seller.html:514
-#: position/templates/position_buyer_seller.html:574
-#: position/templates/position_buyer_seller.html:709
+#: position/templates/position_buyer_seller.html:532
+#: position/templates/position_buyer_seller.html:592
+#: position/templates/position_buyer_seller.html:727
 msgid "To"
 msgstr "至"
 
-#: position/templates/position_buyer_seller.html:538
+#: position/templates/position_buyer_seller.html:556
 msgid "Deals Waiting For You"
 msgstr "等待您的交易"
 
-#: position/templates/position_buyer_seller.html:544
-#: position/templates/position_buyer_seller.html:575
-#: position/templates/position_buyer_seller.html:708
+#: position/templates/position_buyer_seller.html:562
+#: position/templates/position_buyer_seller.html:593
+#: position/templates/position_buyer_seller.html:726
 msgid "From"
 msgstr "来自"
 
-#: position/templates/position_buyer_seller.html:568
+#: position/templates/position_buyer_seller.html:586
 msgid "Deals Mismatched"
 msgstr "交易不匹配"
 
-#: position/templates/position_buyer_seller.html:599
+#: position/templates/position_buyer_seller.html:617
 msgid "These deals use the same Deal ID but do not match."
 msgstr "这些交易使用相同的交易ID但不匹配。"
 
-#: position/templates/position_buyer_seller.html:600
+#: position/templates/position_buyer_seller.html:618
 msgid "Senders need to cancel these."
 msgstr "发送者需要取消这些。"
 
-#: position/templates/position_buyer_seller.html:601
+#: position/templates/position_buyer_seller.html:619
 msgid "Note: Role 1 = Buyer; -1 = Seller."
 msgstr "注意：角色 1 = 买家；-1 = 卖家。"
 
-#: position/templates/position_buyer_seller.html:605
+#: position/templates/position_buyer_seller.html:623
 msgid "RPG Score:"
 msgstr "RPG 得分："
 
-#: position/templates/position_buyer_seller.html:610
-#: position/templates/position_buyer_seller.html:615
-#: position/templates/position_buyer_seller.html:619
+#: position/templates/position_buyer_seller.html:628
+#: position/templates/position_buyer_seller.html:633
+#: position/templates/position_buyer_seller.html:637
 msgid "Resistance"
 msgstr "阻力"
 
-#: position/templates/position_buyer_seller.html:612
-#: position/templates/position_buyer_seller.html:613
+#: position/templates/position_buyer_seller.html:630
+#: position/templates/position_buyer_seller.html:631
 msgid "Weighted"
 msgstr "加权"
 
-#: position/templates/position_buyer_seller.html:612
-#: position/templates/position_buyer_seller.html:613
+#: position/templates/position_buyer_seller.html:630
+#: position/templates/position_buyer_seller.html:631
 msgid "Avg. Price"
 msgstr "平均价格"
 
-#: position/templates/position_buyer_seller.html:658
+#: position/templates/position_buyer_seller.html:676
 msgid "Importance"
 msgstr "重要性"
 
-#: position/templates/position_buyer_seller.html:680
-#: position/templates/position_buyer_seller.html:802
+#: position/templates/position_buyer_seller.html:698
+#: position/templates/position_buyer_seller.html:820
 msgid "Inventory Bought"
 msgstr "购买的库存"
 
-#: position/templates/position_buyer_seller.html:681
-#: position/templates/position_buyer_seller.html:805
+#: position/templates/position_buyer_seller.html:699
+#: position/templates/position_buyer_seller.html:823
 msgid "Inventory Sold"
 msgstr "售出的库存"
 
-#: position/templates/position_buyer_seller.html:683
+#: position/templates/position_buyer_seller.html:701
 msgid "Score"
 msgstr "得分"
 
-#: position/templates/position_buyer_seller.html:695
+#: position/templates/position_buyer_seller.html:713
 msgid "SCORE:"
 msgstr "得分："
 
-#: position/templates/position_buyer_seller.html:703
+#: position/templates/position_buyer_seller.html:721
 msgid "Messages Received"
 msgstr "收到的消息"
 
-#: position/templates/position_buyer_seller.html:710
+#: position/templates/position_buyer_seller.html:728
 msgid "Subject"
 msgstr "主题"
 
-#: position/templates/position_buyer_seller.html:712
+#: position/templates/position_buyer_seller.html:730
 msgid "Date"
 msgstr "日期"
 
-#: position/templates/position_buyer_seller.html:735
+#: position/templates/position_buyer_seller.html:753
 msgid "Change Round"
 msgstr "更换轮次"
 
-#: position/templates/position_buyer_seller.html:750
+#: position/templates/position_buyer_seller.html:768
 msgid "RPG Role"
 msgstr "RPG角色"
 
-#: position/templates/position_buyer_seller.html:751
+#: position/templates/position_buyer_seller.html:769
 msgid "Current Score"
 msgstr "当前得分"
 
-#: position/templates/position_buyer_seller.html:774
+#: position/templates/position_buyer_seller.html:792
 msgid "Average"
 msgstr "平均"
 
-#: position/templates/position_buyer_seller.html:775
+#: position/templates/position_buyer_seller.html:793
 msgid "[2] Average"
 msgstr "[2] 平均"
 
-#: position/templates/position_buyer_seller.html:777
+#: position/templates/position_buyer_seller.html:795
 msgid "You cannot buy over your resistance price."
 msgstr "你不能超過你的抵抗價格購買。"
 
-#: position/templates/position_buyer_seller.html:778
+#: position/templates/position_buyer_seller.html:796
 msgid "You cannot sell below your resistance price."
 msgstr "你不能低於你的抵抗價格銷售。"
 
-#: position/templates/position_buyer_seller.html:779
+#: position/templates/position_buyer_seller.html:797
 msgid "Counterpart must be a positive number."
 msgstr "對手方必須是正數。"
 
-#: position/templates/position_buyer_seller.html:780
+#: position/templates/position_buyer_seller.html:798
 msgid " Try to make a deal for faster."
 msgstr " 嘗試達成更快的交易。"
 
-#: position/templates/position_buyer_seller.html:781
+#: position/templates/position_buyer_seller.html:799
 msgid " Try to make a deal for higher."
 msgstr " 嘗試達成更高的交易。"
 
-#: position/templates/position_buyer_seller.html:782
+#: position/templates/position_buyer_seller.html:800
 msgid " Try to make a deal for lower."
 msgstr " 嘗試達成更低的交易。"
 
-#: position/templates/position_buyer_seller.html:783
+#: position/templates/position_buyer_seller.html:801
 msgid " Try to make a deal for slower."
 msgstr " 嘗試達成更慢的交易。"
 
-#: position/templates/position_buyer_seller.html:784
+#: position/templates/position_buyer_seller.html:802
 msgid "Delivery must be between Slow and Fast."
 msgstr "交貨必須介於慢與快之間。"
 
-#: position/templates/position_buyer_seller.html:786
+#: position/templates/position_buyer_seller.html:804
 msgid " Do not buy more than this."
 msgstr " 不要購買超過這個數量。"
 
-#: position/templates/position_buyer_seller.html:787
+#: position/templates/position_buyer_seller.html:805
 msgid "Do NOT Buy Over:"
 msgstr "不要購買超過："
 
-#: position/templates/position_buyer_seller.html:788
+#: position/templates/position_buyer_seller.html:806
 msgid " Do not pay more than this."
 msgstr " 不要支付超過這個價格。"
 
-#: position/templates/position_buyer_seller.html:789
+#: position/templates/position_buyer_seller.html:807
 msgid " Do not sell for less than this."
 msgstr " 不要賣得低於這個價格。"
 
-#: position/templates/position_buyer_seller.html:790
+#: position/templates/position_buyer_seller.html:808
 msgid " Spend, collect, or gift these."
 msgstr " 花費、收集或贈送這些。"
 
-#: position/templates/position_buyer_seller.html:791
+#: position/templates/position_buyer_seller.html:809
 msgid "Form validation failed:"
 msgstr "表單驗證失敗："
 
-#: position/templates/position_buyer_seller.html:792
+#: position/templates/position_buyer_seller.html:810
 msgid "Missing gift receiver."
 msgstr "缺少禮物接收者。"
 
-#: position/templates/position_buyer_seller.html:793
+#: position/templates/position_buyer_seller.html:811
 msgid "Missing gift amount (must be positive number)."
 msgstr "缺少禮物數量（必須是正數）。"
 
-#: position/templates/position_buyer_seller.html:794
+#: position/templates/position_buyer_seller.html:812
 msgid "You must include a short message."
 msgstr "你必須包括一條短訊息。"
 
-#: position/templates/position_buyer_seller.html:796
+#: position/templates/position_buyer_seller.html:814
 msgid "Going HIGHER spends Flex Points (1 point per 100 units)."
 msgstr "降低消耗彈性點數（每100單位1點，向上取整）。"
 
-#: position/templates/position_buyer_seller.html:797
+#: position/templates/position_buyer_seller.html:815
 msgid "Going LOWER gains Flex Points (1 point per 100 units)."
 msgstr "超過增加彈性點數（每100單位1點，向上取整）。"
 
-#: position/templates/position_buyer_seller.html:799
+#: position/templates/position_buyer_seller.html:817
 msgid "[3] High"
 msgstr "[3] 高"
 
-#: position/templates/position_buyer_seller.html:800
+#: position/templates/position_buyer_seller.html:818
 msgid "How important is this deal."
 msgstr "這筆交易有多重要。"
 
-#: position/templates/position_buyer_seller.html:807
+#: position/templates/position_buyer_seller.html:825
 msgid "[1] Low"
 msgstr "[1] 低"
 
-#: position/templates/position_buyer_seller.html:808
+#: position/templates/position_buyer_seller.html:826
 msgid "MAX Sales:"
 msgstr "最大購買量："
 
-#: position/templates/position_buyer_seller.html:809
+#: position/templates/position_buyer_seller.html:827
 msgid "Missing message receiver."
 msgstr "缺少訊息接收者。"
 
-#: position/templates/position_buyer_seller.html:810
+#: position/templates/position_buyer_seller.html:828
 msgid "Missing message short subject."
 msgstr "缺少訊息的簡短主題。"
 
-#: position/templates/position_buyer_seller.html:811
+#: position/templates/position_buyer_seller.html:829
 msgid "Missing message."
 msgstr "缺少訊息。"
 
-#: position/templates/position_buyer_seller.html:812
+#: position/templates/position_buyer_seller.html:830
 msgid "New Deal ID:"
 msgstr "新交易編號："
 
-#: position/templates/position_buyer_seller.html:814
+#: position/templates/position_buyer_seller.html:832
 msgid "Not time for deals yet."
 msgstr "現在還不是進行交易的時候。"
 
-#: position/templates/position_buyer_seller.html:815
+#: position/templates/position_buyer_seller.html:833
 msgid "Deals can begin at "
 msgstr "交易可以開始於 "
 
-#: position/templates/position_buyer_seller.html:816
+#: position/templates/position_buyer_seller.html:834
 msgid "Price must be a positive number."
 msgstr "價格必須是正數。"
 
-#: position/templates/position_buyer_seller.html:817
+#: position/templates/position_buyer_seller.html:835
 msgid "PURCHASE ORDER"
 msgstr "購買/銷售訂單"
 
-#: position/templates/position_buyer_seller.html:818
+#: position/templates/position_buyer_seller.html:836
 msgid "Quality must be between Low and High."
 msgstr "品質必須介於低和高之間。"
 
-#: position/templates/position_buyer_seller.html:819
+#: position/templates/position_buyer_seller.html:837
 msgid "SALE INVOICE"
 msgstr "銷售發票"
 
-#: position/templates/position_buyer_seller.html:821
+#: position/templates/position_buyer_seller.html:839
 msgid "Selling over MAX will cost Flex Points to increase capacity."
 msgstr "超過最大銷售量將花費彈性點數來增加容量。"
 
-#: position/templates/position_buyer_seller.html:822
+#: position/templates/position_buyer_seller.html:840
 msgid " Selling over this will cost Flex Points."
 msgstr "超過此數量銷售將花費彈性點數。"
 
-#: position/templates/position_buyer_seller.html:823
+#: position/templates/position_buyer_seller.html:841
 msgid "Slow"
 msgstr "慢"
 
-#: position/templates/position_buyer_seller.html:826
+#: position/templates/position_buyer_seller.html:844
 msgid " Target buying at least this many."
 msgstr "目標購買至少這麼多。"
 
-#: position/templates/position_buyer_seller.html:827
+#: position/templates/position_buyer_seller.html:845
 msgid " Target selling at least this many."
 msgstr "目標銷售至少這麼多。"
 
-#: position/templates/position_buyer_seller.html:828
+#: position/templates/position_buyer_seller.html:846
 msgid "Target This:"
 msgstr "目標這個："
 
-#: position/templates/position_buyer_seller.html:829
+#: position/templates/position_buyer_seller.html:847
 msgid "Units must be a positive number."
 msgstr "單位必須是正數。"
 
-#: position/views.py:890
+#: position/templates/position_buyer_seller.html:850
+msgid "Complete Survey"
+msgstr "請完成調查並獲得100新台幣的優惠券！"
+
+#: position/views.py:960
 msgid "Deal saved."
 msgstr "交易已儲存。"
 
-#: position/views.py:894 position/views.py:926 position/views.py:957
-#: position/views.py:988
+#: position/views.py:964 position/views.py:996 position/views.py:1027
+#: position/views.py:1058
 msgid "Form is not valid."
 msgstr "表單無效。"
 
-#: position/views.py:898 position/views.py:929 position/views.py:960
-#: position/views.py:991
+#: position/views.py:968 position/views.py:999 position/views.py:1030
+#: position/views.py:1061
 msgid "Method not allowed."
 msgstr "不允許的方法。"
 
-#: position/views.py:923
+#: position/views.py:993
 msgid "Cancel of deal saved."
 msgstr "交易取消已儲存。"
 
-#: position/views.py:954
+#: position/views.py:1024
 msgid "Gift sent."
 msgstr "禮物已發送。"
 
-#: position/views.py:985
+#: position/views.py:1055
 msgid "Message sent."
 msgstr "訊息已發送。"
 
@@ -1200,6 +1204,17 @@ msgstr "登錄頁面"
 #: shared_templates/_menu_group.html:48
 msgid "Language"
 msgstr "語言"
+
+#: survey/templates/survey_complete.html:17
+msgid "CLAIM SURVEY GIFT"
+msgstr "領取調查獎品"
+
+#: survey/templates/survey_complete.html:19
+msgid "BACK TO RPG"
+msgstr "返回角色扮演遊戲 RPG"
+
+#~ msgid "Data imported successfully!"
+#~ msgstr "數據成功導入！"
 
 #~ msgid "Significant Positive"
 #~ msgstr "顯著正面"

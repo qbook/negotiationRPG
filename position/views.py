@@ -25,6 +25,8 @@ from position.models import responses
 from position.models import gifting
 from position.models import messaging
 from position.models import cancel
+from survey.models import SurveySection
+from survey.models import UserResponse
 from django.db.models import Q
 from collections import defaultdict
 from django.db.models import Max, F
@@ -364,7 +366,7 @@ def position_buyer_seller(request):
 
 #-------------------QUERY GROUP MEMBERS---------------------------------
     # Query the group members for current group
-    group_members = query_group_members(currentClassName, currentGroupNumber)
+    group_members, survey_rpg_start, all_completed = query_group_members(currentClassName, currentGroupNumber)
 
 #----------------------------FLEX POINTS CALCULATIONS-------
     # Get the Flex Point count from a function
@@ -403,7 +405,9 @@ def position_buyer_seller(request):
         'groupDigit': currentGroupNumber,
         'currentClassName': currentClassName,
         'currentTeacher': currentTeacher,
-        'group_members':group_members,
+        'group_members': group_members,
+        'survey_rpg_start': survey_rpg_start,
+        'all_completed': all_completed,
         'rpg_closest_round': rpg_closest_round,
         'buyers_count': buyers_count,
         'sellers_count': sellers_count,
@@ -809,13 +813,49 @@ def query_gifts_sent(rpg_closest_round, currentClassName, currentGroupNumber):
 
 #-------------------QUERY GROUP MEMBERS---------------------------------
 def query_group_members(currentClassName, currentGroupNumber):
-    # Query the StudentList model
-    group_members = StudentList.objects.filter(
+    # Query the current class' RPG round to force complete
+    survey_rpg_start_queryset = GameSettings.objects.filter(
+        className=currentClassName,
+     ).values('surveyStart')
+    # Since you're expecting one result, you can use first()
+    survey_rpg_start = survey_rpg_start_queryset.first()['surveyStart'] if survey_rpg_start_queryset.exists() else None
+
+    # Get the total number of survey sections that need to be completed
+    total_sections = SurveySection.objects.count()
+
+    # Query the StudentList model for group members
+    group_members_query = StudentList.objects.filter(
         className=currentClassName,
         groupDigit=currentGroupNumber
-    ).values('chineseName', 'englishName', 'studentNumber')
+    )
     
-    return group_members
+    # Initialize a list to hold member completion status
+    group_members = []
+    all_completed = 1  # Flag to track overall completion
+
+    # Iterate over each member in the group
+    for member in group_members_query:
+        # Count the number of unique sections completed by the member
+        completed_sections_count = UserResponse.objects.filter(
+            student_id=member.studentNumber
+        ).values('section_code').distinct().count()
+
+        # Check if the member has completed all sections
+        has_completed_all = completed_sections_count == total_sections
+
+        if not has_completed_all: # Update the overall completion flag
+            all_completed = -1
+
+        # Append the member and their completion status to the list
+        group_members.append({
+            'chineseName': member.chineseName,
+            'englishName': member.englishName,
+            'studentNumber': member.studentNumber,
+            'has_completed_all': has_completed_all, # A boolean True/False
+            'all_completed': all_completed,
+        })
+    
+    return group_members, survey_rpg_start, all_completed
 
 #-------------------QUERY ALL CLASS MEMBERS---------------------------------
 def query_class_members(currentClassName):

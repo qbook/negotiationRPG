@@ -11,18 +11,50 @@
 
     <div class="container">
         <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 g-3">
-            <div class="card text-dark bg-light mb-1">
+            <div class="card text-dark bg-light mb-3 shadow bg-light">
                 <div class="mb-3">
                     <h2>IMPORT STUDENT LIST</h2>
                     <h2>Class: {{ currentClassName }}<br>Teacher: {{ currentTeacher }}</h2>
                 </div>
             </div> <!-- End Card -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <H2>Steps</H2>
+
+            <div class="card text-dark bg-light mb-3 shadow">
+                <div class="card-body">
+                    <h4 class="card-header custom-card-header">Class Members</h4>
+                    {% if class_members %}
+                        <table class="table table-striped small">
+                            <thead>
+                                <tr>
+                                    <th>Group</th>
+                                    <th>Student Number</th>
+                                    <th>English Name</th>
+                                    <th>Chinese Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for member in class_members %}
+                                    <tr>
+                                        <td>{{ member.groupDigit }}</td>
+                                        <td>{{ member.studentNumber }}</td>
+                                        <td>{{ member.englishName }}</td>
+                                        <td>{{ member.chineseName }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                    <div class="alert alert-warning" role="alert">
+                        <p>The class list has not yet been imported.<br>
+                        Go to menu: Settings-->Import Student List</p>
+                    </div>
+                    {% endif %}
                 </div>
+            </div> <!-- End Card -->
+
+            <div class="card text-dark bg-light mb-3 shadow">
+                <div class="card-header"><H2>Steps</H2></div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">1. Export your student/group list from Google Sheet or Excel.</li>
+                    <li class="list-group-item">1. Format list in Google Sheet or Excel.</li>
                     <li class="list-group-item">2. Format the data into FOUR columns:</li>
                     <li class="list-group-item">
                         <ul>
@@ -32,10 +64,13 @@
                             <li>Group Number</li>
                         </ul>
                     </li>
+                    <li class="list-group-item">3. Export data to CVS (seperate with <strong>TAB</strong>).</li>
+                    <li class="list-group-item">4. Upload here.</li>
+                    <a href="{% static 'documents/student_list_upload_template.csv' %}" download>Download Student List Template</a>
                 </ul>
             </div>
-<br>
-            <div class="card custom-card mb-1">
+            <br>
+            <div class="card text-dark bg-light mb-3 shadow custom-card">
 
                 <h4 class="card-header custom-card-header">Import File</h4>
                 <div class="card-body">

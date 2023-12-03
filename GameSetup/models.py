@@ -54,6 +54,8 @@ class GameSettings(models.Model):
     diceHigh = models.IntegerField(blank=True, help_text='sugested min=10 max=28; All dice=48', default='28')
     diceLow = models.IntegerField(blank=True, help_text='10', default='10')
     playDays = models.IntegerField(blank=True, help_text='5', default='5')
+    surveyStart = models.IntegerField(blank=True, help_text='sugested RPG 8 (Survey taken BEFORE RPG 8 can be played)', default='8')
+    surveyReward = models.CharField(blank=False, max_length=1000, help_text='External page, most likely Google Form to specify gift process (use # for no link)', default=mark_safe('https://bit.ly/39NbwJe'))    
     teacherNotes = models.TextField(blank=True, default='Your notes here', help_text='Only seen by instructor')
 
     userGuide = models.CharField(blank=False, max_length=1000, help_text='User Guide (use # for no link)', default=mark_safe('https://docs.google.com/document/d/1KCIf7SJVeFeMZ05ecCmT1Wey9Z0alWUn83Tr3GjNzYU/edit?usp=drive_link'))

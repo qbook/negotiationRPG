@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'GameSetup.apps.GameSetupConfig',
     'diceroll.apps.dicerollConfig',
     'position.apps.PositionConfig',
+    'survey.apps.SurveyConfig',
     'widget_tweaks',
 ]
 

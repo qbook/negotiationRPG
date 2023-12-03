@@ -8,13 +8,14 @@ from .models import GroupLogin
 from .models import GameSettings
 from .forms import GroupDigitForm
 from .forms import GroupLoginForm
-from .forms import GameSettingsForm
 from .forms import GroupSettingsForm
+from .forms import GameSettingsForm
 from .models import GroupLogin
 from django.contrib import messages
 from .models import StudentList
 from django.utils.translation import gettext as _
 from .forms import CSVUploadForm
+
 import csv
 
 # Create your views here.
@@ -23,6 +24,9 @@ def upload_csv(request):
     # get teacher & class from session
     currentTeacher = request.session.get('currentTeacher')
     currentClassName = request.session.get('currentClassName')
+    class_members = StudentList.objects.filter(
+        className=currentClassName,
+    ).values('chineseName', 'englishName', 'studentNumber', 'groupDigit').order_by('groupDigit', 'studentNumber')
 
     # Create a new form instance
     form = CSVUploadForm()
@@ -32,19 +36,22 @@ def upload_csv(request):
         'form': form,
         'currentTeacher': currentTeacher,
         'currentClassName': currentClassName,
+        'class_members': class_members,
     }
 
     if request.method == 'POST':
         form = CSVUploadForm(request.POST, request.FILES)
-
+        import csv
         if form.is_valid():
             csv_file = request.FILES['csv_file']
             file_data = csv_file.read().decode("utf-8")
-            lines = file_data.split("\n")
+            lines = file_data.split("\n") # End of line
 
             # Skip the first two rows
             for line in lines[2:]:                        
-                fields = line.split(",")
+#                fields = line.split(",")
+                fields = line.split("\t") # Use TAB to serperate columns
+
                 if len(fields) == 4:  # Ensuring there are exactly 4 columns
                     _, created = StudentList.objects.update_or_create(
                         studentNumber=fields[0],

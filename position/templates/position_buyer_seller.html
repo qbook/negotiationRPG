@@ -21,7 +21,7 @@
                 </div>
             </div> <!-- End Card -->
 
-            <div class="card text-dark bg-light mb-3 shadow">
+            <div class="card text-dark bg-light mb-3 shadow text-dark">
                 <a href="{% url 'home' %}">
                     <div class="card text-light mb-3 shadow text-center position-relative"
                         style="background-image: url({% static 'images/logoClass01_blur.png' %}); 
@@ -46,16 +46,21 @@
                     </div>
                 </a>
 
-                    <span class="small">
-                        <strong>Members:</strong><br>
-                        {% for member in group_members %}
-                            [{{ member.studentNumber }} {{ member.englishName }}] 
-                        {% endfor %}
-                    </span>
+                <span class="small">
+                    <strong>Members:</strong><br>
 
-            </div>
+                    {% for member in group_members %}
+                        [{{ member.studentNumber }} {{ member.englishName }}]
+                        {% if not member.has_completed_all and rpg_closest_round >= survey_rpg_start %}
+                            <a href="{% url 'start_survey' %}?student_id={{ member.studentNumber }}">{% trans "FINISH SURVEY NOW" %}</a>
+                        {% endif %}
+                        <br>
+                    {% endfor %}
+                    <!-- RPG to start survey: {{ survey_rpg_start }} -->
+                </span>
+        </div>
 
-            <div class="card custom-card mb-3 shadow">
+            <div class="card text-dark bg-light mb-3 shadow custom-card">
                 <h4 class="card-header custom-card-header">{% trans "Negotiation Position" %} <i>Quick View</i></h4>
                 <div class="card-body">
                     <div class="row fw-bold">
@@ -89,7 +94,7 @@
             </div> <!-- End Card -->
         
 
-            <div class="card custom-card mb-3 shadow">
+            <div class="card text-dark bg-light mb-3 shadow custom-card">
                 <h4 class="card-header custom-card-header">{% trans "Actions" %}</h4>
                 <div class="card-body">
                     <div class="container mt-1">
@@ -228,7 +233,7 @@
 
             </div> <!-- End of card -->
 
-            <div class="card custom-card mb-3 shadow">
+            <div class="card text-dark bg-light mb-3 shadow custom-card">
                 <h4 class="card-header custom-card-header">{% trans "Deals Completed" %}<sup>a</sup></h4>
                 <div class="card-body">
                     <table class="table table-hover table-striped table-responsive">
@@ -259,7 +264,7 @@
                 <div class="small text-muted"><sup>a</sup>{% trans "Deals waiting for counterparties are not shown here." %}</div>
             </div> <!-- End card -->
 
-            <div class="card custom-card mb-3 shadow">
+            <div class="card text-dark bg-light mb-3 shadow custom-card">
                 <h4 class="card-header custom-card-header">{% trans "Canceled Deals" %}</h4>
                 <div class="card-body">
                     <h4 class="card-header">{% trans "Deals Canceled With Penalty" %}</h4>
@@ -842,27 +847,45 @@ var translations = { //create object to hold translations
     unitsPositive: "{% trans 'Units must be a positive number.' %}",
     veryImportantLabel: "{% trans 'Very Important' %}",
     vitalImportanceLabel: "{% trans 'Vital Importance' %}",
+    completeSurvey: "{% trans 'Complete Survey' %}",
 }; // end javacript translations
 
 $(document).ready(function() {
+    //--------------Survey Work---------------------
+    
+    function checkSurvey() {
+        if({{ rpg_closest_round }} >= {{ survey_rpg_start }}){
+            var allCompleted = {{ all_completed }};
+            if (allCompleted==-1) {
+                alert(translations.completeSurvey);
+            } // end if not all users completed survey
+        } // end if time for survey
+    } // end function
+    //--------------END Survey Work---------------------
+    
     // Array to hold the IDs of the divs you are toggling
     const divsToToggle = ['btnOpenDealForm', 'btnOpenCancelForm', 'btnOpenSendFlexForm', 'btnOpenSendMessageForm'];
     var currentOpenDiv = null; // keep track of the currently open div
     var timeStampInMilliseconds = 0 //need wide scope for this as it is used later
+    
     //Send Deal Clicked
     $('#btnSendDeal').click(function() {
+        checkSurvey(); // Encourage user to complete survey
         toggleDiv('btnOpenDealForm');
         // Generate UNIX timestamp in milliseconds
         timeStampInMilliseconds = new Date().getTime();
         $('#newDealID').text(translations.newDealID + timeStampInMilliseconds);
     });
     $('#btnCancelDeal').click(function() {
+        checkSurvey(); // Encourage user to complete survey        
         toggleDiv('btnOpenCancelForm');
     });
     $('#btnSendFlex').click(function() {
+        checkSurvey(); // Encourage user to complete survey        
         toggleDiv('btnOpenSendFlexForm');
     });
     $('#btnSendMessage').click(function() {
+        checkSurvey(); // Encourage user to complete survey        
         toggleDiv('btnOpenSendMessageForm');
     });
 
@@ -1119,8 +1142,6 @@ $(document).ready(function() {
         }
     }); // End click button function
 
-
-
     // When btnSubmitGiftFlex is clicked, the form inputs are checked
     $("#btnSubmitGiftFlex").click(function(event){
         var isValid = true; // Initialize flag
@@ -1232,6 +1253,7 @@ $(document).ready(function() {
         // Smoothly scroll to the top
         $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
+
 
 
     //Rotate anime graphics once on page load

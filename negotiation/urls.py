@@ -21,9 +21,17 @@ from django.views.i18n import set_language
 from GameSetup import views as gameSetupViews
 from diceroll import views as diceRollViews
 from position import views as positionViews
+from survey import views as surveyViews
+
 
 
 urlpatterns = [
+
+    path('survey/start/', surveyViews.start_survey, name='start_survey'),
+    path('survey/<int:code_order>/', surveyViews.survey_view, name='survey_view'),
+    path('survey/submit/<int:code_order>/', surveyViews.submit_survey, name='submit_survey'),
+    path('survey/complete/', surveyViews.survey_complete, name='survey_complete'),
+
     path('set-language/', set_language, name='set_language'),
     path('admin/', admin.site.urls),
     path('', gameSetupViews.home, name='home'),
@@ -65,7 +73,6 @@ urlpatterns = [
     path('remove_deal/<int:deal_id>/', positionViews.remove_deal, name='remove_deal'),
     path('position_result', positionViews.position_result, name='position_result'),
     path('position_result_manual', positionViews.position_result_manual, name='position_result_manual'),
-
 
 ]
 

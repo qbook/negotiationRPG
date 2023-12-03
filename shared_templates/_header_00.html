@@ -90,5 +90,54 @@
     padding: 5px;          /* Some padding for the background to be visible */
     }
 
-    
+    .slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensure that child elements (the slider) stretch to fill the container */
+    }
+
+    .slider-range-container {
+        display: flex;
+        justify-content: space-between; /* This will push the anchors to the ends */
+        align-items: center;
+        margin-bottom: 100px; /* Adjust space below the slider */
+    }
+
+    input[type="range"] {
+        width: 100%; /* Stretch the slider to fill the container */
+        -webkit-appearance: none; /* Override default styling in WebKit browsers */
+    }
+
+    .question-text {
+    text-align: center; /* Center the question text */
+    }
+
+    .slider-label {
+        margin-right: 10px; /* Adjust spacing as needed */
+        margin-left: 10px;  /* Adjust spacing as needed */
+    }
+
+    .question-text p {
+    margin-bottom: 0; /* Removes the default bottom margin from the paragraph */
+    }
+
+    .slider-value {
+        display: block; /* Make the span display as a block to manipulate margins */
+        margin-top: 0px; /* Pull the score closer to the slider */
+        margin-bottom: -5px; /* Provide some space below the score if needed */
+    }
+
+    .button-center {
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content (if needed) */
+    margin-top: 20px; /* Optional: adds some space above the button */
+    }
+
+
+
+
+
+
+
 </style>      
