@@ -116,6 +116,8 @@ LANGUAGE_CODE = 'en-us'
 LANGUAGES = [
     ('en', 'English'),
     ('zh-hant', 'Traditional Chinese'),
+    ('th', 'Thai'),
+    ('vi', 'Vietnamese'),
 ]
 
 TIME_ZONE = 'Asia/Taipei'
