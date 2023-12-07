@@ -118,6 +118,7 @@ LANGUAGES = [
     ('zh-hant', 'Traditional Chinese'),
     ('th', 'Thai'),
     ('vi', 'Vietnamese'),
+    ('ja', 'Japanese'),
 ]
 
 TIME_ZONE = 'Asia/Taipei'
