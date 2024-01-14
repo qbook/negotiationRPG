@@ -24,7 +24,6 @@ from position import views as positionViews
 from survey import views as surveyViews
 
 
-
 urlpatterns = [
 
     path('survey/start/', surveyViews.start_survey, name='start_survey'),
@@ -41,7 +40,8 @@ urlpatterns = [
     path('admin_password/', gameSetupViews.group_password, name='group_password'),
     # Import CSV class/group membership
     path('upload_csv/', gameSetupViews.upload_csv, name='upload_csv'),
-
+    # View survey results in tabular layout
+    path('survey_results/', surveyViews.survey_results, name='survey_results'),
 
     path('choose_group/', gameSetupViews.choose_group, name='choose_group'),
 

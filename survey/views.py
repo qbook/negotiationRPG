@@ -7,11 +7,11 @@ from GameSetup.models import GameSettings
 import random
 # from django.contrib.auth.models import User
 from django.utils import timezone
-
-# Create your views here.
 from django.shortcuts import render, redirect
 from .models import SurveySection, UserResponse
 import random
+
+# Create your views here.
 
 def start_survey(request):
     # -------FOR TESTING CLYDE--------------------------------------------------------
@@ -126,3 +126,44 @@ def survey_complete(request):
     }
     return render(request, 'survey_complete.html', context)
 
+def survey_results(request):
+    # Get all unique student IDs
+    student_ids = UserResponse.objects.values_list('student_id', flat=True).distinct()
+
+    # Get a composite list of section code_orders and question numbers for column headers
+    sections = SurveySection.objects.order_by('code_order')
+    questions = SurveyQuestion.objects.order_by('section__code_order', 'question_number')
+    section_questions = [(section.code_order, question.question_number) 
+                         for section in sections 
+                         for question in questions 
+                         if question.section.code_order == section.code_order]
+
+    # Prepare data structure for template
+    students_responses = []
+    for student_id in student_ids:
+        responses = UserResponse.objects.filter(student_id=student_id)
+
+        # Initialize a dictionary for each section-question with None responses
+        response_data = {f"{section_code_order}-Q{question_number}": None 
+                         for section_code_order, question_number in section_questions}
+
+        # Update the dictionary with actual responses
+        for response in responses:
+            key = f"{response.section_code}-Q{response.question_number}"
+            response_data[key] = response.response
+
+        students_responses.append({
+            'student_id': student_id,
+            'responses': response_data
+        })
+
+    # Generate column headers for the template
+    column_headers = [f"{section_code_order}-Q{question_number}" 
+                      for section_code_order, question_number in section_questions]
+
+    context = {
+        'students_responses': students_responses,
+        'column_headers': column_headers
+    }
+
+    return render(request, 'survey_results.html', context)
