@@ -438,7 +438,7 @@ $(document).ready(function() {
     $("#btnPlayNow").click(function(e) {
         //Give user chance to escape as this is final
 
-        e.preventDefault();  // Prevent the form from submitting which resets all the dropdowns and refreshes page.
+        e.preventDefault();  // Prevent the form from submitting which seems to block data to DB on Safari.
 
         var response = confirm(translations.areYouSure);
 
@@ -480,6 +480,7 @@ $(document).ready(function() {
                             alert("Attributes updated successfully.");
                             // Disable the form to prevent further changes
                             $("#attributeForm :input").prop("disabled", true);
+                            location.reload(true);
                         } else {
                             alert(translations.errorOccurred);
                         }
