@@ -477,7 +477,7 @@ $(document).ready(function() {
                     },
                     success: function(response) {
                         if (response.status == "success") {
-                            alert("Attributes updated successfully.");
+                            alert(attributeUpdate);
                             // Disable the form to prevent further changes
                             $("#attributeForm :input").prop("disabled", true);
                             location.reload(true);
