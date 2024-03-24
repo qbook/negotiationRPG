@@ -128,6 +128,11 @@
                         {% trans "Spend These Points:" %} <span class="bg-warning" id="txtRollScore">{{ groupDiceLastRoll }}</span><br>
                         {% trans "Negotiation Role:" %} <span class="txtRole bg-warning" id="txtRole1">{{ groupRole }}</span>
                     </div>
+                    <hr class="my-1 bg-primary">
+                    <b>Acheivement Bonus:</b><br>
+                    </p>
+                    <hr class="my-1 bg-primary">
+
                 </div>
             </div>
 
@@ -356,7 +361,10 @@ $(document).ready(function() {
     // Update every second
     setInterval(updateCountdown, 1000);
 
-    
+    $.ajaxSetup({
+        cache: false  // Apply no-cache setting to all Ajax requests
+    }); 
+
     //Button ROLL DICE clicked
     $("#btnRollDice").click(function(e) {
         e.preventDefault();  // Prevent the form from submitting which resets all the dropdowns and refreshes page.
