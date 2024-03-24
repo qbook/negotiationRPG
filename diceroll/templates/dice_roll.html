@@ -459,7 +459,6 @@ $(document).ready(function() {
                 const quality = $("#drpQuality").val();
 
                 // Send data to the server via AJAX
-                alert("SENDING AJAX");
                 $.ajax({
                     type: "POST",
                     url: "{% url 'update_attributes' %}",
@@ -474,6 +473,7 @@ $(document).ready(function() {
                         csrfmiddlewaretoken: '{{ csrf_token }}',
                     },
                     success: function(response) {
+                        alert(response.status);
                         if (response.status == "success") {
                             alert("Attributes updated successfully.");
                             // Disable the form to prevent further changes
