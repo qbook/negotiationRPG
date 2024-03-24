@@ -13,7 +13,6 @@ from GameSetup.views import check_start_time
 from position.views import query_buyer_seller_number # pull in market balance function
 import random
 
-
 def generate_random_number(request):
     low, high = 1, 100  # Or any range you've defined
     number = random.randint(low, high)
@@ -148,4 +147,7 @@ def update_attributes(request):
         # Save the record
         currentGroupCharacterSheet.save()
 
-
+        if success:
+            return JsonResponse({"status": "success"})
+        else:
+            return JsonResponse({"status": "error", "message": "An error occurred."})
