@@ -437,6 +437,9 @@ $(document).ready(function() {
     //Button Play NOW clicked
     $("#btnPlayNow").click(function(e) {
         //Give user chance to escape as this is final
+
+        e.preventDefault();  // Prevent the form from submitting which resets all the dropdowns and refreshes page.
+
         var response = confirm(translations.areYouSure);
 
         if (response == true) {// User clicked OK, continue with the function
@@ -473,7 +476,6 @@ $(document).ready(function() {
                         csrfmiddlewaretoken: '{{ csrf_token }}',
                     },
                     success: function(response) {
-                        alert(response.status);
                         if (response.status == "success") {
                             alert("Attributes updated successfully.");
                             // Disable the form to prevent further changes
