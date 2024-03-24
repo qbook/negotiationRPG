@@ -459,6 +459,7 @@ $(document).ready(function() {
                 const quality = $("#drpQuality").val();
 
                 // Send data to the server via AJAX
+                alert("SENDING AJAX");
                 $.ajax({
                     type: "POST",
                     url: "{% url 'update_attributes' %}",
