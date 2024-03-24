@@ -146,8 +146,4 @@ def update_attributes(request):
 
         # Save the record
         currentGroupCharacterSheet.save()
-
-        if success:
-            return JsonResponse({"status": "success"})
-        else:
-            return JsonResponse({"status": "error", "message": "An error occurred."})
+        return JsonResponse({"status": "success"})
