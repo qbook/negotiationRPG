@@ -125,12 +125,12 @@
                         </div>
                         <!-- Display remaining rolls and latest roll -->
                         <br>{% trans "Rolls Left:" %} <span class="bg-warning" id="txtRollsLeft">{{ groupDiceLeft }}</span><br>
-                        {% trans "Spend These Points:" %} <span class="bg-warning" id="txtRollScore">{{ groupDiceLastRoll }}</span><br>
+                        {% trans "Spend These Points:" %} <span class="bg-warning" id="txtRollScore">{{ groupDiceLastRoll }}</span><span class="bg-warning" id="txtBonus"></span><br>
                         {% trans "Negotiation Role:" %} <span class="txtRole bg-warning" id="txtRole1">{{ groupRole }}</span>
                     </div>
                     <hr class="my-1 bg-primary">
-                    Last RPG rank: {{ current_group_bonus.ranking}} ({{ current_group_bonus.percentile }} percentile 
-                    <span class="small text-muted">50%+1; 75%+1; 90%+1</span>)<br>
+                    Last RPG rank: {{ current_group_bonus.ranking}} Percentile: {{ current_group_bonus.percentile }} 
+                    <span class="small text-muted">(50%+1; 75%+1; 90%+1)</span><br>
                     <b>Acheivement Bonus Points: {{ current_group_bonus.bonus}}</b><br>
                     </p>
                     <hr class="my-1 bg-primary">
@@ -289,10 +289,17 @@ $(document).ready(function() {
     }//end elseIf
     
     // Declare variables that need wide scope here
-    var groupRole = {{ groupRole }} //use this variable across functions; Load on page load but remember to change as needed
-    var groupDiceLastRoll = {{ groupDiceLastRoll }} //use this variable across functions;
+    var groupRole = {{ groupRole }}; //use this variable across functions; Load on page load but remember to change as needed
+    var groupDiceLastRoll = {{ groupDiceLastRoll }}; //use this dice roll value variable across functions
+    var bonusPoints = {{ current_group_bonus.bonus}}; //use the bonus points value across functions
     var pointsLeft = 0;
     var originalHref = $("#btnGoToDashboard").attr("href"); //store the Go to Dashboard href for turning it on
+
+    //IF bonusPoints are more than 0 show them at the spend line
+    if(bonusPoints > 0){
+        $("#txtBonus").text(" + " + bonusPoints + " Bonus");
+    }
+
 
     function turnOnOffDiceRoll(state){        
         if (state == -1){ //turn off the rolldice and distribute card areas
@@ -398,11 +405,11 @@ $(document).ready(function() {
                     // Highlight with pulsing the chnages
                     $("#txtRollsLeft").text(response.rolls_left).removeClass("bg-warning pulse-effect").addClass("bg-danger pulse-effect").text(response.rolls_left);
                     $("#txtRollScore").text(response.latest_roll).removeClass("bg-warning pulse-effect").addClass("bg-danger pulse-effect").text(response.latest_roll);
-                    $("#txtPointsLeft").text(response.latest_roll).removeClass("bg-warning pulse-effect").addClass("bg-danger pulse-effect").text(response.latest_roll);
+                    $("#txtPointsLeft").text(response.latest_roll).removeClass("bg-warning pulse-effect").addClass("bg-danger pulse-effect").text(response.latest_roll + bonusPoints);
      
                     //Update the wide-scope variable on ROLE to match last dice role (this does not come from DB as the page refresh is blocked)
                     groupRole = response.latest_role; //update wide-scope variable on the group ROLE
-                    groupDiceLastRoll = response.latest_roll; //update wide-scope variable on points Left
+                    groupDiceLastRoll = response.latest_roll; //update wide-scope variable on roll value
 
                     //for page display, variable to hold the English for the ROLE integer value
                     if (response.latest_role == -1){
@@ -562,7 +569,7 @@ $(document).ready(function() {
         $(".point-dropdown").each(function () {
             totalPointsUsed += parseInt($(this).val(), 10) || 0;
         });
-        const pointsLeft = groupDiceLastRoll - totalPointsUsed;
+        const pointsLeft = (groupDiceLastRoll + bonusPoints) - totalPointsUsed;
         $("#txtPointsLeft").text(pointsLeft);
     }); //end dropdown changed listener
 

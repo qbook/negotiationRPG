@@ -14,16 +14,6 @@ from position.views import query_buyer_seller_number # pull in market balance fu
 from position.views import position_marketplace_calculations # pull the last RPG ranks/bonus points
 import random
 
-#--------------------------GROUP BONUS POINTS BASED ON PREVIOUS RPG RANKINGS----------
-#def get_bonus_points(request):
-#    # Get the RPG results data (more than we need here)
-#    result = position_marketplace_calculations(request, -1, 0)
-    # Extract the groups, RPG scores, RANK, and Bonus Points (reducing the data to just needed)
-#    ranked_groups_simplified = result['ranked_groups_simplified']
-#    context = {
-#        'ranked_groups_simplified': ranked_groups_simplified,
-#    }
-#    return render(request, 'dice_roll.html', context)
 
 def generate_random_number(request):
     low, high = 1, 100  # Or any range you've defined
@@ -56,13 +46,15 @@ def group_character(request):
     # Get count of buyers and sellers in the market to show in dice roll area
     buyers_count, sellers_count = query_buyer_seller_number(rpg_closest_round, currentClassName)
 
-
+    #--------------------------GROUP BONUS POINTS BASED ON PREVIOUS RPG RANKINGS----------
     # Call on function in position APP to get the previous RGP rank/percentile/bonus
     if int(rpg_closest_round) > 0: # Do not check for bonus for RPG 0
         # Get the RPG results data (more than we need here)
         ranked_groups_simplified = position_marketplace_calculations(request, -1, int(rpg_closest_round)-1, int(currentGroupNumber))
         # Find the current group's bonus from the list
         current_group_bonus = next((item for item in ranked_groups_simplified if item['group_digit'] == int(currentGroupNumber)), None)
+        # Save in session the bonus point amount for use in dice roll
+        request.session['current_group_bonus'] = current_group_bonus['bonus']
     else:
         current_group_bonus = 0
 
@@ -100,6 +92,8 @@ def roll_dice(request):
             currentClassName = request.session.get('currentClassName')
             currentGroupNumber = request.session.get('currentGroup')
             currentTeacher = request.session.get('currentTeacher')
+            # Get the bonus value from previous RPG acheivment
+            current_group_bonus = request.session.get('current_group_bonus', 0)
             #call the function to check game settings for this class
             result_from_check_start_time = check_start_time(currentTeacher, currentClassName, -1)
             # Extracting a value from the dictionary of results from function check_start_time
@@ -135,7 +129,12 @@ def roll_dice(request):
             #    groupRole = 'UNKNOWN'
             #end elseIf
 
-            return JsonResponse({"status": "success", "rolls_left": currentGroupCharacterSheet.groupDiceLeft, "latest_roll": roll_result, "latest_role": currentGroupCharacterSheet.groupRole, "message": _("Roll sent to server.")})
+            return JsonResponse({
+                "status": "success", 
+                "rolls_left": currentGroupCharacterSheet.groupDiceLeft, 
+                "latest_roll": roll_result, 
+                "latest_role": currentGroupCharacterSheet.groupRole, 
+                "message": _("Roll sent to server.")})
         else:
             return JsonResponse({"status": "fail", "message": _("No rolls left")})
 
