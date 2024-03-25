@@ -129,9 +129,9 @@
                         {% trans "Negotiation Role:" %} <span class="txtRole bg-warning" id="txtRole1">{{ groupRole }}</span>
                     </div>
                     <hr class="my-1 bg-primary">
-                    Last RPG rank: {{ current_group_bonus.ranking}} Percentile: {{ current_group_bonus.percentile }} 
+                    {% trans "Last RPG rank:" %} {{ current_group_bonus.ranking}} {% trans "Percentile:" %} {{ current_group_bonus.percentile }} 
                     <span class="small text-muted">(50%+1; 75%+1; 90%+1)</span><br>
-                    <b>Acheivement Bonus Points: {{ current_group_bonus.bonus}}</b><br>
+                    <b>{% trans "Acheivement Bonus Points:" %} {{ current_group_bonus.bonus}}</b><br>
                     </p>
                     <hr class="my-1 bg-primary">
                 </div>
@@ -243,6 +243,7 @@ var translations = { //create object to hold translations
     averageQualityAcceptable: "{% trans 'Average Quality Acceptable' %}",
     basePrice: "{% trans 'Base Price' %}",
     baseUnits: "{% trans 'Base Units' %}",
+    bonus: "{% trans 'Bonus' %}",
     buyerLabel: "{% trans 'BUYER' %}",
     capableAvgDelivery: "{% trans 'Capable of Average Delivery' %}",
     capableAvgQuality: "{% trans 'Capable of Average Quality' %}",
@@ -297,9 +298,8 @@ $(document).ready(function() {
 
     //IF bonusPoints are more than 0 show them at the spend line
     if(bonusPoints > 0){
-        $("#txtBonus").text(" + " + bonusPoints + " Bonus");
+        $("#txtBonus").text(" + " + bonusPoints + " " + translations.bonus);
     }
-
 
     function turnOnOffDiceRoll(state){        
         if (state == -1){ //turn off the rolldice and distribute card areas
