@@ -11,7 +11,20 @@ from .models import GroupCharacterSheet
 from GameSetup.models import GameSettings
 from GameSetup.views import check_start_time
 from position.views import query_buyer_seller_number # pull in market balance function
+from position.views import position_marketplace_calculations # pull the last RPG ranks/bonus points
 import random
+
+
+#--------------------------GROUP BONUS POINTS BASED ON PREVIOUS RPG RANKINGS----------
+def get_bonus_points(request):
+    # Get the RPG results data (more than we need here)
+    result = position_marketplace_calculations(request, -1, 0)
+    # Extract the groups, RPG scores, RANK, and Bonus Points (reducing the data to just needed)
+    ranked_groups_simplified = result['ranked_groups_simplified']
+    context = {
+        'ranked_groups_simplified': ranked_groups_simplified,
+    }
+    return render(request, 'dice_roll.html', context)
 
 def generate_random_number(request):
     low, high = 1, 100  # Or any range you've defined
@@ -44,6 +57,17 @@ def group_character(request):
     # Get count of buyers and sellers in the market to show in dice roll area
     buyers_count, sellers_count = query_buyer_seller_number(rpg_closest_round, currentClassName)
 
+
+
+    if int(rpg_closest_round) > 0: # Do not check for bonus for RPG 0
+        # Get the RPG results data (more than we need here)
+        ranked_groups_simplified = position_marketplace_calculations(request, -1, int(rpg_closest_round)-1, int(currentGroupNumber))
+        # Find the current group's bonus from the list
+        current_group_bonus = next((item for item in ranked_groups_simplified if item['group_digit'] == int(currentGroupNumber)), None)
+    else:
+        current_group_bonus = 0
+
+
     context = {
         'groupDigit': currentGroupNumber,
         'currentClassName': currentClassName,
@@ -61,7 +85,8 @@ def group_character(request):
         'groupNote': currentGroupCharacterSheet.groupNote,
         'groupRole': currentGroupCharacterSheet.groupRole,
         'buyers_count': buyers_count,
-        'sellers_count':sellers_count,
+        'sellers_count': sellers_count,
+        'current_group_bonus': current_group_bonus,
     }
     context = {**result_from_check_start_time, **context}
     return render(request, 'dice_roll.html', context)
