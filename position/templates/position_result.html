@@ -42,6 +42,7 @@
                                     <th scope="col">Group<br></th>
                                     <th scope="col">Score</th>
                                     <th scope="col">Rank</th>
+                                    <th scope="col">Percentile</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,6 +51,7 @@
                                     <td>{{ group.group_digit }}</td>
                                     <td>{{ group.scoreFinal }}</td>
                                     <td>{{ group.ranking }}</td>
+                                    <td>{{ group.percentile }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
