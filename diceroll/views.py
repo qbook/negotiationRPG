@@ -14,17 +14,16 @@ from position.views import query_buyer_seller_number # pull in market balance fu
 from position.views import position_marketplace_calculations # pull the last RPG ranks/bonus points
 import random
 
-
 #--------------------------GROUP BONUS POINTS BASED ON PREVIOUS RPG RANKINGS----------
-def get_bonus_points(request):
-    # Get the RPG results data (more than we need here)
-    result = position_marketplace_calculations(request, -1, 0)
+#def get_bonus_points(request):
+#    # Get the RPG results data (more than we need here)
+#    result = position_marketplace_calculations(request, -1, 0)
     # Extract the groups, RPG scores, RANK, and Bonus Points (reducing the data to just needed)
-    ranked_groups_simplified = result['ranked_groups_simplified']
-    context = {
-        'ranked_groups_simplified': ranked_groups_simplified,
-    }
-    return render(request, 'dice_roll.html', context)
+#    ranked_groups_simplified = result['ranked_groups_simplified']
+#    context = {
+#        'ranked_groups_simplified': ranked_groups_simplified,
+#    }
+#    return render(request, 'dice_roll.html', context)
 
 def generate_random_number(request):
     low, high = 1, 100  # Or any range you've defined
@@ -58,7 +57,7 @@ def group_character(request):
     buyers_count, sellers_count = query_buyer_seller_number(rpg_closest_round, currentClassName)
 
 
-
+    # Call on function in position APP to get the previous RGP rank/percentile/bonus
     if int(rpg_closest_round) > 0: # Do not check for bonus for RPG 0
         # Get the RPG results data (more than we need here)
         ranked_groups_simplified = position_marketplace_calculations(request, -1, int(rpg_closest_round)-1, int(currentGroupNumber))

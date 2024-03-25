@@ -74,6 +74,8 @@ def position_result_manual(request): # called by the page position_marketplace.h
         return redirect('home')
 #----------------------------------------END ADMIN PAGES--------------------------------
 
+
+
 def position_buyer_seller_manual(request): # called by the page position_buyer_seller.html when dropdown for specific RPG round is choosen
     rpg_choice = int(request.GET.get('rpg_choice', None)) # Get the specific RPG round chosen by user
     # This accounts for user did NOT click GO without choosing an RPG round number as the rpg_choice is -1 for NO choice
@@ -82,7 +84,9 @@ def position_buyer_seller_manual(request): # called by the page position_buyer_s
     
 
 #----------------------------MARKETPLACE CALCULATIONS i.e. SCORES FOR ALL GROUPS-------
-def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): # 1 for buyer/seller page, buyer_seller=>-1 for marketplace, rpg_manual_round=>-1 for NO custom RPG round
+def position_marketplace_calculations(request, buyer_seller, rpg_manual_round, group_bonus_check=0):
+    # 1 for buyer/seller page, buyer_seller=>-1 for marketplace, rpg_manual_round=>-1 for NO custom RPG round
+    # overloaded argument 'group' for getting the bonus data
     all_groups_results = [] # Holder to store all groups
 
     # Get teacher & class from session
@@ -229,13 +233,75 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
         } 
         all_groups_results.append(group_data)
 
+        # Calculate total number of groups for percentile and bonus calculation
+        total_groups = len(all_groups_results)
+
+        # Sort all_groups_results by 'scoreFinal' in descending order to assign rankings
+        all_groups_results_sorted = sorted(all_groups_results, key=lambda x: x['scoreFinal'], reverse=True)
+
+        # Initialize an empty list to hold simplified group data with rankings, bonuses, and percentiles
+        ranked_groups_simplified = []
+
+        # Determine ranking thresholds
+        top_50_rank = total_groups // 2
+        top_25_rank = total_groups // 4
+        top_10_rank = total_groups // 10
+
+        # Iterate over sorted results to calculate rankings, bonuses, and percentiles
+        for rank, group_data in enumerate(all_groups_results_sorted, start=1):
+            # Calculate bonus based on rank
+            bonus = (
+                1 if rank <= top_50_rank else 0
+            ) + (
+                1 if rank <= top_25_rank else 0
+            ) + (
+                1 if rank <= top_10_rank else 0
+            )
+
+            # Calculate percentile
+#            percentile = ((rank - 1) / total_groups) * 100
+            percentile = round(((total_groups - rank) / total_groups) * 100)
+
+            # Construct simplified group data with ranking, bonus, and percentile
+            simplified_group_data = {
+                'group_digit': group_data['group_digit'],
+                'scoreFinal': group_data['scoreFinal'],
+                'ranking': rank,
+                'bonus': bonus,
+                'percentile': round(percentile, 2)
+            }
+
+            # Append simplified data to the new list
+            ranked_groups_simplified.append(simplified_group_data)
+
+        # Now, ranked_groups_simplified contains each group's digit, scoreFinal, ranking, bonus, and percentile
+
+        # Optionally, update the original all_groups_results with rankings and percentiles if needed
+        for original_group_data in all_groups_results:
+            # Match each original_group_data with its corresponding entry in ranked_groups_simplified
+            for simplified_data in ranked_groups_simplified:
+                if original_group_data['group_digit'] == simplified_data['group_digit']:
+                    # Update the original group data with ranking and percentile
+                    original_group_data.update({
+                        'ranking': simplified_data['ranking'],
+                        'percentile': simplified_data['percentile'],
+                        'bonus': simplified_data['bonus']  # Add bonus if you want to store it in the original data too
+                    })
+                    break  # Break the inner loop once a match is found and updated
+
+        # You can now use ranked_groups_simplified or the updated all_groups_results in your context
+        context = {
+            # ... other context variables ...
+            'ranked_groups_simplified': ranked_groups_simplified,
+        }
+
         # Order the list by group number
         # Filter out items where 'group_digit' is None or doesn't exist
         all_groups_results = [item for item in all_groups_results if item.get('group_digit') is not None]
         # Now you can safely sort the list, if needed
         all_groups_results = sorted(all_groups_results, key=lambda x: x['group_digit'])
 
-        # Order the DICTIONARY by group number
+        # Order the list of DICTIONARY by group number
         # First filter out items where 'group_digit' is None or doesn't exist
         all_group_deals_library = {group: deals for group, deals in all_group_deals_library.items() if group.groupDigit is not None}
         # Sorting the dictionary by groupID
@@ -257,10 +323,12 @@ def position_marketplace_calculations(request, buyer_seller, rpg_manual_round): 
             'all_group_deals_library': all_group_deals_library,
             'dice_left': group.groupDiceLeft,
             'last_roll': group.groupDiceLastRoll,
+            'ranked_groups_simplified': ranked_groups_simplified,
         }
-    
-    if buyer_seller == 1: # Funciton argument passed from the buyer_seller function  (buyer_seller=>-1 for marketplace)
-        return all_groups_results # Only return the scoring info for the group
+    if group_bonus_check > 0: # Group getting bonus points amount for dice page
+        return ranked_groups_simplified    
+    elif buyer_seller == 1: # Funciton argument passed from the buyer_seller function  (buyer_seller=>-1 for marketplace)
+        return all_groups_results # Only return the scoring info for the groups
     else: # Marketplace data
         #return render(request, 'position_marketplace.html', context)
         return context # Return all context variables for the calling function to build the html page marketplace 
