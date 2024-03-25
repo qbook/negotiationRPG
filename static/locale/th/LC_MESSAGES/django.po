@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 10:41+0800\n"
+"POT-Creation-Date: 2024-03-25 20:42+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,24 +17,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
 #: GameSetup/forms.py:33 GameSetup/templates/group_password.html:49
 #: GameSetup/templates/group_password.html:63
 msgid "Update Password"
 msgstr "อัพเดทรหัสผ่าน"
 
-#: GameSetup/templates/choose_group.html:29
+#: GameSetup/templates/choose_group.html:32
 msgid "GROUP LOG IN:"
 msgstr "เข้าสู่ระบบกลุ่ม:"
 
-#: GameSetup/templates/choose_group.html:35
+#: GameSetup/templates/choose_group.html:38
 msgid "Choose a group:"
 msgstr "เลือกห้องเรียนของคุณ:"
 
-#: GameSetup/templates/choose_group.html:37
+#: GameSetup/templates/choose_group.html:40
 msgid "My Group"
 msgstr "กลุ่มของฉัน"
 
-#: GameSetup/templates/choose_group.html:39
+#: GameSetup/templates/choose_group.html:42
 #: position/templates/position_buyer_seller.html:254
 #: position/templates/position_buyer_seller.html:286
 #: position/templates/position_buyer_seller.html:287
@@ -52,22 +53,22 @@ msgstr "กลุ่มของฉัน"
 msgid "Group"
 msgstr "กลุ่ม:"
 
-#: GameSetup/templates/choose_group.html:47
+#: GameSetup/templates/choose_group.html:50
 msgid "Password:"
 msgstr "รหัสผ่าน:"
 
-#: GameSetup/templates/choose_group.html:50
+#: GameSetup/templates/choose_group.html:53
 msgid "Log In"
 msgstr "เข้าสู่ระบบ"
 
-#: GameSetup/templates/choose_group.html:64
+#: GameSetup/templates/choose_group.html:67
 #: GameSetup/templates/group_password.html:21
 #: diceroll/templates/dice_roll.html:26
 #: position/templates/position_buyer_seller.html:16
 msgid "Class:"
 msgstr "ห้องเรียน:"
 
-#: GameSetup/templates/choose_group.html:64
+#: GameSetup/templates/choose_group.html:67
 #: diceroll/templates/dice_roll.html:26
 #: position/templates/position_buyer_seller.html:16
 msgid "Teacher:"
@@ -94,15 +95,15 @@ msgstr "ไปยังหน้าเข้าสู่ระบบ"
 msgid "Password"
 msgstr "รหัสผ่าน"
 
-#: GameSetup/templates/home.html:27
+#: GameSetup/templates/home.html:30
 msgid "Choose your class:"
 msgstr "เลือกห้องเรียนของคุณ:"
 
-#: GameSetup/templates/home.html:37
+#: GameSetup/templates/home.html:40
 msgid "My Class"
 msgstr "ห้องเรียนของฉัน"
 
-#: GameSetup/views.py:402
+#: GameSetup/views.py:406
 msgid "Password updated successfully!"
 msgstr "อัพเดทรหัสผ่านสำเร็จ!"
 
@@ -174,37 +175,37 @@ msgstr "สกุลเงิน:"
 msgid "Negotiation Position"
 msgstr "ตำแหน่งเจรจาต่อรอง"
 
-#: diceroll/templates/dice_roll.html:78 diceroll/templates/dice_roll.html:140
+#: diceroll/templates/dice_roll.html:78 diceroll/templates/dice_roll.html:146
 #: position/templates/position_buyer_seller.html:67
 msgid "RESISTANCE:"
 msgstr "ราคาต้านทาน:"
 
-#: diceroll/templates/dice_roll.html:80 diceroll/templates/dice_roll.html:152
+#: diceroll/templates/dice_roll.html:80 diceroll/templates/dice_roll.html:158
 #: position/templates/position_buyer_seller.html:69
 msgid "FLEX:"
 msgstr "ความยืดหยุ่น:"
 
-#: diceroll/templates/dice_roll.html:82 diceroll/templates/dice_roll.html:164
+#: diceroll/templates/dice_roll.html:82 diceroll/templates/dice_roll.html:170
 #: position/templates/position_buyer_seller.html:71
 msgid "MAX Purchase:"
 msgstr "จำนวนซื้อสูงสุด:"
 
-#: diceroll/templates/dice_roll.html:84 diceroll/templates/dice_roll.html:177
+#: diceroll/templates/dice_roll.html:84 diceroll/templates/dice_roll.html:183
 #: position/templates/position_buyer_seller.html:73
 msgid "DELIVERY:"
 msgstr "การส่งมอบ:"
 
-#: diceroll/templates/dice_roll.html:86 diceroll/templates/dice_roll.html:189
+#: diceroll/templates/dice_roll.html:86 diceroll/templates/dice_roll.html:195
 #: position/templates/position_buyer_seller.html:75
 msgid "UNITS:"
 msgstr "หน่วย:"
 
-#: diceroll/templates/dice_roll.html:88 diceroll/templates/dice_roll.html:201
+#: diceroll/templates/dice_roll.html:88 diceroll/templates/dice_roll.html:207
 #: position/templates/position_buyer_seller.html:77
 msgid "IMPORTANCE:"
 msgstr "ความสำคัญ:"
 
-#: diceroll/templates/dice_roll.html:90 diceroll/templates/dice_roll.html:213
+#: diceroll/templates/dice_roll.html:90 diceroll/templates/dice_roll.html:219
 #: position/templates/position_buyer_seller.html:79
 msgid "QUALITY:"
 msgstr "คุณภาพ:"
@@ -275,204 +276,220 @@ msgstr "ใช้จุดเหล่านี้:"
 msgid "Negotiation Role:"
 msgstr "บทบาทการเจรจาต่อรอง:"
 
-#: diceroll/templates/dice_roll.html:135
+#: diceroll/templates/dice_roll.html:132
+msgid "Last RPG rank:"
+msgstr "อันดับ RPG ล่าสุด:"
+
+#: diceroll/templates/dice_roll.html:132
+msgid "Percentile:"
+msgstr "เปอร์เซ็นไทล์:"
+
+#: diceroll/templates/dice_roll.html:134
+msgid "Achievement Bonus Points:"
+msgstr "คะแนนโบนัสความสำเร็จ:"
+
+#: diceroll/templates/dice_roll.html:141
 msgid "Distribute Points"
 msgstr "แจกจุด"
 
-#: diceroll/templates/dice_roll.html:137
+#: diceroll/templates/dice_roll.html:143
 msgid "Spend your points here."
 msgstr "ใช้จุดของคุณที่นี่"
 
-#: diceroll/templates/dice_roll.html:137
+#: diceroll/templates/dice_roll.html:143
 msgid "Click"
 msgstr "คลิก"
 
-#: diceroll/templates/dice_roll.html:137
+#: diceroll/templates/dice_roll.html:143
 msgid "Play Now"
 msgstr "เล่นตอนนี้"
 
-#: diceroll/templates/dice_roll.html:137
+#: diceroll/templates/dice_roll.html:143
 msgid "when ready."
 msgstr "เมื่อพร้อม"
 
-#: diceroll/templates/dice_roll.html:137
+#: diceroll/templates/dice_roll.html:143
 msgid "Once you click Play Now"
 msgstr "(หลังจากคลิก 'เล่นตอนนี้' ตำแหน่งของคุณจะถูกล็อกและ"
 
-#: diceroll/templates/dice_roll.html:224
+#: diceroll/templates/dice_roll.html:230
 msgid "Play NOW"
 msgstr "เล่นทันที"
 
-#: diceroll/templates/dice_roll.html:233
+#: diceroll/templates/dice_roll.html:239
 msgid "Are you sure you want to lock in your numbers"
-msgstr "คุณแน่ใจหรือไม่ที่จะล็อคตัวเลขของคุณสำหรับเกม RPG นี้?\nการกระทำนี้ไม่สามารถยกเลิกได้"
+msgstr "คุณแน่ใจหรือไม่ที่จะล็อคตัวเลขของคุณสำหรับเกม RPG นี้? การกระทำนี้ไม่สามารถยกเลิกได้"
 
-#: diceroll/templates/dice_roll.html:234
+#: diceroll/templates/dice_roll.html:240
 msgid "Attributes updated successfully."
 msgstr "อัปเดตคุณสมบัติสำเร็จแล้ว"
 
-#: diceroll/templates/dice_roll.html:235
+#: diceroll/templates/dice_roll.html:241
 msgid "Failed to update attributes."
 msgstr "อัปเดตคุณสมบัติล้มเหลว"
 
-#: diceroll/templates/dice_roll.html:236
+#: diceroll/templates/dice_roll.html:242
 msgid "Average Delivery Acceptable"
 msgstr "สามารถจัดส่งได้ด้วยความเร็วปกติ"
 
-#: diceroll/templates/dice_roll.html:237
+#: diceroll/templates/dice_roll.html:243
 msgid "Average Quality Acceptable"
 msgstr "สามารถให้คุณภาพระดับปานกลาง"
 
-#: diceroll/templates/dice_roll.html:238
+#: diceroll/templates/dice_roll.html:244
 msgid "Base Price"
 msgstr "ราคาพื้นฐาน"
 
-#: diceroll/templates/dice_roll.html:239
+#: diceroll/templates/dice_roll.html:245
 msgid "Base Units"
 msgstr "หน่วยพื้นฐาน"
 
-#: diceroll/templates/dice_roll.html:240
-#: position/templates/position_buyer_seller.html:796
+#: diceroll/templates/dice_roll.html:246
+msgid "Bonus"
+msgstr "โบนัส"
+
+#: diceroll/templates/dice_roll.html:247
+#: position/templates/position_buyer_seller.html:800
 msgid "BUYER"
 msgstr "ผู้ซื้อ"
 
-#: diceroll/templates/dice_roll.html:241
+#: diceroll/templates/dice_roll.html:248
 msgid "Capable of Average Delivery"
 msgstr "สามารถจัดส่งได้ด้วยความเร็วปกติ"
 
-#: diceroll/templates/dice_roll.html:242
+#: diceroll/templates/dice_roll.html:249
 msgid "Capable of Average Quality"
 msgstr "สามารถให้คุณภาพระดับปานกลาง"
 
-#: diceroll/templates/dice_roll.html:243
+#: diceroll/templates/dice_roll.html:250
 msgid "Capable of Fast Delivery"
 msgstr "สามารถจัดส่งได้ด้วยความเร็วรวดเร็ว"
 
-#: diceroll/templates/dice_roll.html:244
+#: diceroll/templates/dice_roll.html:251
 msgid "Capable of High Quality"
 msgstr "สามารถให้คุณภาพระดับสูง"
 
-#: diceroll/templates/dice_roll.html:245
-#: position/templates/position_buyer_seller.html:805
+#: diceroll/templates/dice_roll.html:252
+#: position/templates/position_buyer_seller.html:809
 msgid "Distribute Points Here"
 msgstr "จัดสรรคะแนนที่นี่"
 
-#: diceroll/templates/dice_roll.html:246
+#: diceroll/templates/dice_roll.html:253
 msgid "An error occurred."
-msgstr "เกิดข้อผิดพลาด กรุณาลองอีกครั้ง\nตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ"
+msgstr "เกิดข้อผิดพลาด กรุณาลองอีกครั้ง ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ"
 
-#: diceroll/templates/dice_roll.html:247
+#: diceroll/templates/dice_roll.html:254
 msgid "Fast Delivery Required"
 msgstr "ต้องการการจัดส่งด่วน"
 
-#: diceroll/templates/dice_roll.html:248
+#: diceroll/templates/dice_roll.html:255
 msgid "Flex Point"
 msgstr "คะแนนยืดหยุ่น"
 
-#: diceroll/templates/dice_roll.html:249
+#: diceroll/templates/dice_roll.html:256
 #: position/templates/position_buyer_seller.html:290
 #: position/templates/position_buyer_seller.html:508
 #: position/templates/position_buyer_seller.html:674
 msgid "Flex Points"
 msgstr "คะแนนยืดหยุ่น"
 
-#: diceroll/templates/dice_roll.html:250
+#: diceroll/templates/dice_roll.html:257
 msgid "High Quality Required"
 msgstr "ต้องการคุณภาพสูง"
 
-#: diceroll/templates/dice_roll.html:251
-#: position/templates/position_buyer_seller.html:821
+#: diceroll/templates/dice_roll.html:258
+#: position/templates/position_buyer_seller.html:825
 msgid "Important"
 msgstr "ความสำคัญ"
 
-#: diceroll/templates/dice_roll.html:252
-#: position/templates/position_buyer_seller.html:826
+#: diceroll/templates/dice_roll.html:259
+#: position/templates/position_buyer_seller.html:830
 msgid "Kind Of Important"
 msgstr "ค่อนข้างสำคัญ"
 
-#: diceroll/templates/dice_roll.html:253
+#: diceroll/templates/dice_roll.html:260
 msgid "Low Quality Acceptable"
 msgstr "สามารถยอมรับคุณภาพต่ำได้"
 
-#: diceroll/templates/dice_roll.html:254
+#: diceroll/templates/dice_roll.html:261
 msgid "Mod. Units"
 msgstr "หน่วย"
 
-#: diceroll/templates/dice_roll.html:255
-#: position/templates/position_buyer_seller.html:833
+#: diceroll/templates/dice_roll.html:262
+#: position/templates/position_buyer_seller.html:837
 msgid "NONE"
 msgstr "ไม่มี"
 
-#: diceroll/templates/dice_roll.html:256
+#: diceroll/templates/dice_roll.html:263
 msgid "Only For Buyer"
 msgstr "เฉพาะผู้ซื้อเท่านั้น"
 
-#: diceroll/templates/dice_roll.html:257
+#: diceroll/templates/dice_roll.html:264
 msgid "Only Capable of Low Quality"
 msgstr "สามารถให้คุณภาพต่ำเท่านั้น"
 
-#: diceroll/templates/dice_roll.html:258
+#: diceroll/templates/dice_roll.html:265
 msgid "Only Capable of Slow Delivery"
 msgstr "สามารถจัดส่งช้าเท่านั้น"
 
-#: diceroll/templates/dice_roll.html:259
+#: diceroll/templates/dice_roll.html:266
 msgid "Roll dice before distributing points!"
 msgstr "โปรดทอยลูกเต๋าก่อนแจกจ่ายคะแนน!"
 
-#: diceroll/templates/dice_roll.html:260
-#: position/templates/position_buyer_seller.html:840
+#: diceroll/templates/dice_roll.html:267
+#: position/templates/position_buyer_seller.html:844
 msgid "SELLER"
 msgstr "ผู้ขาย"
 
-#: diceroll/templates/dice_roll.html:261
+#: diceroll/templates/dice_roll.html:268
 msgid "Slow Delivery Acceptable"
 msgstr "สามารถยอมรับการจัดส่งช้าได้"
 
-#: diceroll/templates/dice_roll.html:262
-#: position/templates/position_buyer_seller.html:844
+#: diceroll/templates/dice_roll.html:269
+#: position/templates/position_buyer_seller.html:848
 msgid "Small Potatoes"
 msgstr "เรื่องเล็กน้อย"
 
-#: diceroll/templates/dice_roll.html:263
-#: position/templates/position_buyer_seller.html:845
+#: diceroll/templates/dice_roll.html:270
+#: position/templates/position_buyer_seller.html:849
 msgid "Somewhat Important"
 msgstr "ค่อนข้างสำคัญ"
 
-#: diceroll/templates/dice_roll.html:264
+#: diceroll/templates/dice_roll.html:271
 msgid "You cannot spend more than your total points. \\n Remove: "
-msgstr "คุณไม่สามารถใช้จ่ายเกินกว่าคะแนนทั้งหมดของคุณ\n ลบออก:"
+msgstr "คุณไม่สามารถใช้จ่ายเกินกว่าคะแนนทั้งหมดของคุณ ลบออก:"
 
-#: diceroll/templates/dice_roll.html:265
+#: diceroll/templates/dice_roll.html:272
 msgid "Try again"
 msgstr "กรุณาลองอีกครั้ง"
 
-#: diceroll/templates/dice_roll.html:266
+#: diceroll/templates/dice_roll.html:273
 msgid "Time Over!"
 msgstr "เวลาหมดลง!"
 
-#: diceroll/templates/dice_roll.html:267
+#: diceroll/templates/dice_roll.html:274
 msgid "Time To Roll Dice!"
 msgstr "ถึงเวลาทอยลูกเต๋าแล้ว!"
 
-#: diceroll/templates/dice_roll.html:268
-#: position/templates/position_buyer_seller.html:850
+#: diceroll/templates/dice_roll.html:275
+#: position/templates/position_buyer_seller.html:854
 msgid "Very Important"
 msgstr "สำคัญมาก"
 
-#: diceroll/templates/dice_roll.html:269
-#: position/templates/position_buyer_seller.html:851
+#: diceroll/templates/dice_roll.html:276
+#: position/templates/position_buyer_seller.html:855
 msgid "Vital Importance"
 msgstr "สำคัญยิ่ง"
 
-#: diceroll/views.py:115
+#: diceroll/views.py:137
 msgid "Roll sent to server."
 msgstr "ผลการทอยลูกเต๋าถูกส่งไปยังเซิร์ฟเวอร์แล้ว"
 
-#: diceroll/views.py:117
+#: diceroll/views.py:139
 msgid "No rolls left"
 msgstr "ไม่มีโอกาสทอยลูกเต๋าเหลืออยู่"
 
-#: diceroll/views.py:136
+#: diceroll/views.py:158
 msgid "Record not found"
 msgstr "ไม่พบบันทึก"
 
@@ -769,12 +786,12 @@ msgid "Over Production:"
 msgstr "การผลิตเกิน:"
 
 #: position/templates/position_buyer_seller.html:415
-#: position/templates/position_buyer_seller.html:815
+#: position/templates/position_buyer_seller.html:819
 msgid "Going higher gains Flex Points (1 point per 100 units)."
 msgstr "การผลิตเกินเพิ่ม Flex Points (1 คะแนนต่อ 100 หน่วย)"
 
 #: position/templates/position_buyer_seller.html:416
-#: position/templates/position_buyer_seller.html:818
+#: position/templates/position_buyer_seller.html:822
 msgid "Going lower spends Flex Points (1 point per 100 units)."
 msgstr "การผลิตน้อยลงใช้ Flex Points (1 คะแนนต่อ 100 หน่วย)"
 
@@ -916,12 +933,12 @@ msgid "Importance"
 msgstr "ความสำคัญ"
 
 #: position/templates/position_buyer_seller.html:700
-#: position/templates/position_buyer_seller.html:822
+#: position/templates/position_buyer_seller.html:826
 msgid "Inventory Bought"
 msgstr "สินค้าคงคลังที่ซื้อ"
 
 #: position/templates/position_buyer_seller.html:701
-#: position/templates/position_buyer_seller.html:825
+#: position/templates/position_buyer_seller.html:829
 msgid "Inventory Sold"
 msgstr "สินค้าคงคลังที่ขาย"
 
@@ -957,209 +974,217 @@ msgstr "บทบาท RPG"
 msgid "Current Score"
 msgstr "คะแนนปัจจุบัน"
 
-#: position/templates/position_buyer_seller.html:794
+#: position/templates/position_buyer_seller.html:772
+msgid "Rank"
+msgstr ""
+
+#: position/templates/position_buyer_seller.html:773
+msgid "Percentile"
+msgstr ""
+
+#: position/templates/position_buyer_seller.html:798
 msgid "Average"
 msgstr "เฉลี่ย"
 
-#: position/templates/position_buyer_seller.html:795
+#: position/templates/position_buyer_seller.html:799
 msgid "[2] Average"
 msgstr "[2] เฉลี่ย"
 
-#: position/templates/position_buyer_seller.html:797
+#: position/templates/position_buyer_seller.html:801
 msgid "You cannot buy over your resistance price."
 msgstr "คุณไม่สามารถซื้อเกินราคาต้านทานของคุณ"
 
-#: position/templates/position_buyer_seller.html:798
+#: position/templates/position_buyer_seller.html:802
 msgid "You cannot sell below your resistance price."
 msgstr "คุณไม่สามารถขายต่ำกว่าราคาต้านทานของคุณ"
 
-#: position/templates/position_buyer_seller.html:799
+#: position/templates/position_buyer_seller.html:803
 msgid "Counterpart must be a positive number."
 msgstr "คู่ค้าต้องเป็นจำนวนบวก"
 
-#: position/templates/position_buyer_seller.html:800
+#: position/templates/position_buyer_seller.html:804
 msgid " Try to make a deal for faster."
 msgstr " พยายามทำข้อตกลงเพื่อการส่งมอบที่เร็วขึ้น"
 
-#: position/templates/position_buyer_seller.html:801
+#: position/templates/position_buyer_seller.html:805
 msgid " Try to make a deal for higher."
 msgstr " พยายามทำข้อตกลงเพื่อราคาที่สูงขึ้น"
 
-#: position/templates/position_buyer_seller.html:802
+#: position/templates/position_buyer_seller.html:806
 msgid " Try to make a deal for lower."
 msgstr " พยายามทำข้อตกลงเพื่อราคาที่ต่ำกว่า"
 
-#: position/templates/position_buyer_seller.html:803
+#: position/templates/position_buyer_seller.html:807
 msgid " Try to make a deal for slower."
 msgstr " พยายามทำข้อตกลงเพื่อการส่งมอบที่ช้าลง"
 
-#: position/templates/position_buyer_seller.html:804
+#: position/templates/position_buyer_seller.html:808
 msgid "Delivery must be between Slow and Fast."
 msgstr "การส่งมอบต้องอยู่ระหว่างช้าและเร็ว"
 
-#: position/templates/position_buyer_seller.html:806
+#: position/templates/position_buyer_seller.html:810
 msgid " Do not buy more than this."
 msgstr " อย่าซื้อเกินจำนวนนี้"
 
-#: position/templates/position_buyer_seller.html:807
+#: position/templates/position_buyer_seller.html:811
 msgid "Do NOT Buy Over:"
 msgstr "อย่าซื้อเกิน:"
 
-#: position/templates/position_buyer_seller.html:808
+#: position/templates/position_buyer_seller.html:812
 msgid " Do not pay more than this."
 msgstr " อย่าจ่ายเกินราคานี้"
 
-#: position/templates/position_buyer_seller.html:809
+#: position/templates/position_buyer_seller.html:813
 msgid " Do not sell for less than this."
 msgstr " อย่าขายต่ำกว่าราคานี้"
 
-#: position/templates/position_buyer_seller.html:810
+#: position/templates/position_buyer_seller.html:814
 msgid " Spend, collect, or gift these."
 msgstr " ใช้จ่าย รวบรวม หรือมอบของขวัญเหล่านี้"
 
-#: position/templates/position_buyer_seller.html:811
+#: position/templates/position_buyer_seller.html:815
 msgid "Form validation failed:"
 msgstr "การตรวจสอบฟอร์มล้มเหลว:"
 
-#: position/templates/position_buyer_seller.html:812
+#: position/templates/position_buyer_seller.html:816
 msgid "Missing gift receiver."
 msgstr "ขาดผู้รับของขวัญ"
 
-#: position/templates/position_buyer_seller.html:813
+#: position/templates/position_buyer_seller.html:817
 msgid "Missing gift amount (must be positive number)."
 msgstr "ขาดจำนวนของขวัญ (ต้องเป็นตัวเลขบวก)"
 
-#: position/templates/position_buyer_seller.html:814
+#: position/templates/position_buyer_seller.html:818
 msgid "You must include a short message."
 msgstr "คุณต้องรวมข้อความสั้นๆ"
 
-#: position/templates/position_buyer_seller.html:816
+#: position/templates/position_buyer_seller.html:820
 msgid "Going HIGHER spends Flex Points (1 point per 100 units)."
 msgstr "ลดลงจะใช้แต้มยืดหยุ่น (1 แต้มต่อทุก 100 หน่วย)"
 
-#: position/templates/position_buyer_seller.html:817
+#: position/templates/position_buyer_seller.html:821
 msgid "Going LOWER gains Flex Points (1 point per 100 units)."
 msgstr "เพิ่มขึ้นจะได้รับแต้มยืดหยุ่น (1 แต้มต่อทุก 100 หน่วย)"
 
-#: position/templates/position_buyer_seller.html:819
+#: position/templates/position_buyer_seller.html:823
 msgid "[3] High"
 msgstr "[3] สูง"
 
-#: position/templates/position_buyer_seller.html:820
+#: position/templates/position_buyer_seller.html:824
 msgid "How important is this deal."
 msgstr "การทำธุรกรรมนี้สำคัญแค่ไหน"
 
-#: position/templates/position_buyer_seller.html:823
+#: position/templates/position_buyer_seller.html:827
 msgid "Inventory bought over your MAX Purchase"
 msgstr "สินค้าคงคลังที่ซื้อเกินขีดจำกัดการซื้อสูงสุดของคุณ"
 
-#: position/templates/position_buyer_seller.html:824
+#: position/templates/position_buyer_seller.html:828
 msgid "will cause bankruptcy."
 msgstr "อาจทำให้ล้มละลาย"
 
-#: position/templates/position_buyer_seller.html:827
+#: position/templates/position_buyer_seller.html:831
 msgid "[1] Low"
 msgstr "[1] ต่ำ"
 
-#: position/templates/position_buyer_seller.html:828
+#: position/templates/position_buyer_seller.html:832
 msgid "MAX Sales:"
 msgstr "จำนวนการขายสูงสุด:"
 
-#: position/templates/position_buyer_seller.html:829
+#: position/templates/position_buyer_seller.html:833
 msgid "Missing message receiver."
 msgstr "ขาดผู้รับข้อความ"
 
-#: position/templates/position_buyer_seller.html:830
+#: position/templates/position_buyer_seller.html:834
 msgid "Missing message short subject."
 msgstr "ขาดหัวข้อสั้นของข้อความ"
 
-#: position/templates/position_buyer_seller.html:831
+#: position/templates/position_buyer_seller.html:835
 msgid "Missing message."
 msgstr "ขาดข้อความ"
 
-#: position/templates/position_buyer_seller.html:832
+#: position/templates/position_buyer_seller.html:836
 msgid "New Deal ID:"
 msgstr "รหัสธุรกรรมใหม่:"
 
-#: position/templates/position_buyer_seller.html:834
+#: position/templates/position_buyer_seller.html:838
 msgid "Not time for deals yet."
 msgstr "ยังไม่ถึงเวลาทำธุรกรรม"
 
-#: position/templates/position_buyer_seller.html:835
+#: position/templates/position_buyer_seller.html:839
 msgid "Deals can begin at "
 msgstr "ธุรกรรมสามารถเริ่มได้ที่ "
 
-#: position/templates/position_buyer_seller.html:836
+#: position/templates/position_buyer_seller.html:840
 msgid "Price must be a positive number."
 msgstr "ราคาต้องเป็นตัวเลขบวก"
 
-#: position/templates/position_buyer_seller.html:837
+#: position/templates/position_buyer_seller.html:841
 msgid "PURCHASE ORDER"
 msgstr "ใบสั่งซื้อ/ขาย"
 
-#: position/templates/position_buyer_seller.html:838
+#: position/templates/position_buyer_seller.html:842
 msgid "Quality must be between Low and High."
 msgstr "คุณภาพต้องอยู่ระหว่างต่ำและสูง"
 
-#: position/templates/position_buyer_seller.html:839
+#: position/templates/position_buyer_seller.html:843
 msgid "SALE INVOICE"
 msgstr "ใบแจ้งหนี้การขาย"
 
-#: position/templates/position_buyer_seller.html:841
+#: position/templates/position_buyer_seller.html:845
 msgid "Selling over MAX will cost Flex Points to increase capacity."
 msgstr "การขายเกิน MAX จะต้องใช้แต้มยืดหยุ่นเพื่อเพิ่มความสามารถ"
 
-#: position/templates/position_buyer_seller.html:842
+#: position/templates/position_buyer_seller.html:846
 msgid " Selling over this will cost Flex Points."
 msgstr "การขายเกินจำนวนนี้จะต้องใช้แต้มยืดหยุ่น"
 
-#: position/templates/position_buyer_seller.html:843
+#: position/templates/position_buyer_seller.html:847
 msgid "Slow"
 msgstr "ช้า"
 
-#: position/templates/position_buyer_seller.html:846
+#: position/templates/position_buyer_seller.html:850
 msgid " Target buying at least this many."
 msgstr "มุ่งหวังการซื้ออย่างน้อยจำนวนนี้"
 
-#: position/templates/position_buyer_seller.html:847
+#: position/templates/position_buyer_seller.html:851
 msgid " Target selling at least this many."
 msgstr "มุ่งหวังการขายอย่างน้อยจำนวนนี้"
 
-#: position/templates/position_buyer_seller.html:848
+#: position/templates/position_buyer_seller.html:852
 msgid "Target This:"
 msgstr "เป้าหมายนี้:"
 
-#: position/templates/position_buyer_seller.html:849
+#: position/templates/position_buyer_seller.html:853
 msgid "Units must be a positive number."
 msgstr "จำนวนต้องเป็นตัวเลขบวก"
 
-#: position/templates/position_buyer_seller.html:852
+#: position/templates/position_buyer_seller.html:856
 msgid "Complete Survey"
 msgstr "กรุณาทำแบบสอบถามและรับคู"
 
-#: position/views.py:960
+#: position/views.py:1028
 msgid "Deal saved."
 msgstr "การทำธุรกรรมถูกบันทึกแล้ว"
 
-#: position/views.py:964 position/views.py:996 position/views.py:1027
-#: position/views.py:1058
+#: position/views.py:1032 position/views.py:1064 position/views.py:1095
+#: position/views.py:1126
 msgid "Form is not valid."
 msgstr "แบบฟอร์มไม่ถูกต้อง"
 
-#: position/views.py:968 position/views.py:999 position/views.py:1030
-#: position/views.py:1061
+#: position/views.py:1036 position/views.py:1067 position/views.py:1098
+#: position/views.py:1129
 msgid "Method not allowed."
 msgstr "วิธีการนี้ไม่ได้รับอนุญาต"
 
-#: position/views.py:993
+#: position/views.py:1061
 msgid "Cancel of deal saved."
 msgstr "การยกเลิกธุรกรรมถูกบันทึกแล้ว"
 
-#: position/views.py:1024
+#: position/views.py:1092
 msgid "Gift sent."
 msgstr "ของขวัญได้ถูกส่งแล้ว"
 
-#: position/views.py:1055
+#: position/views.py:1123
 msgid "Message sent."
 msgstr "ข้อความได้ถูกส่งแล้ว"
 
@@ -1167,23 +1192,23 @@ msgstr "ข้อความได้ถูกส่งแล้ว"
 msgid "Settings"
 msgstr "ตั้งค่า"
 
-#: shared_templates/_menu_admin.html:38 shared_templates/_menu_group.html:23
+#: shared_templates/_menu_admin.html:41 shared_templates/_menu_group.html:23
 msgid "Help"
 msgstr "ช่วยเหลือ"
 
-#: shared_templates/_menu_admin.html:42 shared_templates/_menu_group.html:27
+#: shared_templates/_menu_admin.html:45 shared_templates/_menu_group.html:27
 msgid "User Guide"
 msgstr "คู่มือการใช้งาน"
 
-#: shared_templates/_menu_admin.html:45 shared_templates/_menu_group.html:30
+#: shared_templates/_menu_admin.html:48 shared_templates/_menu_group.html:30
 msgid "Class eBook"
 msgstr "หนังสืออิเล็กทรอนิกส์ของชั้นเรียน"
 
-#: shared_templates/_menu_admin.html:48 shared_templates/_menu_group.html:33
+#: shared_templates/_menu_admin.html:51 shared_templates/_menu_group.html:33
 msgid "Class Slides"
 msgstr "สไลด์การสอน"
 
-#: shared_templates/_menu_admin.html:51 shared_templates/_menu_group.html:36
+#: shared_templates/_menu_admin.html:54 shared_templates/_menu_group.html:36
 msgid "Class Lectures"
 msgstr "บรรยายในชั้นเรียน"
 

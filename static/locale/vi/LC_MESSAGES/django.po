@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 10:41+0800\n"
+"POT-Creation-Date: 2024-03-25 20:42+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,24 +17,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
 #: GameSetup/forms.py:33 GameSetup/templates/group_password.html:49
 #: GameSetup/templates/group_password.html:63
 msgid "Update Password"
 msgstr "Cập nhật mật khẩu"
 
-#: GameSetup/templates/choose_group.html:29
+#: GameSetup/templates/choose_group.html:32
 msgid "GROUP LOG IN:"
 msgstr "Đăng nhập nhóm:"
 
-#: GameSetup/templates/choose_group.html:35
+#: GameSetup/templates/choose_group.html:38
 msgid "Choose a group:"
 msgstr "Chọn lớp học của bạn:"
 
-#: GameSetup/templates/choose_group.html:37
+#: GameSetup/templates/choose_group.html:40
 msgid "My Group"
 msgstr "Nhóm của tôi"
 
-#: GameSetup/templates/choose_group.html:39
+#: GameSetup/templates/choose_group.html:42
 #: position/templates/position_buyer_seller.html:254
 #: position/templates/position_buyer_seller.html:286
 #: position/templates/position_buyer_seller.html:287
@@ -52,22 +53,22 @@ msgstr "Nhóm của tôi"
 msgid "Group"
 msgstr "Nhóm:"
 
-#: GameSetup/templates/choose_group.html:47
+#: GameSetup/templates/choose_group.html:50
 msgid "Password:"
 msgstr "Mật khẩu:"
 
-#: GameSetup/templates/choose_group.html:50
+#: GameSetup/templates/choose_group.html:53
 msgid "Log In"
 msgstr "Đăng nhập"
 
-#: GameSetup/templates/choose_group.html:64
+#: GameSetup/templates/choose_group.html:67
 #: GameSetup/templates/group_password.html:21
 #: diceroll/templates/dice_roll.html:26
 #: position/templates/position_buyer_seller.html:16
 msgid "Class:"
 msgstr "Khóa học:"
 
-#: GameSetup/templates/choose_group.html:64
+#: GameSetup/templates/choose_group.html:67
 #: diceroll/templates/dice_roll.html:26
 #: position/templates/position_buyer_seller.html:16
 msgid "Teacher:"
@@ -94,15 +95,15 @@ msgstr "Đi đến trang đăng nhập"
 msgid "Password"
 msgstr "Mật khẩu"
 
-#: GameSetup/templates/home.html:27
+#: GameSetup/templates/home.html:30
 msgid "Choose your class:"
 msgstr "Chọn lớp học của bạn:"
 
-#: GameSetup/templates/home.html:37
+#: GameSetup/templates/home.html:40
 msgid "My Class"
 msgstr "Lớp học của tôi"
 
-#: GameSetup/views.py:402
+#: GameSetup/views.py:406
 msgid "Password updated successfully!"
 msgstr "Cập nhật mật khẩu thành công!"
 
@@ -174,37 +175,37 @@ msgstr "Tiền tệ:"
 msgid "Negotiation Position"
 msgstr "Vị trí đàm phán"
 
-#: diceroll/templates/dice_roll.html:78 diceroll/templates/dice_roll.html:140
+#: diceroll/templates/dice_roll.html:78 diceroll/templates/dice_roll.html:146
 #: position/templates/position_buyer_seller.html:67
 msgid "RESISTANCE:"
 msgstr "Giá kháng cự:"
 
-#: diceroll/templates/dice_roll.html:80 diceroll/templates/dice_roll.html:152
+#: diceroll/templates/dice_roll.html:80 diceroll/templates/dice_roll.html:158
 #: position/templates/position_buyer_seller.html:69
 msgid "FLEX:"
 msgstr "Linh hoạt:"
 
-#: diceroll/templates/dice_roll.html:82 diceroll/templates/dice_roll.html:164
+#: diceroll/templates/dice_roll.html:82 diceroll/templates/dice_roll.html:170
 #: position/templates/position_buyer_seller.html:71
 msgid "MAX Purchase:"
 msgstr "Mua tối đa:"
 
-#: diceroll/templates/dice_roll.html:84 diceroll/templates/dice_roll.html:177
+#: diceroll/templates/dice_roll.html:84 diceroll/templates/dice_roll.html:183
 #: position/templates/position_buyer_seller.html:73
 msgid "DELIVERY:"
 msgstr "Giao hàng:"
 
-#: diceroll/templates/dice_roll.html:86 diceroll/templates/dice_roll.html:189
+#: diceroll/templates/dice_roll.html:86 diceroll/templates/dice_roll.html:195
 #: position/templates/position_buyer_seller.html:75
 msgid "UNITS:"
 msgstr "Đơn vị:"
 
-#: diceroll/templates/dice_roll.html:88 diceroll/templates/dice_roll.html:201
+#: diceroll/templates/dice_roll.html:88 diceroll/templates/dice_roll.html:207
 #: position/templates/position_buyer_seller.html:77
 msgid "IMPORTANCE:"
 msgstr "Tầm quan trọng:"
 
-#: diceroll/templates/dice_roll.html:90 diceroll/templates/dice_roll.html:213
+#: diceroll/templates/dice_roll.html:90 diceroll/templates/dice_roll.html:219
 #: position/templates/position_buyer_seller.html:79
 msgid "QUALITY:"
 msgstr "Chất lượng:"
@@ -275,204 +276,226 @@ msgstr "Sử dụng những điểm này:"
 msgid "Negotiation Role:"
 msgstr "Vai trò đàm phán:"
 
-#: diceroll/templates/dice_roll.html:135
+#: diceroll/templates/dice_roll.html:132
+msgid "Last RPG rank:"
+msgstr "Xếp hạng RPG cuối cùng:"
+
+#: diceroll/templates/dice_roll.html:132
+msgid "Percentile:"
+msgstr "Phân vị:"
+
+#: diceroll/templates/dice_roll.html:134
+msgid "Achievement Bonus Points:"
+msgstr "Điểm thưởng thành tựu:"
+
+#: diceroll/templates/dice_roll.html:141
 msgid "Distribute Points"
 msgstr "Phân phối điểm"
 
-#: diceroll/templates/dice_roll.html:137
+#: diceroll/templates/dice_roll.html:143
 msgid "Spend your points here."
 msgstr "Sử dụng điểm của bạn ở đây."
 
-#: diceroll/templates/dice_roll.html:137
+#: diceroll/templates/dice_roll.html:143
 msgid "Click"
 msgstr "Nhấn"
 
-#: diceroll/templates/dice_roll.html:137
+#: diceroll/templates/dice_roll.html:143
 msgid "Play Now"
 msgstr "Chơi ngay"
 
-#: diceroll/templates/dice_roll.html:137
+#: diceroll/templates/dice_roll.html:143
 msgid "when ready."
 msgstr "Khi bạn đã sẵn sàng."
 
-#: diceroll/templates/dice_roll.html:137
+#: diceroll/templates/dice_roll.html:143
 msgid "Once you click Play Now"
-msgstr "(Một khi bạn nhấn Chơi ngay, vị trí của bạn sẽ được khóa và không thể thay đổi trong vòng RPG này.)"
+msgstr ""
+"(Một khi bạn nhấn Chơi ngay, vị trí của bạn sẽ được khóa và không thể thay "
+"đổi trong vòng RPG này.)"
 
-#: diceroll/templates/dice_roll.html:224
+#: diceroll/templates/dice_roll.html:230
 msgid "Play NOW"
 msgstr "Chơi ngay"
 
-#: diceroll/templates/dice_roll.html:233
+#: diceroll/templates/dice_roll.html:239
 msgid "Are you sure you want to lock in your numbers"
-msgstr "Bạn có chắc chắn muốn khóa số liệu của mình cho RPG này không?\\nHành động này không thể hoàn tác."
+msgstr ""
+"Bạn có chắc chắn muốn khóa số liệu của mình cho RPG này không?\\nHành động "
+"này không thể hoàn tác."
 
-#: diceroll/templates/dice_roll.html:234
+#: diceroll/templates/dice_roll.html:240
 msgid "Attributes updated successfully."
 msgstr "Cập nhật thuộc tính thành công."
 
-#: diceroll/templates/dice_roll.html:235
+#: diceroll/templates/dice_roll.html:241
 msgid "Failed to update attributes."
 msgstr "Cập nhật thuộc tính thất bại."
 
-#: diceroll/templates/dice_roll.html:236
+#: diceroll/templates/dice_roll.html:242
 msgid "Average Delivery Acceptable"
 msgstr "Có khả năng giao hàng với tốc độ bình thường"
 
-#: diceroll/templates/dice_roll.html:237
+#: diceroll/templates/dice_roll.html:243
 msgid "Average Quality Acceptable"
 msgstr "Có khả năng cung cấp chất lượng trung bình"
 
-#: diceroll/templates/dice_roll.html:238
+#: diceroll/templates/dice_roll.html:244
 msgid "Base Price"
 msgstr "Giá cơ bản"
 
-#: diceroll/templates/dice_roll.html:239
+#: diceroll/templates/dice_roll.html:245
 msgid "Base Units"
 msgstr "Đơn vị cơ bản"
 
-#: diceroll/templates/dice_roll.html:240
-#: position/templates/position_buyer_seller.html:796
+#: diceroll/templates/dice_roll.html:246
+msgid "Bonus"
+msgstr "Thưởng"
+
+#: diceroll/templates/dice_roll.html:247
+#: position/templates/position_buyer_seller.html:800
 msgid "BUYER"
 msgstr "Người mua"
 
-#: diceroll/templates/dice_roll.html:241
+#: diceroll/templates/dice_roll.html:248
 msgid "Capable of Average Delivery"
 msgstr "Có khả năng giao hàng với tốc độ bình thường"
 
-#: diceroll/templates/dice_roll.html:242
+#: diceroll/templates/dice_roll.html:249
 msgid "Capable of Average Quality"
 msgstr "Có khả năng cung cấp chất lượng trung bình"
 
-#: diceroll/templates/dice_roll.html:243
+#: diceroll/templates/dice_roll.html:250
 msgid "Capable of Fast Delivery"
 msgstr "Có khả năng giao hàng nhanh"
 
-#: diceroll/templates/dice_roll.html:244
+#: diceroll/templates/dice_roll.html:251
 msgid "Capable of High Quality"
 msgstr "Có khả năng cung cấp chất lượng cao"
 
-#: diceroll/templates/dice_roll.html:245
-#: position/templates/position_buyer_seller.html:805
+#: diceroll/templates/dice_roll.html:252
+#: position/templates/position_buyer_seller.html:809
 msgid "Distribute Points Here"
 msgstr "Phân phối điểm ở đây"
 
-#: diceroll/templates/dice_roll.html:246
+#: diceroll/templates/dice_roll.html:253
 msgid "An error occurred."
-msgstr "Đã xảy ra lỗi. Hãy thử lại.\\nHãy chắc chắn rằng kết nối internet của bạn đang hoạt động."
+msgstr ""
+"Đã xảy ra lỗi. Hãy thử lại.\\nHãy chắc chắn rằng kết nối internet của bạn "
+"đang hoạt động."
 
-#: diceroll/templates/dice_roll.html:247
+#: diceroll/templates/dice_roll.html:254
 msgid "Fast Delivery Required"
 msgstr "Yêu cầu giao hàng nhanh"
 
-#: diceroll/templates/dice_roll.html:248
+#: diceroll/templates/dice_roll.html:255
 msgid "Flex Point"
 msgstr "Điểm linh hoạt"
 
-#: diceroll/templates/dice_roll.html:249
+#: diceroll/templates/dice_roll.html:256
 #: position/templates/position_buyer_seller.html:290
 #: position/templates/position_buyer_seller.html:508
 #: position/templates/position_buyer_seller.html:674
 msgid "Flex Points"
 msgstr "Điểm linh hoạt"
 
-#: diceroll/templates/dice_roll.html:250
+#: diceroll/templates/dice_roll.html:257
 msgid "High Quality Required"
 msgstr "Yêu cầu chất lượng cao"
 
-#: diceroll/templates/dice_roll.html:251
-#: position/templates/position_buyer_seller.html:821
+#: diceroll/templates/dice_roll.html:258
+#: position/templates/position_buyer_seller.html:825
 msgid "Important"
 msgstr "Tầm quan trọng"
 
-#: diceroll/templates/dice_roll.html:252
-#: position/templates/position_buyer_seller.html:826
+#: diceroll/templates/dice_roll.html:259
+#: position/templates/position_buyer_seller.html:830
 msgid "Kind Of Important"
 msgstr "Hơi quan trọng"
 
-#: diceroll/templates/dice_roll.html:253
+#: diceroll/templates/dice_roll.html:260
 msgid "Low Quality Acceptable"
 msgstr "Chất lượng thấp có thể chấp nhận"
 
-#: diceroll/templates/dice_roll.html:254
+#: diceroll/templates/dice_roll.html:261
 msgid "Mod. Units"
 msgstr "Đơn vị"
 
-#: diceroll/templates/dice_roll.html:255
-#: position/templates/position_buyer_seller.html:833
+#: diceroll/templates/dice_roll.html:262
+#: position/templates/position_buyer_seller.html:837
 msgid "NONE"
 msgstr "Không"
 
-#: diceroll/templates/dice_roll.html:256
+#: diceroll/templates/dice_roll.html:263
 msgid "Only For Buyer"
 msgstr "Chỉ dành cho người mua"
 
-#: diceroll/templates/dice_roll.html:257
+#: diceroll/templates/dice_roll.html:264
 msgid "Only Capable of Low Quality"
 msgstr "Chỉ có khả năng cung cấp chất lượng thấp"
 
-#: diceroll/templates/dice_roll.html:258
+#: diceroll/templates/dice_roll.html:265
 msgid "Only Capable of Slow Delivery"
 msgstr "Chỉ có khả năng giao hàng chậm"
 
-#: diceroll/templates/dice_roll.html:259
+#: diceroll/templates/dice_roll.html:266
 msgid "Roll dice before distributing points!"
 msgstr "Hãy tung xúc xắc trước khi phân phối điểm!"
 
-#: diceroll/templates/dice_roll.html:260
-#: position/templates/position_buyer_seller.html:840
+#: diceroll/templates/dice_roll.html:267
+#: position/templates/position_buyer_seller.html:844
 msgid "SELLER"
 msgstr "Người bán"
 
-#: diceroll/templates/dice_roll.html:261
+#: diceroll/templates/dice_roll.html:268
 msgid "Slow Delivery Acceptable"
 msgstr "Có thể chấp nhận giao hàng chậm"
 
-#: diceroll/templates/dice_roll.html:262
-#: position/templates/position_buyer_seller.html:844
+#: diceroll/templates/dice_roll.html:269
+#: position/templates/position_buyer_seller.html:848
 msgid "Small Potatoes"
 msgstr "Chuyện nhỏ"
 
-#: diceroll/templates/dice_roll.html:263
-#: position/templates/position_buyer_seller.html:845
+#: diceroll/templates/dice_roll.html:270
+#: position/templates/position_buyer_seller.html:849
 msgid "Somewhat Important"
 msgstr "Khá quan trọng"
 
-#: diceroll/templates/dice_roll.html:264
+#: diceroll/templates/dice_roll.html:271
 msgid "You cannot spend more than your total points. \\n Remove: "
 msgstr "Bạn không thể sử dụng quá tổng số điểm của mình.\\n Hãy gỡ bỏ: "
 
-#: diceroll/templates/dice_roll.html:265
+#: diceroll/templates/dice_roll.html:272
 msgid "Try again"
 msgstr ". Hãy thử lại"
 
-#: diceroll/templates/dice_roll.html:266
+#: diceroll/templates/dice_roll.html:273
 msgid "Time Over!"
 msgstr "Thời gian đã hết!"
 
-#: diceroll/templates/dice_roll.html:267
+#: diceroll/templates/dice_roll.html:274
 msgid "Time To Roll Dice!"
 msgstr "Đã đến lúc tung xúc xắc!"
 
-#: diceroll/templates/dice_roll.html:268
-#: position/templates/position_buyer_seller.html:850
+#: diceroll/templates/dice_roll.html:275
+#: position/templates/position_buyer_seller.html:854
 msgid "Very Important"
 msgstr "Rất quan trọng"
 
-#: diceroll/templates/dice_roll.html:269
-#: position/templates/position_buyer_seller.html:851
+#: diceroll/templates/dice_roll.html:276
+#: position/templates/position_buyer_seller.html:855
 msgid "Vital Importance"
 msgstr "Cực kỳ quan trọng"
 
-#: diceroll/views.py:115
+#: diceroll/views.py:137
 msgid "Roll sent to server."
 msgstr "Kết quả tung xúc xắc đã được gửi lên máy chủ."
 
-#: diceroll/views.py:117
+#: diceroll/views.py:139
 msgid "No rolls left"
 msgstr "Không còn lượt tung xúc xắc"
 
-#: diceroll/views.py:136
+#: diceroll/views.py:158
 msgid "Record not found"
 msgstr "Không tìm thấy bản ghi"
 
@@ -726,19 +749,24 @@ msgstr "Chi phí hủy giao dịch:"
 
 #: position/templates/position_buyer_seller.html:372
 msgid "Both parties cancel = NO cost to you & NO cost to counterparty."
-msgstr "Cả hai bên hủy = Bạn không tốn chi phí & đối tác giao dịch không tốn chi phí."
+msgstr ""
+"Cả hai bên hủy = Bạn không tốn chi phí & đối tác giao dịch không tốn chi phí."
 
 #: position/templates/position_buyer_seller.html:373
 msgid ""
 "You cancel but counterparty does NOT cancel = 0.5 Flex Points per 100 units "
 "of the deal (minimum fee of 1 rounded down afterward)."
-msgstr "Bạn không hủy nhưng đối tác hủy = Bạn không phải chịu chi phí phụ (giao dịch bị mất)."
+msgstr ""
+"Bạn không hủy nhưng đối tác hủy = Bạn không phải chịu chi phí phụ (giao dịch "
+"bị mất)."
 
 #: position/templates/position_buyer_seller.html:374
 msgid ""
 "You do NOT cancel but counterparty cancels = NO extra cost to you (deal is "
 "lost)."
-msgstr "Bạn không hủy nhưng đối tác hủy = Bạn không phải chịu chi phí phụ (giao dịch bị mất)."
+msgstr ""
+"Bạn không hủy nhưng đối tác hủy = Bạn không phải chịu chi phí phụ (giao dịch "
+"bị mất)."
 
 #: position/templates/position_buyer_seller.html:375
 msgid "Role 1 = Buyer; -1 = Seller."
@@ -769,12 +797,12 @@ msgid "Over Production:"
 msgstr "Sản xuất vượt mức:"
 
 #: position/templates/position_buyer_seller.html:415
-#: position/templates/position_buyer_seller.html:815
+#: position/templates/position_buyer_seller.html:819
 msgid "Going higher gains Flex Points (1 point per 100 units)."
 msgstr "Vượt mức tăng điểm linh hoạt (1 điểm cho mỗi 100 đơn vị)."
 
 #: position/templates/position_buyer_seller.html:416
-#: position/templates/position_buyer_seller.html:818
+#: position/templates/position_buyer_seller.html:822
 msgid "Going lower spends Flex Points (1 point per 100 units)."
 msgstr "Giảm xuống tiêu tốn điểm linh hoạt (1 điểm cho mỗi 100 đơn vị)."
 
@@ -782,20 +810,26 @@ msgstr "Giảm xuống tiêu tốn điểm linh hoạt (1 điểm cho mỗi 100 
 msgid ""
 "Canceling a deal will have a cost if both sides do NOT agree (see Canceled "
 "Deals area)."
-msgstr "Nếu cả hai bên không đồng ý, việc hủy giao dịch sẽ tốn chi phí (xem khu vực Giao dịch đã hủy)."
+msgstr ""
+"Nếu cả hai bên không đồng ý, việc hủy giao dịch sẽ tốn chi phí (xem khu vực "
+"Giao dịch đã hủy)."
 
 #: position/templates/position_buyer_seller.html:418
 #, python-format
 msgid ""
 "Earn extra Flex Points by making more deals with different groups (at least "
 "10%% of target units with different groups)."
-msgstr "Sản xuất vượt quá MAX tốn 1 điểm linh hoạt cho mỗi 10%% tăng thêm so với ĐƠN VỊ."
+msgstr ""
+"Sản xuất vượt quá MAX tốn 1 điểm linh hoạt cho mỗi 10%% tăng thêm so với ĐƠN "
+"VỊ."
 
 #: position/templates/position_buyer_seller.html:419
 #, python-format
 msgid ""
 "Production over MAX costs 1 Flex Point for every 10%% increase over UNITS."
-msgstr "Sản xuất vượt quá MAX tốn 1 điểm linh hoạt cho mỗi 10%% tăng thêm so với ĐƠN VỊ."
+msgstr ""
+"Sản xuất vượt quá MAX tốn 1 điểm linh hoạt cho mỗi 10%% tăng thêm so với ĐƠN "
+"VỊ."
 
 #: position/templates/position_buyer_seller.html:423
 msgid "Weighted Avg. Price"
@@ -916,12 +950,12 @@ msgid "Importance"
 msgstr "Tầm quan trọng"
 
 #: position/templates/position_buyer_seller.html:700
-#: position/templates/position_buyer_seller.html:822
+#: position/templates/position_buyer_seller.html:826
 msgid "Inventory Bought"
 msgstr "Hàng tồn kho đã mua"
 
 #: position/templates/position_buyer_seller.html:701
-#: position/templates/position_buyer_seller.html:825
+#: position/templates/position_buyer_seller.html:829
 msgid "Inventory Sold"
 msgstr "Hàng tồn kho đã bán"
 
@@ -957,209 +991,217 @@ msgstr "Vai trò RPG"
 msgid "Current Score"
 msgstr "Điểm hiện tại"
 
-#: position/templates/position_buyer_seller.html:794
+#: position/templates/position_buyer_seller.html:772
+msgid "Rank"
+msgstr ""
+
+#: position/templates/position_buyer_seller.html:773
+msgid "Percentile"
+msgstr ""
+
+#: position/templates/position_buyer_seller.html:798
 msgid "Average"
 msgstr "Trung bình"
 
-#: position/templates/position_buyer_seller.html:795
+#: position/templates/position_buyer_seller.html:799
 msgid "[2] Average"
 msgstr "[2] Trung bình"
 
-#: position/templates/position_buyer_seller.html:797
+#: position/templates/position_buyer_seller.html:801
 msgid "You cannot buy over your resistance price."
 msgstr "Bạn không thể mua vượt quá giá kháng cự của mình."
 
-#: position/templates/position_buyer_seller.html:798
+#: position/templates/position_buyer_seller.html:802
 msgid "You cannot sell below your resistance price."
 msgstr "Bạn không thể bán dưới giá kháng cự của mình."
 
-#: position/templates/position_buyer_seller.html:799
+#: position/templates/position_buyer_seller.html:803
 msgid "Counterpart must be a positive number."
 msgstr "Đối tác phải là số dương."
 
-#: position/templates/position_buyer_seller.html:800
+#: position/templates/position_buyer_seller.html:804
 msgid " Try to make a deal for faster."
 msgstr " Cố gắng thương lượng cho giao hàng nhanh hơn."
 
-#: position/templates/position_buyer_seller.html:801
+#: position/templates/position_buyer_seller.html:805
 msgid " Try to make a deal for higher."
 msgstr " Cố gắng thương lượng cho chất lượng cao hơn."
 
-#: position/templates/position_buyer_seller.html:802
+#: position/templates/position_buyer_seller.html:806
 msgid " Try to make a deal for lower."
 msgstr " Cố gắng thương lượng cho chất lượng thấp hơn."
 
-#: position/templates/position_buyer_seller.html:803
+#: position/templates/position_buyer_seller.html:807
 msgid " Try to make a deal for slower."
 msgstr " Cố gắng thương lượng cho giao hàng chậm hơn."
 
-#: position/templates/position_buyer_seller.html:804
+#: position/templates/position_buyer_seller.html:808
 msgid "Delivery must be between Slow and Fast."
 msgstr "Giao hàng phải nằm trong khoảng Từ chậm đến nhanh."
 
-#: position/templates/position_buyer_seller.html:806
+#: position/templates/position_buyer_seller.html:810
 msgid " Do not buy more than this."
 msgstr " Không mua quá số lượng này."
 
-#: position/templates/position_buyer_seller.html:807
+#: position/templates/position_buyer_seller.html:811
 msgid "Do NOT Buy Over:"
 msgstr "Không mua quá:"
 
-#: position/templates/position_buyer_seller.html:808
+#: position/templates/position_buyer_seller.html:812
 msgid " Do not pay more than this."
 msgstr " Không trả quá giá này."
 
-#: position/templates/position_buyer_seller.html:809
+#: position/templates/position_buyer_seller.html:813
 msgid " Do not sell for less than this."
 msgstr " Không bán dưới giá này."
 
-#: position/templates/position_buyer_seller.html:810
+#: position/templates/position_buyer_seller.html:814
 msgid " Spend, collect, or gift these."
 msgstr " Chi tiêu, thu thập hoặc tặng những điều này."
 
-#: position/templates/position_buyer_seller.html:811
+#: position/templates/position_buyer_seller.html:815
 msgid "Form validation failed:"
 msgstr "Lỗi xác nhận biểu mẫu:"
 
-#: position/templates/position_buyer_seller.html:812
+#: position/templates/position_buyer_seller.html:816
 msgid "Missing gift receiver."
 msgstr "Thiếu người nhận quà."
 
-#: position/templates/position_buyer_seller.html:813
+#: position/templates/position_buyer_seller.html:817
 msgid "Missing gift amount (must be positive number)."
 msgstr "Thiếu số lượng quà (phải là số dương)."
 
-#: position/templates/position_buyer_seller.html:814
+#: position/templates/position_buyer_seller.html:818
 msgid "You must include a short message."
 msgstr "Bạn phải bao gồm một tin nhắn ngắn."
 
-#: position/templates/position_buyer_seller.html:816
+#: position/templates/position_buyer_seller.html:820
 msgid "Going HIGHER spends Flex Points (1 point per 100 units)."
 msgstr "Giảm xuống tiêu tốn điểm linh hoạt (1 điểm cho mỗi 100 đơn vị)."
 
-#: position/templates/position_buyer_seller.html:817
+#: position/templates/position_buyer_seller.html:821
 msgid "Going LOWER gains Flex Points (1 point per 100 units)."
 msgstr "Tăng lên nhận được điểm linh hoạt (1 điểm cho mỗi 100 đơn vị)."
 
-#: position/templates/position_buyer_seller.html:819
+#: position/templates/position_buyer_seller.html:823
 msgid "[3] High"
 msgstr "[3] Cao"
 
-#: position/templates/position_buyer_seller.html:820
+#: position/templates/position_buyer_seller.html:824
 msgid "How important is this deal."
 msgstr "Mức độ quan trọng của giao dịch này."
 
-#: position/templates/position_buyer_seller.html:823
+#: position/templates/position_buyer_seller.html:827
 msgid "Inventory bought over your MAX Purchase"
 msgstr "Hàng tồn kho mua quá MAX của bạn"
 
-#: position/templates/position_buyer_seller.html:824
+#: position/templates/position_buyer_seller.html:828
 msgid "will cause bankruptcy."
 msgstr "sẽ dẫn đến phá sản."
 
-#: position/templates/position_buyer_seller.html:827
+#: position/templates/position_buyer_seller.html:831
 msgid "[1] Low"
 msgstr "[1] Thấp"
 
-#: position/templates/position_buyer_seller.html:828
+#: position/templates/position_buyer_seller.html:832
 msgid "MAX Sales:"
 msgstr "Số lượng bán tối đa:"
 
-#: position/templates/position_buyer_seller.html:829
+#: position/templates/position_buyer_seller.html:833
 msgid "Missing message receiver."
 msgstr "Thiếu người nhận tin nhắn."
 
-#: position/templates/position_buyer_seller.html:830
+#: position/templates/position_buyer_seller.html:834
 msgid "Missing message short subject."
 msgstr "Thiếu chủ đề ngắn của tin nhắn."
 
-#: position/templates/position_buyer_seller.html:831
+#: position/templates/position_buyer_seller.html:835
 msgid "Missing message."
 msgstr "Thiếu tin nhắn."
 
-#: position/templates/position_buyer_seller.html:832
+#: position/templates/position_buyer_seller.html:836
 msgid "New Deal ID:"
 msgstr "Mã giao dịch mới:"
 
-#: position/templates/position_buyer_seller.html:834
+#: position/templates/position_buyer_seller.html:838
 msgid "Not time for deals yet."
 msgstr "Chưa đến thời điểm giao dịch."
 
-#: position/templates/position_buyer_seller.html:835
+#: position/templates/position_buyer_seller.html:839
 msgid "Deals can begin at "
 msgstr "Giao dịch có thể bắt đầu từ "
 
-#: position/templates/position_buyer_seller.html:836
+#: position/templates/position_buyer_seller.html:840
 msgid "Price must be a positive number."
 msgstr "Giá phải là số dương."
 
-#: position/templates/position_buyer_seller.html:837
+#: position/templates/position_buyer_seller.html:841
 msgid "PURCHASE ORDER"
 msgstr "Đơn đặt hàng Mua/Bán"
 
-#: position/templates/position_buyer_seller.html:838
+#: position/templates/position_buyer_seller.html:842
 msgid "Quality must be between Low and High."
 msgstr "Chất lượng phải nằm trong khoảng Thấp và Cao."
 
-#: position/templates/position_buyer_seller.html:839
+#: position/templates/position_buyer_seller.html:843
 msgid "SALE INVOICE"
 msgstr "Hóa đơn bán hàng"
 
-#: position/templates/position_buyer_seller.html:841
+#: position/templates/position_buyer_seller.html:845
 msgid "Selling over MAX will cost Flex Points to increase capacity."
 msgstr "Bán quá MAX sẽ tốn điểm linh hoạt để tăng công suất."
 
-#: position/templates/position_buyer_seller.html:842
+#: position/templates/position_buyer_seller.html:846
 msgid " Selling over this will cost Flex Points."
 msgstr "Bán quá số lượng này sẽ tốn điểm linh hoạt."
 
-#: position/templates/position_buyer_seller.html:843
+#: position/templates/position_buyer_seller.html:847
 msgid "Slow"
 msgstr "Chậm"
 
-#: position/templates/position_buyer_seller.html:846
+#: position/templates/position_buyer_seller.html:850
 msgid " Target buying at least this many."
 msgstr "Mục tiêu mua ít nhất số lượng này."
 
-#: position/templates/position_buyer_seller.html:847
+#: position/templates/position_buyer_seller.html:851
 msgid " Target selling at least this many."
 msgstr "Mục tiêu bán ít nhất số lượng này."
 
-#: position/templates/position_buyer_seller.html:848
+#: position/templates/position_buyer_seller.html:852
 msgid "Target This:"
 msgstr "Mục tiêu này:"
 
-#: position/templates/position_buyer_seller.html:849
+#: position/templates/position_buyer_seller.html:853
 msgid "Units must be a positive number."
 msgstr "Số lượng phải là số dương."
 
-#: position/templates/position_buyer_seller.html:852
+#: position/templates/position_buyer_seller.html:856
 msgid "Complete Survey"
 msgstr "Hãy hoàn thành khảo sát và nhận phiếu giảm giá 100 TWD!"
 
-#: position/views.py:960
+#: position/views.py:1028
 msgid "Deal saved."
 msgstr "Giao dịch đã được lưu."
 
-#: position/views.py:964 position/views.py:996 position/views.py:1027
-#: position/views.py:1058
+#: position/views.py:1032 position/views.py:1064 position/views.py:1095
+#: position/views.py:1126
 msgid "Form is not valid."
 msgstr "Biểu mẫu không hợp lệ."
 
-#: position/views.py:968 position/views.py:999 position/views.py:1030
-#: position/views.py:1061
+#: position/views.py:1036 position/views.py:1067 position/views.py:1098
+#: position/views.py:1129
 msgid "Method not allowed."
 msgstr "Phương thức không được phép."
 
-#: position/views.py:993
+#: position/views.py:1061
 msgid "Cancel of deal saved."
 msgstr "Hủy giao dịch đã được lưu."
 
-#: position/views.py:1024
+#: position/views.py:1092
 msgid "Gift sent."
 msgstr "Quà đã được gửi."
 
-#: position/views.py:1055
+#: position/views.py:1123
 msgid "Message sent."
 msgstr "Tin nhắn đã được gửi."
 
@@ -1167,23 +1209,23 @@ msgstr "Tin nhắn đã được gửi."
 msgid "Settings"
 msgstr "Cài đặt"
 
-#: shared_templates/_menu_admin.html:38 shared_templates/_menu_group.html:23
+#: shared_templates/_menu_admin.html:41 shared_templates/_menu_group.html:23
 msgid "Help"
 msgstr "Hỗ trợ"
 
-#: shared_templates/_menu_admin.html:42 shared_templates/_menu_group.html:27
+#: shared_templates/_menu_admin.html:45 shared_templates/_menu_group.html:27
 msgid "User Guide"
 msgstr "Hướng dẫn sử dụng"
 
-#: shared_templates/_menu_admin.html:45 shared_templates/_menu_group.html:30
+#: shared_templates/_menu_admin.html:48 shared_templates/_menu_group.html:30
 msgid "Class eBook"
 msgstr "Sách điện tử lớp học"
 
-#: shared_templates/_menu_admin.html:48 shared_templates/_menu_group.html:33
+#: shared_templates/_menu_admin.html:51 shared_templates/_menu_group.html:33
 msgid "Class Slides"
 msgstr "Slide lớp học"
 
-#: shared_templates/_menu_admin.html:51 shared_templates/_menu_group.html:36
+#: shared_templates/_menu_admin.html:54 shared_templates/_menu_group.html:36
 msgid "Class Lectures"
 msgstr "Bài giảng lớp học"
 
