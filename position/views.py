@@ -634,41 +634,40 @@ def fetch_and_filter_deals(rpg_closest_round, currentClassName, currentGroupNumb
 
     all_deals = valid_deals  # Replace the original all_deals with the filtered valid deals.
 
+
     for deal in all_deals:
         deal_id = deal['dealDealID']
         group_digit = deal['groupDigit']
-        dealCounterpart = deal['dealCounterpart']
-        key1 = (deal_id, group_digit) # this deal's sender
-        key2 = (deal_id, dealCounterpart) # this deal's counterpart
+        counterpart = deal['dealCounterpart']
+        
+        # Determine if this deal or its counterpart has been canceled
+        deal_canceled_by_group = (deal_id, group_digit) in canceled_deals_count
+        deal_canceled_by_counterpart = (deal_id, counterpart) in canceled_deals_count
 
-        cancel_count = 0 # reset the counter
+        # Initialize penalty amount
+        initial_penalty_amount = (deal['dealUnits'] / 100) * 0.5
+        penalty_amount = max(1, math.floor(initial_penalty_amount))  # Ensure minimum penalty of 1
 
-        if key1 in canceled_deals_count: # Check if this deal's ID & group are in the cancels (The deal group is also a cancel group)
-            cancel_counterpart = canceled_deals_count[key1]['counterpart'] # get the counterpart for this cancel
-            if cancel_counterpart == dealCounterpart:
-                cancel_count += 1  # This deal was canceled by this deal group (even the counterpart matches)
-                # Now we want to see if there is a cancel that is the reverse of this one
-                if key2 in canceled_deals_count: # Check if the counterpart has submitted a cancel for this deal
-                    cancel_count += 1 # both this deal's group sender and counterpart have submitted cancel
-
-        if cancel_count == 0 and key2 not in canceled_deals_count: # Do NOT include a canceled deal just because it is key2
-             filtered_deals.append(deal)
-        elif cancel_count == 1:
-            # Delete from FLEX points here 0.5 Flex for 100 units only if the canceling group is the currentGroupNumber
-            penalty_amount = (deal['dealUnits'] / 100) * .5
-            if 0 < penalty_amount < 1: # Mimum fee of 1
-                penalty_amount = 1
-            else:
-                penalty_amount = math.floor(penalty_amount) # Round DOWN
-            deal['penalty_amount'] = penalty_amount
-            flex_points -= penalty_amount  # Add the deduction to the overall Flex Point count
-            penalized_deals.append(deal)  # Add to penalized_deals list regardless of who canceled
-        elif cancel_count == 2:
-            # Check if deal with the same dealDealID is already in the mutually_canceled_deals
+        # If deal canceled by both groups (mutual cancellation)
+        if deal_canceled_by_group and deal_canceled_by_counterpart:
+            # Add to mutually canceled deals without penalizing either group
             if not any(existing_deal['dealDealID'] == deal_id for existing_deal in mutually_canceled_deals):
                 mutually_canceled_deals.append(deal)
+            continue  # Skip further processing for mutually canceled deals
 
+        # Apply penalty if the current group canceled the deal
+        if deal_canceled_by_group and int(currentGroupNumber) == group_digit:
+            deal['penalty_amount'] = penalty_amount
+            flex_points -= penalty_amount
+            penalized_deals.append(deal)  # Add to penalized deals list for the canceling group
+        elif not deal_canceled_by_group and deal_canceled_by_counterpart:
+            # If only the counterpart canceled, add the deal to filtered deals for the current group
+            filtered_deals.append(deal)
+        elif not deal_canceled_by_group and not deal_canceled_by_counterpart:
+            # If neither group canceled, add to filtered deals
+            filtered_deals.append(deal)
     return filtered_deals, penalized_deals, mutually_canceled_deals, all_deals, flex_points, repeated_deals
+
 
 
 #-------------------QUERY ALL DEALS LESS CANCELS----------------
