@@ -76,8 +76,8 @@ def home(request):
     # Clear all session variables to stop back arrow movement
     #request.session.clear()
 
-    teachers = GameSettings.objects.all()
-    groups = GroupLogin.objects.all()
+    teachers = GameSettings.objects.all().order_by('-lastUpdate')  # Assuming the field is named 'created'
+    groups = GroupLogin.objects.all()  # Assuming the field is named 'created'
     form = GroupDigitForm()
     context = {
         'teachers': teachers,
@@ -85,7 +85,6 @@ def home(request):
         'form': form
     }
     return render(request, 'home.html', context)
-
 
 #-------CLYDE THIS FUNCTION MAY NOT BE IN USE ANY LONGER----------------------START
 def login(request):

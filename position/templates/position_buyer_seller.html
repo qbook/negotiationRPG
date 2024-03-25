@@ -769,6 +769,7 @@
                                 <th scope="col" title="Group">{% trans "Group" %}</th>
                                 <th scope="col" title="Role">{% trans "RPG Role" %}</th>
                                 <th scope="col" title="Score">{% trans "Current Score" %}</th>
+                                <th scope="col" title="Rank">{% trans "Rank" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -777,6 +778,7 @@
                                 <td>{{ group.group_digit }}</td>
                                 <td>{{ group.group_role_name }}</td>
                                 <td>{{ group.scoreFinal }}</td>
+                                <td>{{ group.ranking }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
