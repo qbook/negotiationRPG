@@ -30,6 +30,8 @@ from survey.models import UserResponse
 from django.db.models import Q
 from collections import defaultdict
 from django.db.models import Max, F
+from django.db.models.functions import Cast
+from django.db.models import IntegerField
 import random
 import math
 
@@ -928,10 +930,27 @@ def query_group_members(currentClassName, currentGroupNumber):
 def query_class_members(currentClassName):
     # Query the StudentList model
 
-    class_members = StudentList.objects.filter(
-        className=currentClassName,
-    ).values('chineseName', 'englishName', 'studentNumber', 'groupDigit').order_by('groupDigit', 'studentNumber')
+    # CLYDE: group number in DB is string--consider changing to int so listing is easier
+    #class_members = StudentList.objects.filter(
+    #className=currentClassName,
+    # ).values('chineseName', 'englishName', 'studentNumber', 'groupDigit').order_by('groupDigit', 'studentNumber')
+    # return class_members
 
+    # First, fetch the class members
+    class_members_query = StudentList.objects.filter(
+        className=currentClassName,
+    ).annotate(
+        groupDigit_as_int=Cast('groupDigit', IntegerField())  # Cast groupDigit to an integer for sorting
+    ).values(
+        'chineseName', 'englishName', 'studentNumber', 'groupDigit', 'groupDigit_as_int'
+    ).order_by(
+        'groupDigit_as_int', 'studentNumber'  # Order by the casted integer value
+    )
+
+    # Convert QuerySet to list for further manipulation if necessary
+    class_members = list(class_members_query)
+
+    # Now, class_members should be in the order you expect
     return class_members
 
 #-------------------QUERY BUYER SELLER NUMBERS IN MARKET----------------
