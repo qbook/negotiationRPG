@@ -56,8 +56,7 @@ def group_character(request):
         # Save in session the bonus point amount for use in dice roll
         request.session['current_group_bonus'] = current_group_bonus['bonus']
     else:
-        current_group_bonus = 0
-
+        current_group_bonus = {'bonus': 0}
 
     context = {
         'groupDigit': currentGroupNumber,

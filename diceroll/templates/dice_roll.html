@@ -457,8 +457,8 @@ $(document).ready(function() {
                 totalPointsUsed += parseInt($(this).val(), 10);
             });
             //check the last dice role using the wide-scope var (to really stop cheating, check on the view action using actual DB data)
-            pointsLeft = groupDiceLastRoll - totalPointsUsed;
-        
+            pointsLeft = groupDiceLastRoll + bonusPoints - totalPointsUsed;
+
             if (pointsLeft > -1 && groupRole != 0){ //only continue if points used are not more than rolled AND dice has been rolled
                 // Read values from dropdowns
                 const resistance = $("#drpResistance").val();
